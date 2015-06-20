@@ -89,7 +89,7 @@
                     </div>
 <div id="layout">
 <!-- 弹出框 start -->   
-      <div gldp-el="mydate" style="width: 240px; height: 240px; display: block; position: absolute; margin-left: 95px; margin-top: 116px; z-index: 200;"></div>
+      <div gldp-el="mydate" style="width: 250px; height: 240px; display: block; position: absolute; margin-left: 95px; margin-top: 116px; z-index: 200;"></div>
       <div id="winDiv2">
         <div class="topDiv"><span class="fl">添加基础课程</span><span class="fr" id="close" onclick="closeDiv2()"><img src="images/close.jpg" /></span><div class="clear"></div></div>
         <div class="condiv">
@@ -133,7 +133,7 @@
     		    <li><span class="rq5"></span><span class="zj5"></span></li>
     		    <li><span class="rq6"></span><span class="zj6"></span></li>
         </ul>
-        <div class="kb-sz kb-sz1" style="width:193px;">
+        <div class="kb-sz kb-sz1" style="width:183px;">
             <a href="#"  onclick="openDiv2()"><font size="+2" color="#FF9933">+</font>新时间</a>
           </div>
     </div>
@@ -205,12 +205,6 @@
       </div>
     
   </div>
-<div >
-<button id="datetime">点击这里</button>
-	<span id="aa"></span>
-	<span id="bb"></span>
-	<span id="cc"></span>
-</div>
   
 <!--底部 start-->   
 <jsp:include page="t_bottom.jsp"></jsp:include>

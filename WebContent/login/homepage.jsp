@@ -214,7 +214,7 @@
                 </div>
             </div>
 <!--  学员  -->
-            <div class="main b_g5" style=" background:url(images/bg2.gif) repeat-y center #737373; padding:20px 0;">
+            <div class="main b_g5" style=" padding:20px 0;">
                 <div class="content">
                     <div class="title"><span class="f_l f_18 m_l10"><b><a href="#" class="f_g50" target="_blank">学员&nbsp;&nbsp;></a></b></span><a class="f_r f_g50 m_r10" href="#" target="_blank">更多学员自述></a></div>
                     <div class="ul_6tips">

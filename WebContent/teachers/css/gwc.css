@@ -571,7 +571,7 @@
 
 
 #layout{ width: 100%; height: 100%; /*background: #000; opacity: 0.5; filter: alpha(opacity=50); */display: block;}
-#winDiv{ position: absolute;  width: 720px;  height: 400px; display: none; z-index:9999;}
+#winDiv{ position: absolute;  width: 720px;  height: 400px; display: none; z-index:9999;margin-top:-190px;}
 #winDiv .topDiv{  font-size: 12px; height: 24px; line-height:22px; font-size:16px; color:#FFF; font-family:"微软雅黑"; background: #136aaa;padding: 10px 20px 6px 20px;}
 #winDiv .topDiv span{ cursor: pointer; display:block;}
 #winDiv .condiv{ width:698px; height:346px; background:#FFF; border:#a3a3a3 solid 1px; border-top:none; font-size:14px; line-height:32px; padding:10px; color:#4f4f4f;}
@@ -587,10 +587,10 @@
 .div_yzc{ font-size:14px; background:url(../images/ss_bg.jpg) no-repeat;display:block; width:120px; height:30px; text-align:center;}
 #winDiv .wsjhm{ padding-top:0px;}
 
-#winDiv1{ position: absolute;  top: 0; left: 0; width: 720px;  height: 400px; display: none; z-index:9999;}
+#winDiv1{ position: absolute; width: 720px;  height: 400px; display: none; z-index:9999;margin-top:-446px;}
 #winDiv1 .topDiv{  font-size: 12px; height: 24px; line-height:22px; font-size:16px; color:#FFF; font-family:"微软雅黑"; background: #136aaa;padding: 10px 20px 6px 20px;}
 #winDiv1 .topDiv span{ cursor: pointer; display:block;}
-#winDiv1 .condiv{ width:698px; height:346px; background:#FFF; border:#a3a3a3 solid 1px; border-top:none; font-size:14px; line-height:32px; padding:10px; color:#4f4f4f;}
+#winDiv1 .condiv{ width:698px; height:400px; background:#FFF; border:#a3a3a3 solid 1px; border-top:none; font-size:14px; line-height:32px; padding:10px; color:#4f4f4f;}
 #winDiv1 .condiv_ipt{border:#999 solid 1px; width:50px; height:18px; line-height:18px; padding:0 10px; color:#999;}
 #winDiv1 .condiv_tex{width:320px; height:120px; border:#999 solid 1px; color:#CCC; padding:10px;}
 #winDiv1 .condiv_p{ padding:0 30px; line-height:48px; width:638px;}

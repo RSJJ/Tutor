@@ -8,13 +8,12 @@
 <link href="css/global.css" rel="stylesheet" type="text/css"  charset="utf-8"  />
 <link href="css/erji.css" rel="stylesheet" type="text/css"  charset="utf-8"  />
 <link href="css/gwc.css" rel="stylesheet" type="text/css"  charset="utf-8"  />
+<link href="css/s_info.css" rel="stylesheet" type="text/css"  charset="utf-8"  />
 <script src="js/jquery.min.js" type="text/javascript" charset="utf-8" language="javascript"></script>
 <script src="js/formCheck.js" type="text/javascript" charset="utf-8" language="javascript"></script>
 <script src="js/jquery.fancybox-1.3.4.js" type="text/javascript" charset="utf-8" language="javascript"></script>
 <script src="js/t_team_js.js" type="text/javascript" charset="utf-8" language="javascript"></script>
 <!-- 首页轮播图 start --> 
-
-
 <!--[if IE 6]>
 <script src="js/background.png.js" type="text/javascript" charset="utf-8" language="javascript"></script>
 <script type="text/javascript">DD_belatedPNG.fix('*');</script>
@@ -178,10 +177,11 @@
                 <div class="inckjcontca myleft" style="padding-left:50px;">
                 	<div class="inckjcontcalr myimg">
                     	<img style="width:180px; height:180px; margin-left:0" id="img1" src="images/incimg12.gif">
+                    	<a href="javascript:void(0)" class="upload_a"><img src="images/xztp.jpg"/>&nbsp;*<input type="file" id="upload_file0"></a>
                     </div>
                     
                     <div class="inckjcontcarl myimg2 mt_10">
-                        <div class="baocun1"><div class="fl"><a href="javascript:void(0)" ></a></div><div class="fl"><font color="#FF0000">*</font></div></div><div class="clear"></div>
+                       <!--  <div class="baocun1"><div class="fl"><a href="javascript:void(0)" class="upload_a"><img src="images/xztp.jpg"/><input type="file" id="upload_file0"></a></div><div class="fl"><font color="#FF0000">*</font></div></div><div class="clear"></div> -->
                     	<div class="baocun"><a  href="javascript:void(0)" >保存设置</a></div>
                     </div>
                     <div class="clear"></div>

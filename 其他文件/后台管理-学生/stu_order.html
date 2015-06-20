@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8"/>
+	<title>学纷享家教后台管理 | 学员管理 | 学员订单</title>
+	
+	<link rel="stylesheet" href="css/layout.css" type="text/css" media="screen" />
+	<!--[if lt IE 9]>
+	<link rel="stylesheet" href="css/ie.css" type="text/css" media="screen" />
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<script src="js/jquery-1.5.2.min.js" type="text/javascript"></script>
+	<script src="js/hideshow.js" type="text/javascript"></script>
+	<script src="js/jquery.tablesorter.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="js/jquery.equalHeight.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() 
+    	{ 
+      	  $(".tablesorter").tablesorter(); 
+   	 } 
+	);
+	$(document).ready(function() {
+
+	//When page loads...
+	$(".tab_content").hide(); //Hide all content
+	$("ul.tabs li:first").addClass("active").show(); //Activate first tab
+	$(".tab_content:first").show(); //Show first tab content
+
+	//On Click Event
+	$("ul.tabs li").click(function() {
+
+		$("ul.tabs li").removeClass("active"); //Remove any "active" class
+		$(this).addClass("active"); //Add "active" class to selected tab
+		$(".tab_content").hide(); //Hide all tab content
+
+		var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
+		$(activeTab).fadeIn(); //Fade in the active ID content
+		return false;
+	});
+
+});
+    </script>
+    <script type="text/javascript">
+    $(function(){
+        $('.column').equalHeight();
+    });
+</script>
+
+</head>
+
+
+<body>
+
+	<header id="header">
+		<hgroup>
+			<h1 class="site_title"><a href="index.html">学纷享家教</a></h1>
+			<h2 class="section_title">学员管理</h2><div class="btn_view_site"><a href="#">进入官网</a></div>
+		</hgroup>
+	</header> <!-- end of header bar -->
+	
+	<section id="secondary_bar">
+		<div class="user">
+			<p>zhang (<a href="#">3 Messages</a>)</p>
+			<a class="logout_user">注销</a>
+			<!-- <a class="logout_user" href="#" title="Logout">Logout</a> -->
+		</div>
+		<div class="breadcrumbs_container">
+			<article class="breadcrumbs">
+				<a href="stu_info.html">学员管理</a>
+				<div class="breadcrumb_divider"></div>
+				<a class="current">学员订单</a>
+			</article>
+		</div>			
+	</section><!-- end of secondary bar -->
+	
+	<aside id="sidebar" class="column">
+		
+		<h3>学员管理</h3>
+		<ul class="toggle">
+			<li class="icn_view_users"><a href="stu_info.html">学员信息管理</a></li>
+			<li class="icn_hmd"><a href="stu_hmd.html">学员黑名单</a></li>
+			<li class="icn_shopping"><a href="stu_order.html">学员订单查询</a></li>
+			<li class="icn_learn"><a href="#">学员上课查询</a></li>
+			<br /><hr />
+		</ul>
+		
+		<h3>教师管理</h3>
+		
+		<ul class="toggle">
+			<li class="icn_view_users"><a href="#">教师信息管理</a></li>
+			<li class="icn_add_user"><a href="#">教师注册管理</a></li>
+			<li class="icn_hmd"><a href="#">教师黑名单</a></li>
+			<li class="icn_shopping"><a href="#">教师订单查询</a></li>
+			<li class="icn_learn"><a href="#">教师上课查询</a></li>
+			<br /><hr />
+		</ul>
+		
+		<h3>课程管理</h3>
+		<ul class="toggle">
+			<li class="icn_learn"><a href="#">所有课程</a></li>
+			<br /><hr />
+		</ul>
+		
+		<h3>财务管理</h3>
+		<ul class="toggle">
+			<li class="icn_shopping"><a href="#">订单查询</a></li>
+			<li class="icn_js"><a href="#">结算信息</a></li>
+			<br /><br />
+		</ul>
+		
+		
+	</aside><!-- end of sidebar -->
+	
+	<section id="main" class="column">
+		<div class="column_info">
+			<table  cellspacing="0px" cellpadding="0px">
+				<thead>
+				<tr>
+					<td>用户名</td>
+					<td>用户ID</td>
+					<td>订单数</td>
+					<td>Actions</td>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td>123</td>
+					<td>111111111</td>
+					<td>0</td>
+					<td><a href="stu_order_user.html" class="column_info_btn1">View</a></td>
+				</tr>
+				<tr>
+					<td>123</td>
+					<td>111111111</td>
+					<td>0</td>
+					<td><a href="stu_order_user.html" class="column_info_btn1">View</a></td>
+				</tr>
+				<tr>
+					<td>123</td>
+					<td>111111111</td>
+					<td>0</td>
+					<td><a href="stu_order_user.html" class="column_info_btn1">View</a></td>
+				</tr>
+				<tr>
+					<td>123</td>
+					<td>111111111</td>
+					<td>0</td>
+					<td><a href="stu_order_user.html" class="column_info_btn1">View</a></td>
+				</tr>
+				<tr>
+					<td>123</td>
+					<td>111111111</td>
+					<td>0</td>
+					<td><a href="stu_order_user.html" class="column_info_btn1">View</a></td>
+				</tr>
+				<tr>
+					<td>123</td>
+					<td>111111111</td>
+					<td>0</td>
+					<td><a href="stu_order_user.html" class="column_info_btn1">View</a></td>
+				</tr>
+				<tr>
+					<td>123</td>
+					<td>111111111</td>
+					<td>0</td>
+					<td><a href="stu_order_user.html" class="column_info_btn1">View</a></td>
+				</tr>
+				
+				<tr>
+					<td>123</td>
+					<td>111111111</td>
+					<td>0</td>
+					<td><a href="stu_order_user.html" class="column_info_btn1">View</a></td>
+				</tr>
+				<tr>
+					<td>123</td>
+					<td>111111111</td>
+					<td>0</td>
+					<td><a href="stu_order_user.html" class="column_info_btn1">View</a></td>
+				</tr>
+				<tr>
+					<td>123</td>
+					<td>111111111</td>
+					<td>0</td>
+					<td><a href="stu_order_user.html" class="column_info_btn1">View</a></td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+		
+		
+		
+		
+		<div class="content_page">
+			<a href="#">1</a>
+			<a href="#">2</a>
+			<a href="#">3</a>
+			<a href="#">4</a>
+			<a href="#">5</a>
+			<a href="#" class="next">下一页</a>
+			
+			<input id="jump" type="text" style="width:30px;"></input>
+			
+			<a id="jump_show" href="#">跳转</a>
+		</div>
+		
+		<!-- end of styles article -->
+		<div class="spacer"></div>
+	</section>
+
+
+</body>
+
+</html>

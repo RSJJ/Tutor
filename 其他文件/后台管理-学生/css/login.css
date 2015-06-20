@@ -1,0 +1,101 @@
+body,a,ul,li,p,h1,h2,h3,h4,h5,h6,img,input{ margin:0px;padding:0px;border:none;}
+body{
+	background-image:url(../images/bfo.jpg);
+}
+
+
+
+
+.main{width:600px;
+	height:70px;
+	margin:0px auto;
+	margin-top:150px;
+	position:static;
+	display:none;
+}
+
+#hLine{margin-top:50px;
+	margin-left:50px;
+	width:240px;
+	height:40px;
+	
+	
+	filter:alpha(Opacity=70);-moz-opacity:0.7;opacity: 0.7;
+	position:static;
+}
+#hLine b{display:block;
+	line-height:40px;
+	
+	height:40px;
+	font-size:15px;
+	color:#eee;
+	background-color:#333;
+	float:left;
+	padding:0px 20px;
+}
+
+#hLine a{display:block;
+	width:38px;
+	height:38px;
+	font-size:9px;
+	background-color:#333;
+	float:right;
+	cursor:pointer;
+	color:#ccc;
+	line-height:40px;
+	border:1px solid #333;
+	text-align:center;
+	}
+#hLine a:hover{border:1px solid #aaa;}	
+	
+
+#log_bg{width:100%;
+	height:100%;
+	
+	background-color:#000;
+	filter:alpha(Opacity=70);-moz-opacity:0.7;opacity: 0.3;
+}
+#log{width:600px;
+	height:70px;
+	
+	filter:alpha(Opacity=70);-moz-opacity:0.7;opacity: 0.5;
+	position:relative;
+	top:-70px;
+	left:0px;
+	z-index:99;
+}
+#log form ul{list-style-type:none;
+	margin-left:30px;
+}
+#log form ul li{margin-top:20px;
+	display:block;
+	float:left;
+}
+#log form ul li label{color:#ccc;
+	font-size:13px;
+}
+#log form ul li input{width:150px;
+	height:30px;
+	
+	margin-right:50px;
+	background:#999;
+	
+}
+#log form ul a{width:50px;
+	text-decoration:none;
+	height:30px;
+	line-height:30px;
+	text-align:center;
+	display:block;
+	background:#999;
+	margin-top:20px;
+	color:#000;
+	border:1px solid #999;
+	cursor:pointer;
+	float:left;}
+
+#log form ul a:hover{border:1px solid #000;}
+
+
+
+

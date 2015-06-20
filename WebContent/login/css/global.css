@@ -2,7 +2,7 @@
  * Css20140331 by andy
  */
  
-/*È«¾ÖÑùÊ½*/
+/*È«ï¿½ï¿½ï¿½ï¿½Ê½*/
 * {
 	margin: 0;
 	padding: 0;
@@ -28,7 +28,7 @@ a:hover {
 
 body {
 	font-size: 14px;
-	font-family: "Î¢ÈíÑÅºÚ", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: "Î¢ï¿½ï¿½ï¿½Åºï¿½", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: #1e1e1e;
 	line-height: 1.8em;
 }
@@ -38,8 +38,8 @@ p {
 	overflow:hidden;
 }
 
- /*Í¨ÓÃ*/
-.font_12{font-family: ËÎÌå;font-size: 12px;}
+ /*Í¨ï¿½ï¿½*/
+.font_12{font-family: ï¿½ï¿½ï¿½ï¿½;font-size: 12px;}
 .fc_r { color:red;}
 .f_y { color:#ffa800;}
 .b_y { background:#ffa800;}
@@ -54,7 +54,6 @@ p {
 .f_g20 { color:#bebebe;}
 .b_g20 { background:#bebebe;}
 .f_g5 { color:#f0f0f0;}
-.b_g5 { background:#f0f0f0;}
 .f_w { color:#fff;}
 .b_w { background:#fff;}
 .f_a { color:#ccaa2b;}
@@ -171,11 +170,11 @@ input { border:1px solid #1e1e1e; background:#fff;}
 .box_r1 li input, .box_r2_ul li input { width:199px; height:23px; line-height:23px; padding:5px; border:1px solid #fff; float:left;}
 .box_r1 li input.hover { border:1px solid #ff4444;}
 .box_r2 li input.hover { border:1px solid #ff4444;}
-.box_r1 li .error { width:206px; padding-left:5px; float:left; height:20px; line-height:20px; font-size:12px; color:#fff; font-family:ËÎÌå; background:#ff4444;}
-.box_r2_ul .error { width:206px; padding-left:5px; float:left; height:20px; line-height:20px; font-size:12px; color:#fff; font-family:ËÎÌå; background:#ff4444;}
+.box_r1 li .error { width:206px; padding-left:5px; float:left; height:20px; line-height:20px; font-size:12px; color:#fff; font-family:ï¿½ï¿½ï¿½ï¿½; background:#ff4444;}
+.box_r2_ul .error { width:206px; padding-left:5px; float:left; height:20px; line-height:20px; font-size:12px; color:#fff; font-family:ï¿½ï¿½ï¿½ï¿½; background:#ff4444;}
 .box_r1 .li_btn, .box_r2_ul .li_btn { width:211px; height:35px; line-height:35px; box-shadow:none; margin-bottom:0; background:none;}
 .box_r1 .li_btn a, .box_r2_ul .li_btn a { width:211px; height:35px; line-height:33px; text-align:center; color:#fff; background:#ffa800; border-radius:3px; overflow:hidden; display:block; font-size:16px;}
-.box_r1 .li_btn input, .box_r2_ul .li_btn input { border:none;width:211px; height:35px; line-height:33px; text-align:center; color:#fff; background:#ffa800; border-radius:3px; overflow:hidden; display:block; font-size:16px; font-family:'Î¢ÈíÑÅºÚ'; cursor:pointer; float: none; padding: 0;}
+.box_r1 .li_btn input, .box_r2_ul .li_btn input { border:none;width:211px; height:35px; line-height:33px; text-align:center; color:#fff; background:#ffa800; border-radius:3px; overflow:hidden; display:block; font-size:16px; font-family:'Î¢ï¿½ï¿½ï¿½Åºï¿½'; cursor:pointer; float: none; padding: 0;}
 .box_r1 .li_btn a:hover, .box_r2_ul .li_btn a:hover { background:#f90;}
 .box_r1 .li_btn input:hover, .box_r2_ul .li_btn input:hover { background:#f90;border:none;}
 .box_r2_ul .li_ico { height:20px; background:none; box-shadow:none; line-height:20px;}
@@ -208,7 +207,7 @@ input { border:1px solid #1e1e1e; background:#fff;}
 .tip { width:100%; height:auto; overflow:hidden; margin:40px 0;}
 .tip li { width:300px; height:167px; float:left; margin:0 10px; _margin:0 10px 0 7px;}
 
-.tab_youshi, .tab_guide { width:940px; padding:0 10px; height:auto; overflow:hidden; margin-bottom:40px;}
+.tab_youshi, .tab_guide { width:940px; padding:0 10px; height:auto; overflow:hidden; margin-bottom: 41px; margin-top: 46px;}
 #tags_ul { width:100%; height:101px; border-bottom:1px solid #ffa800;}
 #tags_ul li { float:left; width:210px; height:100px; border:1px solid #fff; border-bottom:none; padding:0 10px; cursor:pointer;}
 #tags_ul li a { width:193px; height:80px; padding:10px 10px; line-height:80px; display:block; color:#00b4d7; cursor:pointer;}
@@ -331,7 +330,7 @@ input { border:1px solid #1e1e1e; background:#fff;}
 .ul_reg2 li .name_reg b { color:red; font-weight:normal;}
 .ul_reg2 li .input_reg { width:240px; border:1px solid #ccc; height:14px; line-height:14px; padding:11px 25px 11px 5px; margin-right:10px; float:left;}
 .ul_reg2 li .textarea_reg { width:240px; border:1px solid #ccc; height:54px; line-height:14px; padding:11px 25px 11px 5px; margin-right:10px; float:left;}
-.ul_reg2 li .tips { min-width:240px; border:1px solid #ccc; height:36px; line-height:36px; padding:0 5px; margin-right:10px; float:left; background:#f7f7f7; font-family: ËÎÌå; font-size: 12px; display:none;}
+.ul_reg2 li .tips { min-width:240px; border:1px solid #ccc; height:36px; line-height:36px; padding:0 5px; margin-right:10px; float:left; background:#f7f7f7; font-family: ï¿½ï¿½ï¿½ï¿½; font-size: 12px; display:none;}
 .ul_reg2 .li_reg2 { width:635px; height:30px; line-height:30px; margin-bottom:10px; padding-left:55px;}
 .ul_reg2 .li_reg2 input { float:left; margin-right:10px; margin-top:5px; border:none; _margin-top:5px;zoom:150%;}
 .a_reg { width: 120px; padding:0 10px; display:block; height: 32px; background:#f9bb00; line-height: 32px; color:#fff; margin-left: 35px;}
@@ -380,7 +379,7 @@ input { border:1px solid #1e1e1e; background:#fff;}
 .logo_ul li font b { font-size:24px;}
 .retract { width:100%; margin:0 auto; height:35px; display:block; background:#ffa800; color:#fff; text-align:center; margin-bottom:50px; line-height:35px;}
 
-/*Æ¯¸¡Ð§¹û*/
+/*Æ¯ï¿½ï¿½Ð§ï¿½ï¿½*/
 #qqShowDiv{display:none; width:80px; background:url(../images/weixin_1.png) no-repeat; height: 25px; position: absolute; top:20px; right:0px; padding:5px; padding-top:10px; }
 #weixinShowDiv{display:none; width:100px; background:url(../images/weixin_1.png) no-repeat; height: 100px; padding-top:5px; position: absolute; top:20px; right:-35px; z-index:999;}
 #weiboShowDiv{display:none; width:80px; background:url(../images/weibo_1.png) no-repeat; height: 25px; position: absolute; top:20px; right:29px; padding:5px; padding-top:10px;}
@@ -395,7 +394,7 @@ input { border:1px solid #1e1e1e; background:#fff;}
 .theLast{ display: none; height: 144px; left: -96px; position: absolute; width: 120px; z-index: 99999;}
 .theLastTwo{ display: none; height: 144px; left: -96px; position: absolute; width: 120px; z-index: 99999;}
 
-/* Ê×Ò³ÇÐ»» */
+/* ï¿½ï¿½Ò³ï¿½Ð»ï¿½ */
 .picGuide1{ background: url(../images/pic_guide_1.png) no-repeat;}
 .picGuide2{ background: url(../images/pic_guide_2.png) no-repeat;}
 .picGuide3{ background: url(../images/pic_guide_3.png) no-repeat;}
@@ -406,9 +405,9 @@ input { border:1px solid #1e1e1e; background:#fff;}
 .showStep { height:237px; width:100%; position:relative;}
 .showStep .btn_a {position: absolute; right: 10px; bottom: 10px;}
 
-/*Ë®Æ½²âÊÔ*/
+/*Ë®Æ½ï¿½ï¿½ï¿½ï¿½*/
 .testbody { width:960px; height:540px; overflow:hidden; margin-top:26px;}
-.title_test { font-size:50px; line-height:50px; text-align:center; font-family: Arial 'Î¢ÈíÑÅºÚ'  Helvetica, sans-serif; margin-top:80px;}
+.title_test { font-size:50px; line-height:50px; text-align:center; font-family: Arial 'Î¢ï¿½ï¿½ï¿½Åºï¿½'  Helvetica, sans-serif; margin-top:80px;}
 .txtbook { width:220px; height:90px; background:url(../images/duigou.png) no-repeat; font-size:16px; padding-left:30px; margin:50px auto 70px; line-height:32px;}
 .btn_test1 { display:block; margin:0 auto; width:280px; height:32px; line-height:32px; padding:0 10px; background:#ffa700; color:#fff;}
 .btn_test1:hover { background:#f60;}
@@ -426,7 +425,7 @@ input { border:1px solid #1e1e1e; background:#fff;}
 .correct{
     background: url("../../images/web_new/page/zc03.png") no-repeat scroll 5px center rgba(0, 0, 0, 0);
     float: left;
-    font-family: ËÎÌå;
+    font-family: ï¿½ï¿½ï¿½ï¿½;
     height: 36px;
     line-height: 36px;
     margin-right: 10px;
@@ -497,7 +496,7 @@ input { border:1px solid #1e1e1e; background:#fff;}
 .r_ul { float: right; width:465px; line-height: 28px;}
 .r_ul input { background: #fff; padding: 2px; border: 1px solid #ddd; border-top: 2px solid #ddd; height: 21px; line-height: 21px; width:170px;}
 .r_ul textarea {background: #fff; padding: 2px; border: 1px solid #ddd; border-top: 2px solid #ddd; height: 21px; line-height: 21px; width:443px; height: 150px;}
-.tj_bu { width:174px; height: 44px; line-height: 44px; text-align:center; display: block; background: #ffa800; color: #fff; font-size: 19px; cursor: pointer; margin: 20px auto; font-family: Î¢ÈíÑÅºÚ;}
+.tj_bu { width:174px; height: 44px; line-height: 44px; text-align:center; display: block; background: #ffa800; color: #fff; font-size: 19px; cursor: pointer; margin: 20px auto; font-family: Î¢ï¿½ï¿½ï¿½Åºï¿½;}
 
 .bg_bs{ background:#FFF;}
 
@@ -511,6 +510,6 @@ input { border:1px solid #1e1e1e; background:#fff;}
 .xyzc{ margin-left:0px; width:78px; text-align:center;}
 .ml_20{ margin-left:20px;}
 
-.hqyzm input{ box-shadow:none; margin-bottom:0; background:none; color:#FFF; font-family:"Î¢ÈíÑÅºÚ"; cursor:pointer;}
+.hqyzm input{ box-shadow:none; margin-bottom:0; background:none; color:#FFF; font-family:"Î¢ï¿½ï¿½ï¿½Åºï¿½"; cursor:pointer;}
 
 .erji_top{ background:#c7d7e4; width:100%;}

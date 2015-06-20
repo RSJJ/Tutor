@@ -7,6 +7,7 @@
 <title></title>
 <link href="css/global.css" rel="stylesheet" type="text/css"  charset="utf-8"  />
 <link href="css/erji.css" rel="stylesheet" type="text/css"  charset="utf-8"  />
+<link href="css/t_info.css" rel="stylesheet" type="text/css"  charset="utf-8"  />
 <script src="js/jquery.min.js" type="text/javascript" charset="utf-8" language="javascript"></script>
 <script src="js/formCheck.js" type="text/javascript" charset="utf-8" language="javascript"></script>
 <script src="js/jquery.fancybox-1.3.4.js" type="text/javascript" charset="utf-8" language="javascript"></script>
@@ -105,7 +106,7 @@
                     <td width="487" height="45" align="left"></td>
                   </tr>
                   <tr>
-                    <td height="47" align="left" style="color:#F00;"><img src="images/xztp.jpg"/>&nbsp;*</td>
+                    <td height="47" align="left" style="color:#F00;"><a href="javascript:void(0);" class="up_a"><img src="images/xztp.jpg"/>&nbsp;*<input type="file" id="up_file1"></a></td>
                   </tr>
                   <tr>
                     <td width="75" height="40" rowspan="2" align="right">上传头像：</td>
@@ -113,7 +114,7 @@
                     <td width="487" height="45" align="left" style="font-size:12px;"><span style="color:#F00;">&nbsp;*</span> 上传工作证或学生证</td>
                   </tr>
                   <tr>
-                    <td height="50" align="left" style="color:#F00;"><img src="images/xztp.jpg"/>&nbsp;*</td>
+                    <td height="50" align="left" style="color:#F00;"><a href="javascript:void(0);" class="up_a"><img src="images/xztp.jpg"/>&nbsp;*<input type="file" id="up_file2"></a></td>
                   </tr>
                   <tr>
                     <td height="40" align="right">简　介：</td>
