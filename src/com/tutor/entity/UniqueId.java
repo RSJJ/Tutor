@@ -1,5 +1,7 @@
 package com.tutor.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +14,9 @@ import org.springframework.context.annotation.Scope;
 @Entity
 @Scope("prototype")
 @Table(name = "unique_id")
-public class UniqueId {
+public class UniqueId implements Serializable
+{
+	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

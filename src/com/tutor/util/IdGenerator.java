@@ -68,7 +68,7 @@ public class IdGenerator
 	private ReentrantLock _mapLock;
 	private Map<String, AtomicLong> _seedMap;
 
-	private UniqueIdDAO _uniqueIdDAO; // cp_id
+	private UniqueIdDAO _uniqueIdDAO;
 	private ScheduledFuture<?> _future;
 
 	private IdGenerator()

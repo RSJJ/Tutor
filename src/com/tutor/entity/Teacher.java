@@ -1,5 +1,7 @@
 package com.tutor.entity;
 
+import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -12,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.context.annotation.Scope;
+
 
 
 /**
@@ -19,9 +23,11 @@ import javax.persistence.Table;
  * 教师实体类
  */
 @Entity
+@Scope("prototype")
 @Table(name = "teacher")
-public class Teacher
+public class Teacher implements Serializable
 {
+	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name="id",nullable=false)
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -30,6 +36,8 @@ public class Teacher
 	private String teacherId;//主键
 	@Column(name="name")
 	private String name;
+	@Column(name="password")
+	private String password;
 	@Column(name="sex")
 	private String sex;
 	@Column(name="mail")
@@ -58,6 +66,18 @@ public class Teacher
 	private String passTime;
 	@Column(name="last_visit_time")
 	private String lastVisitTime;
+	@Column(name="best_nums",nullable=false)
+	private Integer bestNums;
+	@Column(name="normal_nums")
+	private Integer normalNums;
+	@Column(name="bad_nums")
+	private Integer badNums;
+	@Column(name="all_nums")
+	private Integer allNums;
+	@Column(name="status",nullable=false)
+	private Integer status;
+	@Column(name="statement")
+	private String statement;
 	
 	/*
      * cascade：为级联操作，里面有级联保存，级联删除等，all为所有 
@@ -67,21 +87,33 @@ public class Teacher
      * Set<role>：这个类型有两种，一种为list另一种为set
      */
 	@OneToMany(cascade = CascadeType.ALL , fetch = FetchType.LAZY , mappedBy = "teacher")
-	private Set<NorCourse> norCourse;
-	
+	private Set<NorCourse> norCourse = new HashSet<NorCourse>();
+	@OneToMany(cascade=CascadeType.ALL , fetch = FetchType.LAZY , mappedBy = "teacher")
+	private Set<GraCourse> graCourse = new HashSet<GraCourse>();
 	
 	@Override
 	public String toString()
 	{
 		return "Teacher [id=" + id + ", teacherId=" + teacherId + ", name="
-				+ name + ", sex=" + sex + ", mail=" + mail + ", phone=" + phone
-				+ ", address=" + address + ", detailedAddress="
-				+ detailedAddress + ", job=" + job + ", icon=" + icon
-				+ ", licence=" + licence + ", introduction=" + introduction
-				+ ", detailedIntroduction=" + detailedIntroduction
-				+ ", cardNo=" + cardNo + ", regTime=" + regTime + ", passTime="
-				+ passTime + ", lastVisitTime=" + lastVisitTime
-				+ ", norCourse=" + norCourse + "]";
+				+ name + ", password=" + password + ", sex=" + sex + ", mail="
+				+ mail + ", phone=" + phone + ", address=" + address
+				+ ", detailedAddress=" + detailedAddress + ", job=" + job
+				+ ", icon=" + icon + ", licence=" + licence + ", introduction="
+				+ introduction + ", detailedIntroduction="
+				+ detailedIntroduction + ", cardNo=" + cardNo + ", regTime="
+				+ regTime + ", passTime=" + passTime + ", lastVisitTime="
+				+ lastVisitTime + ", bestNums=" + bestNums + ", normalNums="
+				+ normalNums + ", badNums=" + badNums + ", allNums=" + allNums
+				+ ", status=" + status + ", statement=" + statement
+				+ ", norCourse=" + norCourse + ", graCourse=" + graCourse + "]";
+	}
+	public String getPassword()
+	{
+		return password;
+	}
+	public void setPassword(String password)
+	{
+		this.password = password;
 	}
 	public Integer getId()
 	{
@@ -196,6 +228,39 @@ public class Teacher
 	{
 		this.cardNo = cardNo;
 	}
+	
+	public Integer getBestNums()
+	{
+		return bestNums;
+	}
+	public void setBestNums(Integer bestNums)
+	{
+		this.bestNums = bestNums;
+	}
+	public Integer getNormalNums()
+	{
+		return normalNums;
+	}
+	public void setNormalNums(Integer normalNums)
+	{
+		this.normalNums = normalNums;
+	}
+	public Integer getBadNums()
+	{
+		return badNums;
+	}
+	public void setBadNums(Integer badNums)
+	{
+		this.badNums = badNums;
+	}
+	public Integer getAllNums()
+	{
+		return allNums;
+	}
+	public void setAllNums(Integer allNums)
+	{
+		this.allNums = allNums;
+	}
 	public Set<NorCourse> getNorCourse()
 	{
 		return norCourse;
@@ -227,6 +292,30 @@ public class Teacher
 	public void setLastVisitTime(String lastVisitTime)
 	{
 		this.lastVisitTime = lastVisitTime;
+	}
+	public Set<GraCourse> getGraCourse()
+	{
+		return graCourse;
+	}
+	public void setGraCourse(Set<GraCourse> graCourse)
+	{
+		this.graCourse = graCourse;
+	}
+	public Integer getStatus()
+	{
+		return status;
+	}
+	public void setStatus(Integer status)
+	{
+		this.status = status;
+	}
+	public String getStatement()
+	{
+		return statement;
+	}
+	public void setStatement(String statement)
+	{
+		this.statement = statement;
 	}
 	
 

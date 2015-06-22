@@ -8,5 +8,8 @@
 	
 	<bean id="testAction" class="com.tutor.action.TestAction" scope="prototype">
 	</bean>
+	<bean id="teacherBasicAction" class="com.tutor.action.TeacherBasicAction" scope="prototype">
+		<constructor-arg ref="teacherDAO"></constructor-arg>
+	</bean>
 	
 </beans>

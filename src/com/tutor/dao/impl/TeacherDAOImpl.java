@@ -1,7 +1,10 @@
 package com.tutor.dao.impl;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,7 +43,33 @@ public class TeacherDAOImpl implements TeacherDAO
 	{
 		entityManager.remove(teacher);
 	}
-	
 
+	@Override
+	public Teacher findByPhonePassword(String phone, String password)
+	{
+		Query query = entityManager.createQuery("select u from Teacher u where u.phone = :phone and password = :password");
+		query.setParameter("phone", phone);
+		query.setParameter("password", password);
+		@SuppressWarnings("unchecked")
+		List<Teacher> teachers = query.getResultList();
+		if(teachers.size() > 0)
+			return teachers.get(0);
+		else
+			return null;
+	}
+
+	@Override
+	public Teacher findByMailPassword(String mail, String password)
+	{
+		Query query = entityManager.createQuery("select u from Teacher u where u.mail = :mail and u.password = :password");
+		query.setParameter("mail", mail);
+		query.setParameter("password", password);
+		@SuppressWarnings("unchecked")
+		List<Teacher> teachers = query.getResultList();
+		if(teachers.size() > 0)
+			return teachers.get(0);
+		else
+			return null;
+	}
 
 }

@@ -13,23 +13,29 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.context.annotation.Scope;
 
 @Entity
-@Table(name = "nor_course")
-public class NorCourse implements Serializable
+@Scope("prototype")
+@Table(name="gra_course")
+public class GraCourse implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	@Id
-	@Column(name="id",nullable=false)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	@Column(name="nor_course_id",nullable=false)
-	private String norCourseId;//主键
+	@Column(name="gra_course_id",nullable=false)
+	private String graCourseId;
 	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinColumn(name="teacher_id")//外键
 	private Teacher teacher;
-	@Column(name="grade")
-	private String grade;
+	@Column(name="school")
+	private String school;
+	@Column(name="acadeny")
+	private String academy;
+	@Column(name="domain")
+	private String domain;
 	@Column(name="course")
 	private String course;
 	@Column(name="price",nullable=false)
@@ -45,9 +51,10 @@ public class NorCourse implements Serializable
 	@Override
 	public String toString()
 	{
-		return "NorCourse [id=" + id + ", norCourseId=" + norCourseId
-				+ ", teacher=" + teacher + ", grade=" + grade + ", course="
-				+ course + ", price=" + price + ", createTime=" + createTime
+		return "GraCourse [id=" + id + ", graCourseId=" + graCourseId
+				+ ", teacher=" + teacher + ", school=" + school + ", academy="
+				+ academy + ", domain=" + domain + ", course=" + course
+				+ ", price=" + price + ", createTime=" + createTime
 				+ ", status=" + status + ", statement=" + statement + "]";
 	}
 	public Integer getId()
@@ -58,13 +65,13 @@ public class NorCourse implements Serializable
 	{
 		this.id = id;
 	}
-	public String getNorCourseId()
+	public String getGraCourseId()
 	{
-		return norCourseId;
+		return graCourseId;
 	}
-	public void setNorCourseId(String norCourseId)
+	public void setGraCourseId(String graCourseId)
 	{
-		this.norCourseId = norCourseId;
+		this.graCourseId = graCourseId;
 	}
 	public Teacher getTeacher()
 	{
@@ -74,13 +81,29 @@ public class NorCourse implements Serializable
 	{
 		this.teacher = teacher;
 	}
-	public String getGrade()
+	public String getSchool()
 	{
-		return grade;
+		return school;
 	}
-	public void setGrade(String grade)
+	public void setSchool(String school)
 	{
-		this.grade = grade;
+		this.school = school;
+	}
+	public String getAcademy()
+	{
+		return academy;
+	}
+	public void setAcademy(String academy)
+	{
+		this.academy = academy;
+	}
+	public String getDomain()
+	{
+		return domain;
+	}
+	public void setDomain(String domain)
+	{
+		this.domain = domain;
 	}
 	public String getCourse()
 	{
@@ -122,5 +145,6 @@ public class NorCourse implements Serializable
 	{
 		this.statement = statement;
 	}
+	
 	
 }

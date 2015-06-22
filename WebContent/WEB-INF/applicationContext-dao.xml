@@ -6,5 +6,9 @@
 	
 	<!--       dao is here       -->
 	<bean id="uniqueIdDAO" class="com.tutor.dao.impl.UniqueIdDAOImpl"></bean>
+	<bean id="studentDAO" class="com.tutor.dao.impl.StudentDAOImpl"></bean>
+	<bean id="teacherDAO" class="com.tutor.dao.impl.TeacherDAOImpl"></bean>
+	<bean id="norCourseDAO" class="com.tutor.dao.impl.NorCourseDAOImpl"></bean>
+	<bean id="graCourseDAO" class="com.tutor.dao.impl.GraCourseDAOImpl"></bean>
 	
 </beans>

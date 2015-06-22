@@ -11,4 +11,5 @@
     <constant name="struts.devMode" value="ture" />
     
    <include file="com/tutor/struts/test_action.xml"></include>
+   <include file="com/tutor/struts/teacher_basic_action.xml"></include>
 </struts>
