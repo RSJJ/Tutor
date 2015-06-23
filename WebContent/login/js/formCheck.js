@@ -361,6 +361,7 @@
 					var bOk=false;
 
 					aInput.each(function(index,ele){
+							bOk=false;
 							var oInput=$(ele);
 							var val=$.trim(oInput.val());
 							var oSpan=oInput.next();
@@ -443,20 +444,33 @@
 					                    }
 					                });
 				                }*/
-								bOk && oForm.submit();
+							//	bOk && oForm.submit();
 							}
 							else if(type=="teacherLogin")
 							{
 								var oInput_user=oForm.find("input[id='loginUserName']");
 								var oInput_pwd =oForm.find("input[id='loginPassword']");
-								alert(oInput_user.val());
 								$.ajax({
 				                    type: "POST",
 				                    dataType: "json",
 				                    url: "login/teacherLogin",
 				                    data: {"userName":oInput_user.val(),"password":oInput_pwd.val()},
 				                    success: function(msg){
-				                        alert(msg.statement);
+				                        if(msg.code == '-2')
+				                        {
+				                        	//用户名错误
+				                        	oForm.find("input[id='loginUserName']").addClass("hover").next().removeClass().addClass("error").html(msg.statement).slideDown();
+				                        }
+				                        else if(msg.code == '-1')
+				                        {
+				                        	//密码错误
+				                        	oForm.find("input[id='loginPassword']").addClass("hover").next().removeClass().addClass("error").html(msg.statement).slideDown();
+				                        }
+				                        else
+				                        {
+				                        	//登录成功
+				                        	
+				                        }
 				                    }
 				                });
 							}

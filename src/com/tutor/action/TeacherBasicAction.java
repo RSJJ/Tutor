@@ -36,34 +36,32 @@ public class TeacherBasicAction extends BaseAction
 	public void login() throws IOException
 	{
 		Message msg = new Message();
-		Teacher tPhone = teacherDAO.findByPhonePassword(userName, password);
-		Teacher tMail = teacherDAO.findByMailPassword(userName, password);
-		Teacher teacher = null;
-		if (tPhone != null)
-		{
-			//输入的是手机号
-			teacher = tPhone;
-		} 
-		if(tMail != null)
-		{
-			//输入的是邮箱，取出状态码和备注
-			teacher = tMail;
-		}
+		Teacher teacher = teacherDAO.findByPhoneOrMail(userName);
 		if(teacher != null)
 		{
-			msg.setCode(teacher.getStatus());
-			msg.setStatement(teacher.getStatement());
+			if(password.endsWith(teacher.getPassword()))
+			{
+				//登录成功
+				msg.setCode(teacher.getStatus());
+				msg.setStatement(teacher.getStatement());
 			
-			teacher.setLastVisitTime(Operation.getTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")));
-			teacherDAO.update(teacher);
+				teacher.setLastVisitTime(Operation.getTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")));
+				teacherDAO.update(teacher);
 			
-			this.getSession().setAttribute("teacher", teacher);
+				this.getSession().setAttribute("teacher", teacher);
+			}
+			else
+			{
+				//密码错误
+				msg.setCode(FinalValue.FAILED);
+				msg.setStatement("密码错误");
+			}
 		}
 		else
 		{
 			//验证失败
-			msg.setCode(FinalValue.FAILED);
-			msg.setStatement("用户名或密码错误");
+			msg.setCode(FinalValue.NULL);
+			msg.setStatement("用户名错误");
 		}
 		this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));
 	}

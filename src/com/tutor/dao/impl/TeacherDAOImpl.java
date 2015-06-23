@@ -69,4 +69,17 @@ public class TeacherDAOImpl implements TeacherDAO
 			return null;
 	}
 
+	@Override
+	public Teacher findByPhoneOrMail(String phoneOrMail)
+	{
+		Query query = entityManager.createQuery("select u from Teacher u where u.phone = :phoneOrMail or u.mail = :phoneOrMail");
+		query.setParameter("phoneOrMail", phoneOrMail);
+		@SuppressWarnings("unchecked")
+		List<Teacher> teachers = query.getResultList();
+		if(teachers.size() > 0)
+			return teachers.get(0);
+		else
+			return null;
+	}
+
 }

@@ -18,9 +18,15 @@ public interface TeacherDAO
 	 */
 	public void update(Teacher teacher);
 	/**
+	 * 根据手机或邮箱查找
 	 * @param teacher
 	 */
 	public void delete(Teacher teacher);
+	/**
+	 * @param phoneOrMail
+	 * @return
+	 */
+	public Teacher findByPhoneOrMail(String phoneOrMail);
 	
 	/**
 	 * 根据手机查找教师
