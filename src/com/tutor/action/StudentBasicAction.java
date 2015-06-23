@@ -53,6 +53,9 @@ public class StudentBasicAction extends BaseAction
 		{
 			msg.setCode(student.getStatus());
 			msg.setStatement(student.getStatement());
+			student.setLastVisitTime(Operation.getTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")));
+			studentDAO.update(student);
+			this.getSession().setAttribute("student", student);
 		}
 		else
 		{

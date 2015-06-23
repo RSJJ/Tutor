@@ -50,6 +50,16 @@ public class GraCourseDAOImpl implements GraCourseDAO
 		query.setParameter("teacher", teacher);
 		@SuppressWarnings("unchecked")
 		List<GraCourse> graCourses = query.getResultList();
+		System.out.println(graCourses.size()+"============"+teacher.toString()+"==="+query.toString());
+		return graCourses;
+	}
+
+	@Override
+	public List<GraCourse> findAll()
+	{
+		Query query = entityManager.createQuery("select u from GraCourse u");
+		@SuppressWarnings("unchecked")
+		List<GraCourse> graCourses = query.getResultList();
 		return graCourses;
 	}
 

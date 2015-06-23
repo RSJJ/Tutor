@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2015-06-23 11:22:05
+Date: 2015-06-23 17:49:44
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -35,11 +35,13 @@ CREATE TABLE `gra_course` (
   PRIMARY KEY (`id`,`gra_course_id`),
   KEY `gra_teacher_id` (`teacher_id`),
   CONSTRAINT `gra_teacher_id` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`teacher_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of gra_course
 -- ----------------------------
+INSERT INTO `gra_course` VALUES ('0000000001', 'GRA_123456', 'TEA_123456', '北京交通大学', '计算机科学与信息技术', '计算机科学与技术', '操作系统', '000000000100', '000000000100', '2015-06-23 15:01:28', '001', null);
+INSERT INTO `gra_course` VALUES ('0000000002', 'GRA_12221', 'TEA_123456', '北京交通大学', '软件工程', '软件工程', '网络', '000000000004', '000000000005', '2015-06-23 17:30:44', '001', null);
 
 -- ----------------------------
 -- Table structure for `nor_course`
@@ -59,10 +61,34 @@ CREATE TABLE `nor_course` (
   PRIMARY KEY (`id`,`nor_course_id`),
   KEY `nor_teacher_id` (`teacher_id`),
   CONSTRAINT `nor_teacher_id` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`teacher_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of nor_course
+-- ----------------------------
+INSERT INTO `nor_course` VALUES ('0000000001', 'NOR_123456', 'TEA_123456', '小一', '语文', '000000000002', '000000000003', '2015-06-23 17:28:21', '001', null);
+
+-- ----------------------------
+-- Table structure for `schedule`
+-- ----------------------------
+DROP TABLE IF EXISTS `schedule`;
+CREATE TABLE `schedule` (
+  `id` int(10) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  `teacher_id` varchar(32) NOT NULL,
+  `date` date DEFAULT NULL,
+  `start_time` time DEFAULT NULL,
+  `end_time` time DEFAULT NULL,
+  `cycle` int(10) unsigned zerofill NOT NULL,
+  `available_course` text,
+  `status` tinyint(3) unsigned zerofill NOT NULL,
+  `statement` text,
+  PRIMARY KEY (`id`,`teacher_id`),
+  KEY `sch_teacher_id` (`teacher_id`),
+  CONSTRAINT `sch_teacher_id` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`teacher_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of schedule
 -- ----------------------------
 
 -- ----------------------------
@@ -127,7 +153,7 @@ CREATE TABLE `teacher` (
 -- ----------------------------
 -- Records of teacher
 -- ----------------------------
-INSERT INTO `teacher` VALUES ('0000000001', 'TEA_123456', '123', '123456', 'm', '123@qq.com', '123456', null, null, null, null, null, null, null, null, '2015-06-22 16:16:08', '2015-06-22 16:16:08', '2015-06-22 19:07:40', '0000000000', '0000000000', '0000000000', '0000000000', '0000', 'hahahah');
+INSERT INTO `teacher` VALUES ('0000000001', 'TEA_123456', '123', '123456', 'm', '123@qq.com', '123456', null, null, null, null, null, null, null, null, '2015-06-22 16:16:08', '2015-06-22 16:16:08', '2015-06-23 15:58:56', '0000000000', '0000000000', '0000000000', '0000000000', '0000', 'hahahah');
 
 -- ----------------------------
 -- Table structure for `unique_id`

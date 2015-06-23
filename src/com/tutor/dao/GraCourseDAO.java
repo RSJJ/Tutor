@@ -31,5 +31,9 @@ public interface GraCourseDAO
 	 * @return
 	 */
 	public List<GraCourse> findByTeacherId(Teacher teacher);
+	/**
+	 * @return
+	 */
+	public List<GraCourse> findAll();
 	
 }

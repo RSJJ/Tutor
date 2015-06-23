@@ -88,8 +88,10 @@ public class Teacher implements Serializable
      */
 	@OneToMany(cascade = CascadeType.ALL , fetch = FetchType.LAZY , mappedBy = "teacher")
 	private Set<NorCourse> norCourse = new HashSet<NorCourse>();
-	@OneToMany(cascade=CascadeType.ALL , fetch = FetchType.LAZY , mappedBy = "teacher")
+	@OneToMany(cascade=CascadeType.ALL , fetch = FetchType.EAGER , mappedBy = "teacher")
 	private Set<GraCourse> graCourse = new HashSet<GraCourse>();
+	@OneToMany(cascade=CascadeType.ALL , fetch = FetchType.LAZY , mappedBy = "teacher")
+	private Set<Schedule> schedule = new HashSet<Schedule>();
 	
 	@Override
 	public String toString()
@@ -105,8 +107,10 @@ public class Teacher implements Serializable
 				+ lastVisitTime + ", bestNums=" + bestNums + ", normalNums="
 				+ normalNums + ", badNums=" + badNums + ", allNums=" + allNums
 				+ ", status=" + status + ", statement=" + statement
-				+ ", norCourse=" + norCourse + ", graCourse=" + graCourse + "]";
+				+ ", norCourse=" + norCourse + ", graCourse=" + graCourse
+				+ ", schedule=" + schedule + "]";
 	}
+	
 	public String getPassword()
 	{
 		return password;
@@ -316,6 +320,14 @@ public class Teacher implements Serializable
 	public void setStatement(String statement)
 	{
 		this.statement = statement;
+	}
+	public Set<Schedule> getSchedule()
+	{
+		return schedule;
+	}
+	public void setSchedule(Set<Schedule> schedule)
+	{
+		this.schedule = schedule;
 	}
 	
 
