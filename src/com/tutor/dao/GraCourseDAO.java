@@ -3,7 +3,6 @@ package com.tutor.dao;
 import java.util.List;
 
 import com.tutor.entity.GraCourse;
-import com.tutor.entity.Teacher;
 
 public interface GraCourseDAO
 {
@@ -30,7 +29,7 @@ public interface GraCourseDAO
 	 * @param teacher
 	 * @return
 	 */
-	public List<GraCourse> findByTeacherId(Teacher teacher);
+	public List<GraCourse> findByTeacherId(String teacherId);
 	/**
 	 * @return
 	 */

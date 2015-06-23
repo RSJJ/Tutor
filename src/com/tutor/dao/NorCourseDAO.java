@@ -3,7 +3,6 @@ package com.tutor.dao;
 import java.util.List;
 
 import com.tutor.entity.NorCourse;
-import com.tutor.entity.Teacher;
 
 public interface NorCourseDAO
 {
@@ -28,5 +27,5 @@ public interface NorCourseDAO
 	 * @param teacher
 	 * @return
 	 */
-	public List<NorCourse> findByTeacher(Teacher teacher);
+	public List<NorCourse> findByTeacherId(String teacherId);
 }

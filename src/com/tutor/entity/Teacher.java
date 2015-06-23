@@ -1,17 +1,12 @@
 package com.tutor.entity;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.context.annotation.Scope;
@@ -79,19 +74,6 @@ public class Teacher implements Serializable
 	@Column(name="statement")
 	private String statement;
 	
-	/*
-     * cascade：为级联操作，里面有级联保存，级联删除等，all为所有 
-     * fetch：加载类型，有lazy和eager二种，
-     *   eager为急加载，意为立即加载，在类加载时就加载，lazy为慢加载，第一次调用的时候再加载，由于数据量太大，onetomany一般为lazy
-     * mappedBy：这个为manytoone中的对象名
-     * Set<role>：这个类型有两种，一种为list另一种为set
-     */
-	@OneToMany(cascade = CascadeType.ALL , fetch = FetchType.LAZY , mappedBy = "teacher")
-	private Set<NorCourse> norCourse = new HashSet<NorCourse>();
-	@OneToMany(cascade=CascadeType.ALL , fetch = FetchType.EAGER , mappedBy = "teacher")
-	private Set<GraCourse> graCourse = new HashSet<GraCourse>();
-	@OneToMany(cascade=CascadeType.ALL , fetch = FetchType.LAZY , mappedBy = "teacher")
-	private Set<Schedule> schedule = new HashSet<Schedule>();
 	
 	@Override
 	public String toString()
@@ -106,11 +88,8 @@ public class Teacher implements Serializable
 				+ regTime + ", passTime=" + passTime + ", lastVisitTime="
 				+ lastVisitTime + ", bestNums=" + bestNums + ", normalNums="
 				+ normalNums + ", badNums=" + badNums + ", allNums=" + allNums
-				+ ", status=" + status + ", statement=" + statement
-				+ ", norCourse=" + norCourse + ", graCourse=" + graCourse
-				+ ", schedule=" + schedule + "]";
+				+ ", status=" + status + ", statement=" + statement + "]";
 	}
-	
 	public String getPassword()
 	{
 		return password;
@@ -265,14 +244,6 @@ public class Teacher implements Serializable
 	{
 		this.allNums = allNums;
 	}
-	public Set<NorCourse> getNorCourse()
-	{
-		return norCourse;
-	}
-	public void setNorCourse(Set<NorCourse> norCourse)
-	{
-		this.norCourse = norCourse;
-	}
 	public String getRegTime()
 	{
 		return regTime;
@@ -297,14 +268,6 @@ public class Teacher implements Serializable
 	{
 		this.lastVisitTime = lastVisitTime;
 	}
-	public Set<GraCourse> getGraCourse()
-	{
-		return graCourse;
-	}
-	public void setGraCourse(Set<GraCourse> graCourse)
-	{
-		this.graCourse = graCourse;
-	}
 	public Integer getStatus()
 	{
 		return status;
@@ -320,14 +283,6 @@ public class Teacher implements Serializable
 	public void setStatement(String statement)
 	{
 		this.statement = statement;
-	}
-	public Set<Schedule> getSchedule()
-	{
-		return schedule;
-	}
-	public void setSchedule(Set<Schedule> schedule)
-	{
-		this.schedule = schedule;
 	}
 	
 

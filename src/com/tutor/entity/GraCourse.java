@@ -2,15 +2,11 @@ package com.tutor.entity;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.context.annotation.Scope;
@@ -27,9 +23,8 @@ public class GraCourse implements Serializable
 	private Integer id;
 	@Column(name="gra_course_id",nullable=false)
 	private String graCourseId;
-	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	@JoinColumn(name="teacher_id")//外键
-	private Teacher teacher;
+	@Column(name="teacher_id")//外键
+	private String teacherId;
 	@Column(name="school")
 	private String school;
 	@Column(name="acadeny")
@@ -49,15 +44,13 @@ public class GraCourse implements Serializable
 	@Column(name="statement")
 	private String statement;
 	
-	
-	
 	@Override
 	public String toString()
 	{
 		return "GraCourse [id=" + id + ", graCourseId=" + graCourseId
-				+ ", teacher=" + teacher + ", school=" + school + ", academy="
-				+ academy + ", domain=" + domain + ", course=" + course
-				+ ", priceOn=" + priceOn + ", priceOff=" + priceOff
+				+ ", teacherId=" + teacherId + ", school=" + school
+				+ ", academy=" + academy + ", domain=" + domain + ", course="
+				+ course + ", priceOn=" + priceOn + ", priceOff=" + priceOff
 				+ ", createTime=" + createTime + ", status=" + status
 				+ ", statement=" + statement + "]";
 	}
@@ -77,13 +70,14 @@ public class GraCourse implements Serializable
 	{
 		this.graCourseId = graCourseId;
 	}
-	public Teacher getTeacher()
+	
+	public String getTeacherId()
 	{
-		return teacher;
+		return teacherId;
 	}
-	public void setTeacher(Teacher teacher)
+	public void setTeacherId(String teacherId)
 	{
-		this.teacher = teacher;
+		this.teacherId = teacherId;
 	}
 	public String getSchool()
 	{

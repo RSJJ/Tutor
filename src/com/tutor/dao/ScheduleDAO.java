@@ -3,7 +3,6 @@ package com.tutor.dao;
 import java.util.List;
 
 import com.tutor.entity.Schedule;
-import com.tutor.entity.Teacher;
 
 public interface ScheduleDAO
 {
@@ -29,6 +28,6 @@ public interface ScheduleDAO
 	 * @param teacher
 	 * @return
 	 */
-	public List<Schedule> findByTeacher(Teacher teacher);
+	public List<Schedule> findByTeacherId(String teacherId);
 
 }

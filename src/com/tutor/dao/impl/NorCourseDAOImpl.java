@@ -6,14 +6,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.tutor.dao.NorCourseDAO;
 import com.tutor.entity.NorCourse;
-import com.tutor.entity.Teacher;
 @Transactional
-@Scope("prototype")
 public class NorCourseDAOImpl implements NorCourseDAO
 {
 
@@ -45,10 +42,10 @@ public class NorCourseDAOImpl implements NorCourseDAO
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<NorCourse> findByTeacher(Teacher teacher)
+	public List<NorCourse> findByTeacherId(String teacherId)
 	{
-		Query query = entityManager.createQuery("select u from u where u.teacher = :teacher");
-		query.setParameter("teacher", teacher);
+		Query query = entityManager.createQuery("select u from u where u.teacherId = :teacherId");
+		query.setParameter("teacherId", teacherId);
 		return query.getResultList();
 	}
 

@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 
 import com.tutor.base.BaseAction;
-import com.tutor.dao.GraCourseDAO;
 import com.tutor.dao.TeacherDAO;
 import com.tutor.entity.Teacher;
 import com.tutor.global.FinalValue;
@@ -24,7 +23,6 @@ public class TeacherBasicAction extends BaseAction
 	private static final long serialVersionUID = 1L;
 
 	private TeacherDAO teacherDAO;
-	private GraCourseDAO graCourseDAO;
 
 	private Teacher teacher;
 	private String userName;
@@ -55,12 +53,10 @@ public class TeacherBasicAction extends BaseAction
 		{
 			msg.setCode(teacher.getStatus());
 			msg.setStatement(teacher.getStatement());
-			System.out.println(teacherDAO.find(new Integer(1)));
-			graCourseDAO.findByTeacherId(teacher);
-			System.out.println(graCourseDAO.findAll().toString());
-			msg.setContent(teacher);
+			
 			teacher.setLastVisitTime(Operation.getTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")));
 			teacherDAO.update(teacher);
+			
 			this.getSession().setAttribute("teacher", teacher);
 		}
 		else
@@ -92,12 +88,10 @@ public class TeacherBasicAction extends BaseAction
 	}
 
 	
-
-	public TeacherBasicAction(TeacherDAO teacherDAO, GraCourseDAO graCourseDAO)
+	public TeacherBasicAction(TeacherDAO teacherDAO)
 	{
 		super();
 		this.teacherDAO = teacherDAO;
-		this.graCourseDAO = graCourseDAO;
 	}
 	public String getUserName()
 	{

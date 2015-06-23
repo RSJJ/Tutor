@@ -2,15 +2,11 @@ package com.tutor.entity;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
@@ -25,9 +21,8 @@ public class NorCourse implements Serializable
 	private Integer id;
 	@Column(name="nor_course_id",nullable=false)
 	private String norCourseId;//主键
-	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	@JoinColumn(name="teacher_id")//外键
-	private Teacher teacher;
+	@Column(name="teacher_id")//外键
+	private String teacherId;
 	@Column(name="grade")
 	private String grade;
 	@Column(name="course")
@@ -44,12 +39,11 @@ public class NorCourse implements Serializable
 	private String statement;
 	
 	
-	
 	@Override
 	public String toString()
 	{
 		return "NorCourse [id=" + id + ", norCourseId=" + norCourseId
-				+ ", teacher=" + teacher + ", grade=" + grade + ", course="
+				+ ", teacherId=" + teacherId + ", grade=" + grade + ", course="
 				+ course + ", priceOn=" + priceOn + ", priceOff=" + priceOff
 				+ ", createTime=" + createTime + ", status=" + status
 				+ ", statement=" + statement + "]";
@@ -70,13 +64,14 @@ public class NorCourse implements Serializable
 	{
 		this.norCourseId = norCourseId;
 	}
-	public Teacher getTeacher()
+	
+	public String getTeacherId()
 	{
-		return teacher;
+		return teacherId;
 	}
-	public void setTeacher(Teacher teacher)
+	public void setTeacherId(String teacherId)
 	{
-		this.teacher = teacher;
+		this.teacherId = teacherId;
 	}
 	public String getGrade()
 	{

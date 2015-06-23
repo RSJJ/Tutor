@@ -10,7 +10,6 @@
 	</bean>
 	<bean id="teacherBasicAction" class="com.tutor.action.TeacherBasicAction" scope="prototype">
 		<constructor-arg ref="teacherDAO"></constructor-arg>
-		<constructor-arg ref="graCourseDAO"></constructor-arg>
 	</bean>
 	<bean id="studentBasicAction" class="com.tutor.action.StudentBasicAction" scope="prototype">
 		<constructor-arg ref="studentDAO"></constructor-arg>

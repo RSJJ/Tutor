@@ -6,19 +6,16 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.tutor.dao.ScheduleDAO;
 import com.tutor.entity.Schedule;
-import com.tutor.entity.Teacher;
 
 /**
  * @author STerOTto
  *
  */
 @Transactional
-@Scope("prototype")
 public class ScheduleDAOImpl implements ScheduleDAO
 {
 	@PersistenceContext
@@ -50,10 +47,10 @@ public class ScheduleDAOImpl implements ScheduleDAO
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Schedule> findByTeacher(Teacher teacher)
+	public List<Schedule> findByTeacherId(String teacherId)
 	{
-		Query query = entityManager.createQuery("select u from Schedule u where u.teacher = :teacher");
-		query.setParameter("teacher", teacher);
+		Query query = entityManager.createQuery("select u from Schedule u where u.teacherId = :teacherId");
+		query.setParameter("teacherId", teacherId);
 		return query.getResultList();
 	}
 

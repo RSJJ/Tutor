@@ -6,14 +6,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.tutor.dao.GraCourseDAO;
 import com.tutor.entity.GraCourse;
-import com.tutor.entity.Teacher;
 @Transactional
-@Scope("prototype")
 public class GraCourseDAOImpl implements GraCourseDAO
 {
 
@@ -44,13 +41,13 @@ public class GraCourseDAOImpl implements GraCourseDAO
 	}
 
 	@Override
-	public List<GraCourse> findByTeacherId(Teacher teacher)
+	public List<GraCourse> findByTeacherId(String teacherId)
 	{
-		Query query = entityManager.createQuery("select u from GraCourse u where u.teacher = :teacher");
-		query.setParameter("teacher", teacher);
+		Query query = entityManager.createQuery("select u from GraCourse u where u.teacherId = :teacherId");
+		query.setParameter("teacherId", teacherId);
 		@SuppressWarnings("unchecked")
 		List<GraCourse> graCourses = query.getResultList();
-		System.out.println(graCourses.size()+"============"+teacher.toString()+"==="+query.toString());
+		System.out.println(graCourses.size()+"=========="+query.toString());
 		return graCourses;
 	}
 
@@ -58,6 +55,7 @@ public class GraCourseDAOImpl implements GraCourseDAO
 	public List<GraCourse> findAll()
 	{
 		Query query = entityManager.createQuery("select u from GraCourse u");
+		System.out.println(query.getResultList().size());
 		@SuppressWarnings("unchecked")
 		List<GraCourse> graCourses = query.getResultList();
 		return graCourses;

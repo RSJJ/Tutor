@@ -8,7 +8,7 @@ public interface TeacherDAO
 	 * @param id
 	 * @return
 	 */
-	public Teacher find(Integer id);
+	public Teacher find(int id);
 	/**
 	 * @param teacher
 	 */

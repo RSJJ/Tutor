@@ -6,7 +6,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.tutor.dao.UniqueIdDAO;
@@ -14,7 +13,6 @@ import com.tutor.entity.UniqueId;
 
 
 @Transactional
-@Scope("prototype")
 public class UniqueIdDAOImpl implements UniqueIdDAO{
 	
 	@PersistenceContext

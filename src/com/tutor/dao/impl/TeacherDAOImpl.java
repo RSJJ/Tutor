@@ -6,24 +6,21 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.tutor.dao.TeacherDAO;
 import com.tutor.entity.Teacher;
 
 @Transactional
-@Scope("prototype")
 public class TeacherDAOImpl implements TeacherDAO
 {
 	@PersistenceContext
 	private EntityManager entityManager;
 
 	@Override
-	public Teacher find(Integer id)
+	public Teacher find(int id)
 	{
-		entityManager.find(Teacher.class, id);
-		return null;
+		return entityManager.find(Teacher.class, id);
 	}
 
 	@Override

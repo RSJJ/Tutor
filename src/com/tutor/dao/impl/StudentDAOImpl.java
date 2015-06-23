@@ -6,13 +6,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.tutor.dao.StudentDAO;
 import com.tutor.entity.Student;
 @Transactional
-@Scope("prototype")
 public class StudentDAOImpl implements StudentDAO
 {
 	@PersistenceContext
