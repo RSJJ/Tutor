@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2015-06-23 10:18:25
+Date: 2015-06-23 11:22:05
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,7 +27,8 @@ CREATE TABLE `gra_course` (
   `acadeny` varchar(128) DEFAULT NULL,
   `domain` varchar(128) DEFAULT NULL,
   `course` varchar(128) DEFAULT NULL,
-  `price` float unsigned zerofill NOT NULL,
+  `price_on` float unsigned zerofill NOT NULL,
+  `price_off` float unsigned zerofill NOT NULL,
   `create_time` timestamp NULL DEFAULT NULL,
   `status` tinyint(3) unsigned zerofill NOT NULL,
   `statement` text,
@@ -50,7 +51,8 @@ CREATE TABLE `nor_course` (
   `teacher_id` varchar(32) NOT NULL,
   `grade` varchar(32) DEFAULT NULL,
   `course` varchar(32) DEFAULT NULL,
-  `price` float unsigned zerofill NOT NULL,
+  `price_on` float unsigned zerofill NOT NULL,
+  `price_off` float unsigned zerofill NOT NULL,
   `create_time` timestamp NULL DEFAULT NULL,
   `status` tinyint(3) unsigned zerofill NOT NULL,
   `statement` text,

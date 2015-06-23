@@ -38,8 +38,10 @@ public class GraCourse implements Serializable
 	private String domain;
 	@Column(name="course")
 	private String course;
-	@Column(name="price",nullable=false)
-	private float price;
+	@Column(name="price_on",nullable=false)
+	private float priceOn;
+	@Column(name="price_off",nullable=false)
+	private float priceOff;
 	@Column(name="create_time")
 	private String createTime;
 	@Column(name="status",nullable=false)
@@ -48,14 +50,16 @@ public class GraCourse implements Serializable
 	private String statement;
 	
 	
+	
 	@Override
 	public String toString()
 	{
 		return "GraCourse [id=" + id + ", graCourseId=" + graCourseId
 				+ ", teacher=" + teacher + ", school=" + school + ", academy="
 				+ academy + ", domain=" + domain + ", course=" + course
-				+ ", price=" + price + ", createTime=" + createTime
-				+ ", status=" + status + ", statement=" + statement + "]";
+				+ ", priceOn=" + priceOn + ", priceOff=" + priceOff
+				+ ", createTime=" + createTime + ", status=" + status
+				+ ", statement=" + statement + "]";
 	}
 	public Integer getId()
 	{
@@ -113,13 +117,22 @@ public class GraCourse implements Serializable
 	{
 		this.course = course;
 	}
-	public float getPrice()
+	
+	public float getPriceOn()
 	{
-		return price;
+		return priceOn;
 	}
-	public void setPrice(float price)
+	public void setPriceOn(float priceOn)
 	{
-		this.price = price;
+		this.priceOn = priceOn;
+	}
+	public float getPriceOff()
+	{
+		return priceOff;
+	}
+	public void setPriceOff(float priceOff)
+	{
+		this.priceOff = priceOff;
 	}
 	public String getCreateTime()
 	{

@@ -32,8 +32,10 @@ public class NorCourse implements Serializable
 	private String grade;
 	@Column(name="course")
 	private String course;
-	@Column(name="price",nullable=false)
-	private float price;
+	@Column(name="price_on",nullable=false)
+	private float priceOn;
+	@Column(name="price_off",nullable=false)
+	private float priceOff;
 	@Column(name="create_time")
 	private String createTime;
 	@Column(name="status",nullable=false)
@@ -42,13 +44,15 @@ public class NorCourse implements Serializable
 	private String statement;
 	
 	
+	
 	@Override
 	public String toString()
 	{
 		return "NorCourse [id=" + id + ", norCourseId=" + norCourseId
 				+ ", teacher=" + teacher + ", grade=" + grade + ", course="
-				+ course + ", price=" + price + ", createTime=" + createTime
-				+ ", status=" + status + ", statement=" + statement + "]";
+				+ course + ", priceOn=" + priceOn + ", priceOff=" + priceOff
+				+ ", createTime=" + createTime + ", status=" + status
+				+ ", statement=" + statement + "]";
 	}
 	public Integer getId()
 	{
@@ -90,13 +94,22 @@ public class NorCourse implements Serializable
 	{
 		this.course = course;
 	}
-	public float getPrice()
+	
+	public float getPriceOn()
 	{
-		return price;
+		return priceOn;
 	}
-	public void setPrice(float price)
+	public void setPriceOn(float priceOn)
 	{
-		this.price = price;
+		this.priceOn = priceOn;
+	}
+	public float getPriceOff()
+	{
+		return priceOff;
+	}
+	public void setPriceOff(float priceOff)
+	{
+		this.priceOff = priceOff;
 	}
 	public String getCreateTime()
 	{
