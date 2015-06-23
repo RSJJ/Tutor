@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2015-06-22 19:03:31
+Date: 2015-06-23 10:18:25
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -64,6 +64,32 @@ CREATE TABLE `nor_course` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for `student`
+-- ----------------------------
+DROP TABLE IF EXISTS `student`;
+CREATE TABLE `student` (
+  `id` int(10) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  `student_id` varchar(32) NOT NULL DEFAULT '',
+  `name` varchar(32) DEFAULT NULL,
+  `password` varchar(32) DEFAULT NULL,
+  `phone` varchar(32) DEFAULT NULL,
+  `mail` varchar(32) DEFAULT NULL,
+  `address` varchar(128) DEFAULT NULL,
+  `detailed_address` varchar(128) DEFAULT NULL,
+  `grade` varchar(32) DEFAULT NULL,
+  `instroduction` varchar(255) DEFAULT NULL,
+  `reg_time` timestamp NULL DEFAULT NULL,
+  `last_visit_time` timestamp NULL DEFAULT NULL,
+  `status` tinyint(4) DEFAULT NULL,
+  `statement` text,
+  PRIMARY KEY (`id`,`student_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of student
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for `teacher`
 -- ----------------------------
 DROP TABLE IF EXISTS `teacher`;
@@ -99,7 +125,7 @@ CREATE TABLE `teacher` (
 -- ----------------------------
 -- Records of teacher
 -- ----------------------------
-INSERT INTO `teacher` VALUES ('0000000001', 'TEA_123456', '123', '123456', 'm', '123@qq.com', '123456', null, null, null, null, null, null, null, null, '2015-06-22 16:16:08', '2015-06-22 16:16:08', '2015-06-22 17:26:06', '0000000000', '0000000000', '0000000000', '0000000000', '0000', 'hahahah');
+INSERT INTO `teacher` VALUES ('0000000001', 'TEA_123456', '123', '123456', 'm', '123@qq.com', '123456', null, null, null, null, null, null, null, null, '2015-06-22 16:16:08', '2015-06-22 16:16:08', '2015-06-22 19:07:40', '0000000000', '0000000000', '0000000000', '0000000000', '0000', 'hahahah');
 
 -- ----------------------------
 -- Table structure for `unique_id`

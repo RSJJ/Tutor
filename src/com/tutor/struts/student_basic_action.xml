@@ -2,8 +2,8 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
         "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
-	<package name="teacherBasic" extends="json-default">
-		<action name="teacherLogin" class="teacherBasicAction" method="login">
+	<package name="studentBasic" extends="json-default">
+		<action name="studentLogin" class="studentBasicAction" method="login">
 			<result type="json"></result>
 		</action>
 	</package>

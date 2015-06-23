@@ -30,7 +30,7 @@ public class Student implements Serializable
 	private String password;
 	@Column(name="phone")
 	private String phone;
-	@Column(name="meil")
+	@Column(name="mail")
 	private String mail;
 	@Column(name="address")
 	private String address;

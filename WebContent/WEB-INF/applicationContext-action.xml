@@ -11,5 +11,8 @@
 	<bean id="teacherBasicAction" class="com.tutor.action.TeacherBasicAction" scope="prototype">
 		<constructor-arg ref="teacherDAO"></constructor-arg>
 	</bean>
+	<bean id="studentBasicAction" class="com.tutor.action.StudentBasicAction" scope="prototype">
+		<constructor-arg ref="studentDAO"></constructor-arg>
+	</bean>
 	
 </beans>
