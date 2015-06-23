@@ -48,8 +48,19 @@ var tag_name_index = "index";
         });
 */
         $("#RegFormOne,#LoginForm").placeholder();
-        $("#RegFormOne").formCheck2("register");
-        $("#LoginForm").formCheck2("login");
+        $("#studentRegister").click(function(){
+        	$("#RegFormOne").formCheck2("studentRegister");
+        });
+        $("#teacherRegister").click(function(){
+        	$("#RegFormOne").formCheck2("teacherRegister");
+        });
+        $("#studentLogin").click(function(){
+        	$("#LoginForm").formCheck2("studentLogin");
+        });
+        $("#teacherLogin").click(function(){
+        	$("#LoginForm").formCheck2("teacherLogin");
+        });
+     
         
         //提交登录
         $("#submitLogin").click(function(){

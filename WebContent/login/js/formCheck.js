@@ -51,11 +51,11 @@
 		/**
 		 * 
 		 * addText :  Boolean  默认:false      true:是否在表单右侧添加文本提示
-		 * type    :  String   login/register  默认:login
+		 * type    :  String   studentLogin/teacherLogin/studnetRegister/teacherRegister  默认:studentLogin
 		 * 
 		 */
 		formCheck:function(type,addText){
-			type=type || "login";
+			type=type || "studentLogin";
 			addText=addText || false;
 			//表单验证常用的正则表达式
 			var json={
@@ -71,13 +71,25 @@
 					"empty":"手机号码不能为空",
 					"prompt":"请填写正确的手机号码"
 				},
-				"register_user_name":{
+				"studentRegister_userName":{
 					"reg":/^([a-z0-9][\w\.\-]*@[0-9a-z\-]+(\.[a-z]{2,6}){1,2})$/i,
 					"error":"请填写正确的邮箱地址",
 					"empty":"邮箱不能为空",
 					"prompt":"请填写正确的邮箱地址，作为登录用户名"
 				},
-				"login_user_name":{//手机号，不太严谨
+				"teacherRegister_userName":{
+					"reg":/^([a-z0-9][\w\.\-]*@[0-9a-z\-]+(\.[a-z]{2,6}){1,2})$/i,
+					"error":"请填写正确的邮箱地址",
+					"empty":"邮箱不能为空",
+					"prompt":"请填写正确的邮箱地址，作为登录用户名"
+				},
+				"studentLogin_userName":{//手机号，不太严谨
+					"reg":/^([a-z0-9][\w\.\-]*@[0-9a-z\-]+(\.[a-z]{2,6}){1,2})|(1\d{10})$/i,
+					"error":"用户名或手机号不存在",
+					"empty":"用户名不能为空",
+					"prompt":"请填写正确的邮箱地址，作为登录用户名"
+				},
+				"teacherLogin_userName":{//手机号，不太严谨
 					"reg":/^([a-z0-9][\w\.\-]*@[0-9a-z\-]+(\.[a-z]{2,6}){1,2})|(1\d{10})$/i,
 					"error":"用户名或手机号不存在",
 					"empty":"用户名不能为空",
@@ -119,7 +131,7 @@
 					"empty":"qq不能为空",
 					"prompt":"qq不能为空"
 				},
-				"auto_user_name":{
+				"auto_userName":{
 					"reg":/[^\s]{1,}/,
 					"error":"名字格式错误",
 					"empty":"名字不能为空",
@@ -139,7 +151,7 @@
 						var oSpan=oInput.next();
 						
 						var name=oInput.attr("name");
-						if(name=="user_name"){
+						if(name=="userName"){
 							name=type+"_"+name;
 						}
 						var regJson=json[name];
@@ -190,7 +202,7 @@
 						var oInput=$(ele);
 						var oSpan=oInput.next();
 						var name=oInput.attr("name");
-						if(name=="user_name"){
+						if(name=="userName"){
 							name=type+"_"+name;
 						}
 						var regJson=json[name];
@@ -211,12 +223,12 @@
 								if(!reg.test(val)){
 									oSpan.html(error).addClass("jserror").show();
 								}else{
-									if(oInput.attr("name")=="user_name"){
+									if(oInput.attr("name")=="userName"){
 										$.ajax({
 						                    type: "POST",
 						                    dataType: "json",
-						                    url: "check_user_name.php",
-						                    data: "user_name=" + val,
+						                    url: "#",//注册检查用户名
+						                    data: "userName=" + val,
 						                    success: function(msg){
 						                        if(msg.status){
 						                            oSpan.removeClass().addClass("correct").html("").show();
@@ -238,8 +250,14 @@
 				
 			});
 		},
+		/**
+		 * 
+		 * addText :  Boolean  默认:false      true:是否在表单右侧添加文本提示
+		 * type    :  String   studentLogin/teacherLogin/studnetRegister/teacherRegister  默认:studentLogin
+		 * 
+		 */
 		formCheck2:function(type){
-			type=type || "login";
+			type=type || "studentLogin";
 
 			//表单验证常用的正则表达式
 			var json={
@@ -253,24 +271,46 @@
 					"error":"请填写正确的手机号码",
 					"empty":"手机号码不能为空"
 				},
-				"register_user_name":{
+				"studentRegister_userName":{
 					"reg":/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/i,
 					"error":"邮箱格式不正确",
 					"empty":"请填写邮箱",
 					"used":"该邮箱地址已经被注册"
 				},
-				"login_user_name":{//手机号
+				"teacherRegister_userName":{
+					"reg":/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/i,
+					"error":"邮箱格式不正确",
+					"empty":"请填写邮箱",
+					"used":"该邮箱地址已经被注册"
+				},
+				"studentLogin_userName":{//手机号
 					"reg":/^(([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6})|(1[0-9]{10})$/i,
 					"error":"用户名格式错误",
 					"empty":"请输入用户名",
 					"notexist":"手机号尚未验证，请重新输入"
 				},
-				"register_password":{
+				"teacherLogin_userName":{//手机号
+					"reg":/^(([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6})|(1[0-9]{10})$/i,
+					"error":"用户名格式错误",
+					"empty":"请输入用户名",
+					"notexist":"手机号尚未验证，请重新输入"
+				},
+				"teacherRegister_password":{
 					"reg":/^[A-Za-z0-9\!\@\#\$\%\^\&\*\(\)]{6,20}$/,
 					"error":"密码长度应在6-20位",
 					"empty":"密码不能为空"
 				},
-				"login_password":{
+				"studentRegister_password":{
+					"reg":/^[A-Za-z0-9\!\@\#\$\%\^\&\*\(\)]{6,20}$/,
+					"error":"密码长度应在6-20位",
+					"empty":"密码不能为空"
+				},
+				"studentLogin_password":{
+					"reg":/^[^\s]{6,20}$/,
+					"error":"密码格式错误",
+					"empty":"密码不能为空"
+				},
+				"teacherLogin_password":{
 					"reg":/^[^\s]{6,20}$/,
 					"error":"密码格式错误",
 					"empty":"密码不能为空"
@@ -300,7 +340,7 @@
 					"error":"qq格式不正确",
 					"empty":"qq不能为空"
 				},
-				"auto_user_name":{
+				"auto_userName":{
 					"reg":/[^\s]{1,}/,
 					"error":"名字格式错误",
 					"empty":"名字不能为空"
@@ -326,7 +366,7 @@
 							var oSpan=oInput.next();
 							
 							var name=oInput.attr("name");
-							if(name=="user_name" || name=="password"){
+							if(name=="userName" || name=="password"){
 								name=type+"_"+name;
 							}
 							var regJson=json[name];
@@ -358,21 +398,21 @@
 						});
 
 						if(bOk){
-							if(type=="register"){
+							if(type=="studentRegister"){
 								var val1=$.trim(oForm.find("input[name='recommen_mobile']").val());
 								var val2=$.trim(oForm.find("input[name='mobile']").val());
 								if(val1 && val1==val2){
 									oForm.find("input[name='recommen_mobile']").next().removeClass().addClass("error").html("推荐人手机号不能与自己手机号相同").slideDown();
 									return;
 								}
-								var oInput_user=oForm.find("input[name='user_name']");
+								var oInput_user=oForm.find("input[name='userName']");
 								var oInput_pwd =oForm.find("input[name='password']");
 								$.ajax({
 				                    type: "POST",
 				                    dataType: "json",
 				                    url: "/user/ajax_register.php",
 				                    async:false,
-				                    data: "user_name=" + oInput_user.val(),
+				                    data: "userName=" + oInput_user.val(),
 				                    success: function(msg){
 				                        if(msg.status){
 				                        	 bOk=true;
@@ -391,7 +431,7 @@
 					                    dataType: "json",
 					                    url: "/user/ajax_register.php",
 					                    async:false,					                    
-					                    data: {"user_name":oInput_user.val(),"password":oInput_pwd.val(),"mobile":val2,"recommen_mobile":val1},
+					                    data: {"userName":oInput_user.val(),"password":oInput_pwd.val(),"mobile":val2,"recommen_mobile":val1},
 					                    success: function(msg){
 					                        if(msg.status){
 					                        	 bOk=true;
@@ -404,14 +444,30 @@
 					                });
 				                }*/
 								bOk && oForm.submit();
-							}else{
-								var user_name=oForm.find("input[name='user_name']");
+							}
+							else if(type=="teacherLogin")
+							{
+								var oInput_user=oForm.find("input[id='loginUserName']");
+								var oInput_pwd =oForm.find("input[id='loginPassword']");
+								alert(oInput_user.val());
+								$.ajax({
+				                    type: "POST",
+				                    dataType: "json",
+				                    url: "login/teacherLogin",
+				                    data: {"userName":oInput_user.val(),"password":oInput_pwd.val()},
+				                    success: function(msg){
+				                        alert(msg.statement);
+				                    }
+				                });
+							}
+							else{
+								var userName=oForm.find("input[name='userName']");
 								var password=oForm.find("input[name='password']");
 								$.ajax({
 				                    type: "POST",
 				                    dataType: "json",
 				                    url: "/user/ajax_login.php",
-				                    data: {"user_name":user_name.val(),"password":password.val()},
+				                    data: {"userName":userName.val(),"password":password.val()},
 				                    success: function(msg){
 				                        if(msg.status){
 				                            oForm.submit();
@@ -419,7 +475,7 @@
 				                           if(msg.type){
 				                           		password.addClass("hover").next().removeClass().addClass("error").html(msg.msg).slideDown();
 				                           }else{
-				                           		user_name.addClass("hover").css("border","red").next().removeClass().addClass("error").html(msg.msg).slideDown();
+				                           		userName.addClass("hover").css("border","red").next().removeClass().addClass("error").html(msg.msg).slideDown();
 				                           }
 				                        }
 				                    }
@@ -441,7 +497,7 @@
 					var oInput=$(ele);
 					var oSpan=oInput.next();
 					var name=oInput.attr("name");
-					if(name=="user_name" || name=="password"){
+					if(name=="userName" || name=="password"){
 						name=type+"_"+name;
 					}
 
@@ -469,12 +525,12 @@
 								oSpan.html(error).addClass("error").slideDown();
 							}else{
 							//新用户注册要 校验是否已注册过
-								if(oInput.attr("name")=="user_name" && type=="register"){
+								if(oInput.attr("name")=="userName" && type=="register"){
 									$.ajax({
 					                    type: "POST",
 					                    dataType: "json",
 					                    url: "/user/ajax_register.php",
-					                    data: "user_name=" + val,
+					                    data: "userName=" + val,
 					                    success: function(msg){
 					                        if(msg.status){
 					                            //oSpan.slideDown();
@@ -652,7 +708,7 @@
 
 	//表单验证常用的正则表达式
 	var defaultJson={
-		"user_name":{//邮箱
+		"userName":{//邮箱
 			"reg":/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/i,
 			"error":"邮箱格式不正确",
 			"empty":"请填写邮箱",

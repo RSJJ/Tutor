@@ -11,7 +11,7 @@
                 <link href="css/global.css" rel="stylesheet" type="text/css"  charset="utf-8"  />
 
 <script src="js/jquery.min.js" type="text/javascript" charset="utf-8" language="javascript"></script>
-<script src="js/index_register.js" type="text/javascript" charset="utf-8" language="javascript"></script>
+<!-- <script src="js/index_register.js" type="text/javascript" charset="utf-8" language="javascript"></script>  -->
 <script src="js/jquery.scrollto.js" type="text/javascript" charset="utf-8" language="javascript"></script>
 <script src="js/placeholder.min.js" type="text/javascript" charset="utf-8" language="javascript"></script>
 <script src="js/formCheck.js" type="text/javascript" charset="utf-8" language="javascript"></script>
@@ -30,7 +30,6 @@
 <link href="css/jquery.fancybox-1.3.4.css" rel="stylesheet" type="text/css"  charset="utf-8"  />
 <script src="js/ckplayer.js" type="text/javascript" charset="utf-8" language="javascript"></script>
 <!-- 视频播放弹框 end --> 
-
 <!--[if IE 6]>
 <script src="js/background.png.js" type="text/javascript" charset="utf-8" language="javascript"></script>
 <script type="text/javascript">DD_belatedPNG.fix('*');</script>
@@ -75,7 +74,7 @@
                       <form name="RegFormOne" method="post" action="#" id='RegFormOne' autocomplete="off" > 
                           <ul class="box_r1" style="display:none;">
                               <li>
-                                <input type="text" name="user_name" placeholder="请填写邮箱" check />
+                                <input type="text" name="userName" placeholder="请填写邮箱" check />
                                 <span style="display:none;">请填写邮箱</span>
                               </li>
                               <li>
@@ -90,8 +89,8 @@
                                 <span style="display:none;">填写验证码</span>
                               </li>
                               <li>
-                              <span class="hqyzm xyzc "><input type="button" value="学员注册" submit  style="border:none; width:78px;"/></span>
-                              <span class="hqyzm xyzc" style="float:right;"><input type="button" value="老师注册" submit  style="border:none; width:78px;"/></span>
+                              <span class="hqyzm xyzc "><input type="button" id="studentRegister" value="学员注册" submit  style="border:none; width:78px;"/></span>
+                              <span class="hqyzm xyzc" style="float:right;"><input type="button" id="teacherRegister" value="老师注册" submit  style="border:none; width:78px;"/></span>
                               </li>
                           </ul>
                       </form>
@@ -99,11 +98,11 @@
                           <form name="RegForm" method="POST" action="#" id="LoginForm" >
                               <ul class="box_r2_ul">
                                   <li>
-                                    <input name="user_name" placeholder="已验证手机号/邮箱" type="text" check />
+                                    <input name="userName" id="loginUserName" placeholder="已验证手机号/邮箱" type="text" check />
                                     <span style="display:none;">请填写邮箱</span>
                                   </li>
                                   <li>
-                                    <input name="password" type="password" placeholder="请输入您的密码" check />
+                                    <input name="password" id="loginPassword" type="password" placeholder="请输入您的密码" check />
                                     <span style="display:none;">请填写邮箱</span>
                                   </li>
                                   <li class="li_ico">
@@ -111,8 +110,8 @@
                                       <label for="aotu_login" class="f_l f_w">&nbsp;下次自动登录</label><a href="#" class="f_r f_w">忘记密码？</a>
                                   </li>
                                   <li class="li_btn">
-                                  <span class="hqyzm xyzc "><input type="button" value="学员登录" submit  style="border:none; width:78px;height:31px;"/></span>
-                              	<span class="hqyzm xyzc" style="float:right;"><input type="button" value="老师登录" submit  style="border:none; width:78px;height:31px;"/></span>
+                                  <span class="hqyzm xyzc "><input type="button" id="studentLogin" value="学员登录" submit style="border:none; width:78px;height:31px;"/></span>
+                              	<span class="hqyzm xyzc" style="float:right;"><input type="button" id="teacherLogin" submit value="老师登录"  style="border:none; width:78px;height:31px;"/></span>
                                     <!-- <input type="button" value="登&nbsp;录" submit /> -->
                                   </li>
                               </ul>
