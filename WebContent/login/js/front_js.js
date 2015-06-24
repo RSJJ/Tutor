@@ -61,7 +61,7 @@ var tag_name_index = "index";
         	$("#LoginForm").formCheck2("teacherLogin");
         });
      
-        
+        /*
         //提交登录
         $("#submitLogin").click(function(){
             var password = $("#password").val(),
@@ -78,7 +78,7 @@ var tag_name_index = "index";
             }
             $("#LoginForm").submit();
         });
-        
+        */
         //网站头部导航
         $('li.liMain').mousemove(function() {
             $(this).css({'background': '#ffa800'})

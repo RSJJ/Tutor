@@ -459,12 +459,12 @@
 				                        if(msg.code == '-2')
 				                        {
 				                        	//用户名错误
-				                        	oForm.find("input[id='loginUserName']").addClass("hover").next().removeClass().addClass("error").html(msg.statement).slideDown();
+				                        	oInput_user.addClass("hover").next().removeClass().addClass("error").html(msg.statement).slideDown();
 				                        }
 				                        else if(msg.code == '-1')
 				                        {
 				                        	//密码错误
-				                        	oForm.find("input[id='loginPassword']").addClass("hover").next().removeClass().addClass("error").html(msg.statement).slideDown();
+				                        	oInput_pwd.addClass("hover").next().removeClass().addClass("error").html(msg.statement).slideDown();
 				                        }
 				                        else
 				                        {
