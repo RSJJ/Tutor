@@ -7,10 +7,11 @@ import java.text.SimpleDateFormat;
 import com.tutor.base.BaseAction;
 import com.tutor.dao.TeacherDAO;
 import com.tutor.entity.Teacher;
+import com.tutor.entity.server.Message;
+import com.tutor.entity.server.User;
 import com.tutor.global.FinalValue;
 import com.tutor.util.IdGenerator;
 import com.tutor.util.JsonUtil;
-import com.tutor.util.Message;
 import com.tutor.util.Operation;
 
 /**
@@ -39,16 +40,29 @@ public class TeacherBasicAction extends BaseAction
 		Teacher teacher = teacherDAO.findByPhoneOrMail(userName);
 		if(teacher != null)
 		{
-			if(password.endsWith(teacher.getPassword()))
+			if(password.equals(teacher.getPassword()))
 			{
-				//登录成功
-				msg.setCode(teacher.getStatus());
-				msg.setStatement(teacher.getStatement());
+				//用户名密码正确
+				if(teacher.getStatus() == FinalValue.AVAILABLE)
+				{
+					//用户可用
+					msg.setCode(teacher.getStatus());
+					msg.setStatement(teacher.getStatement());
 			
-				teacher.setLastVisitTime(Operation.getTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")));
-				teacherDAO.update(teacher);
+					teacher.setLastVisitTime(Operation.getTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")));
+					teacherDAO.update(teacher);
 			
-				this.getSession().setAttribute("teacher", teacher);
+					User user = new User();
+					user.setRole(User.TEACHER);
+					user.setUser(teacher);
+					this.getSession().setAttribute("user", user);
+				}
+				else
+				{
+					msg.setCode(teacher.getStatus());
+					msg.setStatement("当前用户已经被限制登录，如需解除限制请联系管理员！");
+				}
+				
 			}
 			else
 			{
@@ -64,6 +78,24 @@ public class TeacherBasicAction extends BaseAction
 			msg.setStatement("用户名错误");
 		}
 		this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));
+	}
+	/**
+	 * 教师退出登录，清除用户session，更新访问时间
+	 */
+	public void logout()
+	{
+		User user =  (User) this.getSession().getAttribute("user");
+		if(user != null)
+		{
+			Teacher teacher = (Teacher) user.getUser();
+			if(teacher != null)
+			{
+				//更新最后访问时间
+				teacher.setLastVisitTime(Operation.getTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")));
+				teacherDAO.update(teacher);
+			}
+		}
+		this.getSession().removeAttribute("user");
 	}
 	/**
 	 * 教师注册

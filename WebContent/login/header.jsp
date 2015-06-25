@@ -1,11 +1,53 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import="com.tutor.entity.server.*" %>
+    <%@ page import="com.tutor.entity.*" %>
+    <%
+    	User user = (User)session.getAttribute("user");
+    	Teacher teacher = null;
+    	Student student = null;
+    	if(user != null)
+    	{
+    		if(user.getRole() == User.TEACHER)
+    		{
+    			teacher = (Teacher)user.getUser();
+    		}
+    		else if(user.getRole() == User.STUDENT)
+    		{
+    			student = (Student)user.getUser();
+    		}
+    	}
+    %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>学纷享家教</title>
     </head>
+    <script type="text/javascript">
+    	$(document).ready(function(){
+    		$("#teacherLogout").click(function(){
+    			$.ajax({
+    				type:"post",
+    				url:"teacherLogout.action",
+    				success:function()
+    				{
+    					location.reload();
+    				}
+    			})	
+    		});
+    		$("#studentLogout").click(function(){
+    			$.ajax({
+    				type:"post",
+    				url:"studentLogout.action",
+    				success:function()
+    				{
+    					location.reload();
+    				}
+    			})	
+    		});
+    	});
+    </script>
  
 <body>
  <div class="top f_12">
@@ -21,7 +63,23 @@
           <div id="weiboShowDiv"><a href="#" rel="nofollow" class="btn_a_top" target="_blank"><font class="f_l">+关注</font><font class="f_r">></font></a></div>
           </span>
         </div>
-        <div class="f_r">  <a href="userlogin.jsp" class="a_k m_l10" target="_blank" title="登录">登录</a> <a href="userregister.jsp" class="a_k m_l10" target="_blank" title="注册">注册</a>  
+        <div class="f_r">  
+        	<%if(teacher != null){ %>
+        	<!-- 教师登录成功 -->
+        		<a href="userlogin.jsp" class="a_k m_l10" target="_blank" title="登录"><%=teacher.getName() %></a> <a id="teacherLogout" class="a_k m_l10" title="注册">退出</a>  
+        	<%}
+        	else if(student != null)
+        	{
+        	%>
+        	<!-- 学生登录成功 -->
+        		<a href="userlogin.jsp" class="a_k m_l10" target="_blank" title="登录"><%=student.getName() %></a> <a id="studentLogout" class="a_k m_l10" title="注册">退出</a>
+        	<%}
+        	else
+        	{
+        	%>
+        	<!-- 用户未登录 -->
+        		<a href="userlogin.jsp" class="a_k m_l10" target="_blank" title="登录">登录</a> <a href="userregister.jsp" class="a_k m_l10" target="_blank" title="注册">注册</a>
+        	<%} %>
         </div>
       </div>
       <div class="logoBar m_b10">

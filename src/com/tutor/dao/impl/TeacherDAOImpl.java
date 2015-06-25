@@ -82,4 +82,11 @@ public class TeacherDAOImpl implements TeacherDAO
 			return null;
 	}
 
+	@Override
+	public Long getTeacherCount()
+	{
+		Query query = entityManager.createQuery("select count(u) from Teacher u");
+		return (Long) query.getSingleResult();
+	}
+
 }

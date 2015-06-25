@@ -21,6 +21,12 @@ public interface StudentDAO
 	 * @param student
 	 */
 	public void  delete(Student student);
+	/**
+	 * 根据手机或邮箱查找学生
+	 * @param phoneOrMail
+	 * @return
+	 */
+	public Student findByPhoneOrMail(String phoneOrMail);
 	
 	/**
 	 * 根据手机和密码查找学生

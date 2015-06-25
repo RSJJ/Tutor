@@ -6,5 +6,6 @@
 		<action name="teacherLogin" class="teacherBasicAction" method="login">
 			<result type="json"></result>
 		</action>
+		<action name="teacherLogout" class="teacherBasicAction" method="logout"></action>
 	</package>
 </struts>

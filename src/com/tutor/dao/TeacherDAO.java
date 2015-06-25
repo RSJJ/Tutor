@@ -42,4 +42,9 @@ public interface TeacherDAO
 	 * @return
 	 */
 	public Teacher findByMailPassword(String mail,String password);
+	/**
+	 * 查询教师总数
+	 * @return
+	 */
+	public Long getTeacherCount();
 }

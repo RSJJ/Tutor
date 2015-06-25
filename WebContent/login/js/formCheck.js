@@ -456,20 +456,25 @@
 				                    url: "login/teacherLogin",
 				                    data: {"userName":oInput_user.val(),"password":oInput_pwd.val()},
 				                    success: function(msg){
-				                        if(msg.code == '-2')
+				                        if(msg.code == '404')
 				                        {
 				                        	//用户名错误
 				                        	oInput_user.addClass("hover").next().removeClass().addClass("error").html(msg.statement).slideDown();
 				                        }
-				                        else if(msg.code == '-1')
+				                        else if(msg.code == '400')
 				                        {
 				                        	//密码错误
 				                        	oInput_pwd.addClass("hover").next().removeClass().addClass("error").html(msg.statement).slideDown();
 				                        }
+				                        else if(msg.code == '-1')
+				                        {
+				                        	//用户被限制登录
+				                        	alert(mag.statement);
+				                        }
 				                        else
 				                        {
-				                        	//登录成功
-				                        	
+				                        	//登录成功，刷新页面信息
+				                        	location.reload();
 				                        }
 				                    }
 				                });

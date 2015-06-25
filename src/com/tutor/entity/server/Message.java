@@ -1,4 +1,4 @@
-package com.tutor.util;
+package com.tutor.entity.server;
 
 
 /**
