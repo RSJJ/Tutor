@@ -14,5 +14,8 @@
 	<bean id="studentBasicAction" class="com.tutor.action.StudentBasicAction" scope="prototype">
 		<constructor-arg ref="studentDAO"></constructor-arg>
 	</bean>
-	
+	<bean id="courseManageAction" class="com.tutor.action.CourseManageAction" scope="prototype">
+		<constructor-arg ref="norCourseDAO"></constructor-arg>
+		<constructor-arg ref="graCourseDAO"></constructor-arg>
+	</bean>
 </beans>

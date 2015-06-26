@@ -47,7 +47,6 @@ public class GraCourseDAOImpl implements GraCourseDAO
 		query.setParameter("teacherId", teacherId);
 		@SuppressWarnings("unchecked")
 		List<GraCourse> graCourses = query.getResultList();
-		System.out.println(graCourses.size()+"=========="+query.toString());
 		return graCourses;
 	}
 

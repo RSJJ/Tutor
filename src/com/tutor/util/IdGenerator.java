@@ -15,6 +15,7 @@ import org.apache.commons.logging.LogFactory;
 
 import com.tutor.dao.UniqueIdDAO;
 import com.tutor.entity.UniqueId;
+import com.tutor.global.FinalValue;
 
 /**
  * 
@@ -35,9 +36,7 @@ public class IdGenerator
 	private static final String STU_ = "STU_";
 	private static final String TEA_ = "TEA_";
 	private static final String NOR_PREFIX = "NOR_";
-	private static final int NOR_TYPE = 0;
 	private static final String GRA_PREFIX = "GRA_";
-	private static final int GRA_TYPE = 1;
 	private static final String ORT_PREFIX = "ORT_";
 	private static final long PERSIST_INTERVAL = 600000; // persist every 10
 															// mins
@@ -176,11 +175,11 @@ public class IdGenerator
 			String format = "";
 			switch (type)
 			{
-			case NOR_TYPE:
+			case FinalValue.NOR_TYPE:
 				format = NOR_PREFIX + "%08d";
 				break;
 
-			case GRA_TYPE:
+			case FinalValue.GRA_TYPE:
 				format = GRA_PREFIX + "%08d";
 				break;
 

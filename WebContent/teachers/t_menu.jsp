@@ -18,7 +18,7 @@
                         </div>
                         <div class="inclrspaceb1">
                             <h3 class="left2"><span class="c2">我的课程信息</span></h3>
-                            <p><a href="#">我的课程</a></p>
+                            <p><a href="showTeacherCourse.action">我的课程</a></p>
                             <p><a href="#">我的课程表</a></p>
                         </div>
                         <div class="inclrspaceb1">
