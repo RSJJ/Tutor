@@ -4,6 +4,9 @@ package com.tutor.action;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.tutor.base.BaseAction;
 import com.tutor.dao.TeacherDAO;
 import com.tutor.entity.Teacher;
@@ -22,6 +25,8 @@ import com.tutor.util.Operation;
 public class TeacherBasicAction extends BaseAction
 {
 	private static final long serialVersionUID = 1L;
+	
+	private static final Log logger = LogFactory.getLog(TeacherBasicAction.class);
 
 	private TeacherDAO teacherDAO;
 
@@ -55,6 +60,7 @@ public class TeacherBasicAction extends BaseAction
 					User user = new User();
 					user.setRole(User.TEACHER);
 					user.setUser(teacher);
+					logger.info(String.format("teacher:%s login success", teacher.getTeacherId()));
 					this.getSession().setAttribute("user", user);
 				}
 				else

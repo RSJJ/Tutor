@@ -309,24 +309,24 @@
 @media print {
 .tabcontentdd {display:block!important;}
 }
-.incwdddcona{  height:32px; line-height:32px; background-color:#dee0e2; color:#221815; font-size:14px; font-family:"微软雅黑"; text-align:center; font-weight:bold;}
-.incwdddcona .incwdddcona1{ width:120px; float:left;}
-.incwdddcona .incwdddcona2{ width:200px; float:left; padding:0 10px;}
-.incwdddcona .incwdddcona3{ width:130px; float:left;}
-.incwdddcona .incwdddcona4{ width:150px; float:left;}
-.incwdddcona .incwdddcona5{ width:120px; float:left;}
-.incwdddcona .incwdddcona6{ width:118px; float:left;}
+.incwdddcona{background-color:#dee0e2; color:#221815; font-size:12px; font-family:"微软雅黑"; text-align:center; font-weight:bold;}
+.incwdddcona .incwdddcona1{ width:80px; float:left;}
+.incwdddcona .incwdddcona2{ width:100px; float:left;}
+.incwdddcona .incwdddcona3{ width:100px; float:left;}
+.incwdddcona .incwdddcona4{ width:98px; float:left;}
+.incwdddcona .incwdddcona5{ width:100px; float:left;}
+.incwdddcona .incwdddcona6{ width:98px; float:left;}
+.incwdddcona .incwdddcona7{ width:98px; float:left;}
 
+.incwdddcona11{color:#333; font-size:10px; font-family:"微软雅黑"; text-align:center; border-bottom:#CCC solid 1px; }
+.incwdddcona11 .incwdddcona1{ width:80px; float:left;}
+.incwdddcona11 .incwdddcona2{ width:100px; float:left;}
+.incwdddcona11 .incwdddcona3{ width:98px; float:left;}
+.incwdddcona11 .incwdddcona4{ width:98px; float:left;}
+.incwdddcona11 .incwdddcona5{ width:98px; float:left;}
+.incwdddcona11 .incwdddcona6{ width:98px; float:left;}
 
-.incwdddcona11{  height:32px; line-height:32px; color:#333; font-size:12px; font-family:"微软雅黑"; text-align:center; border-bottom:#CCC solid 1px; }
-.incwdddcona11 .incwdddcona1{ width:120px; float:left;}
-.incwdddcona11 .incwdddcona2{ width:200px; float:left; padding:0 10px;}
-.incwdddcona11 .incwdddcona3{ width:130px; float:left;}
-.incwdddcona11 .incwdddcona4{ width:150px; float:left;}
-.incwdddcona11 .incwdddcona5{ width:120px; float:left;}
-.incwdddcona11 .incwdddcona6{ width:118px; float:left;}
-
-.incwdddcona11 .incwdddcona7{ color:#F60;}
+.incwdddcona11 .incwdddcona7{ color:#F60;width:100px; float:left;}
 .incwdddcona11 .incwdddcona7 a{ color:#F60; text-decoration:underline;}
 .incwdddcona11 .incwdddcona7 a:hover{ color:#F00;}
 

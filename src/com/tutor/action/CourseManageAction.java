@@ -46,9 +46,8 @@ public class CourseManageAction extends BaseAction
 		
 		List<NorCourse> norCourses = norCourseDAO.findByTeacherId(teacher.getTeacherId());
 		this.getRequest().setAttribute("norCourses", norCourses);
-		
-		List<GraCourse> gracourses = graCourseDAO.findByTeacherId(teacher.getTeacherId());
-		this.getRequest().setAttribute("gracourses", gracourses);
+		List<GraCourse> graCourses = graCourseDAO.findByTeacherId(teacher.getTeacherId());
+		this.getRequest().setAttribute("graCourses", graCourses);
 		return Action.SUCCESS;
 	}
 	

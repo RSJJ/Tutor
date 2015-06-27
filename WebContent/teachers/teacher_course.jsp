@@ -1,8 +1,10 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@page import="java.util.List , com.tutor.entity.* " %>
 	<%@page import="com.tutor.entity.server.*" %>
+	<%@page import="com.tutor.util.*" %>
 	<%
 		User user = (User)session.getAttribute("user");
 		Teacher teacher = null;
@@ -10,8 +12,8 @@
 		{
 			teacher = (Teacher)user.getUser();
 		}
-		List<NorCourse> norCourses = request.getAttribute("norCourses") == null ? (List<NorCourse>)request.getAttribute("norCourses"):new ArrayList<NorCourse>();
-		List<GraCourse> graCourses = request.getAttribute("graCourses") == null ? (List<GraCourse>)request.getAttribute("gracourses"):new ArrayList<GraCourse>();
+		List<NorCourse> norCourses = request.getAttribute("norCourses") == null ? new ArrayList<NorCourse>():(List<NorCourse>)request.getAttribute("norCourses");
+		List<GraCourse> graCourses = request.getAttribute("graCourses") == null ? new ArrayList<GraCourse>():(List<GraCourse>)request.getAttribute("graCourses");
 	%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -34,7 +36,14 @@
 	language="javascript"></script>
 <!-- 首页轮播图 start -->
 
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#nor_submit").click(function(){
+		
+	});
+});
 
+</script>
 <!--[if IE 6]>
 <script src="js/background.png.js" type="text/javascript" charset="utf-8" language="javascript"></script>
 <script type="text/javascript">DD_belatedPNG.fix('*');</script>
@@ -141,46 +150,25 @@
 												<div class="incwdddcona">
 													<div class="incwdddcona1">年级</div>
 													<div class="incwdddcona2" style="width: 100px;">科目</div>
-													<div class="incwdddcona5">价格/半小时</div>
+													<div class="incwdddcona5">线上|线下<br>(价格/半小时)</div>
 													<div class="incwdddcona6" style="width: 200px;">创建时间
 													</div>
 													<div class="incwdddcona7">操作</div>
 													<div class="clear"></div>
 												</div>
-												<%for(NorCourse norCourse:norCourses) %>
+												<%for(NorCourse norCourse:norCourses){ %>
 												<div class="incwdddcona11">
-													<div class="incwdddcona1">小一</div>
-													<div class="incwdddcona2" style="width: 100px;">语文</div>
-													<div class="incwdddcona5">25.00</div>
-													<div class="incwdddcona6" style="width: 200px;">
-														2015-4-20 15:00</div>
+													<div class="incwdddcona1"><%=norCourse.getGrade() %></div>
+													<div class="incwdddcona2" style="width: 100px;"><%=norCourse.getCourse() %></div>
+													<div class="incwdddcona5"><%= norCourse.getPriceOn() + "|" + norCourse.getPriceOff() %></div>
+													<div class="incwdddcona6" style="width: 200px;"><%=Operation.changFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"), norCourse.getCreateTime()) %></div>
 													<div class="incwdddcona7">
 														<a href="#">修改</a>/<a href="#">删除</a>
 													</div>
 													<div class="clear"></div>
 												</div>
-												<div class="incwdddcona11">
-													<div class="incwdddcona1">小一</div>
-													<div class="incwdddcona2" style="width: 100px;">语文</div>
-													<div class="incwdddcona5">25.00</div>
-													<div class="incwdddcona6" style="width: 200px;">
-														2015-4-20 15:00</div>
-													<div class="incwdddcona7">
-														<a href="#">修改</a>/<a href="#">删除</a>
-													</div>
-													<div class="clear"></div>
-												</div>
-												<div class="incwdddcona11">
-													<div class="incwdddcona1">小一</div>
-													<div class="incwdddcona2" style="width: 100px;">语文</div>
-													<div class="incwdddcona5">25.00</div>
-													<div class="incwdddcona6" style="width: 200px;">
-														2015-4-20 15:00</div>
-													<div class="incwdddcona7">
-														<a href="#">修改</a>/<a href="#">删除</a>
-													</div>
-													<div class="clear"></div>
-												</div>
+												<%} %>
+												
 												<div class="tjkc">
 													<a onclick="openDiv()"><font size="+2">+</font>添加基础课程</a>
 												</div>
@@ -196,23 +184,35 @@
 													</div>
 													<div class="condiv">
 														<p class="condiv_p">
-															年级：&nbsp;&nbsp;<label><select
-																style="width: 100px;"><option>高一</option></select></label>&nbsp;&nbsp;&nbsp;&nbsp;科目&nbsp;&nbsp;<label><select
-																style="width: 100px;"><option>物理</option></select></label><br />
-															线上价格：&nbsp;&nbsp;<input type="text" value="25.00"
-																class="condiv_ipt" />&nbsp;元/半小时&nbsp;&nbsp;<input
-																name="" type="checkbox" value="" /><br />
-															线下价格：&nbsp;&nbsp;<input type="text" value="25.00"
-																class="condiv_ipt" />&nbsp;元/半小时&nbsp;&nbsp;<input
-																name="" type="checkbox" value="" /><br />
+															年级：&nbsp;&nbsp;
+															<label>
+																<select name="nor_grade" id="nor_grade" style="width: 100px;">
+																	<option>高一</option>
+																</select>
+															</label>
+															&nbsp;&nbsp;&nbsp;&nbsp;科目&nbsp;&nbsp;
+															<label>
+																<select name="nor_course" id="nor_course" style="width: 100px;">
+																	<option>物理</option>
+																</select>
+															</label>
+															<br />
+															线上价格：&nbsp;&nbsp;
+															<input type="text" name="nor_price_on" id="nor_price_on" value="25.00" class="condiv_ipt" />&nbsp;元/半小时&nbsp;&nbsp;
+															<input name="nor_price_on_ch" id="nor_price_on_ch"  type="checkbox" value="" />
+															<br />
+															线下价格：&nbsp;&nbsp;
+															<input type="text" name="nor_price_off" id="nor_price_off" value="25.00" class="condiv_ipt" />&nbsp;元/半小时&nbsp;&nbsp;
+															<input name="nor_price_off_ch" id="nor_price_off_ch" type="checkbox" value="" />
+															<br />
 
 														</p>
 														<div style="vertical-align: top; padding-left: 30px;">
 															备注：
-															<textarea name="" cols="" rows="" class="condiv_tex">其它说明（0-200字）</textarea>
+															<textarea name="nor_statement" id="nor_statement" cols="" rows="" class="condiv_tex">其它说明（0-200字）</textarea>
 														</div>
 														<div class="re_con4">
-															<input name="" value="" type="button" class="btn_yz">
+															<input name="nor_submit" id="nor_submit" value="" type="button" class="btn_yz">
 														</div>
 													</div>
 												</div>
@@ -226,56 +226,30 @@
 											<div>
 												<div class="incwdddcona">
 													<div class="incwdddcona1">学校</div>
-													<div class="incwdddcona2" style="width: 50px;">学院</div>
-													<div class="incwdddcona2" style="width: 50px;">课程</div>
-													<div class="incwdddcona2" style="width: 50px;">专业</div>
-													<div class="incwdddcona5">价格/半小时</div>
-													<div class="incwdddcona6" style="width: 170px;">创建时间
-													</div>
+													<div class="incwdddcona2">学院</div>
+													<div class="incwdddcona2">专业</div>
+													<div class="incwdddcona2">课程</div>
+													<div class="incwdddcona5">线上|线下<br>(价格/半小时)</div>
+													<div class="incwdddcona6">创建时间</div>
 													<div class="incwdddcona7">操作</div>
 													<div class="clear"></div>
 												</div>
+												<%for(GraCourse graCourse : graCourses){ %>
 												<div class="incwdddcona11">
-													<div class="incwdddcona1">小一</div>
-													<div class="incwdddcona2" style="width: 50px;">语文</div>
-													<div class="incwdddcona2" style="width: 50px;">语文</div>
-													<div class="incwdddcona2" style="width: 50px;">语文</div>
-													<div class="incwdddcona5">25.00</div>
-													<div class="incwdddcona6" style="width: 170px;">
-														2015-4-20 15:00</div>
+													<div class="incwdddcona1"><%=graCourse.getSchool() %></div>
+													<div class="incwdddcona2" ><%=graCourse.getAcademy() %></div>
+													<div class="incwdddcona2"><%=graCourse.getDomain() %></div>
+													<div class="incwdddcona2"><%=graCourse.getCourse() %></div>
+													<div class="incwdddcona5"><%= graCourse.getPriceOn() + "|" + graCourse.getPriceOff() %></div>
+													<div class="incwdddcona6"><%=Operation.changFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"), graCourse.getCreateTime()) %></div>
 													<div class="incwdddcona7">
 														<a href="#">修改</a>/<a href="#">删除</a>
 													</div>
 													<div class="clear"></div>
 												</div>
-												<div class="incwdddcona11">
-													<div class="incwdddcona1">小一</div>
-													<div class="incwdddcona2" style="width: 50px;">语文</div>
-													<div class="incwdddcona2" style="width: 50px;">语文</div>
-													<div class="incwdddcona2" style="width: 50px;">语文</div>
-													<div class="incwdddcona5">25.00</div>
-													<div class="incwdddcona6" style="width: 170px;">
-														2015-4-20 15:00</div>
-													<div class="incwdddcona7">
-														<a href="#">修改</a>/<a href="#">删除</a>
-													</div>
-													<div class="clear"></div>
-												</div>
-												<div class="incwdddcona11">
-													<div class="incwdddcona1">小一</div>
-													<div class="incwdddcona2" style="width: 50px;">语文</div>
-													<div class="incwdddcona2" style="width: 50px;">语文</div>
-													<div class="incwdddcona2" style="width: 50px;">语文</div>
-													<div class="incwdddcona5">25.00</div>
-													<div class="incwdddcona6" style="width: 170px;">
-														2015-4-20 15:00</div>
-													<div class="incwdddcona7">
-														<a href="#">修改</a>/<a href="#">删除</a>
-													</div>
-													<div class="clear"></div>
-												</div>
+												<%} %>
 												<div class="tjkc">
-													<a onclick="openDiv1()"><font size="+2">+</font>添加基础课程</a>
+													<a onclick="openDiv1()"><font size="+2">+</font>添加考研课程</a>
 												</div>
 
 
@@ -283,7 +257,7 @@
 											</div>
 											<div id="winDiv1">
 												<div class="topDiv">
-													<span class="fl">添加基础课程</span><span class="fr" id="close"
+													<span class="fl">添加考研课程</span><span class="fr" id="close"
 														onclick="closeDiv1()"><img src="images/close.jpg" /></span>
 													<div class="clear"></div>
 												</div>
@@ -344,6 +318,7 @@
 			</div>
 
 		</div>
+
 
 
 		<!--底部 start-->

@@ -7,5 +7,7 @@
 			<result name="success">teacher_course.jsp</result>
 			<result name="error">error.jsp</result>
 		</action>
+		<action name="addOneCourse" class="courseManageAction" method="addOne">
+		</action>
 	</package>
 </struts>
