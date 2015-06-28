@@ -131,6 +131,47 @@ $(document).ready(function(){
 		});
 		
 	});
+	
+	$("#gra_submit").click(function(){
+		
+		var json = setJson(null,"courseType",2);
+		
+		var gra_school = $.trim($("#gra_school").val());
+		json = setJson(json, "graCourse.school", gra_school);
+		
+		var gra_acadeny = $.trim($("#gra_acadeny").val());
+		json = setJson(json,"graCourse.acadeny",gra_acadeny);
+		
+		var gra_domain = $.trim($("#gra_domain").val());
+		json = setJson(json,"graCourse.domain",gra_domain);
+		
+		var gra_course = $.trim($("#gra_course").val());
+		json = setJson(json,"graCourse.course",gra_course);
+		
+		if($("#gra_price_on_ch").is(':checked'))
+		{
+			var gra_price_on = $("#gra_price_on").val();
+			if(!isNaN(gra_price_on))
+			{
+				json = setJson(json,"graCourse.priceOn",gra_price_on);
+			}
+			else
+			{
+				alert("线上价格非数字！");
+				return;
+			}
+		}
+		else
+		{
+			json = setJson(json,"graCourse.priceOff",-1);
+		}
+		
+		if($("#gra_price_off_ch").is(':checked'))
+		{
+			var gra_price_off = $.trim($("#gra_price_off").val());
+		}
+		
+	});
 });
 
 </script>
@@ -353,26 +394,47 @@ $(document).ready(function(){
 												</div>
 												<div class="condiv">
 													<p class="condiv_p">
-														学校：&nbsp;&nbsp;<label><select
-															style="width: 100px;"><option>北交</option></select></label>&nbsp;&nbsp;&nbsp;&nbsp;学院：&nbsp;&nbsp;<label><select
-															style="width: 100px;"><option>计算机</option></select></label><br />
-														专业：&nbsp;&nbsp;<label><select
-															style="width: 100px;"><option>计算机</option></select></label>&nbsp;&nbsp;&nbsp;&nbsp;课程：&nbsp;&nbsp;<label><select
-															style="width: 100px;"><option>操作系统</option></select></label><br />
-														线上价格：&nbsp;&nbsp;<input type="text" value="25.00"
-															class="condiv_ipt" />&nbsp;元/半小时&nbsp;&nbsp;<input
-															name="" type="checkbox" value="" /><br />
-														线下价格：&nbsp;&nbsp;<input type="text" value="25.00"
-															class="condiv_ipt" />&nbsp;元/半小时&nbsp;&nbsp;<input
-															name="" type="checkbox" value="" /><br />
+														学校：&nbsp;&nbsp;
+														<label>
+															<select name="gra_school" id="gra_course_school" style="width: 100px;">
+																<option>北京交通大学</option>
+															</select>
+														</label>
+														&nbsp;&nbsp;&nbsp;&nbsp;学院：&nbsp;&nbsp;
+														<label>
+															<select name="gra_acadeny" id="gra_course_acadeny" style="width: 100px;">
+																<option>计算机</option>
+															</select>
+														</label>
+														<br />
+														专业：&nbsp;&nbsp;
+														<label>
+														<select name="gra_domain" id="gra_course_domain" style="width: 100px;">
+															<option>计算机</option>
+														</select>
+														</label>
+														&nbsp;&nbsp;&nbsp;&nbsp;课程：&nbsp;&nbsp;
+														<label>
+														<select name="gra_course" style="width: 100px;">
+															<option>操作系统</option>
+														</select>
+														</label>
+														<br />
+														线上价格：&nbsp;&nbsp;
+														<input name="gra_price_on" id="gra_price_on" type="text" value="25.00" class="condiv_ipt" />&nbsp;元/半小时&nbsp;&nbsp;
+														<input name="gra_price_on_ch" id="gra_price_on_ch" type="checkbox" value="" />
+														<br />
+														线下价格：&nbsp;&nbsp;
+														<input type="text" name="gra_price_off" id="gra_price_off" value="25.00" class="condiv_ipt" />&nbsp;元/半小时&nbsp;&nbsp;
+														<input name="gra_price_off_ch" id="gra_price_off_ch" type="checkbox" value="" /><br />
 
 													</p>
 													<div style="vertical-align: top; padding-left: 30px;">
 														备注：
-														<textarea name="" cols="" rows="" class="condiv_tex">其它说明（0-200字）</textarea>
+														<textarea name="gra_statement" id="gra_statement" cols="" rows="" class="condiv_tex">其它说明（0-200字）</textarea>
 													</div>
 													<div class="re_con4">
-														<input name="" value="" type="button" class="btn_yz">
+														<input name="gra_submit" id="gra_submit" value="" type="button" class="btn_yz">
 													</div>
 												</div>
 											</div>
