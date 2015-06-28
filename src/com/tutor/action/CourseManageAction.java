@@ -72,7 +72,11 @@ public class CourseManageAction extends BaseAction
 						norCourse.setTeacherId(teacher.getTeacherId());
 						norCourse.setNorCourseId(IdGenerator.getInstance().getNextCourseId(teacher.getTeacherId(), FinalValue.NOR_TYPE));
 						norCourse.setCreateTime(Operation.getTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")));
+						norCourse.setStatus(FinalValue.INIT_VALUE);
 						norCourseDAO.save(norCourse);
+						
+						msg.setCode(FinalValue.SUCCESS);
+						msg.setStatement(norCourse.getGrade()+"-"+norCourse.getCourse()+"添加成功");
 					}
 					else
 					{
@@ -88,7 +92,11 @@ public class CourseManageAction extends BaseAction
 						graCourse.setTeacherId(teacher.getTeacherId());
 						graCourse.setGraCourseId(IdGenerator.getInstance().getNextCourseId(teacher.getTeacherId(), FinalValue.GRA_TYPE));
 						graCourse.setCreateTime(Operation.getTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")));
+						graCourse.setStatus(FinalValue.INIT_VALUE);
 						graCourseDAO.save(graCourse);
+						
+						msg.setCode(FinalValue.SUCCESS);
+						msg.setStatement(graCourse.getSchool()+"-"+graCourse.getAcademy()+"-"+graCourse.getDomain()+"-"+graCourse.getCourse()+"添加成功");
 					}
 					else
 					{

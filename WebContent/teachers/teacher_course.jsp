@@ -37,8 +37,98 @@
 <!-- 首页轮播图 start -->
 
 <script type="text/javascript">
+//添加或者修改json数据
+function setJson(jsonStr,name,value)
+{
+    if(!jsonStr)jsonStr="{}";
+    var jsonObj = JSON.parse(jsonStr);
+    jsonObj[name] = value;
+    //JSON.stringify(jsonObj)
+    return JSON.stringify(jsonObj);
+}
+//删除数据
+function deleteJson(jsonStr,name)
+{
+    if(!jsonStr)return null;
+    var jsonObj = JSON.parse(jsonStr);
+    delete jsonObj[name];
+        return JSON.stringify(jsonObj); 
+}
 $(document).ready(function(){
 	$("#nor_submit").click(function(){
+		var json = setJson(null,"courseType",1);//设置添加课程格式
+		
+		var nor_grade = $.trim($("#nor_grade").val());
+		json = setJson(json,"norCourse.grade",nor_grade);
+		
+		var nor_course = $.trim($("#nor_course").val());
+		json = setJson(json,"norCourse.course",nor_course);
+		
+		if($("#nor_price_on_ch").is(':checked'))
+		{
+			var nor_price_on = $.trim($("#nor_price_on").val());
+			if(!isNaN(nor_price_on))
+			{
+				json = setJson(json,"norCourse.priceOn",nor_price_on);
+			}
+			else
+			{
+				alert("线上价格不为数字！");
+				return;
+			}
+		}
+		else
+		{
+			json = setJson(json,"norCourse.priceOn",-1);
+		}
+		
+		if($("#nor_price_off_ch").is(':checked'))
+		{
+			var nor_price_off = $.trim($("#nor_price_off").val());
+			if(!isNaN(nor_price_off))
+			{
+				json = setJson(json,"norCourse.priceOff",nor_price_off);
+			}
+			else
+			{
+				alert("线下价格不为数字！");
+				return;
+			}
+		}
+		else
+		{
+			json = setJson(json,"norCourse.priceOff",-1);
+		}
+		var nor_statement = $.trim($("#nor_statement").val());
+		json = setJson(json,"norCourse.statement",nor_statement);
+		$.ajax({
+			type:"post",
+			url:"addOneCourse",
+			data: $.parseJSON(json),//string to json
+			success:function(msg)
+			{
+				if(msg.code == '200')
+				{
+					alert(msg.statement);
+					closeDiv();//关闭对话框
+					//恢复默认值
+					nor_grade.selected = nor_grade.defaultSelected;
+					nor_course.selected = nor_course.defaultSelected;
+					nor_price_on.value = nor_price_on.defaultValue;
+					nor_price_on_ch.checked = nor_price_on_ch.defaultChecked;
+					nor_price_off.value = nor_price_off.defaultValue;
+					nor_price_off_ch.checked = nor_price_off_ch.defaultChecked;
+					nor_statement.value = nor_statement.defaultValue;
+					
+					location.reload();
+				}
+				else
+				{
+					alert(msg.statement);
+				}
+				
+			}
+		});
 		
 	});
 });
@@ -198,11 +288,11 @@ $(document).ready(function(){
 															</label>
 															<br />
 															线上价格：&nbsp;&nbsp;
-															<input type="text" name="nor_price_on" id="nor_price_on" value="25.00" class="condiv_ipt" />&nbsp;元/半小时&nbsp;&nbsp;
+															<input type="text" name="nor_price_on" id="nor_price_on" value="0" class="condiv_ipt" />&nbsp;元/半小时&nbsp;&nbsp;
 															<input name="nor_price_on_ch" id="nor_price_on_ch"  type="checkbox" value="" />
 															<br />
 															线下价格：&nbsp;&nbsp;
-															<input type="text" name="nor_price_off" id="nor_price_off" value="25.00" class="condiv_ipt" />&nbsp;元/半小时&nbsp;&nbsp;
+															<input type="text" name="nor_price_off" id="nor_price_off" value="0" class="condiv_ipt" />&nbsp;元/半小时&nbsp;&nbsp;
 															<input name="nor_price_off_ch" id="nor_price_off_ch" type="checkbox" value="" />
 															<br />
 
