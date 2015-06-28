@@ -1,13 +1,17 @@
 package com.tutor.entity.server;
 
+import java.io.Serializable;
+
 
 /**
  * 消息实体类
  * @author STerOTto
  *
  */
-public class Message
+public class Message implements Serializable
 {
+	private static final long serialVersionUID = 1L;
+	
 	private Integer code;//状态吗
 	private String statement;//备注
 	private Object content;//请求内容

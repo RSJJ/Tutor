@@ -101,9 +101,10 @@ $(document).ready(function(){
 		}
 		var nor_statement = $.trim($("#nor_statement").val());
 		json = setJson(json,"norCourse.statement",nor_statement);
+		
 		$.ajax({
 			type:"post",
-			url:"addOneCourse",
+			url:"addOneCourse.action",
 			data: $.parseJSON(json),//string to json
 			success:function(msg)
 			{
@@ -111,14 +112,6 @@ $(document).ready(function(){
 				{
 					alert(msg.statement);
 					closeDiv();//关闭对话框
-					//恢复默认值
-					nor_grade.selected = nor_grade.defaultSelected;
-					nor_course.selected = nor_course.defaultSelected;
-					nor_price_on.value = nor_price_on.defaultValue;
-					nor_price_on_ch.checked = nor_price_on_ch.defaultChecked;
-					nor_price_off.value = nor_price_off.defaultValue;
-					nor_price_off_ch.checked = nor_price_off_ch.defaultChecked;
-					nor_statement.value = nor_statement.defaultValue;
 					
 					location.reload();
 				}
@@ -139,8 +132,8 @@ $(document).ready(function(){
 		var gra_school = $.trim($("#gra_school").val());
 		json = setJson(json, "graCourse.school", gra_school);
 		
-		var gra_acadeny = $.trim($("#gra_acadeny").val());
-		json = setJson(json,"graCourse.acadeny",gra_acadeny);
+		var gra_acadeny = $.trim($("#gra_academy").val());
+		json = setJson(json,"graCourse.academy",gra_acadeny);
 		
 		var gra_domain = $.trim($("#gra_domain").val());
 		json = setJson(json,"graCourse.domain",gra_domain);
@@ -163,13 +156,49 @@ $(document).ready(function(){
 		}
 		else
 		{
-			json = setJson(json,"graCourse.priceOff",-1);
+			json = setJson(json,"graCourse.priceOn",-1);
 		}
 		
 		if($("#gra_price_off_ch").is(':checked'))
 		{
 			var gra_price_off = $.trim($("#gra_price_off").val());
+			if(!isNaN(gra_price_off))
+			{
+				json = setJson(json,"graCourse.priceOff",gra_price_off);
+			}
+			else
+			{
+				alert("线下价格非数字");	
+				return;
+			}
 		}
+		else
+		{
+			json = setJson(json,"graCourse.priceOff",-1)
+		}
+		
+		var gra_statement = $.trim($("#gra_statement").val());
+		json = setJson(json,"graCourse.statement",gra_statement);
+		
+		$.ajax({
+			type:"post",
+			url:"addOneCourse.action",
+			data: $.parseJSON(json),//string to json
+			success:function(msg)
+			{
+				if(msg.code == '200')
+				{
+					alert(msg.statement);
+					closeDiv1();//关闭对话框
+					
+					location.reload();
+				}
+				else
+				{
+					alert(msg.statement);
+				}
+			}
+		});
 		
 	});
 });
@@ -396,26 +425,26 @@ $(document).ready(function(){
 													<p class="condiv_p">
 														学校：&nbsp;&nbsp;
 														<label>
-															<select name="gra_school" id="gra_course_school" style="width: 100px;">
+															<select name="gra_school" id="gra_school" style="width: 100px;">
 																<option>北京交通大学</option>
 															</select>
 														</label>
 														&nbsp;&nbsp;&nbsp;&nbsp;学院：&nbsp;&nbsp;
 														<label>
-															<select name="gra_acadeny" id="gra_course_acadeny" style="width: 100px;">
+															<select name="gra_academy" id="gra_academy" style="width: 100px;">
 																<option>计算机</option>
 															</select>
 														</label>
 														<br />
 														专业：&nbsp;&nbsp;
 														<label>
-														<select name="gra_domain" id="gra_course_domain" style="width: 100px;">
+														<select name="gra_domain" id="gra_domain" style="width: 100px;">
 															<option>计算机</option>
 														</select>
 														</label>
 														&nbsp;&nbsp;&nbsp;&nbsp;课程：&nbsp;&nbsp;
 														<label>
-														<select name="gra_course" style="width: 100px;">
+														<select name="gra_course" id="gra_course" style="width: 100px;">
 															<option>操作系统</option>
 														</select>
 														</label>

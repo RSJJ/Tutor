@@ -1,5 +1,6 @@
 package com.tutor.entity;
 
+import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
 
@@ -23,8 +24,9 @@ import org.springframework.context.annotation.Scope;
 @Entity
 @Scope("prototype")
 @Table(name="schedule")
-public class Schedule
+public class Schedule implements Serializable
 {
+	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -39,23 +41,34 @@ public class Schedule
 	@Column(name="end_time")
 	private Time endTime;//结束时间
 	@Column(name="cycle",nullable=false)
-	private Integer cycle;//周期性
+	private int cycle;//周期性
 	@Column(name="available_course")
 	private String availableCourse;//此时间段提供的课程采用格式：课程1!#课程2!#课程3
+	@Column(name="mode",nullable=false)
+	private int mode;//上课模式
 	@Column(name="status",nullable=false)
-	private Integer status;
+	private int status;
 	@Column(name="statement")
 	private String statement;
 	
-	@Override
-	public String toString()
-	{
-		return "Schedule [id=" + id + ", teacher=" + teacher + ", date=" + date
-				+ ", startTime=" + startTime + ", endTime=" + endTime
-				+ ", cycle=" + cycle + ", availableCourse=" + availableCourse
-				+ ", status=" + status + ", statement=" + statement + "]";
-	}
 	
+	
+	public Schedule(Integer id, Teacher teacher, Date date, Time startTime,
+			Time endTime, int cycle, String availableCourse, int mode,
+			int status, String statement)
+	{
+		super();
+		this.id = id;
+		this.teacher = teacher;
+		this.date = date;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.cycle = cycle;
+		this.availableCourse = availableCourse;
+		this.mode = mode;
+		this.status = status;
+		this.statement = statement;
+	}
 	public Integer getId()
 	{
 		return id;
@@ -96,11 +109,11 @@ public class Schedule
 	{
 		this.endTime = endTime;
 	}
-	public Integer getCycle()
+	public int getCycle()
 	{
 		return cycle;
 	}
-	public void setCycle(Integer cycle)
+	public void setCycle(int cycle)
 	{
 		this.cycle = cycle;
 	}
@@ -112,11 +125,22 @@ public class Schedule
 	{
 		this.availableCourse = availableCourse;
 	}
-	public Integer getStatus()
+	
+	public int getMode()
+	{
+		return mode;
+	}
+
+	public void setMode(int mode)
+	{
+		this.mode = mode;
+	}
+
+	public int getStatus()
 	{
 		return status;
 	}
-	public void setStatus(Integer status)
+	public void setStatus(int status)
 	{
 		this.status = status;
 	}

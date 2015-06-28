@@ -1,5 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import="com.tutor.entity.server.*" %>
+    <%@ page import="com.tutor.entity.*" %>
+    <%
+    	User user = (User)session.getAttribute("user");
+    	Teacher teacher = null;
+    	Student student = null;
+    	if(user != null)
+    	{
+    		if(user.getRole() == User.TEACHER)
+    		{
+    			teacher = (Teacher)user.getUser();
+    		}
+    		else if(user.getRole() == User.STUDENT)
+    		{
+    			student = (Student)user.getUser();
+    		}
+    	}
+    %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>

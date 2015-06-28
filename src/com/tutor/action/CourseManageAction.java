@@ -2,7 +2,10 @@ package com.tutor.action;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
 
 import com.opensymphony.xwork2.Action;
 import com.tutor.base.BaseAction;
@@ -11,6 +14,7 @@ import com.tutor.dao.NorCourseDAO;
 import com.tutor.entity.GraCourse;
 import com.tutor.entity.NorCourse;
 import com.tutor.entity.Teacher;
+import com.tutor.entity.server.Course;
 import com.tutor.entity.server.Message;
 import com.tutor.entity.server.User;
 import com.tutor.global.FinalValue;
@@ -30,6 +34,51 @@ public class CourseManageAction extends BaseAction
 	private GraCourse graCourse;
 	
 	private int courseType;
+	
+	private String teacherId;
+	
+	/**
+	 * 获取教师所有的课程
+	 * @throws IOException 
+	 */
+	public void getTeacherAllCourse() throws IOException
+	{
+		Message msg = new Message();
+		
+		List<Course> courses = new ArrayList<Course>();
+		
+		if(!StringUtils.isEmpty(teacherId))
+		{
+			List<NorCourse> norCourses = norCourseDAO.findByTeacherId(teacherId);
+			for (NorCourse norCourse : norCourses)
+			{
+				Course course = new Course();
+				course.setType(FinalValue.NOR_TYPE);
+				course.setCourse(norCourse);
+				courses.add(course);
+			}
+			List<GraCourse> graCourses = graCourseDAO.findByTeacherId(teacherId);
+			for (GraCourse graCourse : graCourses)
+			{
+				Course course = new Course();
+				course.setType(FinalValue.GRA_TYPE);
+				course.setCourse(graCourse);
+				courses.add(course);
+			}
+			
+			//查询成功
+			msg.setCode(FinalValue.SUCCESS);
+			msg.setContent("查询成功");
+			msg.setContent(courses);
+		}
+		else
+		{
+			msg.setCode(FinalValue.NULL);
+			msg.setStatement("该教师不存在，请重新登录后重试！");
+		}
+		
+		this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));
+	}
 	
 	/**
 	 * 显示教师的所有课程
@@ -162,6 +211,16 @@ public class CourseManageAction extends BaseAction
 	public void setCourseType(int courseType)
 	{
 		this.courseType = courseType;
+	}
+
+	public String getTeacherId()
+	{
+		return teacherId;
+	}
+
+	public void setTeacherId(String teacherId)
+	{
+		this.teacherId = teacherId;
 	}
 	
 	

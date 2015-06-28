@@ -641,7 +641,7 @@
 .tjsp_con{ border-top:#CCC solid 1px; padding-top:20px;}
 .tjsp_name{ padding: 50px 0 5px 10px; font-size:16px; font-weight:700; color:#666; }
 
-.t_syl_table{font-size: 16px;}
-.t_syl_table input,select{ height: 24px;}
+.t_syl_table{font-size: 14px;}
+.t_syl_table input{ height: 20px;}
 
 .t_menu{background-color:rgb(0, 117, 194);}

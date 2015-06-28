@@ -10,5 +10,8 @@
 		
 		<action name="addOneCourse" class="courseManageAction" method="addOne">
 		</action>
+		
+		<action name="getTeacherAllCourse" class="courseManageAction" method="getTeacherAllCourse">
+		</action>
 	</package>
 </struts>

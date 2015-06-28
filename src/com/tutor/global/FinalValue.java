@@ -23,5 +23,11 @@ public class FinalValue
 	//课程类型
 	public static final int NOR_TYPE = 1;//基础课程
 	public static final int GRA_TYPE = 2;//考研课程
+	public static final int ORT_TYPE = 3;//其他类型
+	
+	//上课模式
+	public static final int CLASS_ONLINE = 1;//线上
+	public static final int CLASS_OFFLINE = 2;//线下
+	public static final int CLASS_BOTH = 3;//线上线下
 	
 }
