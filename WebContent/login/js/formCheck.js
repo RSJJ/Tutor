@@ -473,8 +473,13 @@
 				                        }
 				                        else
 				                        {
+				                        	$('#log_before').css('display','none');
+				                        	$('#log_after').css('display','block');
+				                        	$('#login_before').css('display','none');
+				                        	$('#login_after').css('display','block');
 				                        	//登录成功，刷新页面信息
-				                        	location.reload();
+											alert("登陆成功");
+				                        	/*location.reload();*/
 				                        }
 				                    }
 				                });
