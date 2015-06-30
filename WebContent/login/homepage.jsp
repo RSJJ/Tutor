@@ -65,7 +65,24 @@
     <div class="content">
     	<jsp:include page="header.jsp"></jsp:include>
 
-                        <div class="register_new">
+          <div class="register_new">
+          <!-- 此处为登陆后的显示 -->
+              <!--  <div class="register_title">
+                      Hi,student:
+                  </div>
+                  <div class="register_box2 f_w" style="position:relative;">
+                  	  <a href="/trial/reserve" class="a_rbtn" style="right:10px; top:18px;">预约课程</a>
+                      <a href="/pay/product" class="a_rbtn" style="right:10px; top:132px;">购买课程</a>
+                      <p>您已完成<b>&nbsp;0&nbsp;</b>节课,</p>
+                      <p class="p_b5" style="border-bottom:1px solid #918f8a;">累计学习<b>&nbsp;0&nbsp;</b>小时</p>
+                      <p>剩余次卡：<b>&nbsp;0&nbsp;</b>次</p>
+                      <p class="p_b5 f_g20" style="font-size:12px;">
+                          <a class="f_g20" href="/user/purchase.php">请购买次卡套餐</a>                      </p>
+                                                <p>剩余包月：<b>&nbsp;0&nbsp;</b>天</p>
+                          <p class="p_b5 f_g20" style="border-bottom:1px solid #918f8a; font-size:12px;">
+                              <a class="f_g20" href="/user/purchase.php">请购买包月套餐</a>                          </p>
+                                            <div class="btn_box_r"><a href="/user/index" class="a_rbtn2">进入我的会员中心</a></div>
+                  </div> -->  
                   <ul class="register_ul">
                       <li class="f_l onfl  hover"><a href="javascript:void(0)">注册</a></li><li class="f_r onfr"><a href="javascript:void(0)">登录</a></li>
                   </ul>
@@ -112,12 +129,12 @@
                                   <li class="li_btn">
                                   <span class="hqyzm xyzc "><input type="button" id="studentLogin" value="学员登录" submit style="border:none; width:78px;height:31px;"/></span>
                               	<span class="hqyzm xyzc" style="float:right;"><input type="button" id="teacherLogin" submit value="老师登录"  style="border:none; width:78px;height:31px;"/></span>
-                                    <!-- <input type="button" value="登&nbsp;录" submit /> -->
+                                    <input type="button" value="登&nbsp;录" submit />
                                   </li>
                               </ul>
                           </form>
                       </div>
-                  </div>             
+                  </div>            
               </div>
                 <div class="btn_topa"><a href="#" target="_blank" class="f_y">立即注册，和Ta一起学纷享</a></div>
     </div>

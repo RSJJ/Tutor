@@ -64,6 +64,8 @@
           </span>
         </div>
         <div class="f_r">  
+        <!-- 此处为登陆后的显示 -->
+        <!-- hi,student &nbsp;[<a href="/user/index" style='color:#4a4a4a; text-decoration:underline;'>&nbsp;会员中心&nbsp;</a>]&nbsp;[<a href="/user/user_logout.php" style='color:#000; text-decoration:underline;'>&nbsp;退出&nbsp;</a>]	 -->
         	<%if(teacher != null){ %>
         	<!-- 教师登录成功 -->
         		<a href="userlogin.jsp" class="a_k m_l10" target="_blank" title="登录"><%=teacher.getName() %></a> <a id="teacherLogout" class="a_k m_l10" title="注册">退出</a>  
