@@ -38,6 +38,16 @@ public class Operation
 		Date date = fmt.parse(string);
 		return simpleDateFormat.format(date);
 	}
+	
+	@SuppressWarnings("deprecation")
+	public static String gtmToTimeFormat(String string) throws ParseException
+	{
+		Date date = new Date(string);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return sdf.format(date);
+	}
+	
+	
 	public static boolean stringIsEmpty(String string)
 	{
 		if(null == string || "".equals(string.trim()))

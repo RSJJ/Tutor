@@ -1,18 +1,13 @@
 package com.tutor.entity;
 
 import java.io.Serializable;
-import java.sql.Time;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.context.annotation.Scope;
@@ -31,15 +26,12 @@ public class Schedule implements Serializable
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;//主键
-	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	@JoinColumn(name="teacher_id")//外键
-	private Teacher teacher;
-	@Column(name="date")
-	private Date date;
+	@Column(name="teacher_id")//外键
+	private String teacherId;
 	@Column(name="start_time")
-	private Time startTime;//开始时间
+	private String startTime;//开始时间
 	@Column(name="end_time")
-	private Time endTime;//结束时间
+	private String endTime;//结束时间
 	@Column(name="cycle",nullable=false)
 	private int cycle;//周期性
 	@Column(name="available_course")
@@ -53,21 +45,21 @@ public class Schedule implements Serializable
 	
 	
 	
-	public Schedule(Integer id, Teacher teacher, Date date, Time startTime,
-			Time endTime, int cycle, String availableCourse, int mode,
-			int status, String statement)
+	@Override
+	public String toString() {
+		return "Schedule [id=" + id + ", teacherId=" + teacherId
+				+ ", startTime=" + startTime + ", endTime=" + endTime
+				+ ", cycle=" + cycle + ", availableCourse=" + availableCourse
+				+ ", mode=" + mode + ", status=" + status + ", statement="
+				+ statement + "]";
+	}
+	public String getTeacherId()
 	{
-		super();
-		this.id = id;
-		this.teacher = teacher;
-		this.date = date;
-		this.startTime = startTime;
-		this.endTime = endTime;
-		this.cycle = cycle;
-		this.availableCourse = availableCourse;
-		this.mode = mode;
-		this.status = status;
-		this.statement = statement;
+		return teacherId;
+	}
+	public void setTeacherId(String teacherId)
+	{
+		this.teacherId = teacherId;
 	}
 	public Integer getId()
 	{
@@ -77,35 +69,19 @@ public class Schedule implements Serializable
 	{
 		this.id = id;
 	}
-	public Teacher getTeacher()
-	{
-		return teacher;
-	}
-	public void setTeacher(Teacher teacher)
-	{
-		this.teacher = teacher;
-	}
-	public Date getDate()
-	{
-		return date;
-	}
-	public void setDate(Date date)
-	{
-		this.date = date;
-	}
-	public Time getStartTime()
+	public String getStartTime()
 	{
 		return startTime;
 	}
-	public void setStartTime(Time startTime)
+	public void setStartTime(String startTime)
 	{
 		this.startTime = startTime;
 	}
-	public Time getEndTime()
+	public String getEndTime()
 	{
 		return endTime;
 	}
-	public void setEndTime(Time endTime)
+	public void setEndTime(String endTime)
 	{
 		this.endTime = endTime;
 	}

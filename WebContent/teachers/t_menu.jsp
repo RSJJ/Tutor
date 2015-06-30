@@ -1,5 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="s" uri="/struts-tags" %>
+	<%@page import="java.text.SimpleDateFormat"%>
+	<%@page import="java.util.ArrayList"%>
+	<%@page import="java.util.List , com.tutor.entity.* " %>
+	<%@page import="com.tutor.entity.server.*" %>
+	<%@page import="com.tutor.util.*" %>
+	<%
+		User user = (User)session.getAttribute("user");
+		Teacher teacher = null;
+		if(user != null)
+		{
+			teacher = (Teacher)user.getUser();
+		}
+	%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,7 +33,7 @@
                         <div class="inclrspaceb1">
                             <h3 class="left2"><span class="c2">我的课程信息</span></h3>
                             <p><a href="showTeacherCourse.action">我的课程</a></p>
-                            <p><a href="#">我的课程表</a></p>
+                            <p><a href="<%=teacher==null?"#":"getTeacherAllCourse.action?teacherId="+teacher.getTeacherId() %>">我的课程表</a></p>
                         </div>
                         <div class="inclrspaceb1">
                             <h3 class="left2"><span class="c2">我的个人信息</span></h3>

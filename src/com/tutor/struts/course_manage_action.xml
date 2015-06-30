@@ -12,6 +12,7 @@
 		</action>
 		
 		<action name="getTeacherAllCourse" class="courseManageAction" method="getTeacherAllCourse">
+			<result name="success">teacher_syllabus.jsp</result>
 		</action>
 	</package>
 </struts>

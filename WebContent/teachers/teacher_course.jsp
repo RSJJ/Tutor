@@ -19,7 +19,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title></title>
+<title>学纷享-教师课表</title>
 <link href="css/global.css" rel="stylesheet" type="text/css"
 	charset="utf-8" />
 <link href="css/erji.css" rel="stylesheet" type="text/css"
@@ -32,28 +32,13 @@
 	language="javascript"></script>
 <script src="js/jquery.fancybox-1.3.4.js" type="text/javascript"
 	charset="utf-8" language="javascript"></script>
-<script src="js/teacher_js.js" type="text/javascript" charset="utf-8"
-	language="javascript"></script>
+<script src="js/teacher_js.js" type="text/javascript" charset="utf-8" language="javascript"></script>
+<script src="js/util.js" type="text/javascript" charset="utf-8" language="javascript"></script>
 <!-- 首页轮播图 start -->
 
 <script type="text/javascript">
 //添加或者修改json数据
-function setJson(jsonStr,name,value)
-{
-    if(!jsonStr)jsonStr="{}";
-    var jsonObj = JSON.parse(jsonStr);
-    jsonObj[name] = value;
-    //JSON.stringify(jsonObj)
-    return JSON.stringify(jsonObj);
-}
-//删除数据
-function deleteJson(jsonStr,name)
-{
-    if(!jsonStr)return null;
-    var jsonObj = JSON.parse(jsonStr);
-    delete jsonObj[name];
-        return JSON.stringify(jsonObj); 
-}
+
 $(document).ready(function(){
 	$("#nor_submit").click(function(){
 		var json = setJson(null,"courseType",1);//设置添加课程格式

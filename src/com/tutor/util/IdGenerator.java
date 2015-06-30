@@ -201,7 +201,8 @@ public class IdGenerator
 	 */
 	public void destroy()
 	{
-		_future.cancel(false);
+		if(_future != null)
+			_future.cancel(false);
 		update();
 	}
 

@@ -10,5 +10,6 @@
 	<bean id="teacherDAO" class="com.tutor.dao.impl.TeacherDAOImpl"></bean>
 	<bean id="norCourseDAO" class="com.tutor.dao.impl.NorCourseDAOImpl"></bean>
 	<bean id="graCourseDAO" class="com.tutor.dao.impl.GraCourseDAOImpl"></bean>
+	<bean id="scheduleDAO" class="com.tutor.dao.impl.ScheduleDAOImpl"></bean>
 	
 </beans>

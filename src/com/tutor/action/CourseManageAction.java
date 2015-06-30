@@ -3,7 +3,9 @@ package com.tutor.action;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -41,7 +43,7 @@ public class CourseManageAction extends BaseAction
 	 * 获取教师所有的课程
 	 * @throws IOException 
 	 */
-	public void getTeacherAllCourse() throws IOException
+	public String getTeacherAllCourse() throws IOException
 	{
 		Message msg = new Message();
 		
@@ -53,16 +55,18 @@ public class CourseManageAction extends BaseAction
 			for (NorCourse norCourse : norCourses)
 			{
 				Course course = new Course();
-				course.setType(FinalValue.NOR_TYPE);
-				course.setCourse(norCourse);
+				course.setTeacherId(teacherId);
+				course.setCourseId(norCourse.getNorCourseId());
+				course.setCourseName(norCourse.getGrade()+"-"+norCourse.getCourse());
 				courses.add(course);
 			}
 			List<GraCourse> graCourses = graCourseDAO.findByTeacherId(teacherId);
 			for (GraCourse graCourse : graCourses)
 			{
 				Course course = new Course();
-				course.setType(FinalValue.GRA_TYPE);
-				course.setCourse(graCourse);
+				course.setTeacherId(teacherId);
+				course.setCourseId(graCourse.getGraCourseId());
+				course.setCourseName(graCourse.getSchool()+"-"+graCourse.getAcademy()+"-"+graCourse.getDomain()+"-"+graCourse.getCourse());
 				courses.add(course);
 			}
 			
@@ -76,8 +80,10 @@ public class CourseManageAction extends BaseAction
 			msg.setCode(FinalValue.NULL);
 			msg.setStatement("该教师不存在，请重新登录后重试！");
 		}
-		
-		this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));
+		System.out.println(JsonUtil.toJson(msg));
+		this.getRequest().setAttribute("courses", courses);
+		return Action.SUCCESS;
+		//this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));
 	}
 	
 	/**

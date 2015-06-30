@@ -14,4 +14,5 @@
    <include file="com/tutor/struts/teacher_basic_action.xml"></include>
    <include file="com/tutor/struts/student_basic_action.xml"></include>
    <include file="com/tutor/struts/course_manage_action.xml"></include>
+   <include file="com/tutor/struts/schedule_manage_action.xml"></include>
 </struts>

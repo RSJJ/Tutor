@@ -11,24 +11,34 @@ public class Course implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	
-	private int type;
-	private Object course;
-	public int getType()
+	private String teacherId;
+	private String courseId;
+	private String courseName;
+	public String getTeacherId()
 	{
-		return type;
+		return teacherId;
 	}
-	public void setType(int type)
+	public void setTeacherId(String teacherId)
 	{
-		this.type = type;
+		this.teacherId = teacherId;
 	}
-	public Object getCourse()
+	public String getCourseId()
 	{
-		return course;
+		return courseId;
 	}
-	public void setCourse(Object course)
+	public void setCourseId(String courseId)
 	{
-		this.course = course;
+		this.courseId = courseId;
 	}
+	public String getCourseName()
+	{
+		return courseName;
+	}
+	public void setCourseName(String courseName)
+	{
+		this.courseName = courseName;
+	}
+	
 	
 	
 

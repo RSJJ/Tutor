@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 	<%@page import="java.text.SimpleDateFormat"%>
 	<%@page import="java.util.ArrayList"%>
 	<%@page import="java.util.List , com.tutor.entity.* " %>
@@ -16,7 +17,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title></title>
+<title>学纷享-教师课程表</title>
 <link href="css/global.css" rel="stylesheet" type="text/css" charset="utf-8" />
 <link href="css/erji.css" rel="stylesheet" type="text/css" charset="utf-8" />
 <link href="css/gwc.css" rel="stylesheet" type="text/css" charset="utf-8" />
@@ -27,6 +28,7 @@
 <script src="js/glDatePicker.min.js" type="text/javascript" charset="utf-8" language="javascript"></script>
 <script src="js/teacher_js.js" type="text/javascript" charset="utf-8" language="javascript"></script>
 <script src="js/t_syllabus_js.js" type="text/javascript" charset="utf-8" language="javascript"></script>
+<script src="js/util.js" type="text/javascript" charset="utf-8" language="javascript"></script>
 <!-- 首页轮播图 start -->
 <script type="text/javascript">
 function openDiv2(){
@@ -37,6 +39,53 @@ function closeDiv2(){
     var winStr = document.getElementById("winDiv2");
     winStr.style.display = "none";
 }
+$(document).ready(function(){
+	$("#new_schedule_submit").click(function(){
+		var json = setJson(null,"teacherId",'<%=teacher.getTeacherId() %>');
+		var courseIdArray = $("#teacher_courses").val();
+		var courseIds = "";
+		for(var i=0;i<courseIdArray.length;i++)
+		{
+			courseIds += courseIdArray[i] + "!#";
+		}
+		json = setJson(json,"schedule.availableCourse",courseIds);
+		
+		var start_time = new Date(($("#mydate").val() + " " + $("#start_time").val()).replace(/\-/g, "\/"));
+		json = setJson(json,"schedule.startTime",start_time.Format("yyyy-MM-dd hh:mm:ss"));
+		var end_time = new Date(($("#mydate").val() + " " + $("#end_time").val()).replace(/\-/g, "\/"));
+		json = setJson(json,"schedule.endTime",end_time.Format("yyyy-MM-dd hh:mm:ss"));
+		if(start_time > end_time)
+		{
+			alert("开始时间不能大于结束时间");
+			return;
+		}
+		
+		var cycle = $("#cycle").val();
+		json = setJson(json,"schedule.cycle",cycle)
+		
+		var mode = $("#mode").val();
+		json = setJson(json,"schedule.mode",mode);
+		
+		$.ajax({
+			type:"post",
+			url:"scheduleAddOne.action",
+			data:$.parseJSON(json),
+			success:function(msg)
+			{
+				if(msg.code == '200')
+				{
+					alert(msg.statement);
+					location.reload();
+				}
+				else
+				{
+					alert(msg.statement);
+				}
+			}
+		});
+		
+	});
+});
 </script>
 
 <!--[if IE 6]>
@@ -130,32 +179,20 @@ function closeDiv2(){
 												<td>选择课程：</td>
 												<td>
 													<label>
-														<select multiple="multiple" style="height: 150px; width: 250px;">
-															  <option value="volvo">北京交通大学-计算机科学与技术-操作系统</option>
-															  <option value="saab">高一-语文</option>
-															  <option value="mercedes">初三-数学</option>
-															  <option value="audi">小六-英语</option>
-															  <option value="volvo">北京交通大学-计算机科学与技术-操作系统</option>
-															  <option value="volvo">北京交通大学-计算机科学与技术-操作系统</option>
-															  <option value="volvo">北京交通大学-计算机科学与技术-操作系统</option>
-															  <option value="volvo">北京交通大学-计算机科学与技术-操作系统</option>
-															  <option value="volvo">北京交通大学-计算机科学与技术-操作系统</option>
-															  <option value="volvo">北京交通大学-计算机科学与技术-操作系统</option>
-															  <option value="volvo">北京交通大学-计算机科学与技术-操作系统</option>
-														</select>
+														<s:select name="teacher_courses" list="#request.courses" listKey="courseId" listValue="courseName" multiple="true" style="height: 150px; width: 250px;"></s:select>
 													</label>
 												</td>
 											</tr>
 											<tr>
 												<td>选择日期：</td>
-												<td><input type="text" id="mydate" gldp-id="mydate" />
+												<td><input name="mydate" type="text" id="mydate" gldp-id="mydate" />
 												</td>
 											</tr>
 											<tr>
 												<td>选择时间：</td>
 												<td>
 													<label>
-														<select style="width: 200px;">
+														<select name="start_time" id="start_time" style="width: 200px;">
 															<option>6:00</option>
 															<option>6:30</option>
 															<option>7:00</option>
@@ -195,7 +232,7 @@ function closeDiv2(){
 															<option>24:00</option>
 														</select>
 													</label>--<label>
-														<select style="width: 200px;">
+														<select name="end_time" id="end_time" style="width: 200px;">
 															<option>6:00</option>
 															<option>6:30</option>
 															<option>7:00</option>
@@ -241,7 +278,7 @@ function closeDiv2(){
 												<td>时间周期：</td>
 												<td>
 													<label>
-														<select style="width: 200px;">
+														<select name="cycle" id="cycle" style="width: 200px;">
 															<option value="0">不循环</option>
 															<option value="1">一周</option>
 															<option value="4">一个月</option>
@@ -255,7 +292,7 @@ function closeDiv2(){
 												<td>上课模式：</td>
 												<td>
 													<label>
-														<select style="width: 200px;">
+														<select name="mode" id="mode" style="width: 200px;">
 															<option value = "1">线上模式</option>
 															<option value = "2">线下模式</option>
 															<option value = "3">线上线下</option>
@@ -265,7 +302,7 @@ function closeDiv2(){
 											</tr>
 										</table>
 										<div class="re_con4">
-											<input name="" value="" type="button" class="btn_yz">
+											<input name="new_schedule_submit" id="new_schedule_submit" value="" type="button" class="btn_yz">
 										</div>
 									</div>
 								</div>

@@ -43,13 +43,4 @@
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
 	
-	<!-- DAO start here -->
-	<!-- <bean id="userDAO" class="com.rainbow.dao.impl.UserDAOImpl"></bean> -->
-	<!-- DAO end here -->
-	
-	<!-- Action start here -->
-	<!-- Edit by STerOTto -->
-	<!--  <bean id="userAction" class="com.rainbow.action.UserAction" scope="prototype">
-		<constructor-arg ref="userDAO"></constructor-arg>
-	</bean>-->
 </beans>
