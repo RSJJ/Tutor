@@ -29,5 +29,20 @@ public interface ScheduleDAO
 	 * @return
 	 */
 	public List<Schedule> findByTeacherId(String teacherId);
+	/**
+	 * 根据教师id和时间段查询
+	 * @param teacherId
+	 * @param startTime
+	 * @param endTime
+	 * @return
+	 */
+	public List<Schedule> findByTeacherIdTime(String teacherId,String startTime,String endTime);
+	
+	/**
+	 * @param teacherId
+	 * @param date
+	 * @return
+	 */
+	public List<Schedule> findByTeacherIdDate(String teacherId,String date);
 
 }

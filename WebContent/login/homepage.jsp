@@ -1,5 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import="com.tutor.entity.server.*" %>
+    <%@ page import="com.tutor.entity.*" %>
+    <%
+    	User user = (User)session.getAttribute("user");
+    	Teacher teacher = null;
+    	Student student = null;
+    	if(user != null)
+    	{
+    		if(user.getRole() == User.TEACHER)
+    		{
+    			teacher = (Teacher)user.getUser();
+    		}
+    		else if(user.getRole() == User.STUDENT)
+    		{
+    			student = (Student)user.getUser();
+    		}
+    	}
+    %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
@@ -66,6 +84,7 @@
     	<jsp:include page="header.jsp"></jsp:include>
 
           <div class="register_new">
+          <%if(user == null){ %>
           <div id="login_before">
           	<ul class="register_ul">
                       <li class="f_l onfl  hover"><a href="javascript:void(0)">注册</a></li><li class="f_r onfr"><a href="javascript:void(0)">登录</a></li>
@@ -119,9 +138,11 @@
                       </div>
                   </div>
           </div>
-          <div id="login_after">
+          <%}else{ %>
+          <div id="login_after" style="display:block;">
           	<div class="register_title">
-                      Hi,student:
+          	<%if(student != null){ %>
+                      Hi,<%=student.getName() %>:
                   </div>
                   <div class="register_box2 f_w" style="position:relative;">
                   	  <a href="/trial/reserve" class="a_rbtn" style="right:10px; top:18px;">预约课程</a>
@@ -136,7 +157,20 @@
                               <a class="f_g20" href="/user/purchase.php">请购买包月套餐</a>                          </p>
                                             <div class="btn_box_r"><a href="/user/index" class="a_rbtn2">进入我的会员中心</a></div>
                   </div> 
-          </div>                 
+                  <%} else if(teacher != null){ %>
+                  Hi,<%=teacher.getName() %>:
+                  </div>
+                  <div class="register_box2 f_w" style="position:relative;">
+                  	  <p>您已完成<b>&nbsp;0&nbsp;</b>节课,</p>
+                      <p class="p_b5" style="border-bottom:1px solid #918f8a;">累计教学<b>&nbsp;0&nbsp;</b>小时</p>
+                  	  <a href="/trial/reserve" class="a_rbtn" style="right:10px; top:18px;">查看预约课程</a>
+                      
+                      
+                      <div class="btn_box_r"><a href="../teachers/showTeacherCourse.action?teacherId=<%=teacher.getTeacherId() %>" class="a_rbtn2">进入个人中心中心</a></div>
+                  </div> 
+                  <%} %>
+          </div> 
+          <%} %>                
               </div>
                 <div class="btn_topa"><a href="#" target="_blank" class="f_y">立即注册，和Ta一起学纷享</a></div>
     </div>

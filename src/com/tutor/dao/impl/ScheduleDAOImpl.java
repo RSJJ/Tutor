@@ -54,4 +54,21 @@ public class ScheduleDAOImpl implements ScheduleDAO
 		return query.getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Schedule> findByTeacherIdTime(String teacherId,
+			String startTime, String endTime)
+	{
+		Query query = entityManager.createQuery("select u from Schedule u where u.startTime >= :startTime and u.endTime <= :endTime order by u.startTime asc");
+		query.setParameter("startTime", startTime);
+		query.setParameter("endTime", endTime);
+		return query.getResultList();
+	}
+
+	@Override
+	public List<Schedule> findByTeacherIdDate(String teacherId, String date)
+	{
+		return findByTeacherIdTime(teacherId,date+" 00:00:00" , date+" 24:00:00");
+	}
+
 }
