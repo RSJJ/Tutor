@@ -365,23 +365,58 @@ $(document).ready(function(){
 
 									</div>-->
 									<div class="kb-r" style="width: 620px;">
-										<div class="ktable">
-											<p class="t">
-												上午<span>(6:00-12:00)</span>
-											</p>
-											<p class="xsj1" onclick="openDiv2()">
+										<div class="ktable"id="morning_table">
+												<table border="0" cellspacing="0" cellpadding="0">
+											<tbody>
+												<tr class="t">
+													<td colspan="2"><span>上午</span>(6:00-12:00)</td>
+												</tr>
+												<tr>
+													<td>18:00-18:30</td>
+													<td class="gm" title=""><p id="p692926"
+															style="cursor: pointer" onclick="">可购买</p></td>
+												</tr>
+												<tr>
+													<td>18:30-19:00</td>
+													<td class="gm" title=""><p id="p692927"
+															style="cursor: pointer" onclick="">可购买</p></td>
+												</tr>
+												
+											</tbody>
+										</table>
+											<!-- <p class="xsj1" onclick="openDiv2()">
 												<font size="+2" color="#FF9933">+</font>新时间
-											</p>
+											</p> -->
 										</div>
-										<div class="ktable">
-											<p class="t">
-												下午<span>(12:00-18:00)</span>
-											</p>
-											<p class="xsj1" onclick="openDiv2()">
+										<div class="ktable"id="afternoon_table">
+												<table border="0" cellspacing="0" cellpadding="0">
+											<tbody>
+												<tr class="t">
+													<td colspan="2"><span>下午</span>(12:00-18:00)</td>
+												</tr>
+												<tr>
+													<td>18:00-18:30</td>
+													<td class="gm" title=""><p id="p692926"
+															style="cursor: pointer" onclick="">可购买</p></td>
+												</tr>
+												<tr>
+													<td>18:30-19:00</td>
+													<td class="gm" title=""><p id="p692927"
+															style="cursor: pointer" onclick="">可购买</p></td>
+												</tr>
+												<tr>
+													<td>19:30-20:00</td>
+													<td class="gm huisebg" title="">纪蕴已购买</td>
+												</tr>
+												
+											</tbody>
+										</table>
+											<!-- <p class="xsj1" onclick="openDiv2()">
 												<font size="+2" color="#FF9933">+</font>新时间
-											</p>
+											</p> -->
 										</div>
-										<table border="0" cellspacing="0" cellpadding="0">
+											<div class="ktable" id="night_table">
+												<table border="0" cellspacing="0" cellpadding="0">
 											<tbody>
 												<tr class="t">
 													<td colspan="2"><span>晚上</span>(18:00-24:00)</td>
@@ -418,6 +453,10 @@ $(document).ready(function(){
 												</tr>
 											</tbody>
 										</table>
+											<!-- <p class="xsj1" onclick="openDiv2()">
+												<font size="+2" color="#FF9933">+</font>新时间
+											</p> -->
+										</div>
 										<div class="clear"></div>
 									</div>
 									<div class="clear"></div>
