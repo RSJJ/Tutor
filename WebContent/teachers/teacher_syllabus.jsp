@@ -1,3 +1,4 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 	<%@page import="java.text.SimpleDateFormat"%>
@@ -5,6 +6,7 @@
 	<%@page import="java.util.List , com.tutor.entity.* " %>
 	<%@page import="com.tutor.entity.server.*" %>
 	<%@page import="com.tutor.util.*" %>
+	<%@page import="com.tutor.global.FinalValue" %>
 	<%
 		User user = (User)session.getAttribute("user");
 		Teacher teacher = null;
@@ -12,6 +14,12 @@
 		{
 			teacher = (Teacher)user.getUser();
 		}
+		else
+		{
+			teacher = new Teacher();
+		}
+		System.out.println(String.format("%02d", 0));
+		List<List<Schedule>> weekSchedule = (List<List<Schedule>>)request.getAttribute("weekSchedule");
 	%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -364,23 +372,49 @@ $(document).ready(function(){
 										 
 
 									</div>-->
-									<div class="kb-r" id="kb_r1" style="width: 620px;display:block;">
+									<%if(weekSchedule != null){ 
+									for(int i=0 ; i<7;i++)
+									{
+									%>
+									<div class="kb-r" id="kb_r<%=i+1 %>" style="width: 620px;display:block;">
+										<% 
+										/**
+										将每天的课表根据上午下午晚上分类
+										*/
+											List<Schedule> schedules = weekSchedule.get(i); 
+											List<Schedule> mSchedules = new ArrayList<Schedule>();
+											List<Schedule> aSchedules = new ArrayList<Schedule>();
+											List<Schedule> nSchedules = new ArrayList<Schedule>();
+											for(Schedule schedule : schedules)
+											{
+												switch(Operation.getTimeSlot(schedule.getStartTime()))
+												{
+												case FinalValue.DAY_MORNING:
+													mSchedules.add(schedule);
+													break;
+												case FinalValue.DAY_AFTERNOON:
+													aSchedules.add(schedule);
+													break;
+												default:
+													nSchedules.add(schedule);
+													break;
+												}
+											}
+										%>
 										<div class="ktable"id="morning_table">
 												<table border="0" cellspacing="0" cellpadding="0">
 											<tbody>
 												<tr class="t">
 													<td colspan="2"><span>上午</span>(6:00-12:00)</td>
 												</tr>
+												<%for(Schedule schedule : mSchedules){ %>
 												<tr>
-													<td>18:00-18:30</td>
+													<td><%=Operation.getHHmm(schedule.getStartTime())+"-"+Operation.getHHmm(schedule.getEndTime()) %></td>
 													<td class="gm" title=""><p id="p692926"
 															style="cursor: pointer" onclick="">可购买</p></td>
 												</tr>
-												<tr>
-													<td>18:30-19:00</td>
-													<td class="gm" title=""><p id="p692927"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
+												<%} %>
+												
 												
 											</tbody>
 										</table>
@@ -394,11 +428,14 @@ $(document).ready(function(){
 												<tr class="t">
 													<td colspan="2"><span>下午</span>(12:00-18:00)</td>
 												</tr>
+												<%for(Schedule schedule : aSchedules) {%>
 												<tr>
-													<td>18:00-18:30</td>
+													<td><%=Operation.getHHmm(schedule.getStartTime())+"-"+Operation.getHHmm(schedule.getEndTime()) %></td>
 													<td class="gm" title=""><p id="p692926"
 															style="cursor: pointer" onclick="">可购买</p></td>
 												</tr>
+												<%} %>
+												<!--  
 												<tr>
 													<td>18:30-19:00</td>
 													<td class="gm" title=""><p id="p692927"
@@ -408,6 +445,7 @@ $(document).ready(function(){
 													<td>19:30-20:00</td>
 													<td class="gm huisebg" title="">纪蕴已购买</td>
 												</tr>
+												-->
 												
 											</tbody>
 										</table>
@@ -421,11 +459,14 @@ $(document).ready(function(){
 												<tr class="t">
 													<td colspan="2"><span>晚上</span>(18:00-24:00)</td>
 												</tr>
+												<%for(Schedule schedule : nSchedules){ %>
 												<tr>
-													<td>18:00-18:30</td>
+													<td><%=Operation.getHHmm(schedule.getStartTime())+"-"+Operation.getHHmm(schedule.getEndTime()) %></td>
 													<td class="gm" title=""><p id="p692926"
 															style="cursor: pointer" onclick="">可购买</p></td>
 												</tr>
+												<%} %>
+												<!-- 
 												<tr>
 													<td>18:30-19:00</td>
 													<td class="gm" title=""><p id="p692927"
@@ -451,589 +492,22 @@ $(document).ready(function(){
 													<td>21:30-22:00</td>
 													<td class="gm huisebg" title="">d已购买</td>
 												</tr>
+												 -->
 											</tbody>
 										</table>
 											<!-- <p class="xsj1" onclick="openDiv2()">
 												<font size="+2" color="#FF9933">+</font>新时间
 											</p> -->
-										</div>
+											
+											</div>
+											<!-- end night -->
 										<div class="clear"></div>
 									</div>
+									<%
+										}//for
+									}//if 
+									%>
 									
-									<div class="kb-r" id="kb_r2" style="width: 620px;display:none;">
-										<div class="ktable"id="morning_table">
-												<table border="0" cellspacing="0" cellpadding="0">
-											<tbody>
-												<tr class="t">
-													<td colspan="2"><span>上午</span>(6:00-12:00)</td>
-												</tr>
-												<tr>
-													<td>18:00-18:30</td>
-													<td class="gm" title=""><p id="p692926"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
-												<tr>
-													<td>18:30-19:00</td>
-													<td class="gm" title=""><p id="p692927"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
-												<tr>
-													<td>18:30-19:00</td>
-													<td class="gm" title=""><p id="p692927"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
-											</tbody>
-										</table>
-											<!-- <p class="xsj1" onclick="openDiv2()">
-												<font size="+2" color="#FF9933">+</font>新时间
-											</p> -->
-										</div>
-										<div class="ktable"id="afternoon_table">
-												<table border="0" cellspacing="0" cellpadding="0">
-											<tbody>
-												<tr class="t">
-													<td colspan="2"><span>下午</span>(12:00-18:00)</td>
-												</tr>
-												<tr>
-													<td>18:00-18:30</td>
-													<td class="gm" title=""><p id="p692926"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
-												<tr>
-													<td>18:30-19:00</td>
-													<td class="gm" title=""><p id="p692927"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
-												<tr>
-													<td>19:30-20:00</td>
-													<td class="gm huisebg" title="">纪蕴已购买</td>
-												</tr>
-												
-											</tbody>
-										</table>
-											<!-- <p class="xsj1" onclick="openDiv2()">
-												<font size="+2" color="#FF9933">+</font>新时间
-											</p> -->
-										</div>
-											<div class="ktable" id="night_table">
-												<table border="0" cellspacing="0" cellpadding="0">
-											<tbody>
-												<tr class="t">
-													<td colspan="2"><span>晚上</span>(18:00-24:00)</td>
-												</tr>
-												<tr>
-													<td>18:00-18:30</td>
-													<td class="gm" title=""><p id="p692926"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
-												<tr>
-													<td>18:30-19:00</td>
-													<td class="gm" title=""><p id="p692927"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
-												<tr>
-													<td>19:30-20:00</td>
-													<td class="gm huisebg" title="">纪蕴已购买</td>
-												</tr>
-												<tr>
-													<td>20:00-20:30</td>
-													<td class="gm huisebg" title="">纪蕴已购买</td>
-												</tr>
-												<tr>
-													<td>20:30-21:00</td>
-													<td class="gm huisebg" title="">纪蕴已购买</td>
-												</tr>
-												<tr>
-													<td>21:00-21:30</td>
-													<td class="gm huisebg" title="">d已购买</td>
-												</tr>
-												<tr>
-													<td>21:30-22:00</td>
-													<td class="gm huisebg" title="">d已购买</td>
-												</tr>
-											</tbody>
-										</table>
-											<!-- <p class="xsj1" onclick="openDiv2()">
-												<font size="+2" color="#FF9933">+</font>新时间
-											</p> -->
-										</div>
-										<div class="clear"></div>
-									</div>
-									
-									<div class="kb-r" id="kb_r3" style="width: 620px;display:none;">
-										<div class="ktable"id="morning_table">
-												<table border="0" cellspacing="0" cellpadding="0">
-											<tbody>
-												<tr class="t">
-													<td colspan="2"><span>上午</span>(6:00-12:00)</td>
-												</tr>
-												<tr>
-													<td>18:00-18:30</td>
-													<td class="gm" title=""><p id="p692926"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
-												<tr>
-													<td>18:30-19:00</td>
-													<td class="gm" title=""><p id="p692927"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
-												
-											</tbody>
-										</table>
-											<!-- <p class="xsj1" onclick="openDiv2()">
-												<font size="+2" color="#FF9933">+</font>新时间
-											</p> -->
-										</div>
-										<div class="ktable"id="afternoon_table">
-												<table border="0" cellspacing="0" cellpadding="0">
-											<tbody>
-												<tr class="t">
-													<td colspan="2"><span>下午</span>(12:00-18:00)</td>
-												</tr>
-												<tr>
-													<td>18:00-18:30</td>
-													<td class="gm" title=""><p id="p692926"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
-												<tr>
-													<td>18:30-19:00</td>
-													<td class="gm" title=""><p id="p692927"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
-												<tr>
-													<td>19:30-20:00</td>
-													<td class="gm huisebg" title="">纪蕴已购买</td>
-												</tr>
-												<tr>
-													<td>19:30-20:00</td>
-													<td class="gm huisebg" title="">纪蕴已购买</td>
-												</tr>
-											</tbody>
-										</table>
-											<!-- <p class="xsj1" onclick="openDiv2()">
-												<font size="+2" color="#FF9933">+</font>新时间
-											</p> -->
-										</div>
-											<div class="ktable" id="night_table">
-												<table border="0" cellspacing="0" cellpadding="0">
-											<tbody>
-												<tr class="t">
-													<td colspan="2"><span>晚上</span>(18:00-24:00)</td>
-												</tr>
-												<tr>
-													<td>18:00-18:30</td>
-													<td class="gm" title=""><p id="p692926"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
-												<tr>
-													<td>18:30-19:00</td>
-													<td class="gm" title=""><p id="p692927"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
-												<tr>
-													<td>19:30-20:00</td>
-													<td class="gm huisebg" title="">纪蕴已购买</td>
-												</tr>
-												<tr>
-													<td>20:00-20:30</td>
-													<td class="gm huisebg" title="">纪蕴已购买</td>
-												</tr>
-												<tr>
-													<td>20:30-21:00</td>
-													<td class="gm huisebg" title="">纪蕴已购买</td>
-												</tr>
-												<tr>
-													<td>21:00-21:30</td>
-													<td class="gm huisebg" title="">d已购买</td>
-												</tr>
-												<tr>
-													<td>21:30-22:00</td>
-													<td class="gm huisebg" title="">d已购买</td>
-												</tr>
-											</tbody>
-										</table>
-											<!-- <p class="xsj1" onclick="openDiv2()">
-												<font size="+2" color="#FF9933">+</font>新时间
-											</p> -->
-										</div>
-										<div class="clear"></div>
-									</div>
-									<div class="kb-r" id="kb_r4" style="width: 620px;display:none;">
-										<div class="ktable"id="morning_table">
-												<table border="0" cellspacing="0" cellpadding="0">
-											<tbody>
-												<tr class="t">
-													<td colspan="2"><span>上午</span>(6:00-12:00)</td>
-												</tr>
-												<tr>
-													<td>18:00-18:30</td>
-													<td class="gm" title=""><p id="p692926"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
-												<tr>
-													<td>18:30-19:00</td>
-													<td class="gm" title=""><p id="p692927"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
-												
-											</tbody>
-										</table>
-											<!-- <p class="xsj1" onclick="openDiv2()">
-												<font size="+2" color="#FF9933">+</font>新时间
-											</p> -->
-										</div>
-										<div class="ktable"id="afternoon_table">
-												<table border="0" cellspacing="0" cellpadding="0">
-											<tbody>
-												<tr class="t">
-													<td colspan="2"><span>下午</span>(12:00-18:00)</td>
-												</tr>
-												<tr>
-													<td>18:00-18:30</td>
-													<td class="gm" title=""><p id="p692926"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
-												<tr>
-													<td>18:30-19:00</td>
-													<td class="gm" title=""><p id="p692927"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
-												
-											</tbody>
-										</table>
-											<!-- <p class="xsj1" onclick="openDiv2()">
-												<font size="+2" color="#FF9933">+</font>新时间
-											</p> -->
-										</div>
-											<div class="ktable" id="night_table">
-												<table border="0" cellspacing="0" cellpadding="0">
-											<tbody>
-												<tr class="t">
-													<td colspan="2"><span>晚上</span>(18:00-24:00)</td>
-												</tr>
-												<tr>
-													<td>18:00-18:30</td>
-													<td class="gm" title=""><p id="p692926"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
-												<tr>
-													<td>18:30-19:00</td>
-													<td class="gm" title=""><p id="p692927"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
-												<tr>
-													<td>19:30-20:00</td>
-													<td class="gm huisebg" title="">纪蕴已购买</td>
-												</tr>
-												<tr>
-													<td>20:00-20:30</td>
-													<td class="gm huisebg" title="">纪蕴已购买</td>
-												</tr>
-												<tr>
-													<td>20:30-21:00</td>
-													<td class="gm huisebg" title="">纪蕴已购买</td>
-												</tr>
-												<tr>
-													<td>21:00-21:30</td>
-													<td class="gm huisebg" title="">d已购买</td>
-												</tr>
-												<tr>
-													<td>21:30-22:00</td>
-													<td class="gm huisebg" title="">d已购买</td>
-												</tr>
-											</tbody>
-										</table>
-											<!-- <p class="xsj1" onclick="openDiv2()">
-												<font size="+2" color="#FF9933">+</font>新时间
-											</p> -->
-										</div>
-										<div class="clear"></div>
-									</div>
-									
-									<div class="kb-r" id="kb_r5" style="width: 620px;display:none;">
-										<div class="ktable"id="morning_table">
-												<table border="0" cellspacing="0" cellpadding="0">
-											<tbody>
-												<tr class="t">
-													<td colspan="2"><span>上午</span>(6:00-12:00)</td>
-												</tr>
-												<tr>
-													<td>18:00-18:30</td>
-													<td class="gm" title=""><p id="p692926"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
-												<tr>
-													<td>18:30-19:00</td>
-													<td class="gm" title=""><p id="p692927"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
-												
-											</tbody>
-										</table>
-											<!-- <p class="xsj1" onclick="openDiv2()">
-												<font size="+2" color="#FF9933">+</font>新时间
-											</p> -->
-										</div>
-										<div class="ktable"id="afternoon_table">
-												<table border="0" cellspacing="0" cellpadding="0">
-											<tbody>
-												<tr class="t">
-													<td colspan="2"><span>下午</span>(12:00-18:00)</td>
-												</tr>
-												<tr>
-													<td>18:00-18:30</td>
-													<td class="gm" title=""><p id="p692926"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
-												<tr>
-													<td>18:30-19:00</td>
-													<td class="gm" title=""><p id="p692927"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
-												<tr>
-													<td>19:30-20:00</td>
-													<td class="gm huisebg" title="">纪蕴已购买</td>
-												</tr>
-												
-											</tbody>
-										</table>
-											<!-- <p class="xsj1" onclick="openDiv2()">
-												<font size="+2" color="#FF9933">+</font>新时间
-											</p> -->
-										</div>
-											<div class="ktable" id="night_table">
-												<table border="0" cellspacing="0" cellpadding="0">
-											<tbody>
-												<tr class="t">
-													<td colspan="2"><span>晚上</span>(18:00-24:00)</td>
-												</tr>
-												<tr>
-													<td>18:00-18:30</td>
-													<td class="gm" title=""><p id="p692926"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
-												<tr>
-													<td>18:30-19:00</td>
-													<td class="gm" title=""><p id="p692927"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
-												<tr>
-													<td>19:30-20:00</td>
-													<td class="gm huisebg" title="">纪蕴已购买</td>
-												</tr>
-												<tr>
-													<td>20:00-20:30</td>
-													<td class="gm huisebg" title="">纪蕴已购买</td>
-												</tr>
-												<tr>
-													<td>20:30-21:00</td>
-													<td class="gm huisebg" title="">纪蕴已购买</td>
-												</tr>
-											</tbody>
-										</table>
-											<!-- <p class="xsj1" onclick="openDiv2()">
-												<font size="+2" color="#FF9933">+</font>新时间
-											</p> -->
-										</div>
-										<div class="clear"></div>
-									</div>
-								
-									<div class="kb-r" id="kb_r6" style="width: 620px;display:none;">
-										<div class="ktable"id="morning_table">
-												<table border="0" cellspacing="0" cellpadding="0">
-											<tbody>
-												<tr class="t">
-													<td colspan="2"><span>上午</span>(6:00-12:00)</td>
-												</tr>
-												<tr>
-													<td>18:00-18:30</td>
-													<td class="gm" title=""><p id="p692926"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
-												<tr>
-													<td>18:30-19:00</td>
-													<td class="gm" title=""><p id="p692927"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
-												
-											</tbody>
-										</table>
-											<!-- <p class="xsj1" onclick="openDiv2()">
-												<font size="+2" color="#FF9933">+</font>新时间
-											</p> -->
-										</div>
-										<div class="ktable"id="afternoon_table">
-												<table border="0" cellspacing="0" cellpadding="0">
-											<tbody>
-												<tr class="t">
-													<td colspan="2"><span>下午</span>(12:00-18:00)</td>
-												</tr>
-												<tr>
-													<td>18:00-18:30</td>
-													<td class="gm" title=""><p id="p692926"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
-												<tr>
-													<td>18:30-19:00</td>
-													<td class="gm" title=""><p id="p692927"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
-												<tr>
-													<td>19:30-20:00</td>
-													<td class="gm huisebg" title="">纪蕴已购买</td>
-												</tr>
-												
-											</tbody>
-										</table>
-											<!-- <p class="xsj1" onclick="openDiv2()">
-												<font size="+2" color="#FF9933">+</font>新时间
-											</p> -->
-										</div>
-											<div class="ktable" id="night_table">
-												<table border="0" cellspacing="0" cellpadding="0">
-											<tbody>
-												<tr class="t">
-													<td colspan="2"><span>晚上</span>(18:00-24:00)</td>
-												</tr>
-												<tr>
-													<td>18:00-18:30</td>
-													<td class="gm" title=""><p id="p692926"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
-												<tr>
-													<td>18:30-19:00</td>
-													<td class="gm" title=""><p id="p692927"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
-												<tr>
-													<td>19:30-20:00</td>
-													<td class="gm huisebg" title="">纪蕴已购买</td>
-												</tr>
-												<tr>
-													<td>20:00-20:30</td>
-													<td class="gm huisebg" title="">纪蕴已购买</td>
-												</tr>
-												<tr>
-													<td>20:30-21:00</td>
-													<td class="gm huisebg" title="">纪蕴已购买</td>
-												</tr>
-												<tr>
-													<td>21:00-21:30</td>
-													<td class="gm huisebg" title="">d已购买</td>
-												</tr>
-											</tbody>
-										</table>
-											<!-- <p class="xsj1" onclick="openDiv2()">
-												<font size="+2" color="#FF9933">+</font>新时间
-											</p> -->
-										</div>
-										<div class="clear"></div>
-									</div>
-									
-									<div class="kb-r" id="kb_r7" style="width: 620px;display:none;">
-										<div class="ktable"id="morning_table">
-												<table border="0" cellspacing="0" cellpadding="0">
-											<tbody>
-												<tr class="t">
-													<td colspan="2"><span>上午</span>(6:00-12:00)</td>
-												</tr>
-												<tr>
-													<td>18:00-18:30</td>
-													<td class="gm" title=""><p id="p692926"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
-												<tr>
-													<td>18:30-19:00</td>
-													<td class="gm" title=""><p id="p692927"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
-												<tr>
-													<td>18:30-19:00</td>
-													<td class="gm" title=""><p id="p692927"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
-												<tr>
-													<td>18:30-19:00</td>
-													<td class="gm" title=""><p id="p692927"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
-											</tbody>
-										</table>
-											<!-- <p class="xsj1" onclick="openDiv2()">
-												<font size="+2" color="#FF9933">+</font>新时间
-											</p> -->
-										</div>
-										<div class="ktable"id="afternoon_table">
-												<table border="0" cellspacing="0" cellpadding="0">
-											<tbody>
-												<tr class="t">
-													<td colspan="2"><span>下午</span>(12:00-18:00)</td>
-												</tr>
-												<tr>
-													<td>18:00-18:30</td>
-													<td class="gm" title=""><p id="p692926"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
-												<tr>
-													<td>18:30-19:00</td>
-													<td class="gm" title=""><p id="p692927"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
-												<tr>
-													<td>19:30-20:00</td>
-													<td class="gm huisebg" title="">纪蕴已购买</td>
-												</tr>
-												
-											</tbody>
-										</table>
-											<!-- <p class="xsj1" onclick="openDiv2()">
-												<font size="+2" color="#FF9933">+</font>新时间
-											</p> -->
-										</div>
-											<div class="ktable" id="night_table">
-												<table border="0" cellspacing="0" cellpadding="0">
-											<tbody>
-												<tr class="t">
-													<td colspan="2"><span>晚上</span>(18:00-24:00)</td>
-												</tr>
-												<tr>
-													<td>18:00-18:30</td>
-													<td class="gm" title=""><p id="p692926"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
-												<tr>
-													<td>18:30-19:00</td>
-													<td class="gm" title=""><p id="p692927"
-															style="cursor: pointer" onclick="">可购买</p></td>
-												</tr>
-												<tr>
-													<td>19:30-20:00</td>
-													<td class="gm huisebg" title="">纪蕴已购买</td>
-												</tr>
-												<tr>
-													<td>20:00-20:30</td>
-													<td class="gm huisebg" title="">纪蕴已购买</td>
-												</tr>
-												<tr>
-													<td>20:30-21:00</td>
-													<td class="gm huisebg" title="">纪蕴已购买</td>
-												</tr>
-												<tr>
-													<td>21:00-21:30</td>
-													<td class="gm huisebg" title="">d已购买</td>
-												</tr>
-												<tr>
-													<td>21:30-22:00</td>
-													<td class="gm huisebg" title="">d已购买</td>
-												</tr>
-											</tbody>
-										</table>
-											<!-- <p class="xsj1" onclick="openDiv2()">
-												<font size="+2" color="#FF9933">+</font>新时间
-											</p> -->
-										</div>
-										<div class="clear"></div>
-									</div>
 									<div class="clear"></div>
 								</div>
 								<div class="clear"></div>

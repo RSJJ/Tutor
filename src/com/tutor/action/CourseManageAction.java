@@ -1,6 +1,7 @@
 package com.tutor.action;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -88,7 +89,7 @@ public class CourseManageAction extends BaseAction
 			 */
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			Calendar calendar = Calendar.getInstance();
-			for (int i = 0; i < 6; i++)
+			for (int i = 0; i < 7; i++)
 			{
 				Date date = calendar.getTime();
 				calendar.add(Calendar.DAY_OF_YEAR, 1);
@@ -109,8 +110,9 @@ public class CourseManageAction extends BaseAction
 		}
 		this.getRequest().setAttribute("courses", courses);
 		this.getRequest().setAttribute("weekSchedule", weekSchedule);
+//		this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));
 		return Action.SUCCESS;
-		// this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));
+		
 	}
 
 	/**
@@ -270,7 +272,8 @@ public class CourseManageAction extends BaseAction
 		this.teacherId = teacherId;
 	}
 
-	public static void main(String[] args)
+	@SuppressWarnings("deprecation")
+	public static void main(String[] args) throws ParseException
 	{
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar calendar = Calendar.getInstance();
@@ -279,6 +282,10 @@ public class CourseManageAction extends BaseAction
 		calendar.add(Calendar.DAY_OF_YEAR, 6);
 		Date endDate = calendar.getTime();
 		System.out.println("endDate:" + sdf.format(endDate));
+		sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String time1="2015-07-08 18:30:00";
+		Date timeaaa = sdf.parse(time1);
+		System.out.println(Operation.changFormat(sdf, time1));
 	}
 
 }

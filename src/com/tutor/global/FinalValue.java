@@ -30,4 +30,8 @@ public class FinalValue
 	public static final int CLASS_OFFLINE = 2;//线下
 	public static final int CLASS_BOTH = 3;//线上线下
 	
+	public static final int DAY_MORNING = 1;//上午
+	public static final int DAY_AFTERNOON = 2;//下午
+	public static final int DAR_NIGHT = 3;//晚上
+	
 }

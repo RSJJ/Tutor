@@ -38,6 +38,32 @@ public class Operation
 		Date date = fmt.parse(string);
 		return simpleDateFormat.format(date);
 	}
+	/**
+	 * 判断时间段
+	 * @param dateStr
+	 * @return
+	 * @throws ParseException
+	 */
+	public static int getTimeSlot(String dateStr) throws ParseException
+	{
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date time  = sdf.parse(dateStr);
+		@SuppressWarnings("deprecation")
+		int hour = time.getHours();
+		if(hour>=6 && hour<12)
+			return FinalValue.DAY_MORNING;
+		else if(hour>=12 && hour<18)
+			return FinalValue.DAY_AFTERNOON;
+		else
+			return FinalValue.DAR_NIGHT;
+	}
+	@SuppressWarnings("deprecation")
+	public static String getHHmm(String dateStr) throws ParseException
+	{
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date time  = sdf.parse(dateStr);
+		return String.format("%02d", time.getHours())+":"+String.format("%02d", time.getMinutes());
+	}
 	
 	@SuppressWarnings("deprecation")
 	public static String gtmToTimeFormat(String string) throws ParseException
