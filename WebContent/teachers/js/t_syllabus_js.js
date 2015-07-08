@@ -14,6 +14,7 @@ $(document).ready(function(){
 	$('.yf').text((date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1)+'月');
 	$('.rq').text(date.getDate() < 10 ? "0" + date.getDate() : date.getDate());
 	$(".qhz li").click(function(event){
+		var li_index=$(this).index()+1;
 		var mt=$(this).children('span').eq(0).text();
 		var mts=mt.split('/');
 		$(this).siblings().each(function(e){
@@ -22,6 +23,13 @@ $(document).ready(function(){
 		$(this).addClass('dqrq');
 		$('.yf').text(mts[0]+'月');
 		$('.rq').text(mts[1]);
+		for(var j=1;j<8;j++){
+			if(j==li_index){
+				$('#kb_r'+j).css('display','block');
+			}else{
+				$('#kb_r'+j).css('display','none');
+			}	
+		}
 	});
 });
 function timeformat(year,month,date){
