@@ -279,13 +279,18 @@ public class CourseManageAction extends BaseAction
 		Calendar calendar = Calendar.getInstance();
 		Date startDate = calendar.getTime();
 		System.out.println("startDate:" + sdf.format(startDate));
-		calendar.add(Calendar.DAY_OF_YEAR, 6);
+		calendar.add(Calendar.DAY_OF_YEAR, 15);
 		Date endDate = calendar.getTime();
 		System.out.println("endDate:" + sdf.format(endDate));
 		sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String time1="2015-07-08 18:30:00";
 		Date timeaaa = sdf.parse(time1);
 		System.out.println(Operation.changFormat(sdf, time1));
+		int []a = new int [3];
+		for (int i : a)
+		{
+			System.out.println(i);
+		}
 	}
 
 }

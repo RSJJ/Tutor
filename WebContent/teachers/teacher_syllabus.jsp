@@ -376,7 +376,7 @@ $(document).ready(function(){
 									for(int i=0 ; i<7;i++)
 									{
 									%>
-									<div class="kb-r" id="kb_r<%=i+1 %>" style="width: 620px;display:block;">
+									<div class="kb-r" id="kb_r<%=i+1 %>" style="width: 620px;<%if(i==0){%>display:block;<%}else{%>display:none;<%}%>">
 										<% 
 										/**
 										将每天的课表根据上午下午晚上分类
