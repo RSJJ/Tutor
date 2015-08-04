@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost
-Source Server Version : 50624
+Source Server Version : 50173
 Source Host           : localhost:3306
 Source Database       : tutor
 
 Target Server Type    : MYSQL
-Target Server Version : 50624
+Target Server Version : 50173
 File Encoding         : 65001
 
-Date: 2015-07-02 11:10:23
+Date: 2015-08-04 14:00:49
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -35,7 +35,7 @@ CREATE TABLE `gra_course` (
   PRIMARY KEY (`id`,`gra_course_id`),
   KEY `gra_teacher_id` (`teacher_id`),
   CONSTRAINT `gra_teacher_id` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`teacher_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of gra_course
@@ -46,6 +46,7 @@ INSERT INTO `gra_course` VALUES ('0000000003', 'GRA_00000006', 'TEA_00000001', '
 INSERT INTO `gra_course` VALUES ('0000000004', 'GRA_00000007', 'TEA_00000001', '北京交通大学', '计算机', '计算机', '操作系统', '25', '-1', '2015-06-28 19:43:46', '000', 'hjjjjjj');
 INSERT INTO `gra_course` VALUES ('0000000005', 'GRA_00000009', 'TEA_00000001', '北京交通大学', '计算机', '计算机', '操作系统', '25', '-1', '2015-06-28 20:14:41', '000', 'hjjjjjj');
 INSERT INTO `gra_course` VALUES ('0000000006', 'GRA_00000010', 'TEA_00000001', '北京交通大学', '计算机', '计算机', '操作系统', '25', '25', '2015-06-29 14:53:49', '000', '具体依据');
+INSERT INTO `gra_course` VALUES ('0000000007', 'GRA_00000011', 'TEA_00000001', '北京交通大学', '计算机', '计算机', '操作系统', '25', '-1', '2015-08-03 23:01:52', '000', '其它说明（0-200字）');
 
 -- ----------------------------
 -- Table structure for `nor_course`
@@ -94,7 +95,7 @@ CREATE TABLE `schedule` (
   PRIMARY KEY (`id`,`teacher_id`),
   KEY `sch_teacher_id` (`teacher_id`),
   CONSTRAINT `sch_teacher_id` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`teacher_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of schedule
@@ -102,6 +103,15 @@ CREATE TABLE `schedule` (
 INSERT INTO `schedule` VALUES ('0000000001', 'TEA_00000001', '2015-06-30 06:00:00', '2015-06-30 14:00:00', '0000000004', 'NOR_00000005!#GRA_00000006!#GRA_00000006!#GRA_00000007!#', '1', '000', null);
 INSERT INTO `schedule` VALUES ('0000000002', 'TEA_00000001', '2015-07-01 07:30:00', '2015-07-01 14:00:00', '0000000004', 'NOR_00000005!#GRA_00000006!#GRA_00000006!#GRA_00000007!#', '1', '000', null);
 INSERT INTO `schedule` VALUES ('0000000003', 'TEA_00000001', '2015-07-30 06:00:00', '2015-07-30 08:30:00', '0000000000', 'NOR_123456!#NOR_00000003!#NOR_00000005!#GRA_123456!#GRA_00000009!#', '1', '000', null);
+INSERT INTO `schedule` VALUES ('0000000004', 'TEA_00000001', '2015-07-10 14:00:00', '2015-07-10 14:30:00', '0000000001', 'NOR_00000005!#NOR_00000008!#', '1', '000', null);
+INSERT INTO `schedule` VALUES ('0000000005', 'TEA_00000001', '2015-07-15 20:00:00', '2015-07-15 22:00:00', '0000000000', 'GRA_00000006!#', '1', '000', null);
+INSERT INTO `schedule` VALUES ('0000000006', 'TEA_00000001', '2015-07-14 20:00:00', '2015-07-14 22:00:00', '0000000000', 'GRA_00000006!#GRA_00000006!#', '1', '000', null);
+INSERT INTO `schedule` VALUES ('0000000007', 'TEA_00000001', '2015-07-09 18:00:00', '2015-07-09 18:30:00', '0000000000', 'NOR_00000005!#', '1', '000', null);
+INSERT INTO `schedule` VALUES ('0000000008', 'TEA_00000001', '2015-07-09 18:30:00', '2015-07-09 19:00:00', '0000000000', 'GRA_00000006!#', '1', '000', null);
+INSERT INTO `schedule` VALUES ('0000000009', 'TEA_00000001', '2015-07-09 19:30:00', '2015-07-09 20:00:00', '0000000000', 'NOR_00000008!#', '1', '000', null);
+INSERT INTO `schedule` VALUES ('0000000010', 'TEA_00000001', '2015-08-04 06:30:00', '2015-08-04 08:00:00', '0000000000', 'NOR_00000004!#GRA_00000006!#', '1', '000', null);
+INSERT INTO `schedule` VALUES ('0000000011', 'TEA_00000001', '2015-08-04 12:30:00', '2015-08-04 16:30:00', '0000000004', 'NOR_00000004!#GRA_00000006!#GRA_00000006!#', '2', '000', null);
+INSERT INTO `schedule` VALUES ('0000000012', 'TEA_00000001', '2015-08-06 12:00:00', '2015-08-06 18:00:00', '0000000004', 'NOR_00000004!#GRA_00000006!#GRA_00000006!#', '2', '000', null);
 
 -- ----------------------------
 -- Table structure for `student`
@@ -165,7 +175,7 @@ CREATE TABLE `teacher` (
 -- ----------------------------
 -- Records of teacher
 -- ----------------------------
-INSERT INTO `teacher` VALUES ('0000000002', 'TEA_00000001', '34534534534', '123456', 'm', '123@qq.com', '13581542929', null, null, null, null, null, null, null, null, null, null, '2015-07-01 17:42:59', '0000000000', '0000000000', '0000000000', '0000000000', '0003', 'nnnn');
+INSERT INTO `teacher` VALUES ('0000000002', 'TEA_00000001', '34534534534', '123456', 'm', '123@qq.com', '13581542929', null, null, null, null, null, null, null, null, null, null, '2015-08-03 23:01:21', '0000000000', '0000000000', '0000000000', '0000000000', '0003', 'nnnn');
 
 -- ----------------------------
 -- Table structure for `unique_id`
@@ -176,11 +186,12 @@ CREATE TABLE `unique_id` (
   `unique_id_name` varchar(32) DEFAULT NULL,
   `unique_id_value` bigint(20) unsigned zerofill NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of unique_id
 -- ----------------------------
 INSERT INTO `unique_id` VALUES ('0000000002', 'student_id_seed', '00000000000000000000');
 INSERT INTO `unique_id` VALUES ('0000000003', 'teacher_id_seed', '00000000000000000000');
-INSERT INTO `unique_id` VALUES ('0000000004', 'TEA_00000001', '00000000000000000010');
+INSERT INTO `unique_id` VALUES ('0000000004', 'TEA_00000001', '00000000000000000011');
+INSERT INTO `unique_id` VALUES ('0000000005', 'teacher_id_seed', '00000000000000000000');

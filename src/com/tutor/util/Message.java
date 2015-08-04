@@ -1,30 +1,20 @@
-package com.tutor.entity.server;
+package com.tutor.util;
 
-import java.io.Serializable;
-
-/**
- * @author STerOTto
- *
- * @param <T>
- */
-public class Message<T> implements Serializable
+public class Message<T>
 {
-	private static final long serialVersionUID = 1L;
-	
 	public static final int SUCCESS = 1;
 	public static final int FAILED = -1;
 	public static final int EMPTY = 0;
-	private int code;
+	private int status;
 	private String statement;
 	private T content;
-	
-	public int getCode()
+	public int getStatus()
 	{
-		return code;
+		return status;
 	}
-	public void setCode(int code)
+	public void setStatus(int status)
 	{
-		this.code = code;
+		this.status = status;
 	}
 	public String getStatement()
 	{
