@@ -2,8 +2,6 @@
     <wb-module deploy-name="Tutor">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <wb-resource deploy-path="/" source-path="/WebContent/login"/>
-        <wb-resource deploy-path="/" source-path="/WebContent/users"/>
         <property name="context-root" value="Tutor"/>
         <property name="java-output-path" value="/Tutor/build/classes"/>
     </wb-module>
