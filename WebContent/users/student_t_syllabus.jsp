@@ -108,32 +108,76 @@
 	       <p class="kjs">0节课</p>
         </div>
        
-        <div class="kb-r">
-           <div class="ktable">
-             <p class="t">上午<span>(6:00-12:00)</span></p>
-             <p class="xsj1">暂无课表数据</p>
-           </div>
-            <div class="ktable">
-             <p class="t">下午<span>(12:00-18:00)</span></p>
-             <p class="xsj1">暂无课表数据</p>
-           </div>
-            <table border="0" cellspacing="0" cellpadding="0">
-               <tbody>
-                 <tr class="t"><td colspan="2"><span>晚上</span>(18:00-24:00)</td></tr>
-                 <tr><td>18:00-18:30</td><td class="gm" title=""><p id="p692926" style="cursor: pointer" onclick=""><input type="checkbox" id="">可购买，70元</p></td></tr>
-                 <tr><td>18:30-19:00</td><td class="gm" title=""><p id="p692927" style="cursor: pointer" onclick=""><input type="checkbox" id="">可购买，70元</p></td></tr>
-                 <tr><td>19:00-19:30</td><td class="gm" title="" style="color: rgb(255, 255, 255); background: rgb(0, 117, 194);"><p  style="cursor: pointer" onclick=""><input type="checkbox" checked="checked" id="">可购买，70元</p></td></tr>
-                 <tr><td>19:30-20:00</td><td class="gm wygm" title="">纪蕴已购买</td></tr>
-                 <tr><td>20:00-20:30</td><td class="gm wygm" title="">纪蕴已购买</td></tr>
-                 <tr><td>20:30-21:00</td><td class="gm wygm" title="">纪蕴已购买</td></tr>
-                 <tr><td>21:00-21:30</td><td class="gm wygm" title="">d已购买</td></tr>
-                 <tr><td>21:30-22:00</td><td class="gm wygm" title="">d已购买</td></tr>
-                 <tr><td>22:00-22:30</td><td class="gm wygm" title="">d已购买</td></tr>
-                 <tr><td>22:30-23:00</td><td class="gm" title=""><p  style="cursor: pointer" onclick=""><input type="checkbox" id="">可购买，70元</p></td></tr>
-               </tbody>
-             </table>
-           <div class="clear"></div>
-        </div>
+      <div class="kb-r" id="kb_r1" style="width: 620px;display:block;">
+       	<div class="ktable"id="morning_table">
+			<table border="0" cellspacing="0" cellpadding="0">
+				<tbody>
+					<tr class="t">
+						<td colspan="2"><span>上午</span>(6:00-12:00)</td>
+					</tr>
+					<tr><td>18:00-18:30</td><td class="gm" title=""><p id="p692926" style="cursor: pointer" onclick=""><input type="checkbox" id="">可购买，70元</p></td></tr>
+                 	<tr><td>18:30-19:00</td><td class="gm" title=""><p id="p692927" style="cursor: pointer" onclick=""><input type="checkbox" id="">可购买，70元</p></td></tr>
+				</tbody>
+			</table>
+       </div>
+       <div class="ktable"id="afternoon_table">
+			<table border="0" cellspacing="0" cellpadding="0">
+				<tbody>
+					<tr class="t">
+						<td colspan="2"><span>上午</span>(6:00-12:00)</td>
+					</tr>
+					<tr><td>18:00-18:30</td><td class="gm" title=""><p id="p692926" style="cursor: pointer" onclick=""><input type="checkbox" id="">可购买，70元</p></td></tr>
+                 	<tr><td>18:30-19:00</td><td class="gm" title=""><p id="p692927" style="cursor: pointer" onclick=""><input type="checkbox" id="">可购买，70元</p></td></tr>
+				</tbody>
+			</table>
+       </div>
+       <div class="ktable"id="night_table">
+			<table border="0" cellspacing="0" cellpadding="0">
+				<tbody>
+					<tr class="t">
+						<td colspan="2"><span>上午</span>(6:00-12:00)</td>
+					</tr>
+					<tr><td>18:00-18:30</td><td class="gm" title=""><p id="p692926" style="cursor: pointer" onclick=""><input type="checkbox" id="">可购买，70元</p></td></tr>
+                 	<tr><td>18:30-19:00</td><td class="gm" title=""><p id="p692927" style="cursor: pointer" onclick=""><input type="checkbox" id="">可购买，70元</p></td></tr>
+				</tbody>
+			</table>
+       </div>
+      </div>
+      <div class="kb-r" id="kb_r2" style="width: 620px;display:none;">
+       	<div class="ktable"id="morning_table">
+			<table border="0" cellspacing="0" cellpadding="0">
+				<tbody>
+					<tr class="t">
+						<td colspan="2"><span>上午</span>(6:00-12:00)</td>
+					</tr>
+                 	<tr><td>18:30-19:00</td><td class="gm" title=""><p id="p692927" style="cursor: pointer" onclick=""><input type="checkbox" id="">可购买，70元</p></td></tr>
+				</tbody>
+			</table>
+       </div>
+       <div class="ktable"id="afternoon_table">
+			<table border="0" cellspacing="0" cellpadding="0">
+				<tbody>
+					<tr class="t">
+						<td colspan="2"><span>上午</span>(6:00-12:00)</td>
+					</tr>
+					<tr><td>18:00-18:30</td><td class="gm" title=""><p id="p692926" style="cursor: pointer" onclick=""><input type="checkbox" id="">可购买，70元</p></td></tr>
+                 	<tr><td>18:30-19:00</td><td class="gm" title=""><p id="p692927" style="cursor: pointer" onclick=""><input type="checkbox" id="">可购买，70元</p></td></tr>
+				</tbody>
+			</table>
+       </div>
+       <div class="ktable"id="night_table">
+			<table border="0" cellspacing="0" cellpadding="0">
+				<tbody>
+					<tr class="t">
+						<td colspan="2"><span>上午</span>(6:00-12:00)</td>
+					</tr>
+					<tr><td>18:00-18:30</td><td class="gm" title=""><p id="p692926" style="cursor: pointer" onclick=""><input type="checkbox" id="">可购买，70元</p></td></tr>
+                 	<tr><td>18:30-19:00</td><td class="gm" title=""><p id="p692927" style="cursor: pointer" onclick=""><input type="checkbox" id="">可购买，70元</p></td></tr>
+				</tbody>
+			</table>
+       </div>
+      </div>       
+        
     </div>
 
 </div>

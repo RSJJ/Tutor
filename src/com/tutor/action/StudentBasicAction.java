@@ -39,7 +39,7 @@ public class StudentBasicAction extends BaseAction
 	 */
 	public void login() throws IOException
 	{
-		Message<User> msg = new Message<User>();
+		Message msg = new Message();
 
 		Student student = studentDAO.findByPhoneOrMail(userName);
 		if (student != null)
@@ -101,7 +101,7 @@ public class StudentBasicAction extends BaseAction
 	 */
 	public void register() throws IOException
 	{
-		Message<String> msg = new Message<String>();
+		Message msg = new Message();
 		student.setStudentId(IdGenerator.getInstance().getNextStudentId());
 		student.setStatus(FinalValue.INIT_VALUE);
 		student.setRegTime(Operation.getTime(new SimpleDateFormat(
