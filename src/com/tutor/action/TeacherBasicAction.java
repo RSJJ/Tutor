@@ -41,7 +41,7 @@ public class TeacherBasicAction extends BaseAction
 	 */
 	public void login() throws IOException
 	{
-		Message<User> msg = new Message<User>();
+		Message msg = new Message();
 		Teacher teacher = teacherDAO.findByPhoneOrMail(userName);
 		if(teacher != null)
 		{
@@ -109,7 +109,7 @@ public class TeacherBasicAction extends BaseAction
 	 */
 	public void register() throws IOException
 	{
-		Message<String> msg = new Message<String>();
+		Message msg = new Message();
 		
 		teacher.setTeacherId(IdGenerator.getInstance().getNextTeacherId());//设置teacherId
 		teacher.setRegTime(Operation.getTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")));//设置注册时间

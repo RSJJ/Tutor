@@ -2,27 +2,25 @@ package com.tutor.entity.server;
 
 import java.io.Serializable;
 
+
 /**
+ * 消息实体类
  * @author STerOTto
  *
- * @param <T>
  */
-public class Message<T> implements Serializable
+public class Message implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	
-	public static final int SUCCESS = 1;
-	public static final int FAILED = -1;
-	public static final int EMPTY = 0;
-	private int code;
-	private String statement;
-	private T content;
+	private Integer code;//状态吗
+	private String statement;//备注
+	private Object content;//请求内容
 	
-	public int getCode()
+	public Integer getCode()
 	{
 		return code;
 	}
-	public void setCode(int code)
+	public void setCode(Integer code)
 	{
 		this.code = code;
 	}
@@ -34,15 +32,14 @@ public class Message<T> implements Serializable
 	{
 		this.statement = statement;
 	}
-	public T getContent()
+	public Object getContent()
 	{
 		return content;
 	}
-	public void setContent(T content)
+	public void setContent(Object content)
 	{
 		this.content = content;
 	}
-	
 	
 
 }
