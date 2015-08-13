@@ -50,7 +50,7 @@ public class CourseManageAction extends BaseAction
 	 */
 	public String getTeacherAllCourse() throws IOException
 	{
-		Message msg = new Message();
+		Message<List<Course>> msg = new Message<List<Course>>();
 
 		List<Course> courses = new ArrayList<Course>();
 		List<List<Schedule>> weekSchedule = new ArrayList<List<Schedule>>();
@@ -101,7 +101,7 @@ public class CourseManageAction extends BaseAction
 			}
 			// query success
 			msg.setCode(FinalValue.SUCCESS);
-			msg.setContent("查询成功");
+			msg.setStatement("查询成功");
 			msg.setContent(courses);
 		} else
 		{
@@ -144,7 +144,7 @@ public class CourseManageAction extends BaseAction
 	 */
 	public void addOne() throws IOException
 	{
-		Message msg = new Message();
+		Message<String> msg = new Message<String>();
 		User user = (User) this.getSession().getAttribute("user");
 		if (user != null)
 		{
@@ -272,20 +272,24 @@ public class CourseManageAction extends BaseAction
 		this.teacherId = teacherId;
 	}
 
-	@SuppressWarnings("deprecation")
 	public static void main(String[] args) throws ParseException
 	{
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar calendar = Calendar.getInstance();
 		Date startDate = calendar.getTime();
 		System.out.println("startDate:" + sdf.format(startDate));
-		calendar.add(Calendar.DAY_OF_YEAR, 6);
+		calendar.add(Calendar.DAY_OF_YEAR, 15);
 		Date endDate = calendar.getTime();
 		System.out.println("endDate:" + sdf.format(endDate));
 		sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String time1="2015-07-08 18:30:00";
 		Date timeaaa = sdf.parse(time1);
 		System.out.println(Operation.changFormat(sdf, time1));
+		int []a = new int [3];
+		for (int i : a)
+		{
+			System.out.println(i);
+		}
 	}
 
 }

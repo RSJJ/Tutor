@@ -32,7 +32,7 @@ public class ScheduleManageAction extends BaseAction
 	 */
 	public void addOne() throws ParseException, IOException
 	{
-		Message msg = new Message();
+		Message<String> msg = new Message<String>();
 		schedule.setStartTime(schedule.getStartTime().replaceAll("\\+", " "));
 		schedule.setEndTime(schedule.getEndTime().replaceAll("\\+", " "));
 		if(!StringUtils.isEmpty(teacherId))

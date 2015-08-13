@@ -33,6 +33,7 @@ public class IdGenerator
 	private static final Log logger = LogFactory.getLog(IdGenerator.class);
 	private static final String STUDENT_ID_SEED = "student_id_seed";
 	private static final String TEACHER_ID_SEED = "teacher_id_seed";
+	private static final String ORDER_ID_SEED = "order_id_seed";
 	private static final String STU_ = "STU_";
 	private static final String TEA_ = "TEA_";
 	private static final String NOR_PREFIX = "NOR_";
@@ -64,6 +65,7 @@ public class IdGenerator
 
 	private AtomicLong _alStudent;
 	private AtomicLong _alTeacher;
+	private AtomicLong _alOrder;
 	private ReentrantLock _mapLock;
 	private Map<String, AtomicLong> _seedMap;
 
@@ -108,6 +110,19 @@ public class IdGenerator
 		_alTeacher = new AtomicLong(teacherId.getValue());
 		logger.info(String.format("Initialize teacher_Id_seed to %d",
 				_alTeacher.get()));
+		
+		UniqueId orderId = _uniqueIdDAO.findByName(ORDER_ID_SEED);
+		if(orderId == null)
+		{
+			// 如果没有老师种子，则生成一个老师种子
+			orderId = new UniqueId();
+			orderId.setName(TEACHER_ID_SEED);
+			orderId.setValue(0L);
+			_uniqueIdDAO.save(orderId);
+		}
+		_alOrder = new AtomicLong(orderId.getValue());
+		logger.info(String.format("Initialize order_id_seed to %d",
+				_alOrder.get()));
 
 		// 将所有的种子放入hashMap中
 		List<UniqueId> seedList = _uniqueIdDAO.findAll();
@@ -145,6 +160,15 @@ public class IdGenerator
 	{
 		long teacherId = _alTeacher.incrementAndGet();
 		return String.format(TEA_ + "%08d", teacherId);
+	}
+	/**
+	 * get order id
+	 * @return
+	 */
+	public String getOrderId()
+	{
+		long orderId = _alOrder.incrementAndGet();
+		return String.format("%012d", orderId);
 	}
 
 	/**
