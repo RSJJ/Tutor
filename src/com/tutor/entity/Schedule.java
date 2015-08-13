@@ -1,13 +1,15 @@
 package com.tutor.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.context.annotation.Scope;
@@ -43,6 +45,8 @@ public class Schedule implements Serializable
 	@Column(name="statement")
 	private String statement;
 	
+	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY,mappedBy="schedule")
+	private ShopCart shopCart;
 	
 	
 	@Override
@@ -128,5 +132,13 @@ public class Schedule implements Serializable
 	{
 		this.statement = statement;
 	}
-
+	public ShopCart getShopCart()
+	{
+		return shopCart;
+	}
+	public void setShopCart(ShopCart shopCart)
+	{
+		this.shopCart = shopCart;
+	}
+	
 }

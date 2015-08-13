@@ -11,7 +11,9 @@
 <script src="js/formCheck.js" type="text/javascript" charset="utf-8" language="javascript"></script>
 <script src="js/jquery.fancybox-1.3.4.js" type="text/javascript" charset="utf-8" language="javascript"></script>
 <script src="js/t_team_js.js" type="text/javascript" charset="utf-8" language="javascript"></script>
+<script src="js/teacher_js.js" type="text/javascript" charset="utf-8" language="javascript"></script>
 <script src="js/t_syllabus_js.js" type="text/javascript" charset="utf-8" language="javascript"></script>
+<script src="js/util.js" type="text/javascript" charset="utf-8" language="javascript"></script>
 <!-- 首页轮播图 start --> 
 
 

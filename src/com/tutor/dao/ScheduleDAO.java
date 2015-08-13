@@ -40,9 +40,26 @@ public interface ScheduleDAO
 	
 	/**
 	 * @param teacherId
+	 * @param courseId
+	 * @param startTime
+	 * @param endTime
+	 * @return
+	 */
+	public List<Schedule> findByCourseTime(String teacherId,String courseId,String startTime,String endTime);
+	
+	/**
+	 * @param teacherId
 	 * @param date
 	 * @return
 	 */
 	public List<Schedule> findByTeacherIdDate(String teacherId,String date);
+	
+	/**
+	 * @param teacherId
+	 * @param courseId
+	 * @param date
+	 * @return
+	 */
+	public List<Schedule> findByCourseDate(String teacherId,String courseId,String date);
 
 }

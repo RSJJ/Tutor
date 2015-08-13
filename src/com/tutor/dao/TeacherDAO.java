@@ -10,6 +10,11 @@ public interface TeacherDAO
 	 */
 	public Teacher find(int id);
 	/**
+	 * @param teacherId
+	 * @return
+	 */
+	public Teacher find(String teacherId);
+	/**
 	 * @param teacher
 	 */
 	public void save(Teacher teacher);
