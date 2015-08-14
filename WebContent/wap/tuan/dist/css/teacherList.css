@@ -1,0 +1,54 @@
+@CHARSET "UTF-8";
+      .leftside{
+      	position: absolute;
+        top: 42px;
+        left:0;
+        width: 35%;
+        height: 100%;
+      }
+      .rightside{
+        position: absolute;
+        top: 42px;
+        left:35%;
+        width: 60%;
+        height: 100%;
+      }
+      .activee{
+      	background: #EFEFF4;
+      }
+      input[type=search]{
+      	width:60%;
+      }
+      .searchArea{
+      	position: relative;
+		width: 80%;
+		margin: 0 auto;
+      }
+      .searchArea .btn{
+
+      	padding: 0px;
+      }
+      .rightside ul>li{
+      	background:rgba(143, 143, 143, 0.17);
+      }
+      .segmented-show{
+      	border-top: 3px solid #929292;
+      }
+      #teacherInfo{
+      	position: absolute;
+      	top: 84px;
+      	left: 0px;
+      	width:100%;
+      	height: auto;
+		z-index: 99;
+      }
+      #teacherInfo li img{
+		    width: 20%;
+		    min-width: 70px;
+      }
+      .wrap{
+      	position: absolute;
+      	top: 44px;
+      	left: 0px;
+      	z-index: 1000;
+      }

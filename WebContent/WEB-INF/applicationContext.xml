@@ -24,14 +24,14 @@
 		     
 		<property name="url" value="jdbc:mysql://localhost:3306/tutor"></property>
 		<property name="username" value="root"></property>
-		<!-- <property name="password" value="admin"></property> -->
-		<property name="password" value="root"></property>
+		 <property name="password" value="admin"></property> 
+		<!--<property name="password" value="root"></property>-->
 	</bean>
 	
 	<bean id="hibernateJpaVendorAdaptor"
 		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
 		<property name="database" value="MYSQL"></property>
-		<property name="showSql" value="false"></property>
+		<property name="showSql" value="true"></property>
 	</bean>
 	<bean id="transactionManager"
 		class="org.springframework.orm.jpa.JpaTransactionManager">

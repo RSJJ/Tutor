@@ -42,7 +42,8 @@ public class CourseManageAction extends BaseAction
 	private int courseType;
 
 	private String teacherId;
-
+	private String courseId;
+	
 	/**
 	 * 获取教师所有的课程
 	 * 
@@ -222,6 +223,7 @@ public class CourseManageAction extends BaseAction
 		this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));
 	}
 
+
 	
 	public CourseManageAction(NorCourseDAO norCourseDAO,
 			GraCourseDAO graCourseDAO, ScheduleDAO scheduleDAO)
@@ -270,6 +272,14 @@ public class CourseManageAction extends BaseAction
 	public void setTeacherId(String teacherId)
 	{
 		this.teacherId = teacherId;
+	}
+	
+	public String getCourseId() {
+		return courseId;
+	}
+
+	public void setCourseId(String courseId) {
+		this.courseId = courseId;
 	}
 
 	public static void main(String[] args) throws ParseException

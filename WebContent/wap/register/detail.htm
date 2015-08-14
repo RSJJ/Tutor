@@ -1,0 +1,246 @@
+<!doctype html>
+
+<html>
+<head>
+        <title>教师详细信息填写</title>
+        <meta charset="utf-8">
+        <link rel="icon" href="../favicon.ico" type="image/x-icon" />
+        <link rel="bookmark" href="../favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+        <meta content="width=device-width, minimum-scale=1,initial-scale=1, maximum-scale=1, user-scalable=1;" id="viewport" name="viewport" />
+        <!--离线应用的另一个技巧-->
+        <meta content="yes" name="apple-mobile-web-app-capable" />
+        <!--指定的iphone中safari顶端的状态条的样式-->
+        <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+        <!--告诉设备忽略将页面中的数字识别为电话号码-->
+        <meta content="telephone=no" name="format-detection" />
+        <!--设置开始页面图片-->
+        <!--<link rel="/touch/apple-touch-startup-image" href="startup.png" />-->
+        <!--在设置书签的时候可以显示好看的图标-->
+        <!--<link rel="apple-touch-icon" href="/touch/iphon_tetris_icon.png"/>-->
+        <link type="text/css" rel="stylesheet" href="../template/css/com/com.css"/>
+				<script>var PX_HELP_DATA=['','uo74au74aqpc8801g3htt5l2v7',['touch','register','index'],'2014/04/09 09:45:11',0,false]; var DOMIN = {MAIN:"localhos:8080",HELP:"../../help.paixie.net/",TUAN:"../../tuan.paixie.net/",WAP:"../../wap.paixie.net/",UNION:"../../union.paixie.net/",VIPSHOP:"../../v.paixie.net/"};</script>  
+
+        <script>
+		
+			var JAVASCRIPT_LIB = (('\v' !== 'v') ? 'zepto' : 'jquery');
+			JAVASCRIPT_LIB="jquery";
+            document.write('<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"><\/script>');
+			
+			
+            DOMIN.MAIN = '../';
+            // uc浏览器添加书签功能 
+           window.onmessage = function(event){
+                if(event.data.message != '')
+                {
+                    $('#otherPage').remove();
+                }else{
+                    $('#otherPage').show();
+                }
+            }
+        </script>
+        <script src="../template/js/com/com.js"></script>
+        <script src="../template/js/login/px-verify.js"></script>
+        <script src="../template/js/com/template.js"></script>
+        <script src="../template/js/com/lrz.mobile.min.js"></script>
+        <script type="text/javascript" src="../template/js/com/nicEdit.js"></script>
+        <script type="text/javascript" src="../template/js/com/bootstrap.min.js"></script>
+		<!--<script src="/template/js/com/jquery.snow.min.js"></script></script>-->
+		<script>
+		$(document).ready(function(){
+			function demo_report(title, src, size ,showid) {
+		        var img = new Image(),
+		            li = document.createElement('li'),
+		            size = (size / 1024).toFixed(2) + 'KB';
+
+		        if(size === 'NaNKB') size = '';
+
+		        img.onload = function () {
+		            var content = '<ul>' +
+		                '<li>' + title + '（' + img.width + ' X ' + img.height + '）</li>' + 
+		                '</ul>';
+		            li.className = 'item';
+		            li.innerHTML = content;
+		            li.appendChild(img);
+		            showid.html(li);
+		        };
+
+		        img.src = typeof src === 'string' ? src : URL.createObjectURL(src);
+		    }
+			$("[name='pic1']").change(function () {
+			    lrz(this.files[0], {width: 120,}, function (results) {
+			      // 你需要的数据都在这里，可以以字符串的形式传送base64给服务端转存为图片。
+			      console.log(results); 
+			      demo_report('头像', results.base64, results.base64.length * 0.8,$("#report1"));
+			    });
+			});
+			$("[name='pic2']").change(function () {
+			    lrz(this.files[0], {width: 120,}, function (results) {
+			      // 你需要的数据都在这里，可以以字符串的形式传送base64给服务端转存为图片。
+			      console.log(results); 
+			      demo_report('证件照', results.base64, results.base64.length * 0.8,$("#report2"));
+			    });
+			});
+
+			$('#introduction').css({ 'height': '80px'});
+			bkLib.onDomLoaded(function() {
+				new nicEditor({fullPanel : true,iconsPath : '../template/images/public/nicEditorIcons.png'}).panelInstance('details');
+			});
+		 });
+		</script>
+	</head>
+<body>
+	<div class="com-content">
+             					<script>
+                           
+                        function open_notice(id){
+                            setCookie('touch_notice_close',1);
+                            var url = '../new/info/'+id+'.html';
+                            window.location.href=url;
+                        }   
+                           
+                        var touch_notice_close = getCookie('touch_notice_close');
+                        if(touch_notice_close == '1' && typeof(document.getElementById('js-com-notification2')) != 'undefined' && document.getElementById('js-com-notification2') != null){
+                            document.getElementById('js-com-notification2').style.display = 'none';
+                        }
+			//if( document.cookie.match(new RegExp("(^| )PHPSESSID=([^;]*)(;|$)")) ){
+			  //  document.getElementById('js-com-notification').style.display = 'none';
+		//	}
+			</script>
+            <div class="com-header-area" id="js-com-header-area">
+                <a href="../index.html" class="com-header-logo"></a>
+				<dfn></dfn>
+                <p>
+                    <a class="com-header-search" id="js-com-header-search"><del></del></a>
+                    <a href="../login/default.htm" class="com-header-user selected"><del></del></a>
+                    <i></i>
+                    <a href="../cart/default.htm" class="com-header-cart "><b id="header-cart-num">0</b><del></del></a>
+                </p>
+				<div class="clear"></div>
+                <form action="/s.php" method="post">
+                    <strong>
+                        <input type="text" name="keyword" id="js-com-search-text" value=""/>
+                        <input type="submit" value=" "/>
+                    </strong>
+                    <div id="js-com-search-recommend">
+                        <div></div>
+                                                <a href="../p-_m0003s0017_1.html@asc=id"  style="color:#000000	">小学语文</a>
+                                                <a href="../p-m0001_id;1.html"  style="color:#ed1749">初中数学</a>
+                                                <a href="../p-m0001s0014_1.html"  style="color:#000000">高中外语</a>
+                         
+                    </div>
+                </form>
+            </div>
+            <div class="com-content-area" id="js-com-content-area">
+                <!--content-->
+              			  
+<div class="page-role">
+    <script type="text/javascript">
+        var returnurl = '../member/';
+    </script>
+    <script src="../template/js/login/register.js"></script>
+	<div class="page-title"><a href="javascript:history.back();void(0)" class="return">返 回</a>用户注册<a href="../login/default.htm">登录<i></i></a></div>
+	<form class="pxui-form-info" id="js-register-form" method = "post" action="../teacherRegister">
+		<p class="error-msg" id="js-error-msg"></p>
+		<div>
+			<span>所在省份：</span><p>
+			<input name="province" placeholder="如：北京" type="text"/></p>
+		</div>
+		<div>
+			<span>所在城市：</span><p>
+			<input name="city" placeholder="如：北京" type="text"/></p>
+		</div>
+		<div>
+			<span>详细地址：</span><p>
+			<input name="address" placeholder="如：海淀区北京交通大学" type="text"/></p>
+		</div>
+		<div>
+			<span>职业：</span><p>
+            <input type="button" onclick="inp()" value="在职学生" name="zzxs" />
+            <input type="button" onclick="inp1()" value="在职教师" name="zzjs" /></p>
+            
+			<div id="zzxs_">
+            	<span>所在学校：</span>
+                <input name="zs_xx" placeholder="如：北京交通大学" type="text" />
+                <span>所在专业：</span>
+                <input name="zs_zy" placeholder="如：计算机科学" type="text" />                      
+            </div>
+			<div id="zzjs_">
+            	<span>所在学校：</span>
+                <input name="js_xx" placeholder="如：北京第一中学" type="text"/>
+                <span>所教课程：</span>
+                <input name="js_kc" placeholder="如：数学" type="text"/>                      
+            </div>
+	<!--		<input name="status" placeholder="如：学生" type="text"/></p>		-->
+		</div>
+		<div>
+			<span>个人头像：</span><p>
+			<input name="pic1" placeholder="请上传您的个人头像" type="file" capture="camera"/></p>
+		</div>
+			<div id="report1" style="margin-left:15%;">
+				
+			</div>
+		<div>
+			<span>证件照：</span><p>
+			<input name="pic2" placeholder="请上传工作证/学生证，以便证实您的身份" type="file" capture="camera"/></p>
+		</div>
+			<div id="report2" style="margin-left:15%;">
+				
+			</div>
+		<div>
+			<span>个人简介：</span><p>
+			<textarea rows="3" cols="20" placeholder="个人简介"  id="introduction" ></textarea>
+			<input name="introduction" placeholder="个人简介" type="text" style="display:none" /></p>
+		</div>
+		<div>
+			<span>详细介绍：</span>
+			<p style="background-color:white;">
+				<textarea style="height: 100px;" cols="50" id="details" placeholder="详细介绍：如某年某月某日，得到什么奖项"></textarea>
+			</p>
+			
+		</div>
+
+		<div>
+			<span>银行账户：</span><p>
+			<input name="bankaccount" placeholder="请填入银行账户，以便将您的收入打入该账户" type="text"/></p>
+		</div>
+		<div>
+			<span>开户银行：</span><p>
+			<input name="des_bank" placeholder="开户银行地址" type="text"/></p>
+		</div>
+		<div>
+			<span>&nbsp;</span>
+			<a href=""><span><input type="submit" value="保存信息" id="js-register" class="pxui-light-button"/></span></a>
+			<span>&nbsp;</span>
+		</div>
+	</form>
+</div>
+<!--content-end-->
+		</div>
+	<div class="com-footer-area" id="js-com-footer-area">
+				<div class="com-footer-nav">
+					<a href="../index.html">首页</a><a href="../help/index.html">帮助中心</a><a href="../feedback/index.html">反馈建议</a>
+				</div>
+	</div>
+
+
+<div style="display:none;">
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F188d758416f87a421ba1c700763fa0bf' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<script>
+function inp(){
+	document.getElementById("zzxs_").style.display = "block"; 
+	document.getElementById("zzjs_").style.display = "none";
+}
+function inp1(){
+	document.getElementById("zzjs_").style.display = "block"; 
+	document.getElementById("zzxs_").style.display = "none"; 
+}
+
+</script>
+</div>
+</body>
+</html>

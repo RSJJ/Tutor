@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.tutor.dao.NorCourseDAO;
 import com.tutor.entity.NorCourse;
+import com.tutor.entity.Teacher;
 @Transactional
 public class NorCourseDAOImpl implements NorCourseDAO
 {
@@ -49,4 +50,12 @@ public class NorCourseDAOImpl implements NorCourseDAO
 		return query.getResultList();
 	}
 
+	@Override
+	public List<Teacher> findByCourseId(String courseId) {
+		// TODO Auto-generated method stub
+		String sql = "SELECT u FROM Teacher u WHERE u.teacherId = (SELECT DISTINCT a.teacherId FROM Schedule a WHERE a.availableCourse LIKE '%"+courseId+"%')";
+		Query query = entityManager.createQuery(sql);
+		return query.getResultList();
+	}
+	
 }

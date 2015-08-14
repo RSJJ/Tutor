@@ -5,6 +5,6 @@
         <wb-resource deploy-path="/" source-path="/WebContent/login"/>
         <wb-resource deploy-path="/" source-path="/WebContent/users"/>
         <property name="context-root" value="Tutor"/>
-        <property name="java-output-path" value="/Tutor/build/classes"/>
+        <property name="java-output-path" value="/xfxTutor/build/classes"/>
     </wb-module>
 </project-modules>
