@@ -7,6 +7,7 @@
 <title></title>
 <link href="css/global.css" rel="stylesheet" type="text/css"  charset="utf-8"  />
 <link href="css/erji.css" rel="stylesheet" type="text/css"  charset="utf-8"  />
+<link href="css/select.css" rel="stylesheet" type="text/css" charset="utf-8"  />
 <script src="js/jquery.min.js" type="text/javascript" charset="utf-8" language="javascript"></script>
 <script src="js/formCheck.js" type="text/javascript" charset="utf-8" language="javascript"></script>
 <script src="js/jquery.fancybox-1.3.4.js" type="text/javascript" charset="utf-8" language="javascript"></script>
@@ -115,7 +116,10 @@
 					<tr class="t">
 						<td colspan="2"><span>上午</span>(6:00-12:00)</td>
 					</tr>
-					<tr><td>18:00-18:30</td><td class="gm" title=""><p id="p692926" style="cursor: pointer" onclick=""><input type="checkbox" id="">可购买，70元</p></td></tr>
+					<tr><td>18:00-18:30</td><td class="gm" title="">
+					<div class="M-main-E left">
+						<a href="javascript:void();" title="加入购物车" class="baseBg Q-buy-btn" id="buy-s-3">加入购物车</a>
+					</div></td></tr>
                  	<tr><td>18:30-19:00</td><td class="gm" title=""><p id="p692927" style="cursor: pointer" onclick=""><input type="checkbox" id="">可购买，70元</p></td></tr>
 				</tbody>
 			</table>
@@ -185,7 +189,39 @@
       </div>
     </div>
   
-  
+  <!--J-shoping-->
+<div class="J-shoping J-shoping-small">
+	<div class="J-shoping-item">
+		<a href="http://sc.chinaz.com/" title="" id="U-attion"><em class="baseBg"></em>我关注的资源<span class="baseBg"></span></a>
+		<div class="baseBg J-L-ico J-shoping-pos"></div>
+		<div class="J-shoping-main">
+			<div class="J-shoping-title">
+				<a href="#" title="" class="J-go"><em class="baseBg"></em>购物车</a>
+				<span class="baseBg J-shoping-num">0</span>
+			</div>
+			<div class="baseBg J-shoping-mx"></div>
+			<div class="J-shoping-px"></div>
+			<div class="J-shoping-body">
+				<div class="J-shoping-buy">
+					<span>最多显示最新<strong>5</strong>条</span>
+					<a class="baseBg" href="http://sc.chinaz.com/" title="去购物车结算"></a>
+				</div>
+			</div>
+		</div>
+		<div class="baseBg J-R-ico J-shoping-pos"></div>
+	</div>
+</div>
+<a href="http://sc.chinaz.com/" title="在线客服" class="baseBg Q-online"></a>
+
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jQuery-shopping.js"></script>
+<script type="text/javascript" >
+$(function(){
+   $('.Q-buy-btn').shoping(); //调用shoping函数
+});
+</script>
+<div style="text-align:center;clear:both">
   
   
 <!--底部 start-->   
