@@ -6,7 +6,7 @@ a{text-decoration:none;color:#347bc7;}
 a:hover{text-decoration:underline;}
 p{word-wrap:break-word;}
 .left{float:left;}
-.right{float:right;}
+.mright{margin-left:20px;}
 .block{display:block;}
 .clear{clear:both;}
 em,i{font-style:normal;}
@@ -72,8 +72,8 @@ em,i{font-style:normal;}
 .M-main-D del{margin:0px 3px;}
 .M-main-D span{font-weight:bold;color:#ff4400;margin:0px 3px;}
 .M-main-D em{position:absolute;left:5px;top:30px;}
-.M-main-E{width:15%;height:65px;text-align:center;}
-.M-main-E a{display:block;color:#fff;background-position:-6px -193px;width:75px;height:21px;line-height:21px;padding-left:30px;margin:12px auto 0px;}
+.M-main-E{width:15%;text-align:center;}
+.M-main-E a{display:block;color:#fff;background-position:-6px -193px;width: 46px;height: 22px;line-height:21px;padding-left:30px;margin:12px auto 0px;cursor: pointer;}
 .M-main-E a:hover{text-decoration:none;}
 .M-main-E a.dis-click{background-position:-3px -307px;color:#cdcdcd;cursor:default;}
 .M-main-E span{cursor:pointer;color:#666;}

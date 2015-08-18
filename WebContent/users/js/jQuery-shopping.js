@@ -15,6 +15,7 @@
 				$num=$('.J-shoping-num'),
 				$close=$('.J-shoping-close');
 			var S={
+					
 				init:function(){
 					$title.bind('click',this.clickOnTitle);
 					$close.live('click',this.removeList);
@@ -36,6 +37,16 @@
 						y = $target.offset().top + 10,
 						X = $shop.offset().left+$shop.width()/2-$target.width()/2+10,
 						Y = $shop.offset().top;
+					/*var ttt=$('#'+id).parent().children('input').val();
+					alert(ttt);*/
+					var teacher="李宏伟";
+					var course="数学";
+					var time=$('#'+id).parent().parent().parent().children('td:eq(0)').text();
+					var scheduleId = $('#'+id).parent().children("input[name='schduleId']").val();
+					var month=$('.yf').text(),
+						day=$('.rq').text(),
+						date=month+day+'日';
+					var price="70元";
 					if(dis){
 						if ($('#floatOrder').length <= 0) {
 							$('body').append('<div id="floatOrder"><img src="images/course.png" width="50" height="50" /></div');
@@ -49,9 +60,9 @@
 										$target.data('click',false).addClass('dis-click');
 										var l=$('.J-shoping-list').length,
 											num=Number($num.text());
-										if(l<5){
-											$body.prepend('<div class="J-shoping-list" data-id="'+id+'"><a href="#"title=""><img src="images/course.png" width="50"height="50"/></a><div class="J-shoping-list-a"><p>彩涂板卷(镀铝锌基板)</p><p><span class="left">TDC51D+AZ</span><span class="right"><em>150.000</em>吨</span></p></div><div class="baseBg J-shoping-close"></div></div>');
-										};
+										/*if(l<5){*/
+											$body.prepend('<div class="J-shoping-list" data-id="'+id+'"> <input type="hidden" name="shopCartCourseId" value="'+scheduleId+'" > <a href="javascript:void();"title=""><img src="images/course.png" width="50"height="50"/></a><div class="J-shoping-list-a"><p><span class="left">'+teacher+'</span><span class="mright">'+course+'</span></p><p><span class="left">'+date+'</span><span class="mright">'+time+'</span><span class="mright"><em>'+price+'</em></span></p></div><div class="baseBg J-shoping-close"></div></div>');
+										/*};*/
 										$num.text(num+1);
 									});
 								});

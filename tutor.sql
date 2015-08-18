@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50173
 File Encoding         : 65001
 
-Date: 2015-08-14 10:57:47
+Date: 2015-08-19 00:40:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -96,7 +96,7 @@ CREATE TABLE `schedule` (
   KEY `sch_teacher_id` (`teacher_id`),
   KEY `id` (`id`),
   CONSTRAINT `sch_teacher_id` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`teacher_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of schedule
@@ -113,6 +113,12 @@ INSERT INTO `schedule` VALUES ('0000000009', 'TEA_00000001', '2015-07-09 19:30:0
 INSERT INTO `schedule` VALUES ('0000000010', 'TEA_00000001', '2015-08-04 06:30:00', '2015-08-04 08:00:00', '0000000000', 'NOR_00000004!#GRA_00000006!#', '1', '000', null);
 INSERT INTO `schedule` VALUES ('0000000011', 'TEA_00000001', '2015-08-04 12:30:00', '2015-08-04 16:30:00', '0000000004', 'NOR_00000004!#GRA_00000006!#GRA_00000006!#', '2', '000', null);
 INSERT INTO `schedule` VALUES ('0000000012', 'TEA_00000001', '2015-08-06 12:00:00', '2015-08-06 18:00:00', '0000000004', 'NOR_00000004!#GRA_00000006!#GRA_00000006!#', '2', '000', null);
+INSERT INTO `schedule` VALUES ('0000000013', 'TEA_00000001', '2015-08-17 06:00:00', '2015-08-17 07:00:00', '0000000000', 'GRA_123456!#', '1', '000', null);
+INSERT INTO `schedule` VALUES ('0000000014', 'TEA_00000001', '2015-08-17 07:00:00', '2015-08-17 08:00:00', '0000000000', 'GRA_00000006!#', '1', '000', null);
+INSERT INTO `schedule` VALUES ('0000000015', 'TEA_00000001', '2015-08-17 13:00:00', '2015-08-17 18:00:00', '0000000000', 'GRA_00000007!#GRA_00000009!#GRA_00000010!#', '1', '000', null);
+INSERT INTO `schedule` VALUES ('0000000016', 'TEA_00000001', '2015-08-17 21:30:00', '2015-08-17 22:30:00', '0000000000', 'GRA_123456!#', '1', '000', null);
+INSERT INTO `schedule` VALUES ('0000000017', 'TEA_00000001', '2015-08-20 06:00:00', '2015-08-20 07:00:00', '0000000000', 'GRA_123456!#', '1', '000', null);
+INSERT INTO `schedule` VALUES ('0000000018', 'TEA_00000001', '2015-08-20 08:00:00', '2015-08-20 09:30:00', '0000000000', 'GRA_123456!#', '1', '000', null);
 
 -- ----------------------------
 -- Table structure for `shop_cart`
@@ -193,12 +199,13 @@ CREATE TABLE `teacher` (
   `statement` text,
   PRIMARY KEY (`id`,`teacher_id`),
   KEY `teacher_id` (`teacher_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of teacher
 -- ----------------------------
-INSERT INTO `teacher` VALUES ('0000000002', 'TEA_00000001', '34534534534', '123456', 'm', '123@qq.com', '13581542929', null, null, null, null, null, null, null, null, null, null, '2015-08-13 11:53:36', '0000000000', '0000000000', '0000000000', '0000000000', '0003', 'nnnn');
+INSERT INTO `teacher` VALUES ('0000000002', 'TEA_00000001', '34534534534', '123456', 'm', '123@qq.com', '13581542929', null, null, null, null, null, null, null, null, null, null, '2015-08-18 20:36:12', '0000000000', '0000000000', '0000000000', '0000000000', '0003', 'nnnn');
+INSERT INTO `teacher` VALUES ('0000000003', 'TEA_00000001', null, '123456', null, '111@qq.com', '13126809870', null, null, null, null, null, null, null, null, '2015-08-15 16:14:23', null, null, '0000000000', '0000000000', '0000000000', '0000000000', '0000', 'nnn');
 
 -- ----------------------------
 -- Table structure for `unique_id`
@@ -209,7 +216,7 @@ CREATE TABLE `unique_id` (
   `unique_id_name` varchar(32) DEFAULT NULL,
   `unique_id_value` bigint(20) unsigned zerofill NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of unique_id
@@ -236,3 +243,40 @@ INSERT INTO `unique_id` VALUES ('0000000020', 'teacher_id_seed', '00000000000000
 INSERT INTO `unique_id` VALUES ('0000000021', 'teacher_id_seed', '00000000000000000000');
 INSERT INTO `unique_id` VALUES ('0000000022', 'teacher_id_seed', '00000000000000000000');
 INSERT INTO `unique_id` VALUES ('0000000023', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000024', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000025', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000026', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000027', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000028', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000029', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000030', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000031', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000032', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000033', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000034', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000035', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000036', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000037', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000038', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000039', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000040', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000041', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000042', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000043', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000044', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000045', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000046', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000047', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000048', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000049', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000050', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000051', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000052', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000053', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000054', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000055', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000056', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000057', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000058', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000059', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000060', 'teacher_id_seed', '00000000000000000000');
