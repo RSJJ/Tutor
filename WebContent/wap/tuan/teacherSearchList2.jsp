@@ -1,3 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import="com.tutor.entity.Teacher,java.util.*"%>
+ <%String path = request.getContextPath();  
+   String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";  
+ %>
+ <%@ taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -14,7 +20,38 @@
 	<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
 
-	<script src="../template/js/com/STATICVAR.js"></script>
+	<script type="text/javascript">
+    var collumn = [
+    	{
+    		"grand":"小学",
+    		"course":[{"name":"语文","url":""},{"name":"数学","url":"showTeacherInfByCourseId?courseId=NOR_00000005"},{"name":"外语","url":""}]
+    	},
+    	{
+    		"grand":"初中",
+    		"course":[{"name":"语文","url":""},{"name":"数学","url":""},{"name":"外语","url":""},{"name":"物理","url":""},{"name":"化学","url":""},{"name":"生物","url":""},{"name":"政治","url":""},{"name":"地理","url":""},{"name":"奥数","url":""}]
+    	},
+    	{
+    		"grand":"高中",
+    		"course":[{"name":"语文","url":""},{"name":"数学","url":""},{"name":"外语","url":""},{"name":"物理","url":""},{"name":"化学","url":""},{"name":"生物","url":""},{"name":"政治","url":""},{"name":"地理","url":""},{"name":"奥数","url":""}]
+    	},
+    	{
+    		"grand":"大学",
+    		"course":[{"name":"高数","url":""},{"name":"大物","url":""},{"name":"思政","url":""}]
+    	},
+    	{
+    		"grand":"小升初",
+    		"course":[{"name":"语文","url":""},{"name":"数学","url":""},{"name":"外语","url":""}]
+    	},
+    	{
+    		"grand":"中考",
+    		"course":[{"name":"语文","url":""},{"name":"数学","url":""},{"name":"外语","url":""},{"name":"物理","url":""},{"name":"化学","url":""},{"name":"生物","url":""},{"name":"政治","url":""},{"name":"地理","url":""},{"name":"理综","url":""},{"name":"文综","url":""}]
+       	},
+    	{
+    		"grand":"高考",
+    		"course":[{"name":"语文","url":""},{"name":"数学","url":""},{"name":"外语","url":""},{"name":"物理","url":""},{"name":"化学","url":""},{"name":"生物","url":""},{"name":"政治","url":""},{"name":"地理","url":""},{"name":"理综","url":""},{"name":"文综","url":""}]
+       	}
+    ]
+    </script>
   </head>
   <body>
 	<div data-role="page" id="pageone">
@@ -23,7 +60,7 @@
 		  <div class="searchArea">
 		  	<input type="search" placeholder="Search">
 		  </div>
-		  <a href="#" id="maphref" data-role="button" data-icon="grid" data-ajax="false">地图</a>
+		  <a href="#" data-role="button" data-icon="grid" >地图</a>
 		  <div data-role="navbar" data-iconpos="left" class="segmented-control">
 		      <ul>
 		        <li><a class="control-item active"  data-icon="plus"  href="#item1">课程类型</a></li>
@@ -78,7 +115,7 @@
 				<div id="teacherInfo">
 					<ul data-role="listview">
 					  <li class="teali">
-					    <a href="#" class="teahref" data-ajax='false'>
+					    <a href="#" class="teahref">
 					    <img src="../template\images\good\ID2/1.jpg">
 					    <h2 class="teaname">Google Chrome</h2>
 					    <p class="teaschool">北京交通大学&nbsp;&nbsp;&nbsp;&nbsp;控制科学与工程</p>
@@ -106,8 +143,9 @@
 	<div data-role="footer" id="footer">
 		  <div data-role="navbar" data-iconpos="left">
 		      <ul>
-		        <li> <a href="../index.html" data-ajax="false" data-role="button">首页</a></li>
-		        <li> <a href="#pagetwo" data-role="button">个人中心</a></li>
+		        <li> <a href="#pagetwo" data-role="button">首页</a></li>
+		        <li> <a href="#pagetwo" data-role="button">立即预约</a></li>
+		        <li> <a href="#pagetwo" data-role="button">立即预约</a></li>
 		      </ul>
 	      </div>
 	    </div>
@@ -156,7 +194,7 @@
    			templi.find(".teaname").html(data[i].name);
    			templi.find(".teaschool").html(data[i].school+"&nbsp;&nbsp;&nbsp;&nbsp;"+data[i].profession);
    			templi.find(".teaintro").html(data[i].introduction);
-   			templi.find(".teahref").attr('href','teacherInf.jsp?teacherId='+data[i].teacherId)
+   			templi.find(".teahref").css('href','teacherInf.jsp?teacherId='+data[i].teacherId)
    			$("#teacherInfo ul").append(templi);
    		})
    }
@@ -181,7 +219,6 @@
     }
     $(document).ready(function(){
     		showTeacherInfList()
-    		$("#maphref").attr('href','teacherSearchMap.jsp'+location.search);
     		for (var i=0 ; i <= collumn.length - 1; i++) {
     			var leftside = i==0?'<li class="table-view-cell activee"><a class="navigate-right grand" data-transition="slide-in" id="test" data-grandid = "'+i+'">'+collumn[i].grand+'</a></li>':'<li class="table-view-cell"><a class="navigate-right grand" data-transition="slide-in" id="test" data-grandid = "'+i+'">'+collumn[i].grand+'</a></li>';
     			$("#left").append(leftside);

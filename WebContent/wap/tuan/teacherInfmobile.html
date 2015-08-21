@@ -1,9 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-     <%String path = request.getContextPath();  
-   String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";  
- %>
-  <%@ taglib uri="/struts-tags" prefix="s"%><!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -59,12 +54,14 @@
 	}
       .content{ 
       	padding:0px !important;
+      }
+     #content{ 
 		position:absolute; z-index:1;
 		top:85px; bottom:41px; left:0;
 		width:100%;
 		background:#555;
-		overflow-x:hidden;
-      }
+		overflow:hidden;
+     }
 	#footer {
 		position:absolute;
 		bottom:0; 
@@ -75,7 +72,7 @@
 	.wrap{ 
 		margin:10px 0;
 		background: white;
-		width: 99%;
+		width: 100%;
 		height:auto;
 		padding: 5px;
 	}
@@ -120,23 +117,23 @@
 	  	<div data-role="header">
 		  <a href="#" data-role="button" data-icon="back"  onclick="javascript:window.history.go(-1)">返回</a>
 		  <h1>杨老师</h1>
-		  <a href="#" data-role="button" data-icon="grid" data-ajax="false" class="maphref">地图</a>
+		  <a href="#" data-role="button" data-icon="grid">地图</a>
 		  <div data-role="navbar" data-iconpos="left">
 		      <ul>
 		        <li><a href="#pageone" class="ui-btn-active" data-icon="info">主页</a></li>
-		        <li><a href="#pagetwo" data-icon="grid">开设课程</a></li>
+		        <li><a href="#pagetwo" data-icon="grid">开设课程<span class="ui-li-count">335</span></a></li>
 		      </ul>
 	      </div>
 		</div>
-		
-		<div data-role="content" class="content">
+
+		<div data-role="content" class="content" id="content">
 			<div class="wrap icon">
 				<div class="img">
-					<img src="../template/images/good/ID2/1.jpg">
+					<img src="../template\images\good/ID2/1.jpg">
 					<h3>杨老师</h3>
 				</div>
 			</div>
-			<div class="wrap basicinfo">
+			<div class="wrap">
 			<h3>基本信息</h3>
 				<ul class="goodinfo"  >
 		            <li>
@@ -149,23 +146,20 @@
 		            </li>
 		            <li>
 		                <strong>认&nbsp;证</strong>
-		                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="teaStatus">身份认证</span>
+		                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>身份认证</span>
 		            </li>
 	         	</ul>
 			</div>
 			<div class="wrap">
 				<h3>个人简介</h3>
-			    <ul class="goodinfo" id="teaIntro">
+			    <ul class="goodinfo"  >
 		            <p>本人热情活泼，乐观，积极。现就读 于某某大学师范学院美术系大二，在班上一直担任学生干部，工作认真负责。经过大一一年的锻炼，丰富了自己的阅历，磨练了自己的性格，懂得对人讲诚信，讲原则，学习上成绩优秀，获得国家励志奖学金和学业奖学金两个奖项，并曾在2010年大一下学期被学院评为优秀共青团员等。</p>
-		        </ul>
+		         </ul>
+
 			</div>
-			<div class="wrap">
-				<h3>教学成果</h3>
-			    <ul class="goodinfo">
-			    	<h4>2014年9月3日~2015年9月3日</h4>
-		            <p>获得国家励志奖学金和学业奖学金两个奖项，并曾在2010年大一下学期被学院评为优秀共青团员等。</p>
-		        </ul>
-			</div>
+		    
+			
+
 		</div>
 
 		<div data-role="footer" id="footer">
@@ -181,48 +175,29 @@
 	  	<div data-role="header">
 		  <a href="#" data-role="button" data-icon="back"  onclick="javascript:window.history.go(-1)">返回</a>
 		  <h1>杨老师</h1>
-		  <a href="#" data-role="button" data-icon="grid" data-ajax="false" class="maphref">地图</a>
+		  <a href="#" data-role="button" data-icon="grid">地图</a>
 		  <div data-role="navbar" data-iconpos="left">
 		      <ul>
 		        <li><a href="#pageone" data-icon="info">主页</a></li>
-		        <li><a href="#pagetwo"  class="ui-btn-active" data-icon="grid">开设课程</a></li>
+		        <li><a href="#pagetwo"  class="ui-btn-active" data-icon="grid">开设课程<span class="ui-li-count">335</span></a></li>
 		      </ul>
 	      </div>
 		</div>
-		<script type="text/javascript">
-		function setTeacherInfo(data){
-			var teacher = data.teacher;
-			var norCourse = data.norCourses;
-			var graCourse = data.graCourses;
-			var imgsrc = "<%=basePath%>"+teacher.icon;
-			var maphref = teacher.teacherId
-			$(".maphref").attr('href','teacherSearchMap.jsp?mode=tea&id='+maphref);
-			var status;
-			switch(teacher.status)
-			{
-				case 3:status = '老师认证';	break;
-				default:status = '待核实';	break;
-			}
-			$("#content .icon .img img").attr('src',imgsrc);
-			$("#content .icon .img h3").html(teacher.name);
-			$("#teaschool").html(teacher.school);
-			$("#teaprofession").html(teacher.profession);
-			$("#teaStatus").html(status);
-			$("#teaIntro").html(teacher.detailedIntroduction);
-			var temp="";
-			for(var i=0;i< norCourse.length;i++){
-				temp +="<li class='ui-li ui-li-static ui-btn-up-c ui-first-child'><h2 class='ui-li-heading'>"+norCourse[i].grade+norCourse[i].course+"</h2><p class='ui-li-desc'>"+norCourse[i].statement+"</p><p class='ui-li-desc'>线上:"+norCourse[i].priceOn+"元/h&nbsp;&nbsp;&nbsp;&nbsp;线下:"+norCourse[i].priceOff+"元/h</p>"
-			}
-			for(var i=0;i< graCourse.length;i++){
-				temp +="<li class='ui-li ui-li-static ui-btn-up-c ui-first-child'><h2  class='ui-li-heading'>"+graCourse[i].school+"-"+graCourse[i].academy+"-"+graCourse[i].course+"</h2><p  class='ui-li-desc'>"+graCourse[i].statement+"</p><p class='ui-li-desc'>线上:"+graCourse[i].priceOn+"元/h&nbsp;&nbsp;&nbsp;&nbsp;线下:"+graCourse[i].priceOff+"元/h</p>"
-			}
-			$("#classlist").append(temp);
-		};
-			
-		</script>
+
 		<div data-role="content" class="content">
-			 <ul data-role="listview" data-inset="true" id="classlist">
-			      
+			 <ul data-role="listview" data-inset="true">
+			      <li>
+			        
+			        <h2>小一语文</h2>
+			        <p>Google Chrome is a free, open-source web browser. Released in 2008.</p>
+			        
+			      </li>
+			      <li>
+			        
+			        <h2>高一物理</h2>
+			        <p>Firefox is a web browser from Mozilla. Released in 2004.</p>
+			        
+			      </li>
 			 </ul>
 		    
 		</div>
@@ -241,29 +216,5 @@
 </html>
 
 <script>
-
-function showTeacherInfo(){
-    $.ajax({ 
-        url:"showSingleTeacher",
-        type:"GET",
-        dataType:"json",
-        data:{
-        	teacherId:'<%=request.getParameter("teacherId")%>'
-    	},
-        success:function(data){
-            console.log(data);
-            setTeacherInfo(data);
-        	//return _this._callback(callback,data.isSuccess,data.message,data)
-        },
-        error:function(data){ 
-            console.log(data);
-            alert("连接服务器失败，请稍后再试");
-            //return _this._callback(callback,false,"连接服务器失败，请稍后再试",data);
-        }
-    })
-}
-$(document).ready(function(){
-	showTeacherInfo()
-})
 
 </script> 

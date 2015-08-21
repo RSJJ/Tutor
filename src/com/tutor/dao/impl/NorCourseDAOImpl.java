@@ -57,5 +57,15 @@ public class NorCourseDAOImpl implements NorCourseDAO
 		Query query = entityManager.createQuery(sql);
 		return query.getResultList();
 	}
+
+	@Override
+	public List<Teacher> findByGradeCourse(String courseGrade, String courseName) {
+		// TODO Auto-generated method stub
+		String sql = "SELECT u FROM Teacher u WHERE u.teacherId = (SELECT DISTINCT a.teacherId FROM NorCourse a WHERE a.grade LIKE '"+courseGrade+"%' and a.course = '"+courseName+"')";
+		Query query = entityManager.createQuery(sql);
+		return query.getResultList();
+	}
+	
+	
 	
 }

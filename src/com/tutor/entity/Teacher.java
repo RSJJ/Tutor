@@ -75,9 +75,9 @@ public class Teacher implements Serializable
 	private String statement;
 	
 	@Column(name="lng")
-	private Float lng;
+	private Double lng;
 	@Column(name="lat")
-	private Float lat;
+	private Double lat;
 	@Column(name="school")
 	private String school;
 	@Column(name="profession")
@@ -292,16 +292,16 @@ public class Teacher implements Serializable
 	{
 		this.statement = statement;
 	}
-	public Float getLng() {
+	public Double getLng() {
 		return lng;
 	}
-	public void setLng(Float lng) {
+	public void setLng(Double lng) {
 		this.lng = lng;
 	}
-	public Float getLat() {
+	public Double getLat() {
 		return lat;
 	}
-	public void setLat(Float lat) {
+	public void setLat(Double lat) {
 		this.lat = lat;
 	}
 	public String getSchool() {

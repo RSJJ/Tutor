@@ -14,15 +14,11 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
     <!-- Roboto -->
+	<link rel="stylesheet" href="<%=path %>/wap/tuan/dist/css/teacherList.css"/>
+    <link rel="stylesheet" href="<%=path %>/wap/tuan/dist/css/ratchet.min.css"/>
+    <link rel="stylesheet" href="<%=path %>/wap/tuan/dist/css/ratchet-theme-ios.min.css"/>
 
-  </head>
-  <body>
-  <div>
-  	
-    <link rel="stylesheet" href="<%=path %>/wap/tuan/dist/css/ratchet.min.css">
-    <link rel="stylesheet" href="<%=path %>/wap/tuan/dist/css/ratchet-theme-ios.min.css">
-    <link rel="stylesheet" href="<%=path %>/wap/tuan/dist/css/teacherList.css">
-	<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script> 
+	<script src="<%=path %>/wap/template/js/com/jquery.min.js"></script> 
     <script src="<%=path %>/wap/tuan/dist/js/ratchet.min.js"></script>
     <script src="<%=path %>/wap/tuan/dist/js/sliders.js"></script>
 
@@ -58,12 +54,13 @@
        	}
     ]
     </script>
-  </div>
+  </head>
+  <body>
     <header class="bar bar-nav">
       <button class="btn btn-link btn-nav pull-left"  onclick="javascript:window.history.go(-1)">
         <span class="icon icon-left-nav"></span>
       </button>
-      <a class="btn pull-right" herf="jumpToTeacherMap?courseId=<s:property value="courseId"/>">
+      <a class="btn pull-right" href="jumpToTeacherMap?courseId=<s:property value="courseId"/>">
 	    	地图
 	  </a>
 	  <div class="searchArea">

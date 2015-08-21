@@ -8,15 +8,11 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
     <!-- Roboto -->
-
-    <link rel="stylesheet" href="dist/css/ratchet.min.css">
-    <link rel="stylesheet" href="dist/css/ratchet-theme-ios.min.css">
-<link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" /> 
+	<link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" /> 
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
+	<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
 	<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script> 
-    <script src="dist/js/ratchet.min.js"></script>
-    <script src="dist/js/sliders.js"></script>
-    <script src="dist/js/push.js"></script>
-    <script src="dist/js/modals.js"></script>
 	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=r6bfCVxPZTpoKGGNthyuupYh"></script>
 	<script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
 	<script type="text/javascript" src="http://developer.baidu.com/map/jsdemo/demo/convertor.js"></script>
@@ -45,47 +41,37 @@
       	padding:8px;
       	z-index:1001;
       }
+      .table-view-cell{ 
+      	position: relative;
+		padding: 11px 65px 11px 15px;
+		overflow: hidden;
+      }
+      .table-view-cell:last-child {
+		border-bottom: 0;
+	}
+      .content{ 
+      	padding:0px !important;
+      }
     </style>
 
 
   </head>
   <body>
-    <header class="bar bar-nav">
-      <button class="btn btn-link btn-nav pull-left" onclick="javascript:window.history.go(-1)">
-        <span class="icon icon-left-nav"></span>
-      </button>
-      <span class="title">筛选老师</span>
-      <a class="btn btn-link btn-nav pull-right" href="teacherSearchList.html">
-        <span class="icon icon-list"></span>
-		列表
-      </a>
-    </header>
+<div data-role="page" id="pageone">
+  	<div data-role="header">
+	  <a href="#" data-role="button" data-icon="back"  onclick="javascript:window.history.go(-1)">返回</a>
+	  <h1>筛选老师</h1>
+	  <a href="#" data-role="button" data-icon="grid">列表</a>
+	</div>
 
-
-	<nav class="bar bar-standard  bar-header-secondary">
-	  <div class="segmented-control" >
-	    <a class="control-item active">范围</a>
-	    	
-	    <a class="control-item">价格</a>
-	  </div>
-	</nav>
-
-    <div class="content">
-      <div class="wrap">
-      	 <div id="r-map" class="map"></div>
-      	 
-      </div>
-      
-    </div>
-    
-	<a class="overlay">
-	
-	</a>
-    <div class="infowindow">
-    	<div class="content">
-			  <div class="table-view-cell media">
+	<div data-role="content" class="content">
+	    <div id="r-map" class="map"></div>
+	    <a class="overlay" style="display:none"></a>
+		<div class="infowindow" style="display:none">
+    		<div class="content">
+			  <div class="media">
 			    <a class="navigate-right">
-			      <img class="media-object pull-left" src="http://placehold.it/42x42">
+			      <img class="media-object pull-left" src="">
 			      <div class="media-body">
 			        	杨老师
 			        <p>北京交通大学           软件工程</p>
@@ -95,6 +81,12 @@
 			  </div>
       	 </div>
       </div>
+	 </div>
+
+	<div data-role="footer">
+	  <h1>页脚文本</h1>
+    </div>
+</div>
   </body>
 </html>
 
@@ -157,10 +149,11 @@
 	}
 	
 	$(document).ready(function(){
-		$(".map").height(document.documentElement.clientHeight);
+		$(".map").height(document.documentElement.clientHeight-$("[data-role='header']").height()-$("[data-role='footer']").height());
 		initalMap();
 		getLocation();
-		$(".overlay").on("click",function(){$(this).hide()})
+		$(".overlay").on("tap",function(){$(this).hide()})
+		
 	})
 
 </script> 

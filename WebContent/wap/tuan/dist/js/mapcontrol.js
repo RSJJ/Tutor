@@ -522,6 +522,7 @@ function initalMap(){
 		map.addControl(new BMap.MapTypeControl());   //添加地图类型控件
 	//	map.setCurrentCity("北京");          // 设置地图显示的城市 此项是必须设置的
 		map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+		map.enablePinchToZoom(true);
 		//var top_right_navigation = new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_RIGHT, type: BMAP_NAVIGATION_CONTROL_LARGE}); 
 		//map.addControl(top_right_navigation);  //右上角，仅包含平移和缩放按钮
 }

@@ -7,26 +7,28 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>老师地图</title>
+    <title>Notes</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
     <!-- Roboto -->
-
-    <link rel="stylesheet" href="<%=basePath %>wap/tuan/dist/css/ratchet.min.css">
-    <link rel="stylesheet" href="<%=basePath %>wap/tuan/dist/css/ratchet-theme-ios.min.css">
 	<link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" /> 
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
+	<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+
+
+
+  </head>
+ <body>
+<div data-role="page" id="mappage">
 	<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script> 
-    <script src="<%=basePath %>wap/tuan/dist/js/ratchet.min.js"></script>
-    <script src="<%=basePath %>wap/tuan/dist/js/sliders.js"></script>
-    <script src="<%=basePath %>wap/tuan/dist/js/push.js"></script>
-    <script src="<%=basePath %>wap/tuan/dist/js/modals.js"></script>
 	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=r6bfCVxPZTpoKGGNthyuupYh"></script>
 	<script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
 	<script type="text/javascript" src="http://developer.baidu.com/map/jsdemo/demo/convertor.js"></script>
-	<script src="<%=basePath %>wap/tuan/dist/js/mapcontrol.js"></script> 
-    <style type="text/css">
+	<script src="dist/js/mapcontrol.js"></script> 
+	<style type="text/css">
       .map{
       	width: 100%;
       	height: 100%;
@@ -42,84 +44,59 @@
       	z-index:1000;
       }
       .infowindow{
-      	position:absolute;
-      	bottom:0;
-      	left:0;
-      	width:100%;
-      	height:110px;
-      	padding:8px;
-      	z-index:1001;
+     	position: absolute;
+	    bottom: -26px;
+	    left: 7px;
+	    width: 96%;
+	    height: 110px;
+	    padding: 10px;
+	    z-index: 1001;
       }
-      .media-object{
-      	width:17% !important;
-      	display:inline-block;
-      }
-       .media-object img{
-      	width:100%;
-      }
-       .media-body{
-        display:inline-block;
-        margin-left:8px;	
-      	height:84px;
-      	width:70%;
-      	overflow:hidden;
-      	text-overflow: ellipsis;
-      }
-       .media-body p{
-       
-      	text-overflow: ellipsis;
-      }
+      .content{
+      	padding:0px;
+      	
+       }
     </style>
+  	<div data-role="header">
+	  <a href="#" data-role="button" data-icon="back"  onclick="javascript:window.history.go(-1)">返回</a>
+	  <h1>筛选老师</h1>
+	  
+	</div>
 
+	<div data-role="content" class="content">
+	    <div id="r-map" class="map"></div>
+	    <a class="overlay" style="display:none"></a>
+		<div class="infowindow" style="display:none">
+			  	<ul data-role="listview">
+					  <li class="teali">
+					    <a href="#" class="teahref" data-ajax='false'>
+					    <img src="../template\images\good\ID2/1.jpg">
+					    <h2 class="teaname">Google Chrome</h2>
+					    <p class="teaschool">北京交通大学&nbsp;&nbsp;&nbsp;&nbsp;控制科学与工程</p>
+					    <p class="teaintro">Google Chrome 免费的开源 web 浏览器。发布于 2008 年。Google Chrome 免费的开源 web 浏览器。发布于 2008 年。Google Chrome 免费的开源 web 浏览器。发布于 2008 年。Google Chrome 免费的开源 web 浏览器。发布于 2008 年。</p>
+					    </a>
+					    <div class="li-btn"> 
+					    	<div class="l">
+					    		<p>
+						    		<span>独立老师</span>
+						    		<span>1个认证</span>
+					    		</p>
+					    		
+					    	</div>
+					    	<!--  
+					    	<div class="r">
+					    		<p>距离：<span class="teapos">3.3km</span></p>
+					    	</div>
+					    	-->
+					    </div>
+					  </li>
+				</ul>
+      	</div>
+	 </div>
 
-  </head>
-  <body>
-
-
-    <div class="content">
-        <header class="bar bar-nav">
-	      <button class="btn btn-link btn-nav pull-left" onclick="javascript:window.history.go(-1)">
-	        <span class="icon icon-left-nav"></span>
-	      </button>
-	      <span class="title">筛选老师</span>
-	      <a class="btn btn-link btn-nav pull-right" id="maphref" href="#">
-	        <span class="icon icon-list"></span>
-			列表
-	      </a>
-	    </header>
-	
-	<!--
-		<nav class="bar bar-standard  bar-header-secondary">
-		  <div class="segmented-control" >
-		    <a class="control-item active">范围</a>
-		    	
-		    <a class="control-item">价格</a>
-		  </div>
-		</nav>  -->
-      <div class="wrap">
-      	 <div id="r-map" class="map"></div>
-      	 
-      </div>
-      
+	<div data-role="footer">
     </div>
-    
-	<a class="overlay" style="display:none"></a>
-    <div class="infowindow" style="display:none">
-    	<div class="content">
-			  <div class="table-view-cell media">
-			    <a class="navigate-right">
-			      <div class="media-object pull-left"><img src=""></div>
-			      <div class="media-body">
-			        	杨老师
-			        <p>北京交通大学           软件工程</p>
-			        <p>勤能补拙，文韬武略</p>
-			      </div>
-			    </a>
-			  </div>
-      	 </div>
-      </div>
-  </body>
-</html>
+</div>
 
 <script>
 	var position_option = {
@@ -146,7 +123,7 @@
 	        var lat = position.coords.latitude;
 	        var lng = position.coords.longitude;
 	        var point = new BMap.Point(lng, lat);
-	        map.centerAndZoom(point, 13);  // 初始化地图,设置中心点坐标和地图级别
+	        map.centerAndZoom(point, 12);  
 		  	BMap.Convertor.translate(point,0,translateCallback);     //真实经纬度转成百度坐标
 	       // alert( "您所在的位置： 纬度" + lat + "，经度" + lng );
 	        if(typeof position.address !== "undefined"){
@@ -179,28 +156,30 @@
 	            break;
 	    }
 	}
-	
 	function setInfWindow(data){//设置信息窗口内容
-		var basepath = '<%=basePath%>';
-		var src = basepath + data.icon;
-		$(".infowindow img").attr('src',src)
-		$(".infowindow .media-body").html(data.name+"<p>"+data.school+"&nbsp;&nbsp;&nbsp;&nbsp;"+data.profession+"</p>"+"<p>"+data.introduction+"</p>")
-	}
+		var templi = $(".infowindow .teali").clone();
+   		$(".infowindow .teali").hide();
+ 		templi.find(".teaname").html(data.name);
+ 		templi.find(".teaschool").html(data.school+"&nbsp;&nbsp;&nbsp;&nbsp;"+data.profession);
+ 		templi.find(".teaintro").html(data.introduction);
+ 		templi.find(".teahref").attr('href','teacherInf.jsp?teacherId='+data.teacherId)
+ 		$(".infowindow ul").append(templi);
+   	}
 	function showTeacherSingleInf(CsAllData){
-		
-           var  point = new window.BMap.Point(CsAllData.lng,CsAllData.lat); //循环生成新的地图点
-           var  marker = new window.BMap.Marker(point); //按照地图点坐标生成标记
-        
-            map.addOverlay(marker);
-          
-            //添加点击事件
-            marker.addEventListener("click", 
-                function(){
-                        map.centerAndZoom(point, 13);
-                        setInfWindow(CsAllData);
-                        $(".infowindow").show();
-                }                          
-            );
+
+       var  point = new window.BMap.Point(CsAllData.lng,CsAllData.lat); //循环生成新的地图点
+       var  marker = new window.BMap.Marker(point); //按照地图点坐标生成标记
+    
+        map.addOverlay(marker);
+      
+        //添加点击事件
+        marker.addEventListener("click", 
+            function(){
+                    //map.centerAndZoom(point, 12);
+                    setInfWindow(CsAllData);
+                    $(".infowindow").show();
+            }                          
+        );
 	}
 	function showTeacherListInf(CsAllData){
 		var point=[];
@@ -275,14 +254,14 @@
 	            	//return _this._callback(callback,data.isSuccess,data.message,data)
 	            },
 	            error:function(data){ 
-	                //console.log(data);
+	                console.log(data);
 	                //return _this._callback(callback,false,"连接服务器失败，请稍后再试",data);
 	            }
 	        })
 	}
 	$(document).ready(function(){
-		$(".map").height(document.documentElement.clientHeight);
-		$("#maphref").attr("href","teacherSearchList.html"+location.search);
+		$(".map").height(document.documentElement.clientHeight-$("[data-role='header']").height()-$("[data-role='footer']").height());
+		//$("#maphref").attr("href","teacherSearchList.html"+location.search);
 		initalMap();
 		getLocation();
 		showTeacherPosition();
@@ -290,3 +269,5 @@
 	})
 
 </script> 
+  </body>
+</html>

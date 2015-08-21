@@ -26,5 +26,7 @@
 	
 	<bean id="appManageAction" class="com.tutor.action.AppManageAction" scope="prototype">
 		<constructor-arg ref="norCourseDAO"></constructor-arg>
+		<constructor-arg ref="teacherDAO"></constructor-arg>
+		<constructor-arg ref="graCourseDAO"></constructor-arg>
 	</bean>
 </beans>

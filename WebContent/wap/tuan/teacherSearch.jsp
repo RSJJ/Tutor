@@ -15,7 +15,7 @@
     <!-- Roboto -->
   <link rel="stylesheet" href="<%=basePath %>wap/tuan/dist/css/ratchet.min.css">
     <link rel="stylesheet" href="<%=basePath %>wap/tuan/dist/css/ratchet-theme-ios.min.css">
-	<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script> 
+	<script src="<%=path %>/wap/template/js/com/jquery.min.js"></script>  
     <script src="<%=basePath %>wap/tuan/dist/js/ratchet.min.js"></script>
     <script src="<%=basePath %>wap/tuan/dist/js/sliders.js"></script>
     
@@ -44,7 +44,7 @@
     var collumn = [
     	{
     		"grand":"小学",
-    		"course":[{"name":"语文","url":""},{"name":"数学","url":"showTeacherInfByCourseId?courseId=NOR_00000005"},{"name":"外语","url":""}]
+    		"course":[{"name":"语文","url":""},{"name":"数学","url":""},{"name":"外语","url":""}]
     	},
     	{
     		"grand":"初中",
