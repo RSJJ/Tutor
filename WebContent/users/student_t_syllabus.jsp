@@ -1,3 +1,5 @@
+<%@page import="com.tutor.entity.Student"%>
+<%@page import="com.tutor.entity.Teacher"%>
 <%@page import="com.tutor.global.FinalValue"%>
 <%@page import="com.tutor.util.Operation"%>
 <%@page import="com.tutor.entity.Schedule"%>
@@ -7,6 +9,10 @@
     pageEncoding="UTF-8"%>
 <%
 	List<List<Schedule>> weekSchedule = request.getAttribute("weekSchedule")==null?new ArrayList<List<Schedule>>():(List<List<Schedule>>)request.getAttribute("weekSchedule");
+	Teacher teacher = (Teacher)request.getAttribute("teacher");
+	String courseId = (String)request.getAttribute("courseId");
+	int mode = request.getAttribute("mode")==null?1:Integer.valueOf(((String)request.getAttribute("mode")));
+	Student student = (Student)session.getAttribute("student");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -32,6 +38,8 @@
 </head>
 
 <body>
+
+<input type="hidden" id="studentId" value="<%=(student==null?"123456":student.getStudentId()) %>">
 
 <div class="container">
 <!--导航 start-->
@@ -269,20 +277,23 @@
 		 $("#settlement").click(function(){
 			 var sum = Number($('.J-shoping-num').text());
 			 if(sum>0){
-				 var shopCartCourseIds = new Array();
-				 $("input[name^='shopCartCourseId']").each(function(){
-					 shopCartCourseIds.push($(this).val()); 
-				 });
-				 $.ajax({
-					type:"post",
-					url:"checkSchedule.action",
-					data:{
-						scheduleIds:JSON.stringify(shopCartCourseIds)
-					},
-					success:function(){
-						alert("lll");
-					}
-				 });
+				 if($("#studentId").val()!=""){
+					 var shopCartCourseIds = new Array();
+					 $("input[name^='shopCartCourseId']").each(function(){
+						 shopCartCourseIds.push($(this).val()); 
+					 });
+					 $.post("checkSchedule.action",
+							{
+								scheduleIds:JSON.stringify(shopCartCourseIds),
+								courseId:'<%=courseId%>',
+								mode:'<%=mode%>',
+								studentId:$("#studentId").val()
+							}
+					 );
+				 }
+				 else{
+					 alert("请登录！");
+				 }
 			 }
 			 else{
 				 alert("请先添加课程");

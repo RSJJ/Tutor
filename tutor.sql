@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50173
 File Encoding         : 65001
 
-Date: 2015-08-19 00:40:06
+Date: 2015-08-22 09:03:24
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -162,11 +162,12 @@ CREATE TABLE `student` (
   `statement` text,
   PRIMARY KEY (`id`),
   KEY `student_id` (`student_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of student
 -- ----------------------------
+INSERT INTO `student` VALUES ('0000000001', '123456', '123456', '123456', null, null, null, null, null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for `teacher`
@@ -216,7 +217,7 @@ CREATE TABLE `unique_id` (
   `unique_id_name` varchar(32) DEFAULT NULL,
   `unique_id_value` bigint(20) unsigned zerofill NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of unique_id
@@ -280,3 +281,9 @@ INSERT INTO `unique_id` VALUES ('0000000057', 'teacher_id_seed', '00000000000000
 INSERT INTO `unique_id` VALUES ('0000000058', 'teacher_id_seed', '00000000000000000000');
 INSERT INTO `unique_id` VALUES ('0000000059', 'teacher_id_seed', '00000000000000000000');
 INSERT INTO `unique_id` VALUES ('0000000060', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000061', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000062', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000063', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000064', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000065', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000066', 'teacher_id_seed', '00000000000000000000');

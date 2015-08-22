@@ -49,4 +49,15 @@ public class NorCourseDAOImpl implements NorCourseDAO
 		return query.getResultList();
 	}
 
+	@Override
+	public NorCourse find(String norCourseId)
+	{
+		Query query = entityManager.createQuery("select u from NorCourse u where u.norCourseId = :norCourseId");
+		query.setParameter("norCourseId", norCourseId);
+		if(query.getResultList().size()>0)
+			return (NorCourse) query.getResultList().get(0);
+		else
+			return null;
+	}
+
 }

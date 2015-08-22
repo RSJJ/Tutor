@@ -25,6 +25,9 @@ import org.springframework.context.annotation.Scope;
 public class Schedule implements Serializable
 {
 	private static final long serialVersionUID = 1L;
+	public static final int OVERDUE = -1;
+	public static final int AVAILABLE = 0;
+	public static final int SOLD = 1;
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

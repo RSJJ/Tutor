@@ -14,9 +14,16 @@ import org.springframework.context.annotation.Scope;
 @Table(name="order")
 public class Order
 {
-	public static final int INITIAL = 0;
-	public static final int FAILED = -1;
-	public static final int CANCEL = -2;
+	
+	public static final int REFUND_SUCCESS = -3;
+	public static final int REFUND = -2;
+	public static final int NOT_AVAILABLE = -1;
+	public static final int AVAILABLE = 0;
+	public static final int TO_BE_PAID = 1;
+	public static final int PAID_SUCCESS = 2;
+	public static final int STUDENT_ABSENT = 3;
+	public static final int TEACHER_ABSENT = 4;
+	public static final int SUCCESS = 5;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

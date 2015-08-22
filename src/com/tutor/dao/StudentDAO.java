@@ -10,6 +10,11 @@ public interface StudentDAO
 	 */
 	public Student find(Integer id);
 	/**
+	 * @param studentId
+	 * @return
+	 */
+	public Student find(String studentId);
+	/**
 	 * @param student
 	 */
 	public void save(Student student);
@@ -42,5 +47,5 @@ public interface StudentDAO
 	 * @return
 	 */
 	public Student findByMailPassword(String mail,String password);
-
+	
 }
