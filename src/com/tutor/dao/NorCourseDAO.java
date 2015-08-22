@@ -13,6 +13,11 @@ public interface NorCourseDAO
 	 */
 	public NorCourse find(Integer id);
 	/**
+	 * @param norCourseId
+	 * @return
+	 */
+	public NorCourse find(String norCourseId);
+	/**
 	 * @param norCourse
 	 */
 	public void save(NorCourse norCourse);

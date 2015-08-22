@@ -60,4 +60,15 @@ public class GraCourseDAOImpl implements GraCourseDAO
 		return graCourses;
 	}
 
+	@Override
+	public GraCourse find(String graCourseId)
+	{
+		Query query = entityManager.createQuery("select u from GraCourse u where u.graCourseId = :graCourseId");
+		query.setParameter("graCourseId", graCourseId);
+		if(query.getResultList().size()>0)
+			return (GraCourse) query.getResultList().get(0);
+		else
+			return null;
+	}
+
 }

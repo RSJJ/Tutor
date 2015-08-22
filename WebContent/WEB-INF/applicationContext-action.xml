@@ -23,10 +23,19 @@
 	<bean id="scheduleManageAction" class="com.tutor.action.ScheduleManageAction" scope="prototype">
 		<constructor-arg ref="scheduleDAO"></constructor-arg>
 	</bean>
+
 	
 	<bean id="appManageAction" class="com.tutor.action.AppManageAction" scope="prototype">
 		<constructor-arg ref="norCourseDAO"></constructor-arg>
 		<constructor-arg ref="teacherDAO"></constructor-arg>
 		<constructor-arg ref="graCourseDAO"></constructor-arg>
+	</bean>
+	<bean id="studentCourseAction" class="com.tutor.action.StudentCourseAction" scope="prototype">
+	    <constructor-arg ref="norCourseDAO"></constructor-arg>
+		<constructor-arg ref="graCourseDAO"></constructor-arg>
+		<constructor-arg ref="scheduleDAO"></constructor-arg>
+		<constructor-arg ref="teacherDAO"></constructor-arg>
+		<constructor-arg ref="studentDAO"></constructor-arg>
+		<constructor-arg ref="shopCartDAO"></constructor-arg>
 	</bean>
 </beans>

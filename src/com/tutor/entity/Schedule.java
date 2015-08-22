@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.context.annotation.Scope;
 
@@ -24,6 +25,9 @@ import org.springframework.context.annotation.Scope;
 public class Schedule implements Serializable
 {
 	private static final long serialVersionUID = 1L;
+	public static final int OVERDUE = -1;
+	public static final int AVAILABLE = 0;
+	public static final int SOLD = 1;
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -44,6 +48,9 @@ public class Schedule implements Serializable
 	private int status;
 	@Column(name="statement")
 	private String statement;
+	
+	@Transient
+	private int purchase = 0;
 	
 	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY,mappedBy="schedule")
 	private ShopCart shopCart;
@@ -139,6 +146,14 @@ public class Schedule implements Serializable
 	public void setShopCart(ShopCart shopCart)
 	{
 		this.shopCart = shopCart;
+	}
+	public int getPurchase()
+	{
+		return purchase;
+	}
+	public void setPurchase(int purchase)
+	{
+		this.purchase = purchase;
 	}
 	
 }

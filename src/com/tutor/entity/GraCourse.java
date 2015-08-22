@@ -17,6 +17,7 @@ import org.springframework.context.annotation.Scope;
 public class GraCourse implements Serializable
 {
 	private static final long serialVersionUID = 1L;
+	public static final String PREFIX = "GRA_";
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

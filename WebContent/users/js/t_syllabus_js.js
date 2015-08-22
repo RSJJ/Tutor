@@ -31,6 +31,14 @@ $(document).ready(function(){
 			}	
 		}
 	});
+	
+	
+/*购物车*/
+	$('.kb-sz').mouseover(function(){
+		$('.kb-sz .gwxq').css('display','block');
+	}).mouseout(function(){
+		$('.kb-sz .gwxq').css('display','none');
+	});
 });
 function timeformat(year,month,date){
     var datetime = new Date();

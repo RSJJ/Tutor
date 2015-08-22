@@ -12,6 +12,11 @@ public interface GraCourseDAO
 	 */
 	public GraCourse find(Integer id);
 	/**
+	 * @param graCourseId
+	 * @return
+	 */
+	public GraCourse find(String graCourseId);
+	/**
 	 * @param graCourse
 	 */
 	public void save(GraCourse graCourse);

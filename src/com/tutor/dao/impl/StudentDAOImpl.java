@@ -81,4 +81,17 @@ public class StudentDAOImpl implements StudentDAO
 			return null;
 	}
 
+	@Override
+	public Student find(String studentId)
+	{
+		Query query = entityManager.createQuery("select u from Student u where u.studentId = :studentId");
+		query.setParameter("studentId", studentId);
+		@SuppressWarnings("unchecked")
+		List<Student> students = query.getResultList();
+		if(students.size() > 0)
+			return students.get(0);
+		else
+			return null;
+	}
+
 }

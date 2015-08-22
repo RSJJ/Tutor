@@ -11,5 +11,5 @@
 	<bean id="norCourseDAO" class="com.tutor.dao.impl.NorCourseDAOImpl"></bean>
 	<bean id="graCourseDAO" class="com.tutor.dao.impl.GraCourseDAOImpl"></bean>
 	<bean id="scheduleDAO" class="com.tutor.dao.impl.ScheduleDAOImpl"></bean>
-	
+	<bean id="shopCartDAO" class="com.tutor.dao.impl.ShopCartDAOImpl"></bean>
 </beans>

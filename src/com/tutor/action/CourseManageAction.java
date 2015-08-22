@@ -282,6 +282,7 @@ public class CourseManageAction extends BaseAction
 		this.courseId = courseId;
 	}
 
+	@SuppressWarnings("unused")
 	public static void main(String[] args) throws ParseException
 	{
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

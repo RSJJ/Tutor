@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import com.google.gson.annotations.Expose;
+import com.tutor.entity.server.Course;
 
 /**
  * @author STerOTto
@@ -26,6 +27,9 @@ public class ShopCart implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 
+	public static final int NOT_AVAILABLE = -1;
+	public static final int AVAILABLE = 1;
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
@@ -54,7 +58,7 @@ public class ShopCart implements Serializable
 	private String statement;
 	
 	@Transient
-	private Object course;
+	private Course course;
 
 	public Integer getId()
 	{
@@ -126,16 +130,14 @@ public class ShopCart implements Serializable
 		this.statement = statement;
 	}
 
-	public Object getCourse()
+	public Course getCourse()
 	{
 		return course;
 	}
 
-	public void setCourse(Object course)
+	public void setCourse(Course course)
 	{
 		this.course = course;
 	}
-	
-	
 	
 }

@@ -410,8 +410,7 @@ $(document).ready(function(){
 												<%for(Schedule schedule : mSchedules){ %>
 												<tr>
 													<td><%=Operation.getHHmm(schedule.getStartTime())+"-"+Operation.getHHmm(schedule.getEndTime()) %></td>
-													<td class="gm" title=""><p id="p692926"
-															style="cursor: pointer" onclick="">可购买</p></td>
+													<td class="gm" title=""><p id="p692926" style="cursor: pointer" onclick="">可购买</p></td>
 												</tr>
 												<%} %>
 												
