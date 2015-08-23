@@ -2,7 +2,7 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
         "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
-	<package name="courseMange" extends="struts-default">
+	<package name="courseMange" extends="json-default">
 		<action name="showTeacherCourse" class="courseManageAction" method="showTeacherCourse">
 			<result name="success">teacher_course.jsp</result>
 			<result name="error">error.jsp</result>

@@ -61,7 +61,7 @@
 										var l=$('.J-shoping-list').length,
 											num=Number($num.text());
 										/*if(l<5){*/
-											$body.prepend('<div class="J-shoping-list" data-id="'+id+'"> <input type="hidden" name="shopCartCourseId" value="'+scheduleId+'" > <a href="javascript:void();"title=""><img src="images/course.png" width="50"height="50"/></a><div class="J-shoping-list-a"><p><span class="left">'+teacher+'</span><span class="mright">'+course+'</span></p><p><span class="left">'+date+'</span><span class="mright">'+time+'</span><span class="mright"><em>'+price+'</em></span></p></div><div class="baseBg J-shoping-close"></div></div>');
+											$body.prepend('<div class="J-shoping-list" data-id="'+id+'"> <input type="hidden" name="scheduleIds" value="'+scheduleId+'" > <a href="javascript:void();"title=""><img src="images/course.png" width="50"height="50"/></a><div class="J-shoping-list-a"><p><span class="left">'+teacher+'</span><span class="mright">'+course+'</span></p><p><span class="left">'+date+'</span><span class="mright">'+time+'</span><span class="mright"><em>'+price+'</em></span></p></div><div class="baseBg J-shoping-close"></div></div>');
 										/*};*/
 										$num.text(num+1);
 									});

@@ -2,12 +2,17 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
         "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
-    	<package name="studentCourse" extends="struts-default">
+    	<package name="studentCourse" extends="json-default">
 		<action name="getCourseSchdule" class="studentCourseAction" method="getCourseSchdule">
+		    <result name="isJson" type="json"></result>
 			<result name="success">/users/student_t_syllabus.jsp</result>
 		</action>
 		<action name="checkSchedule" class="studentCourseAction" method="checkSchedule">
+		    <result name="isJson" type="json"></result>
 		    <result name="success">student_order.jsp</result>
+		</action>
+		<action name="jsonTest" class="studentCourseAction" method="jsonTest">
+		    <result name="success" type="json"></result>
 		</action>
 	</package>
 </struts>
