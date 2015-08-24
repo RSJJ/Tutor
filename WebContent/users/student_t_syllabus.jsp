@@ -1,5 +1,19 @@
+<%@page import="com.tutor.entity.Student"%>
+<%@page import="com.tutor.entity.Teacher"%>
+<%@page import="com.tutor.global.FinalValue"%>
+<%@page import="com.tutor.util.Operation"%>
+<%@page import="com.tutor.entity.Schedule"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	List<List<Schedule>> weekSchedule = request.getAttribute("weekSchedule")==null?new ArrayList<List<Schedule>>():(List<List<Schedule>>)request.getAttribute("weekSchedule");
+	Teacher teacher = (Teacher)request.getAttribute("teacher");
+	String courseId = (String)request.getAttribute("courseId");
+	int mode = request.getAttribute("mode")==null?1:Integer.valueOf(((String)request.getAttribute("mode")));
+	Student student = (Student)session.getAttribute("student");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,13 +21,14 @@
 <title></title>
 <link href="css/global.css" rel="stylesheet" type="text/css"  charset="utf-8"  />
 <link href="css/erji.css" rel="stylesheet" type="text/css"  charset="utf-8"  />
+<link href="css/select.css" rel="stylesheet" type="text/css" charset="utf-8"  />
 <script src="js/jquery.min.js" type="text/javascript" charset="utf-8" language="javascript"></script>
 <script src="js/formCheck.js" type="text/javascript" charset="utf-8" language="javascript"></script>
 <script src="js/jquery.fancybox-1.3.4.js" type="text/javascript" charset="utf-8" language="javascript"></script>
 <script src="js/t_team_js.js" type="text/javascript" charset="utf-8" language="javascript"></script>
 <script src="js/t_syllabus_js.js" type="text/javascript" charset="utf-8" language="javascript"></script>
 <!-- 首页轮播图 start --> 
-
+<script type="text/javascript" src="js/jQuery-shopping.js"></script>
 
 <!--[if IE 6]>
 <script src="js/background.png.js" type="text/javascript" charset="utf-8" language="javascript"></script>
@@ -23,6 +38,7 @@
 </head>
 
 <body>
+
 
 <div class="container">
 <!--导航 start-->
@@ -79,8 +95,8 @@
               <td width="135"><div class="jsye_tb1"><strong>125</strong><br />关注</div></td>
             </tr>
             <tr>
-              <td height="129"><a href="#"><div class="jsye_tb1"><strong>125</strong><br />好评</div></td>
-              <td><a href="#"><div class="jsye_tb1"><strong>125</strong><br />授课</div></td>
+              <td height="129"><div class="jsye_tb1"><strong>125</strong><br />好评</div></td>
+              <td><div class="jsye_tb1"><strong>125</strong><br />授课</div></td>
             </tr>
           </table>
         </div>
@@ -97,8 +113,21 @@
     		    <li><span class="rq6"></span><span class="zj6"></span></li>
         </ul>
         <div class="kb-sz">
-             <div class="gwc"><span class="gwc-t"><a href="#">购物车</a></span><span class="gwc-s">0</span></div>
+                <div class="div_price"><span class="c_price">价格：</span><span class="c_price">70</span><span class="c_price">元/半小时</span></div>
+           <!--   <div class="gwc"><span class="gwc-t"><a href="#">购物车</a></span><span class="gwc-s">0</span></div>
              <i></i>
+             <div class="gwxq" style="display: none;">
+                
+	            	<ul>
+	                
+	                	<li><span>网络家教：08-09 12:00-12:30</span><span class="gwcprice">￥30.0</span><span class="gwcdel" onclick="delShopCart('348332','737040','30.0')">删除</span></li>
+	                
+	                </ul>
+            	  <a class="gwcjs" href="/cart/shopcart.html"></a>
+            	
+            	
+            
+            </div> -->
           </div>
     </div>
 	<div class="kb-con">
@@ -107,33 +136,106 @@
 	       <p class="rq"></p> 
 	       <p class="kjs">0节课</p>
         </div>
-       
-        <div class="kb-r">
-           <div class="ktable">
-             <p class="t">上午<span>(6:00-12:00)</span></p>
-             <p class="xsj1">暂无课表数据</p>
-           </div>
-            <div class="ktable">
-             <p class="t">下午<span>(12:00-18:00)</span></p>
-             <p class="xsj1">暂无课表数据</p>
-           </div>
-            <table border="0" cellspacing="0" cellpadding="0">
-               <tbody>
-                 <tr class="t"><td colspan="2"><span>晚上</span>(18:00-24:00)</td></tr>
-                 <tr><td>18:00-18:30</td><td class="gm" title=""><p id="p692926" style="cursor: pointer" onclick=""><input type="checkbox" id="">可购买，70元</p></td></tr>
-                 <tr><td>18:30-19:00</td><td class="gm" title=""><p id="p692927" style="cursor: pointer" onclick=""><input type="checkbox" id="">可购买，70元</p></td></tr>
-                 <tr><td>19:00-19:30</td><td class="gm" title="" style="color: rgb(255, 255, 255); background: rgb(0, 117, 194);"><p  style="cursor: pointer" onclick=""><input type="checkbox" checked="checked" id="">可购买，70元</p></td></tr>
-                 <tr><td>19:30-20:00</td><td class="gm wygm" title="">纪蕴已购买</td></tr>
-                 <tr><td>20:00-20:30</td><td class="gm wygm" title="">纪蕴已购买</td></tr>
-                 <tr><td>20:30-21:00</td><td class="gm wygm" title="">纪蕴已购买</td></tr>
-                 <tr><td>21:00-21:30</td><td class="gm wygm" title="">d已购买</td></tr>
-                 <tr><td>21:30-22:00</td><td class="gm wygm" title="">d已购买</td></tr>
-                 <tr><td>22:00-22:30</td><td class="gm wygm" title="">d已购买</td></tr>
-                 <tr><td>22:30-23:00</td><td class="gm" title=""><p  style="cursor: pointer" onclick=""><input type="checkbox" id="">可购买，70元</p></td></tr>
-               </tbody>
-             </table>
-           <div class="clear"></div>
-        </div>
+       <%for(int i=0;i<weekSchedule.size();i++){
+    	   /**
+			将每天的课表根据上午下午晚上分类
+			*/
+				List<Schedule> schedules = weekSchedule.get(i); 
+				List<Schedule> mSchedules = new ArrayList<Schedule>();
+				List<Schedule> aSchedules = new ArrayList<Schedule>();
+				List<Schedule> nSchedules = new ArrayList<Schedule>();
+				for(Schedule schedule : schedules)
+				{
+					switch(Operation.getTimeSlot(schedule.getStartTime()))
+					{
+					case FinalValue.DAY_MORNING:
+						mSchedules.add(schedule);
+						break;
+					case FinalValue.DAY_AFTERNOON:
+						aSchedules.add(schedule);
+						break;
+					default:
+						nSchedules.add(schedule);
+						break;
+					}
+				}
+				
+				int index = 0;
+    	   %>
+      <div class="kb-r" id="kb_r<%=i+1 %>" style="width: 620px;<%if(i==0){%>display:block;<%}else{%>display:none;<%}%>">
+       	<div class="ktable"id="morning_table">
+			<table border="0" cellspacing="0" cellpadding="0">
+				<tbody>
+					<tr class="t" style="heght:50px;">
+						<td colspan="2"><span>上午</span>(6:00-12:00)</td>
+					</tr>
+					
+					<%
+						for(int j=0;j<mSchedules.size();j++,index++){ 
+							Schedule schedule = mSchedules.get(j);
+					%>
+					<tr>
+						<td><%=Operation.getHHmm(schedule.getStartTime())+"-"+Operation.getHHmm(schedule.getEndTime()) %></td><td class="gm" title="">
+							<div class="M-main-E left">
+								<input type="hidden" name="schduleId" value="<%=schedule.getId()%>">
+								<a title="加入购物车" class="baseBg Q-buy-btn" id="buy-s-<%=(i+1)+""+(index+1)%>">购物车</a>
+							</div>
+						</td>
+					</tr>
+                 	<%} %>
+				</tbody>
+			</table>
+       </div>
+       <!-- afternoon  -->
+       <div class="ktable"id="afternoon_table">
+			<table border="0" cellspacing="0" cellpadding="0">
+				<tbody>
+					<tr class="t">
+						<td colspan="2" style="heght:50px;"><span>下午</span>(12:00-18:00)</td>
+					</tr>
+					<%
+						for(int j=0;j<aSchedules.size();j++,index++){ 
+							Schedule schedule = aSchedules.get(j);
+					%>
+					<tr>
+						<td><%=Operation.getHHmm(schedule.getStartTime())+"-"+Operation.getHHmm(schedule.getEndTime()) %></td><td class="gm" title="">
+							<div class="M-main-E left">
+								<input type="hidden" name="schduleId" value="<%=schedule.getId()%>">
+								<a  title="加入购物车" class="baseBg Q-buy-btn" id="buy-s-<%=(i+1)+""+(index+1)%>">购物车</a>
+							</div>
+						</td>
+					</tr>
+                 	<%} %>
+				</tbody>
+			</table>
+       </div>
+       <div class="ktable"id="night_table">
+			<table border="0" cellspacing="0" cellpadding="0">
+				<tbody>
+					<tr class="t">
+						<td colspan="2" ><span>晚上</span>(18:00-22:00)</td>
+					</tr>
+					<%
+						for(int j=0;j<nSchedules.size();j++,index++){ 
+							Schedule schedule = nSchedules.get(j);
+					%>
+					<tr>
+						<td><%=Operation.getHHmm(schedule.getStartTime())+"-"+Operation.getHHmm(schedule.getEndTime()) %></td><td class="gm" title="">
+							<div class="M-main-E left">
+								<input type="hidden" name="schduleId" value="<%=schedule.getId()%>">
+								<a  title="加入购物车" class="baseBg Q-buy-btn" id="buy-s-<%=(i+1)+""+(index+1)%>">购物车</a>
+							</div>
+						</td>
+					</tr>
+                 	<%} %>
+				</tbody>
+			</table>
+       </div>
+      </div>
+      <%
+      }
+       %>
+        
     </div>
 
 </div>
@@ -141,13 +243,62 @@
       </div>
     </div>
   
-  
+  <!--J-shoping-->
+<div class="J-shoping J-shoping-small">
+	<div class="J-shoping-item">
+		<a href="javascript:void();" title="" id="U-attion"><em class="baseBg"></em>我关注的资源<span class="baseBg"></span></a>
+		<div class="baseBg J-L-ico J-shoping-pos"></div>
+		<div class="J-shoping-main">
+			<div class="J-shoping-title">
+				<a href="javascript:void();" title="" class="J-go"><em class="baseBg"></em>购物车</a>
+				<span class="baseBg J-shoping-num">0</span>
+			</div>
+			<div class="baseBg J-shoping-mx"></div>
+			<div class="J-shoping-px"></div>
+			<form class="J-shoping-body" name="form">
+				<input type="hidden" id="studentId" value="<%=(student==null?"123456":student.getStudentId()) %>">
+				<div class="J-shoping-buy">
+					<a class="baseBg" href="javascript:void();" id="settlement" title="去购物车结算"></a>
+				</div>
+			</form>
+		</div>
+		<div class="baseBg J-R-ico J-shoping-pos"></div>
+	</div>
+</div>
+<a href="javascript:void();" title="在线客服" class="baseBg Q-online"></a>
+
+
+
+ <script type="text/javascript" >
+ $(function(){
+		// var bb=null;
+		 //bb=$(this).parent().parent().parent().children('td:eq(0)').text();
+		 $('.Q-buy-btn').shoping(); //调用shoping函数 
+		 $("#settlement").click(function(){
+			 var sum = Number($('.J-shoping-num').text());
+			 if(sum>0){
+				 if($("#studentId").val()!=""){
+					 $("form").submit();
+				 }
+				 else{
+					 alert("请登录！");
+				 }
+			 }
+			 else{
+				 alert("请先添加课程");
+			 }
+		 });
+		 
+}); 
+
+</script> 
+<div style="text-align:center;clear:both">
   
   
 <!--底部 start-->   
 <jsp:include page="s_bottom.jsp"></jsp:include>
 <!--底部 stop-->     
 </div>
-
+</div>
 </body>
 </html>

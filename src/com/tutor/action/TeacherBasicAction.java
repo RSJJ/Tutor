@@ -46,7 +46,7 @@ public class TeacherBasicAction extends BaseAction
 	 */
 	public void login() throws IOException
 	{
-		Message msg = new Message();
+		Message<User> msg = new Message<User>();
 		Teacher teacher = teacherDAO.findByPhoneOrMail(userName);
 		if(teacher != null)
 		{

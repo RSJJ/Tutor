@@ -1,12 +1,17 @@
 package com.tutor.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.context.annotation.Scope;
@@ -48,6 +53,8 @@ public class Student implements Serializable
 	private Integer status;
 	@Column(name="statement")
 	private String statement;
+	@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy="student")
+	private List<ShopCart> shopCarts = new ArrayList<ShopCart>();
 	
 	
 	@Override
@@ -172,6 +179,14 @@ public class Student implements Serializable
 	public void setStatement(String statement)
 	{
 		this.statement = statement;
+	}
+	public List<ShopCart> getShopCarts()
+	{
+		return shopCarts;
+	}
+	public void setShopCarts(List<ShopCart> shopCarts)
+	{
+		this.shopCarts = shopCarts;
 	}
 	
 }

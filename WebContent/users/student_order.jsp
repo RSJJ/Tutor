@@ -32,7 +32,7 @@
       </div>
     </div>
 <!--导航 stop-->   
-
+<%=request.getAttribute("availableCourse")==null %>
 <!--微信 start--> 
 <div class="floatDiv">
     <div class="floatDivOne">

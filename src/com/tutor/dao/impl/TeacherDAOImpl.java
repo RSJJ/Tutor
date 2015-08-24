@@ -102,4 +102,15 @@ public class TeacherDAOImpl implements TeacherDAO
 		return (Long) query.getSingleResult();
 	}
 
+	@Override
+	public Teacher find(String teacherId)
+	{
+		Query query = entityManager.createQuery("select u from Teacher u where u.teacherId = :teacherId");
+		query.setParameter("teacherId", teacherId);
+		if(query.getResultList().size()>0)
+			return (Teacher) query.getResultList().get(0);
+		else
+			return null;
+	}
+
 }

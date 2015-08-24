@@ -14,6 +14,17 @@ import org.springframework.context.annotation.Scope;
 @Table(name="order")
 public class Order
 {
+	
+	public static final int REFUND_SUCCESS = -3;
+	public static final int REFUND = -2;
+	public static final int NOT_AVAILABLE = -1;
+	public static final int AVAILABLE = 0;
+	public static final int TO_BE_PAID = 1;
+	public static final int PAID_SUCCESS = 2;
+	public static final int STUDENT_ABSENT = 3;
+	public static final int TEACHER_ABSENT = 4;
+	public static final int SUCCESS = 5;
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
@@ -24,6 +35,10 @@ public class Order
 	private String teacherId;
 	@Column(name="course_id")
 	private String courseId;
+	@Column(name="order_id")
+	private String orderId;
+	@Column(name="price")
+	private float price=0f;
 	@Column(name="create_time")
 	private String createTime;
 	@Column(name="payTime")
@@ -35,8 +50,112 @@ public class Order
 	@Column(name="")
 	private String endTime;
 	@Column(name="status",nullable=false)
-	private int status;//0:初始值，未使用,1：下单完成；2：取消订单；3
+	private int status = 0;//0:初始值，未使用,1：下单完成；2：取消订单；3
 	@Column(name="statment")
 	private String statement;
-
+	public Integer getId()
+	{
+		return id;
+	}
+	public void setId(Integer id)
+	{
+		this.id = id;
+	}
+	public String getStudentId()
+	{
+		return studentId;
+	}
+	public void setStudentId(String studentId)
+	{
+		this.studentId = studentId;
+	}
+	public String getTeacherId()
+	{
+		return teacherId;
+	}
+	public void setTeacherId(String teacherId)
+	{
+		this.teacherId = teacherId;
+	}
+	public String getCourseId()
+	{
+		return courseId;
+	}
+	public void setCourseId(String courseId)
+	{
+		this.courseId = courseId;
+	}
+	public String getOrderId()
+	{
+		return orderId;
+	}
+	public void setOrderId(String orderId)
+	{
+		this.orderId = orderId;
+	}
+	public float getPrice()
+	{
+		return price;
+	}
+	public void setPrice(float price)
+	{
+		this.price = price;
+	}
+	public String getCreateTime()
+	{
+		return createTime;
+	}
+	public void setCreateTime(String createTime)
+	{
+		this.createTime = createTime;
+	}
+	public String getPayTime()
+	{
+		return payTime;
+	}
+	public void setPayTime(String payTime)
+	{
+		this.payTime = payTime;
+	}
+	public String getCancelTime()
+	{
+		return cancelTime;
+	}
+	public void setCancelTime(String cancelTime)
+	{
+		this.cancelTime = cancelTime;
+	}
+	public String getRefundTime()
+	{
+		return refundTime;
+	}
+	public void setRefundTime(String refundTime)
+	{
+		this.refundTime = refundTime;
+	}
+	public String getEndTime()
+	{
+		return endTime;
+	}
+	public void setEndTime(String endTime)
+	{
+		this.endTime = endTime;
+	}
+	public int getStatus()
+	{
+		return status;
+	}
+	public void setStatus(int status)
+	{
+		this.status = status;
+	}
+	public String getStatement()
+	{
+		return statement;
+	}
+	public void setStatement(String statement)
+	{
+		this.statement = statement;
+	}
+	
 }
