@@ -3,6 +3,14 @@ $(document).ready(function(){
 		$('.inclrspaceb p a').removeClass('t_menu');
 		$(this).addClass('t_menu');
 	});
+/*	$.ajax({
+        type: "POST",
+        dataType: "json",
+        url: "tRegister_info.action",
+        success: function(msg){
+        	
+        }
+	});*/
 });
 
 

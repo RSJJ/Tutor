@@ -1,5 +1,6 @@
 package com.tutor.entity;
 
+import java.io.File;
 import java.io.Serializable;
 
 import javax.persistence.Column;
@@ -45,8 +46,10 @@ public class Teacher implements Serializable
 	private String detailedAddress;
 	@Column(name="job")
 	private String job;
+	private File iconFile;
 	@Column(name="icon")
 	private String icon;
+	private File licenceFile;
 	@Column(name="licence")
 	private String licence;
 	@Column(name="instroduction")
@@ -283,6 +286,18 @@ public class Teacher implements Serializable
 	public void setStatement(String statement)
 	{
 		this.statement = statement;
+	}
+	public File getIconFile() {
+		return iconFile;
+	}
+	public void setIconFile(File iconFile) {
+		this.iconFile = iconFile;
+	}
+	public File getLicenceFile() {
+		return licenceFile;
+	}
+	public void setLicenceFile(File licenceFile) {
+		this.licenceFile = licenceFile;
 	}
 	
 

@@ -6,6 +6,9 @@ package com.tutor.action;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.tutor.base.BaseAction;
 import com.tutor.dao.StudentDAO;
 import com.tutor.entity.Student;
@@ -25,12 +28,15 @@ import com.tutor.util.Operation;
 public class StudentBasicAction extends BaseAction
 {
 	private static final long serialVersionUID = 1L;
+	private static final Log logger = LogFactory.getLog(StudentBasicAction.class);
 
 	private StudentDAO studentDAO;
 
 	private Student student;
 	private String userName;
 	private String password;
+	private String mobile;
+	private String mobileCode;
 
 	/**
 	 * 登录
@@ -57,6 +63,7 @@ public class StudentBasicAction extends BaseAction
 					User user = new User();
 					user.setRole(User.STUDENT);
 					user.setUser(student);
+					logger.info(String.format("student:%s login success", student.getStudentId()));
 					this.getSession().setAttribute("user", user);
 				}
 				else if(student.getStatus() == FinalValue.NOT_AVAILABLE)
@@ -78,22 +85,57 @@ public class StudentBasicAction extends BaseAction
 		}
 		this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));
 	}
+
+	
 	/**
 	 * 学生退出登录，清除session，更新最后访问时间
 	 */
-	public void logout()
-	{
+	public void logout(){
+	
 		User user = (User) this.getSession().getAttribute("user");
 		if(user != null)
 		{
 			Student student = (Student) user.getUser();
-			student.setLastVisitTime(Operation
-							.getTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")));
-			studentDAO.update(student);
+			if(student!=null){
+				student.setLastVisitTime(Operation.getTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")));
+				studentDAO.update(student);
+			}
 		}
 		this.getSession().removeAttribute("user");
 	}
 
+	public void studentRegister() throws IOException
+	{
+		Student student = studentDAO.findByPhoneOrMail(userName);
+		System.out.println(student);
+		Message msg = new Message();
+		if (student == null)
+		{
+			Student student2=new Student();
+			/*System.out.println(userName+' '+password+' '+mobile+' '+mobileCode);*/
+			student2.setStudentId(IdGenerator.getInstance().getNextStudentId());
+			student2.setMail(userName);
+			student2.setPassword(password);
+			student2.setPhone(mobile);
+			student2.setStatus(FinalValue.INIT_VALUE);
+			student2.setRegTime(Operation.getTime(new SimpleDateFormat(
+					"yyyy-MM-dd HH:mm:ss")));
+
+			studentDAO.save(student2);
+			msg.setCode(FinalValue.SUCCESS);
+			msg.setStatus(1);
+			msg.setStatement("用户注册成功");
+		} 
+		else
+		{
+			msg.setCode(FinalValue.NULL);
+			msg.setStatus(0);
+			msg.setStatement("用户已经被注册");
+		}
+		
+		this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));
+	}
+	
 	/**
 	 * 注册
 	 * 
@@ -150,5 +192,36 @@ public class StudentBasicAction extends BaseAction
 	{
 		this.password = password;
 	}
+
+
+	public StudentDAO getStudentDAO() {
+		return studentDAO;
+	}
+
+
+	public void setStudentDAO(StudentDAO studentDAO) {
+		this.studentDAO = studentDAO;
+	}
+
+
+	public String getMobile() {
+		return mobile;
+	}
+
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+
+
+	public String getMobileCode() {
+		return mobileCode;
+	}
+
+
+	public void setMobileCode(String mobileCode) {
+		this.mobileCode = mobileCode;
+	}
+	
 
 }

@@ -131,7 +131,7 @@
                                   </li>
                                   <li class="li_btn">
                                   <span class="hqyzm xyzc "><input type="button" id="studentLogin" value="学员登录" submit style="border:none; width:78px;height:31px;"/></span>
-                              	<span class="hqyzm xyzc" style="float:right;"><input type="button" id="teacherLogin" submit value="老师登录"  style="border:none; width:78px;height:31px;"/></span>
+                              	<span id="zzz"class="hqyzm xyzc" style="float:right;"><input type="button" id="teacherLogin" submit value="老师登录"  style="border:none; width:78px;height:31px;"/></span>
                                   </li>
                               </ul>
                           </form>
@@ -255,7 +255,7 @@
                                     <p class="f_18 f_y" style="padding-top:20px; margin-bottom:25px;">登录学纷享会员中心，开始学习之旅</p>
                                     <p><input name="user_name" id="user_name" type="text" class="index_input" value="" placeholder="请输入邮箱地址"  /></p>
                                     <p><input name="password" type="password" id="password" class="index_input" value="" placeholder="请填写密码" /><a class="dl_a" href="javascript:void(0)" id="submitReg"><font class="f_l">登录</font> <font class="f_r">&gt;</font></a></p>
-                                    <p><a href="#" class="f_l m_r20">忘记密码</a><a href="#" target="_blank" class="f_c">新用户点此注册</a></p>
+                                    <p><a href="#" class="f_l m_r20">忘记密码</a><a href="userregister.jsp" target="_blank" class="f_c">新用户点此注册</a></p>
                                     <a href="#" target="_blank" class="btn_a"><font class="f_l">现在就来体验</font> <font class="f_r">></font></a>
                                 </form>
                             </div>

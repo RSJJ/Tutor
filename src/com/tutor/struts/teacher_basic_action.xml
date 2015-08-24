@@ -6,6 +6,16 @@
 		<action name="teacherLogin" class="teacherBasicAction" method="login">
 			<result type="json"></result>
 		</action>
+		<action name="teacherRegister" class="teacherBasicAction" method="teacherRegister">
+			<result type="json"></result>
+		</action>
+		<action name="tRegister" class="teacherBasicAction" method="tRegister">
+			<result name="success">/teachers/teacher_info.jsp</result>
+		</action>
+		<action name="dtRegister" class="teacherBasicAction" method="dtRegister">
+			<result type="json"></result>
+		</action>
 		<action name="teacherLogout" class="teacherBasicAction" method="logout"></action>
 	</package>
+	
 </struts>

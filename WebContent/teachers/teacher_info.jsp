@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+    	String phone=(String)request.getAttribute("phone");
+    	String mail=(String)request.getAttribute("mail");
+
+    %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,9 +14,8 @@
 <link href="css/erji.css" rel="stylesheet" type="text/css"  charset="utf-8"  />
 <link href="css/t_info.css" rel="stylesheet" type="text/css"  charset="utf-8"  />
 <script src="js/jquery.min.js" type="text/javascript" charset="utf-8" language="javascript"></script>
-<script src="js/formCheck.js" type="text/javascript" charset="utf-8" language="javascript"></script>
-<script src="js/jquery.fancybox-1.3.4.js" type="text/javascript" charset="utf-8" language="javascript"></script>
-<script src="js/teacher_js.js" type="text/javascript" charset="utf-8" language="javascript"></script>
+<script src="js/t_info.js" type="text/javascript" charset="utf-8" language="javascript"></script>
+<script src="js/uploadPreview.js" type="text/javascript"language="javascript"></script>
 <!-- 首页轮播图 start --> 
 
 
@@ -33,7 +37,7 @@
     </div>
 <!--导航 stop-->   
 
-<!--微信 start--> 
+ <!--微信 start
 <div class="floatDiv">
     <div class="floatDivOne">
       <div class="theFirst"><img src="images/zxzx.png" /></div>
@@ -45,7 +49,7 @@
     </div>
   </div>
  
-<!--微信 stop-->   
+微信 stop  -->  
 
     <div class="main" style="background:#fff; padding-bottom:20px;">
 
@@ -64,32 +68,32 @@
                   <tr>
                     <td height="40" align="right">性　别：</td>
                     <td height="40" align="left">
-                        <input type="radio" name="radio" id="radio" value="radio" checked="checked" />男&nbsp;&nbsp;<input type="radio" name="radio" id="radio" value="radio" />女</td>
+                        <input type="radio" name="sexRadio" class="sexRadio" value="男" checked="checked" />男&nbsp;&nbsp;<input type="radio" name="sexRadio" class="sexRadio" value="女" />女</td>
                     <td height="40" align="left"><span  style="color:#F00">*</span></td>
                   </tr>
                   <tr>
                     <td height="40" align="right">邮　箱：</td>
-                    <td height="40" align="left"><input class="tekang" type="password" name="textfield2" id="textfield" /></td>
+                    <td height="40" align="left"><input readonly="readonly" class="tekang" type="text" name="email" id="email" value="<%=mail==null?"":mail%>"/></td>
                     <td height="40" align="left"><span  style="color:#F00">*</span></td>
                   </tr>
                   <tr>
                     <td height="40" align="right">手　机：</td>
-                    <td height="40" align="left">15311111111</td>
-                    <td height="40" align="left">&nbsp;</td>
+                    <td height="40" align="left"><input readonly="readonly" class="tekang" type="text" name="phone" id="phone" value="<%=phone==null?"":phone%>"/></td>
+                    <td height="40" align="left"><span  style="color:#F00">*</span></td>
                   </tr>
                   <tr>
                     <td height="40" align="right">所在地区：</td>
-                    <td height="40" align="left" ><select name=""><option>北京市</option></select>&nbsp;&nbsp;<select name=""><option>朝阳区</option></select></td>
+                    <td height="40" align="left" ><select id="selProvince" onchange="provinceChange();"></select>&nbsp;&nbsp;<select id="selCity"></select></td>
                     <td height="40" align="left">&nbsp;</td>
                   </tr>
                   <tr>
                     <td height="40" align="right">详细地址：</td>
-                    <td height="40" align="left"><input class="tekang" type="password" name="textfield2" id="textfield" /></td>
+                    <td height="40" align="left"><input class="tekang" type="text" name="det_address" id="det_address" /></td>
                     <td height="40" align="left"><span  style="color:#F00">*</span></td>
                   </tr>
                   <tr>
                     <td height="40" align="right">职　业：</td>
-                    <td height="40" align="left"><select name=""><option>老师</option><option>本科</option><option>研究生</option></select></td>
+                    <td height="40" align="left"><select name="profession" id="profession"><option>老师</option><option>本科</option><option>研究生</option></select></td>
                     <td height="40" align="left">&nbsp;</td>
                   </tr>
                 </table>
@@ -102,7 +106,7 @@
                 <table width="650" border="0" cellspacing="0" cellpadding="0">
                   <tr>
                     <td width="75" height="40" rowspan="2" align="right">上传头像：</td>
-                    <td width="88" height="40" rowspan="2" align="left"><img src="images/tj.jpg" /></td>
+                    <td width="88" height="40" rowspan="2" align="left"><img id="img_file1" class="img_file" src="images/tj.jpg" /></td>
                     <td width="487" height="45" align="left"></td>
                   </tr>
                   <tr>
@@ -110,7 +114,7 @@
                   </tr>
                   <tr>
                     <td width="75" height="40" rowspan="2" align="right">上传头像：</td>
-                    <td width="88" height="40" rowspan="2" align="left"><img src="images/tj.jpg" /></td>
+                    <td width="88" height="40" rowspan="2" align="left"><img id="img_file2" class="img_file" src="images/tj.jpg" /></td>
                     <td width="487" height="45" align="left" style="font-size:12px;"><span style="color:#F00;">&nbsp;*</span> 上传工作证或学生证</td>
                   </tr>
                   <tr>
@@ -118,12 +122,12 @@
                   </tr>
                   <tr>
                     <td height="40" align="right">简　介：</td>
-                    <td height="40" colspan="2" align="left"><textarea name="textarea" id="textarea" cols="45" rows="5"></textarea>
+                    <td height="40" colspan="2" align="left"><textarea name="textarea" id="textarea1" cols="45" rows="5"></textarea>
                       <span style="color:#F00;">&nbsp;*</span><span style="color:#CCC">请输入50-100字的简介</span></td>
                   </tr>
                   <tr>
                     <td height="40" align="right">详细介绍：</td>
-                    <td height="40" colspan="2" align="left"><textarea name="textarea" id="textarea" cols="45" rows="5"></textarea>
+                    <td height="40" colspan="2" align="left"><textarea name="textarea" id="textarea2" cols="45" rows="5"></textarea>
                       <span style="color:#F00;">&nbsp;*</span><span style="color:#CCC">请输入500-1000字的简介</span></td>
                   </tr>
                 </table>
@@ -136,7 +140,7 @@
                 <table width="650" border="0" cellspacing="0" cellpadding="0">
                   <tr>
                     <td height="40" align="right">中国银行：</td>
-                    <td width="487" height="40" align="left"><input class="tekang" type="password" name="textfield2" id="textfield" /><span style="color:#F00;">&nbsp;*</span></td>
+                    <td width="487" height="40" align="left"><input class="tekang" type="text" name="bankCard" id="bankCard" /><span style="color:#F00;">&nbsp;*</span></td>
                   </tr>
                 </table>
           </div>
@@ -144,7 +148,7 @@
           <div class="erji_te zc_top1"></div>
            <div class="w_960">
            <input name="" type="checkbox" value="" />同意用户协议<br />
-           <input type="button" submit value="确   定" class="zc_btn"/>
+           <input type="button" submit value="确   定" class="zc_btn" id="zc_btn"/>
            </div> 
            
         </div>
