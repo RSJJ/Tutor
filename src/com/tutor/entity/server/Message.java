@@ -12,9 +12,12 @@ public class Message implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	
-	private Integer code;//状态吗
+	private Integer code;//状态码
 	private String statement;//备注
 	private Object content;//请求内容
+	private int status;
+	private String msgEmail;
+	private String msgPhone;
 	
 	public Integer getCode()
 	{
@@ -39,6 +42,24 @@ public class Message implements Serializable
 	public void setContent(Object content)
 	{
 		this.content = content;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	public String getMsgEmail() {
+		return msgEmail;
+	}
+	public void setMsgEmail(String msgEmail) {
+		this.msgEmail = msgEmail;
+	}
+	public String getMsgPhone() {
+		return msgPhone;
+	}
+	public void setMsgPhone(String msgPhone) {
+		this.msgPhone = msgPhone;
 	}
 	
 

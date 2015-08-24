@@ -4,9 +4,14 @@ package com.tutor.action;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 
+import javax.annotation.Resource;
+
+import org.apache.catalina.connector.Request;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.opensymphony.xwork2.Action;
 import com.tutor.base.BaseAction;
 import com.tutor.dao.TeacherDAO;
 import com.tutor.entity.Teacher;
@@ -29,11 +34,11 @@ public class TeacherBasicAction extends BaseAction
 	private static final Log logger = LogFactory.getLog(TeacherBasicAction.class);
 
 	private TeacherDAO teacherDAO;
-
 	private Teacher teacher;
 	private String userName;
 	private String password;
-
+	private String mobile;
+	private String mobileCode;
 	/**
 	 * 教师登录
 	 * 登录成功将教师信息放入session中
@@ -103,23 +108,91 @@ public class TeacherBasicAction extends BaseAction
 		}
 		this.getSession().removeAttribute("user");
 	}
+	
+	public void teacherRegister() throws IOException
+	{
+		Teacher teacher = teacherDAO.findByPhoneOrMail(userName);
+		System.out.println(teacher);
+		Message msg = new Message();
+		if (teacher == null)
+		{
+			Teacher teacher2=new Teacher();
+			System.out.println(userName+' '+password+' '+mobile+' '+mobileCode);
+			teacher2.setTeacherId(IdGenerator.getInstance().getNextTeacherId());
+			teacher2.setMail(userName);
+			teacher2.setPassword(password);
+			teacher2.setPhone(mobile);
+			teacher2.setStatus(FinalValue.INIT_VALUE);
+			teacher2.setRegTime(Operation.getTime(new SimpleDateFormat(
+					"yyyy-MM-dd HH:mm:ss")));
+			teacher2.setStatement("nnn");
+			teacher2.setBestNums(0);
+			teacher2.setBadNums(0);
+			teacher2.setAllNums(0);
+			teacher2.setNormalNums(0);
+			teacherDAO.save(teacher2);
+			msg.setCode(FinalValue.SUCCESS);
+			msg.setStatus(1);
+			msg.setStatement("用户注册成功");
+		} 
+		else
+		{
+			msg.setCode(FinalValue.NULL);
+			msg.setStatus(0);
+			msg.setStatement("用户已经被注册");
+		}
+		
+		this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));
+	}
+	
+	
+	public String tRegister(){
+		Teacher teacher = teacherDAO.findByPhoneOrMail(userName);
+		if(teacher!=null){
+			this.getRequest().setAttribute("phone",teacher.getPhone());
+			this.getRequest().setAttribute("mail", teacher.getMail());
+		}else{
+			System.out.println("111");
+		}
+		return "success";
+	}
 	/**
 	 * 教师注册
 	 * @throws IOException 
 	 */
-	public void register() throws IOException
+	public void dtRegister() throws IOException
 	{
+		Teacher teac=teacherDAO.findByPhoneAndMail(teacher.getPhone(),teacher.getMail());
 		Message msg = new Message();
+		if(teac!=null){
+			teac.setName(teacher.getName());
+			teac.setSex(teacher.getSex());
+			teac.setAddress(teacher.getAddress());
+			teac.setDetailedAddress(teacher.getDetailedAddress());
+			teac.setJob(teacher.getJob());
+			teac.setIcon(teacher.getIcon());
+			teac.setLicence(teacher.getLicence());
+			teac.setIntroduction(teacher.getIntroduction());
+			teac.setDetailedIntroduction(teacher.getDetailedIntroduction());
+			teac.setCardNo(teacher.getCardNo());
+			teac.setStatus(3);
+			teac.setRegTime(Operation.getTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")));//设置注册时间
+			teacherDAO.save(teac);
+			
+			msg.setCode(FinalValue.SUCCESS);
+			msg.setStatement("资料已完善！");
+		}else{
+			msg.setCode(FinalValue.SUCCESS);
+			msg.setStatement("系统异常！");
+		}
 		
-		teacher.setTeacherId(IdGenerator.getInstance().getNextTeacherId());//设置teacherId
+		
+		/*teacher.setTeacherId(IdGenerator.getInstance().getNextTeacherId());//设置teacherId
 		teacher.setRegTime(Operation.getTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")));//设置注册时间
 		teacher.setStatus(FinalValue.INIT_VALUE);//设置初始状态
 		
 		teacherDAO.save(teacher);
-		
-		msg.setCode(FinalValue.SUCCESS);
-		msg.setStatement("注册成功");
-		
+		*/	
 		this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));
 	}
 
@@ -158,4 +231,17 @@ public class TeacherBasicAction extends BaseAction
 	{
 		this.teacher = teacher;
 	}
+	public String getMobile() {
+		return mobile;
+	}
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+	public String getMobileCode() {
+		return mobileCode;
+	}
+	public void setMobileCode(String mobileCode) {
+		this.mobileCode = mobileCode;
+	}
+	
 }

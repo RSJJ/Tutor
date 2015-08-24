@@ -1,29 +1,25 @@
- $(function(){
-                $(".onfl").click(function(){
-                    $(".box_r1").show();
-                    $(this).removeClass('hover');
-                    $(".box_r2").hide();
-                    $(".onfr").addClass('hover');
-                });
-                $(".onfr").click(function(){
-                    $(".box_r1").hide();
-                    $(this).removeClass('hover');
-                    $(".box_r2").show();
-                    $(".onfl").addClass('hover');
-                    if($.browser.version=="6.0"){
-                        if(!$("#LoginForm").attr("ie6pl")){
-                          $("#LoginForm").placeholder();
-                          $("#LoginForm").attr("ie6pl",true);
-                        }  
-                    }
-                });
-            });
-
 var tag_name_index = "index";
 	var tag_name_userId= "0";
     //初始化加载视频
-  
-    $(function(){
+  $(document).ready(function(){
+	  $(".onfl").click(function(){
+          $(".box_r1").show();
+          $(this).removeClass('hover');
+          $(".box_r2").hide();
+          $(".onfr").addClass('hover');
+      });
+      $(".onfr").click(function(){
+          $(".box_r1").hide();
+          $(this).removeClass('hover');
+          $(".box_r2").show();
+          $(".onfl").addClass('hover');
+          if($.browser.version=="6.0"){
+              if(!$("#LoginForm").attr("ie6pl")){
+                $("#LoginForm").placeholder();
+                $("#LoginForm").attr("ie6pl",true);
+              }  
+          }
+      });
 
     /*    //视频点击
         $("#example").click(function(){
@@ -48,6 +44,7 @@ var tag_name_index = "index";
         });
 */
         $("#RegFormOne,#LoginForm").placeholder();
+
         $("#studentRegister").click(function(){
         	$("#RegFormOne").formCheck2("studentRegister");
         });
@@ -58,9 +55,12 @@ var tag_name_index = "index";
         	$("#LoginForm").formCheck2("studentLogin");
         });
         $("#teacherLogin").click(function(){
-        	$("#LoginForm").formCheck2("teacherLogin");
+            $("#LoginForm").formCheck2("teacherLogin");
         });
      
+       /* $('#zzz').click(function(){
+        	alert("什么情况啊");
+        });*/
         /*
         //提交登录
         $("#submitLogin").click(function(){
@@ -205,9 +205,6 @@ var tag_name_index = "index";
             }
             location.reload();
         });*/
-    });
-    
-$(function(){
         
         //尾部注册
         $("#footerCheckRegForm").click(function(){
@@ -225,9 +222,7 @@ $(function(){
                 range : document.getElementById('FooterRegForm')
             });
         }
-    });
 
-$(function () {
     //上课流程切换
     $(".clickStepTag").find('li').click(function () {
         var index = $(this).attr('i'),
@@ -260,7 +255,7 @@ $(function () {
         $("#regFormTwo").submit();
     })
 
-})
+});
 
 //兼容H5属性标签
 if (document.getElementById('regFormTwo')) {
