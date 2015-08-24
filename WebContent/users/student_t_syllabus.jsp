@@ -255,8 +255,10 @@
 			</div>
 			<div class="baseBg J-shoping-mx"></div>
 			<div class="J-shoping-px"></div>
-			<form class="J-shoping-body" name="form">
-				<input type="hidden" id="studentId" value="<%=(student==null?"123456":student.getStudentId()) %>">
+			<form class="J-shoping-body" name="form" action="checkSchedule.action">
+				<input type="hidden" id="studentId" name="studentId" value="<%=(student==null?"123456":student.getStudentId()) %>">
+				<input type="hidden" name="courseId" value="<%=courseId %>" >
+				<input type="hidden" name="mode" value="<%=mode%>">
 				<div class="J-shoping-buy">
 					<a class="baseBg" href="javascript:void();" id="settlement" title="去购物车结算"></a>
 				</div>
