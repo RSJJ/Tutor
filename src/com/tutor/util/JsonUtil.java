@@ -3,6 +3,7 @@ package com.tutor.util;
 import java.lang.reflect.Type;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 /**
  * @author STerOTto
@@ -10,12 +11,26 @@ import com.google.gson.Gson;
  */
 public class JsonUtil
 {
+	/**
+	 * 实体类转json
+	 * 只转有  @Expose 注解的
+	 * T可为实体类或集合
+	 * @param entity
+	 * @return json
+	 */
+	public static <T> String toJsonExpose(T entity)
+	{
+		String result = "";
+		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+		result = gson.toJson(entity);
+		return result;
+	}
 	
 	/**
 	 * 实体类转json
 	 * T可为实体类或集合
 	 * @param entity
-	 * @return json串
+	 * @return json
 	 */
 	public static <T> String toJson(T entity)
 	{
