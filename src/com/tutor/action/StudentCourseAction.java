@@ -178,7 +178,6 @@ public class StudentCourseAction extends BaseAction
 		else
 			return Action.SUCCESS;
 	}
-	
 
 	public StudentCourseAction(StudentDAO studentDAO, TeacherDAO teachetDAO,
 			ScheduleDAO scheduleDAO, ShopCartDAO shopCartDAO,
