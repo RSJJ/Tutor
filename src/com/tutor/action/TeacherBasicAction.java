@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.opensymphony.xwork2.Action;
 import com.tutor.base.BaseAction;
+import com.tutor.base.ImgBaseAction;
 import com.tutor.dao.TeacherDAO;
 import com.tutor.entity.Teacher;
 import com.tutor.entity.server.Message;
@@ -39,6 +40,7 @@ public class TeacherBasicAction extends BaseAction
 	private String password;
 	private String mobile;
 	private String mobileCode;
+	private ImgBaseAction imgBase;// 封装的一些操作的函数
 	/**
 	 * 教师登录
 	 * 登录成功将教师信息放入session中
@@ -160,7 +162,8 @@ public class TeacherBasicAction extends BaseAction
 	 * 教师注册
 	 * @throws IOException 
 	 */
-	public void dtRegister() throws IOException
+	@SuppressWarnings("static-access")
+	public String dtRegister() throws IOException
 	{
 		Teacher teac=teacherDAO.findByPhoneAndMail(teacher.getPhone(),teacher.getMail());
 		Message msg = new Message();
@@ -170,8 +173,8 @@ public class TeacherBasicAction extends BaseAction
 			teac.setAddress(teacher.getAddress());
 			teac.setDetailedAddress(teacher.getDetailedAddress());
 			teac.setJob(teacher.getJob());
-			teac.setIcon(teacher.getIcon());
-			teac.setLicence(teacher.getLicence());
+			teac.setIcon(imgBase.fileToServer("/file", teacher.getIconphoto(), teacher.getIconphotoFileName(), teacher.getIconphotoContentType(), true));
+			teac.setLicence(imgBase.fileToServer("/file", teacher.getLicencephoto(), teacher.getLicencephotoFileName(), teacher.getLicencephotoContentType(), true));
 			teac.setIntroduction(teacher.getIntroduction());
 			teac.setDetailedIntroduction(teacher.getDetailedIntroduction());
 			teac.setCardNo(teacher.getCardNo());
@@ -181,9 +184,11 @@ public class TeacherBasicAction extends BaseAction
 			
 			msg.setCode(FinalValue.SUCCESS);
 			msg.setStatement("资料已完善！");
+			return "success";
 		}else{
 			msg.setCode(FinalValue.SUCCESS);
 			msg.setStatement("系统异常！");
+			return "failure";
 		}
 		
 		
@@ -193,7 +198,7 @@ public class TeacherBasicAction extends BaseAction
 		
 		teacherDAO.save(teacher);
 		*/	
-		this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));
+		/*this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));*/
 	}
 
 	

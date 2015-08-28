@@ -1,32 +1,42 @@
-$(document).ready(function(){
-	$("#zc_btn").click(function(){
-		var realName=$("#textfield").val();
-		var sex=$('input:radio[name="sexRadio"]:checked').val();
-		var selProvince=$('#selProvince').find("option:selected").text();
-		var selCity=$('#selCity').find("option:selected").text();
-		var address=selProvince+"-"+selCity;
-		var det_address=$('#det_address').val();
-		var profession=$('#profession').find("option:selected").text();
-		var file1=$('#up_file1').val();
-		var file2=$('#up_file2').val();
-		var textarea1=$('#textarea1').val();
-		var textarea2=$('#textarea2').val();
-		var bankCard=$('#bankCard').val();
-		
-		var email=$('#email').val();
-		var phone=$('#phone').val();
-		$.ajax({
-            type: "POST",
-            dataType: "json",
-            url: "login/dtRegister",
-            async:false,
-            data: {"teacher.mail":email,"teacher.phone":phone,"teacher.name":realName,"teacher.sex":sex,"teacher.address":address,"teacher.detailedAddress":det_address,"teacher.job":profession,"teacher.icon":file1,"teacher.licence":file2,"teacher.instroduction":textarea1,"teacher.detailed_introduction":textarea2,"teacher.cardNo":bankCard},
-            success: function(msg){
-             alert(msg.statement);
-            }
-        });
-	});
+function fn_browse1() 
+{ 
+
+document.reg_form.up_file1.click(); 
+document.reg_form.up_file1.value = document.all.reg_form.up_file1.value; 
+
+} 
+function fn_browse2() 
+{ 
+
+document.reg_form.up_file2.click(); 
+document.reg_form.up_file2.value = document.all.reg_form.up_file2.value; 
+} 
+function checkRegForm(){
+	var realName=$("#textfield").val();
+	var sex=$('input:radio[name="sexRadio"]:checked').val();
+	var selProvince=$('#selProvince').find("option:selected").text();
+	var selCity=$('#selCity').find("option:selected").text();
+	var address=selProvince+"-"+selCity;
+	var det_address=$('#det_address').val();
+	var profession=$('#profession').find("option:selected").text();
+	var file1=$('#up_file1').val();
+	var file2=$('#up_file2').val();
+	var textarea1=$('#textarea1').val();
+	var textarea2=$('#textarea2').val();
+	var bankCard=$('#bankCard').val();
 	
+	var email=$('#email').val();
+	var phone=$('#phone').val();
+	if(realName==""||sex==""||det_address==""||file1==""||file2==""||textarea1==""||textarea2==""||bankCard==""){
+		alert("* 均为必填项，请完善！");
+		return false;
+	}else{
+		return true;
+	}
+}
+
+
+$(document).ready(function(){	
 	//设置省份数据    
     setProvince();    
 

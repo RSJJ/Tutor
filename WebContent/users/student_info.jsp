@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <%
+    	String phone=(String)request.getAttribute("phone");
+    	String mail=(String)request.getAttribute("mail");
+
+    %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -112,51 +117,49 @@
                          <div class="erji_te zc_top1">个人资料</div>
                          <div class="dlk dlk2">
               <div class="dltab dltab2" style="width:600px; margin-left:50px;">
+              <form id="register_form" name="register_form" method="post" action="dsRegister" enctype="multipart/form-data" onSubmit="return checkRegisterForm()">
                 <table width="600" border="0" cellspacing="0" cellpadding="0">
                   <tr>
-                    <td width="73" height="40" align="right">用户名：</td>
-                    <td height="40" colspan="3" align="left">skd看李经理sb</td>
-                    </tr>
-                  <tr>
-                    <td height="40" align="right">性　别：</td>
-                    <td height="40" colspan="2" align="left">
-                        <input type="radio" name="radio" id="radio" value="radio" checked="checked" />男&nbsp;&nbsp;<input type="radio" name="radio" id="radio" value="radio" />女</td>
-                    <td width="282" height="40" align="left">&nbsp;</td>
-                  </tr>
-                  <tr>
                     <td height="40" align="right">真实姓名：</td>
-                    <td height="40" colspan="2" align="left"><input class="tekang" type="text" value="王勃" id="textfield" /></td>
+                    <td height="40" colspan="2" align="left"><input class="tekang" type="text" name="student.name" id="textfield" /></td>
                     <td height="40" align="left">&nbsp;</td>
                   </tr>
                   <tr>
+                    <td height="40" align="right">性　别：</td>
+                    <td height="40" colspan="2" align="left">
+                        <input type="radio" name="radio" id="radio" name="student.sex" class="sexRadio" checked="checked" />男&nbsp;&nbsp;<input type="radio" name="radio" id="radio" value="radio" />女</td>
+                    <td width="282" height="40" align="left">&nbsp;</td>
+                  </tr>
+
+                  <tr>
                     <td height="40" align="right">邮　箱：</td>
-                    <td height="40" colspan="2" align="left">manhdslflksjd@163.com</td>
+                    <td height="40" colspan="2" align="left"><input readonly="readonly" class="tekang" type="text" name="student.mail" id="email" value="<%=mail==null?"":mail%>"/></td>
                     <td height="40" align="left">&nbsp;</td>
                   </tr>
                   <tr>
                     <td height="40" align="right">手　机：</td>
-                    <td height="40" colspan="2" align="left">15311111111&nbsp;&nbsp;<a href="#" class="xg_a">修改</a></td>
+                    <td height="40" colspan="2" align="left"><input readonly="readonly" class="tekang" type="text" name="student.phone" id="phone" value="<%=phone==null?"":phone%>"/></td>
                     <td height="40" align="left"></td>
                   </tr>
-                  <tr>
+                 <!--  <tr>
                     <td height="40" align="right">手　机：</td>
                     <td width="153" height="40" align="left"><input class="tekang" type="text" style="width:150px;" /></td>
                     <td width="92" align="left"><span style="font-size:12px; background:#CCC; width:80px; padding:0 2px; display:block; text-align:center;">获取验证码</span></td>
                     <td height="40" align="left"><input class="tekang" type="text" value="请输入验证码" style="width:80px; color:#CCC;" />&nbsp;&nbsp;<a href="#" class="xg_a">确认</a></td>
-                  </tr>
+                  </tr> -->
                   <tr>
                     <td height="40" align="right">所在地区：</td>
-                    <td height="40" colspan="2" align="left" ><select name=""><option>北京市</option></select>&nbsp;&nbsp;<select name=""><option>朝阳区</option></select></td>
+                    <td height="40" colspan="2" align="left" ><select id="selProvince" onchange="provinceChange();"></select>&nbsp;&nbsp;<select id="selCity" name="student.address"></select></td>
                     <td height="40" align="left">&nbsp;</td>
                   </tr>
                   <tr>
                     <td height="40" align="right">详细地址：</td>
-                    <td height="40" colspan="2" align="left"><input class="tekang" type="password" name="textfield2" id="textfield" /></td>
+                    <td height="40" colspan="2" align="left"><input class="tekang" type="text" name="student.detailedAddress" id="det_address" /></td>
                     <td height="40" align="left"></td>
                   </tr>
                   <tr>
                     <td height="40" align="right">所在年级：</td>
-                    <td height="40" colspan="2" align="left"><select name="select">
+                    <td height="40" colspan="2" align="left"><select  name="student.grade" id="grade">
                       <option>高一</option>
                       <option>高二</option>
                       <option>高三</option>
@@ -169,6 +172,7 @@
                     </td>
                     </tr>
                 </table>
+                </form>
               </div>
             </div>
             
