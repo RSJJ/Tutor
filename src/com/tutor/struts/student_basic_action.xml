@@ -6,5 +6,9 @@
 		<action name="studentLogin" class="studentBasicAction" method="login">
 			<result type="json"></result>
 		</action>
+		<action name="studentRegister" class="studentBasicAction" method="studentRegister">
+			<result type="json"></result>
+		</action>
+		<action name="studentLogout" class="studentBasicAction" method="logout"></action>
 	</package>
 </struts>

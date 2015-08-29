@@ -5,7 +5,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -44,17 +43,26 @@ public class StudentCourseAction extends BaseAction
 	private String teacherId;
 	private String studentId;
 	private String courseId;
-	private String scheduleIds;
+	private String scheduleIds [];
 	private String mode;
+	private String isJson = "false";
+	 
+	private Teacher teacher;
+	private List<List<Schedule>> weekSchedule;
+	private List<ShopCart> availableCourse ;
+	private List<ShopCart> notAvailableCourse ;
+	
 	
 	/**
+	 * @param teacherId
+	 * @param isJson
 	 * @return
 	 */
 	public String getCourseSchdule()
 	{
-		Teacher teacher = teachetDAO.find(teacherId);
+		teacher = teachetDAO.find(teacherId);
 		
-		List<List<Schedule>> weekSchedule = new ArrayList<List<Schedule>>();
+		weekSchedule = new ArrayList<List<Schedule>>();
 		/**
 		 * get all schedule
 		 */
@@ -70,10 +78,10 @@ public class StudentCourseAction extends BaseAction
 					sdf.format(date));
 			weekSchedule.add(schedules);
 		}
-		
-		this.getRequest().setAttribute("teacher", teacher);
-		this.getRequest().setAttribute("weekSchedule", weekSchedule);
-		return Action.SUCCESS;
+		if(Boolean.valueOf(isJson))
+			return this.JSON;
+		else
+			return Action.SUCCESS;
 	}
 	
 	/**
@@ -81,15 +89,15 @@ public class StudentCourseAction extends BaseAction
 	 * @param studentId
 	 * @param courseId
 	 * @param mode
+	 * @param isJson
 	 * @return
 	 * @throws ParseException
 	 */
-	public String checkSchedule() throws ParseException
+	public String checkSchedule() throws Exception 
 	{
-		String [] _scheduleIds = JsonUtil.fromJson(scheduleIds, new TypeToken<String []>(){}.getType());
 		List<Schedule> schedules = new ArrayList<Schedule>();
-		List<ShopCart> availableCourse = new ArrayList<ShopCart>();
-		List<ShopCart> notAvailableCourse = new ArrayList<ShopCart>();
+		availableCourse = new ArrayList<ShopCart>();
+		notAvailableCourse = new ArrayList<ShopCart>();
 		Student student = studentDAO.find(studentId);
 		Course course = new Course();
 		if(!StringUtils.isEmpty(courseId)&&StringUtils.isNumeric(mode))
@@ -107,9 +115,9 @@ public class StudentCourseAction extends BaseAction
 				course.setCourse(graCourseDAO.find(courseId));
 			}
 		}
-		if(_scheduleIds != null)
+		if(scheduleIds != null)
 		{
-			for (String _scheduleId : _scheduleIds)
+			for (String _scheduleId : scheduleIds)
 			{
 				System.out.println(_scheduleId);
 				Schedule _schedule = scheduleDAO.find(Integer.valueOf(_scheduleId));
@@ -152,6 +160,9 @@ public class StudentCourseAction extends BaseAction
 				{
 					shopCart.setStatus(ShopCart.AVAILABLE);
 					availableCourse.add(shopCart);
+					
+					_schedule.setStatus(Schedule.SOLD);
+					scheduleDAO.update(_schedule);
 				}
 				else
 				{
@@ -160,26 +171,12 @@ public class StudentCourseAction extends BaseAction
 				}
 			}
 		}
-		
-		this.getRequest().setAttribute("availableCourse", availableCourse);
-		this.getRequest().setAttribute("notAvailableCourse", notAvailableCourse);
-		return Action.SUCCESS;
-	}
-	
-	private class Purchase implements Comparator<Schedule>
-	{
-
-		@Override
-		public int compare(Schedule o1, Schedule o2)
+		if(Boolean.valueOf(isJson))
 		{
-			if(o1.getPurchase()<o2.getPurchase())
-				return 1;
-			else if(o1.getPurchase()>o2.getPurchase())
-				return -1;
-			else
-				return 0;
+			return this.JSON;
 		}
-		
+		else
+			return Action.SUCCESS;
 	}
 
 	public StudentCourseAction(StudentDAO studentDAO, TeacherDAO teachetDAO,
@@ -196,14 +193,11 @@ public class StudentCourseAction extends BaseAction
 	}
 
 	
-	
-	public String getScheduleIds()
-	{
+	public String[] getScheduleIds() {
 		return scheduleIds;
 	}
 
-	public void setScheduleIds(String scheduleIds)
-	{
+	public void setScheduleIds(String[] scheduleIds) {
 		this.scheduleIds = scheduleIds;
 	}
 
@@ -245,6 +239,55 @@ public class StudentCourseAction extends BaseAction
 	public void setMode(String mode)
 	{
 		this.mode = mode;
+	}
+
+	
+	public String getIsJson()
+	{
+		return isJson;
+	}
+
+	public void setIsJson(String isJson)
+	{
+		this.isJson = isJson;
+	}
+	public Teacher getTeacher()
+	{
+		return teacher;
+	}
+
+	public void setTeacher(Teacher teacher)
+	{
+		this.teacher = teacher;
+	}
+	public List<List<Schedule>> getWeekSchedule()
+	{
+		return weekSchedule;
+	}
+
+	public void setWeekSchedule(List<List<Schedule>> weekSchedule)
+	{
+		this.weekSchedule = weekSchedule;
+	}
+
+	public List<ShopCart> getAvailableCourse()
+	{
+		return availableCourse;
+	}
+
+	public void setAvailableCourse(List<ShopCart> availableCourse)
+	{
+		this.availableCourse = availableCourse;
+	}
+
+	public List<ShopCart> getNotAvailableCourse()
+	{
+		return notAvailableCourse;
+	}
+
+	public void setNotAvailableCourse(List<ShopCart> notAvailableCourse)
+	{
+		this.notAvailableCourse = notAvailableCourse;
 	}
 	
 }

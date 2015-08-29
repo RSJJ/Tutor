@@ -67,13 +67,13 @@
         	<div id="log_before">
         		<%if(teacher != null){ %>
         	<!-- 教师登录成功 -->
-        		<a href="userlogin.jsp" class="a_k m_l10" target="_blank" title="登录"><%=teacher.getName() %></a> <a id="teacherLogout" class="a_k m_l10" title="注册">退出</a>  
+        		<a href="userlogin.jsp" class="a_k m_l10" target="_blank" title="登录"><%=teacher.getName() %></a> <a id="teacherLogout" class="a_k m_l10" title="退出">退出</a>  
         	<%}
         	else if(student != null)
         	{
         	%>
         	<!-- 学生登录成功 -->
-        		<a href="userlogin.jsp" class="a_k m_l10" target="_blank" title="登录"><%=student.getName() %></a> <a id="studentLogout" class="a_k m_l10" title="注册">退出</a>
+        		<a href="userlogin.jsp" class="a_k m_l10" target="_blank" title="登录"><%=student.getName() %></a> <a id="studentLogout" class="a_k m_l10" title="退出">退出</a>
         	<%}
         	else
         	{

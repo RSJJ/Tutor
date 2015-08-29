@@ -400,40 +400,46 @@
 
 						if(bOk){
 							if(type=="studentRegister"){
+
 								var val1=$.trim(oForm.find("input[name='recommen_mobile']").val());
 								var val2=$.trim(oForm.find("input[name='mobile']").val());
-								if(val1 && val1==val2){
+								/*if(val1 && val1==val2){
 									oForm.find("input[name='recommen_mobile']").next().removeClass().addClass("error").html("推荐人手机号不能与自己手机号相同").slideDown();
 									return;
-								}
+								}*/
 								var oInput_user=oForm.find("input[name='userName']");
 								var oInput_pwd =oForm.find("input[name='password']");
 								$.ajax({
 				                    type: "POST",
 				                    dataType: "json",
-				                    url: "/user/ajax_register.php",
+				                    url: "login/studentRegister",
 				                    async:false,
-				                    data: "userName=" + oInput_user.val(),
+				                    data: {"userName":oInput_user.val(),"password":oInput_pwd.val(),"mobile":val2,"mobileCode":val1},
 				                    success: function(msg){
-				                        if(msg.status){
+				                        if(msg.status==1){
 				                        	 bOk=true;
-				                            //oSpan.slideDown();
-				                        }else{
+				                        	 location.reload();
+				                        }
+				                        /* else if(msg.status==2){
+				                        	oForm.find("input[name='recommen_mobile']").addClass("hover").next().removeClass().addClass("error").html(msg.msg).slideDown();
+				                            bOk=false;
+				                        }*/else{
 				                        	oInput_user.addClass("hover");
 				                            oInput_user.next().removeClass().addClass("error").html("该邮箱地址已经被注册").slideDown();
 				                            bOk=false;
 				                        }
 				                    }
 				                });
-                                /*
-				                if(val1){
+                                
+				               /* if(bOk){
 				                	$.ajax({
 					                    type: "POST",
 					                    dataType: "json",
-					                    url: "/user/ajax_register.php",
+					                    url: "login/studentRegister",
 					                    async:false,					                    
-					                    data: {"userName":oInput_user.val(),"password":oInput_pwd.val(),"mobile":val2,"recommen_mobile":val1},
+					                    data: {"userName":oInput_user.val(),"password":oInput_pwd.val(),"mobile":val2,"mobileCode":val1},
 					                    success: function(msg){
+					                    	alert(msg.code);
 					                        if(msg.status){
 					                        	 bOk=true;
 					                            //oSpan.slideDown();
@@ -443,8 +449,35 @@
 					                        }
 					                    }
 					                });
-				                }*/
-							//	bOk && oForm.submit();
+				                }
+							bOk && oForm.submit();*/
+							}else if(type=="teacherRegister"){
+
+								var val1=$.trim(oForm.find("input[name='recommen_mobile']").val());
+								var val2=$.trim(oForm.find("input[name='mobile']").val());
+								var oInput_user=oForm.find("input[name='userName']");
+								var oInput_pwd =oForm.find("input[name='password']");
+								$.ajax({
+				                    type: "POST",
+				                    dataType: "json",
+				                    url: "login/teacherRegister",
+				                    async:false,
+				                    data: {"userName":oInput_user.val(),"password":oInput_pwd.val(),"mobile":val2,"mobileCode":val1},
+				                    success: function(msg){
+				                        if(msg.status==1){
+				                        	 bOk=true;
+				                        	 location.reload();
+				                        }
+				                        /* else if(msg.status==2){
+				                        	oForm.find("input[name='recommen_mobile']").addClass("hover").next().removeClass().addClass("error").html(msg.msg).slideDown();
+				                            bOk=false;
+				                        }*/else{
+				                        	oInput_user.addClass("hover");
+				                            oInput_user.next().removeClass().addClass("error").html("该邮箱地址已经被注册").slideDown();
+				                            bOk=false;
+				                        }
+				                    }
+				                });
 							}
 							else if(type=="teacherLogin")
 							{
@@ -454,6 +487,58 @@
 				                    type: "POST",
 				                    dataType: "json",
 				                    url: "login/teacherLogin",
+				                    data: {"userName":oInput_user.val(),"password":oInput_pwd.val()},
+				                    success: function(msg){
+				                        if(msg.code == '404')
+				                        {
+				                        	//用户名错误
+				                        	oInput_user.addClass("hover").next().removeClass().addClass("error").html(msg.statement).slideDown();
+				                        }
+				                        else if(msg.code == '400')
+				                        {
+				                        	//密码错误
+				                        	oInput_pwd.addClass("hover").next().removeClass().addClass("error").html(msg.statement).slideDown();
+				                        }
+				                        else if(msg.code == '-1')
+				                        {
+				                        	//用户被限制登录
+				                        	alert(mag.statement);
+				                        } 
+				                        else if(msg.code == '0')
+				                        {
+				                        	//教师未填写详细信息
+				                        	/*$.ajax({
+				                        		type:"POST",
+				                        		datatype:"json",
+				                        		url:"tRegister.action",
+				                        		data:{"userName":oInput_user.val()},
+				                        		 success: function(msg){
+				                        			 alert(111);
+				                        		 }
+				                        	});*/
+				                        	location.href="../teachers/tRegister.action?userName="+oInput_user.val();
+				                        }
+				                        else
+				                        {
+				                        	alert(333);
+				                        	$('#log_before').css('display','none');
+				                        	$('#log_after').css('display','block');
+				                        	$('#login_before').css('display','none');
+				                        	$('#login_after').css('display','block');
+				                        	//登录成功，刷新页面信息
+				                        	location.reload();
+				                        }
+				                    }
+				                });
+							}
+							else if(type=="studentLogin")
+							{
+								var oInput_user=oForm.find("input[id='loginUserName']");
+								var oInput_pwd =oForm.find("input[id='loginPassword']");
+								$.ajax({
+				                    type: "POST",
+				                    dataType: "json",
+				                    url: "login/studentLogin",
 				                    data: {"userName":oInput_user.val(),"password":oInput_pwd.val()},
 				                    success: function(msg){
 				                        if(msg.code == '404')
@@ -484,7 +569,8 @@
 				                });
 							}
 							else{
-								var userName=oForm.find("input[name='userName']");
+								alert(222);
+								/*var userName=oForm.find("input[name='userName']");
 								var password=oForm.find("input[name='password']");
 								$.ajax({
 				                    type: "POST",
@@ -502,7 +588,7 @@
 				                           }
 				                        }
 				                    }
-				                });
+				                });*/
 							}
 
 						}

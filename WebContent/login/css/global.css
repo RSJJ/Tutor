@@ -505,7 +505,9 @@ input { border:1px solid #1e1e1e; background:#fff;}
 
 
 
-
+.a_k m_l10 {
+	cursor:pointer;
+}
 
 .hqyzm{float:left; background:#ffa800; margin-left:4px; padding:0 10px; border-radius:3px; height:31px; line-height:31px; color:#FFF; margin-top:2px;}
 .hqyzm a{ color:#FFF;}

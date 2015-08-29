@@ -39,7 +39,6 @@
 
 <body>
 
-<input type="hidden" id="studentId" value="<%=(student==null?"123456":student.getStudentId()) %>">
 
 <div class="container">
 <!--导航 start-->
@@ -256,11 +255,14 @@
 			</div>
 			<div class="baseBg J-shoping-mx"></div>
 			<div class="J-shoping-px"></div>
-			<div class="J-shoping-body">
+			<form class="J-shoping-body" name="form" action="checkSchedule.action">
+				<input type="hidden" id="studentId" name="studentId" value="<%=(student==null?"123456":student.getStudentId()) %>">
+				<input type="hidden" name="courseId" value="<%=courseId %>" >
+				<input type="hidden" name="mode" value="<%=mode%>">
 				<div class="J-shoping-buy">
 					<a class="baseBg" href="javascript:void();" id="settlement" title="去购物车结算"></a>
 				</div>
-			</div>
+			</form>
 		</div>
 		<div class="baseBg J-R-ico J-shoping-pos"></div>
 	</div>
@@ -278,18 +280,7 @@
 			 var sum = Number($('.J-shoping-num').text());
 			 if(sum>0){
 				 if($("#studentId").val()!=""){
-					 var shopCartCourseIds = new Array();
-					 $("input[name^='shopCartCourseId']").each(function(){
-						 shopCartCourseIds.push($(this).val()); 
-					 });
-					 $.post("checkSchedule.action",
-							{
-								scheduleIds:JSON.stringify(shopCartCourseIds),
-								courseId:'<%=courseId%>',
-								mode:'<%=mode%>',
-								studentId:$("#studentId").val()
-							}
-					 );
+					 $("form").submit();
 				 }
 				 else{
 					 alert("请登录！");

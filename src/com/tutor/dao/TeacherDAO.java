@@ -34,6 +34,12 @@ public interface TeacherDAO
 	public Teacher findByPhoneOrMail(String phoneOrMail);
 	
 	/**
+	 * @param phoneOrMail
+	 * @return
+	 */
+	public Teacher findByPhoneAndMail(String phone,String mail);
+	
+	/**
 	 * 根据手机查找教师
 	 * @param phone
 	 * @param password

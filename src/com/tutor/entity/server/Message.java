@@ -17,6 +17,9 @@ public class Message<T> implements Serializable
 	private int code;
 	private String statement;
 	private T content;
+	private int status;
+	private String msgEmail;
+	private String msgPhone;
 	
 	public int getCode()
 	{
@@ -41,6 +44,24 @@ public class Message<T> implements Serializable
 	public void setContent(T content)
 	{
 		this.content = content;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	public String getMsgEmail() {
+		return msgEmail;
+	}
+	public void setMsgEmail(String msgEmail) {
+		this.msgEmail = msgEmail;
+	}
+	public String getMsgPhone() {
+		return msgPhone;
+	}
+	public void setMsgPhone(String msgPhone) {
+		this.msgPhone = msgPhone;
 	}
 	
 	
