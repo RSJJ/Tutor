@@ -122,12 +122,12 @@
                   </tr>
                   <tr>
                     <td height="40" align="right">简　介：</td>
-                    <td height="40" colspan="2" align="left"><textarea name="teacher.instroduction" id="textarea1" cols="45" rows="5"></textarea>
+                    <td height="40" colspan="2" align="left"><textarea name="teacher.introduction" id="textarea1" cols="45" rows="5"></textarea>
                       <span style="color:#F00;">&nbsp;*</span><span style="color:#CCC">请输入50-100字的简介</span></td>
                   </tr>
                   <tr>
                     <td height="40" align="right">详细介绍：</td>
-                    <td height="40" colspan="2" align="left"><textarea name="teacher.detailed_introduction" id="textarea2" cols="45" rows="5"></textarea>
+                    <td height="40" colspan="2" align="left"><textarea name="teacher.detailedIntroduction" id="textarea2" cols="45" rows="5"></textarea>
                       <span style="color:#F00;">&nbsp;*</span><span style="color:#CCC">请输入500-1000字的简介</span></td>
                   </tr>
                 </table>

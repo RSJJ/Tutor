@@ -84,7 +84,10 @@ public class Teacher implements Serializable
 	private String school;
 	@Column(name="profession")
 	private String profession;
-	
+	@Column(name="city")
+	private String city;
+	@Column(name="card_type")
+	private String cardType;
 	@Transient
 	File iconphoto;
 	@Transient
@@ -332,11 +335,24 @@ public class Teacher implements Serializable
 	public void setProfession(String profession) {
 		this.profession = profession;
 	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public String getCardType() {
+		return cardType;
+	}
+	public void setCardType(String carType) {
+		this.cardType = carType;
+	}
+	
 	
 	public File getIconphoto() {
 		return iconphoto;
 	}
-	public void setIconphoto(File iconphoto) {
+	public void setIconphoto(File iconphoto) {	
 		this.iconphoto = iconphoto;
 	}
 	public String getIconphotoFileName() {

@@ -1,4 +1,5 @@
 $(document).ready(function(e) {
+	
 	$('#js-show-psw').click(function(){
 		if($(this).attr('checked')){
 			$('#js-password').attr('type','text');
@@ -11,11 +12,9 @@ $(document).ready(function(e) {
 	var phoneBox = $('.phone-box');
 	var mode = 'Email';
 	var isloaded = false;
-	
-
-	$('#js-phone').change(function(){ 
-		var phoneNum = $(this).val($.trim($(this).val())).val();
-		PXVerify.Phone(phoneNum,false,function(isok,error){
+	$('#js-password').change(function(){ 
+		var Password = $(this).val($.trim($(this).val())).val();
+		/*PXVerify.Phone(phoneNum,false,function(isok,error){
 				if(isok){
 					phoneBox.show();
 				}else{
@@ -23,11 +22,40 @@ $(document).ready(function(e) {
 						showError('对不起！账号：'+phone+'已被注册！您可以使用该账号<a class="a" href="../login/@username='+username+'">直接登录</a>，或者使用其他账号注册。');
 					}
 				}
-		});
+		});*/
+		var msg = PXVerify.Password(Password)
+		if(msg!=null){
+			$(this).removeClass("vs").addClass("vf");
+			showError(msg)
+		}else{
+			$(this).removeClass("vf").addClass("vs");
+			clearError();
+		}
+	})
+
+	$('#js-phone').change(function(){ 
+		var phoneNum = $(this).val($.trim($(this).val())).val();
+		/*PXVerify.Phone(phoneNum,false,function(isok,error){
+				if(isok){
+					phoneBox.show();
+				}else{
+					if(error=='该手机已存在!'){
+						showError('对不起！账号：'+phone+'已被注册！您可以使用该账号<a class="a" href="../login/@username='+username+'">直接登录</a>，或者使用其他账号注册。');
+					}
+				}
+		});*/
+		var msg = PXVerify.Phone(phoneNum,false)
+		if(msg!=null){
+			$(this).removeClass("vs").addClass("vf");
+			showError(msg)
+		}else{
+			$(this).removeClass("vf").addClass("vs");
+			clearError();
+		}
 	})
 	$('#js-email').change(function(){ 
 		var email = $(this).val($.trim($(this).val())).val();
-		PXVerify.Email(email,false,function(isok,error){
+		/*PXVerify.Email(email,false,function(isok,error){
 				if(!isok){
 					if(error=='该邮箱已存在！'){
 						showError('对不起！账号：'+email+'已被注册！');
@@ -35,7 +63,15 @@ $(document).ready(function(e) {
 						showError(error);
 					}
 				}
-		});
+		});*/
+		var msg = PXVerify.Email(email,false)
+		if(msg!=null){
+			$(this).removeClass("vs").addClass("vf");
+			showError(msg)
+		}else{
+			$(this).removeClass("vf").addClass("vs");
+			clearError();
+		}
 	})
 
 	$('#js-username').change(function(){
@@ -107,55 +143,41 @@ $(document).ready(function(e) {
 	});
 	
 	var issubmit = false;
-	$('#js-register').click(function(){
-		if(issubmit)return false;
+	
+	$('.js-register').click(function(){
+		$(".loading").show();
+		if(issubmit) return false;
+		var type = $(this).data("type") //获取注册类型
+		var email = $('#js-email').val($.trim($('#js-email').val())).val();
 		var phone = $('#js-phone').val($.trim($('#js-phone').val())).val();
 		var password = $('#js-password').val($.trim($('#js-password').val())).val();
 		/*var password2 = $('#js-password-2').val($.trim($('#js-password-2').val())).val();*/
 		var code = $('#js-code').val($.trim($('#js-code').val())).val();
-                if(typeof(phone) == 'undefined' || phone == ''){
-                    showError('请输入您的账号。');
-                    return false;
-                }
-	
-		var error = PXVerify.Password(password);
-		if(error){
-			if(error=='密码长度应为6-16个字符！'){
-				showError('您输入的密码长度应为6-16个字符，请重新输入。');
+		var error = PXVerify.Register(email,phone, password, code, type , true, function(isok,error){
+	        if(isok==200){
+	        	if(type=='studentRegister'){
+        			showError('注册成功，5秒后跳转至主页。。。点击'+"<a href='../index.jsp' style='color:blue;'>主页</a>直接跳转");
+                    url = '../index.jsp';
+                    setTimeout(function(){window.location.href  = url;},5000)
+	        	}else {
+	        		url = 'detail.jsp?phone='+phone+'&email='+email;
+	        		window.location.href  = url;
+	        	}
 			}else{
+				$(".loading").hide();
+				$("#title").html("用户注册");
 				showError(error);
-			}
-			return false;
-		}
-		/*error = PXVerify.Password2(password,password2);
-		if(error){
-			showError(error);
-			return false;
-		}*/
-			error = PXVerify.PhoneCode(phone,code);
-			if(error){
-				showError(error);
-				return false;
-			}
-               
-		var error = PXVerify.Register(phone, password, code, '', 'phone', true, function(isok,error){
-        if(isok){
-                                 url = '../index.html';
-                                 window.location.href  = url;
-				//window.location.href = returnurl||$('.com-header-logo').attr('href');
-			}else{
-				
-					showError(error);
 				issubmit = false;
-			}
-		}, DOMIN.MAIN+'/register');
-                
-		if(error){
+				}
+			});
+		if(error!=null){
+			$(".loading").hide();
 			showError(error);
 			return false;
 		}else{
+			clearError();
 			issubmit = true;
-			$('#js-register').val('正在注册...');
+			$("#title").html("注册中");
 		}
 	});
 });

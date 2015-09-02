@@ -573,8 +573,10 @@ if (window['pxDevicePixelRatio'] > 1) {
 function showError(error, id) {
     $("#" + (id || "js-error-msg")).fadeIn().html(error);
     document.body.scrollTop = $("#" + (id || "js-error-msg")).offset().top;
+};
+function clearError(id) {
+	$("#" + (id || "js-error-msg")).fadeOut().html("");
 }
-;
 $(document).ready(function(e) {
 	$('#js-com-header-search').click(function(){
 		$(this).toggleClass('selected');

@@ -161,7 +161,7 @@ var PXVerify = {
 		if(phone==''){
 			return '手机号码不能为空！';
 		};
-		if (!/^\d{10,11}$/.test(phone)) {
+		if (!/^\d{11}$/.test(phone)) {
 			return '手机号码格式错误！';
 		};
 		if(exist){
@@ -259,7 +259,7 @@ var PXVerify = {
 		if(phone==''){
 			return '手机号码不能为空！';
 		};
-		if (!/^\d{10,11}$/.test(phone)) {
+		if (!/^\d{11}$/.test(phone)) {
 			return '手机号码格式错误！';
 		};
 		if(code==''){
@@ -409,63 +409,67 @@ var PXVerify = {
 		return null;
 	},
 	//功能：注册
-	//参数：手机/邮箱(string)、密码(string)、验证码(string)、学校ID(string)、模式(string[Phone|Email])、是否ajax验证(bool)、验证成功后回调函数(function)
+	//参数：邮箱(string)、手机、密码(string)、验证码(string)、学校ID(string)、模式(老师、学生)、是否ajax验证(bool)、验证成功后回调函数(function)
 	//		验证成功后回调函数(function)参数：是否成功、相关信息(错误提示信息)、返回原始数据
 	//返回：错误信息(string)，正确返回null
-	Register:function(phone,password,code,mode,ajax,callback,url){
+	Register:function(email,phone,password,code,mode,ajax,callback){
 		var _this = this;
+		var url = mode;
 		phone = _this._trim(phone);
-		//campus_id = _this._trim(campus_id);
+		email = _this._trim(email);
 		mode = _this._trim(mode);
 		password = _this._trim(password);
 		code = _this._trim(code);
-		var data = {
-			phone 		: phone,
-			password 	:password,
-			campus_id	:campus_id
-		};
-		var msg = null;
-		if(mode=='Phone'){
-			data['act'] = 'register_phone';
-			data['code'] = code;
-			msg = _this.Phone(phone,false);
-			if(msg){
-				return msg;
-			}
-		}else{
-			data['act'] = 'register_email';
-			data['imgcode'] = code;
-			msg = _this.Email(phone,false);
-			if(msg){
-				return msg;
-			}
-		}
-		msg = _this.Password(password,false);
-		if(msg){
+		if(typeof(phone) == 'undefined' || phone == '' ||
+				typeof(email) == 'undefined' || email == ''||
+					typeof(password) == 'undefined' || password == ''){
+            return "输入信息不完善";
+        }
+		var msg=null;
+	    msg = PXVerify.Email(email,false)
+		if(msg!=null){
+			$("#js-email").removeClass("vs").addClass("vf");
+			showError(msg)
 			return msg;
-		}
-		if(mode=='Phone'){
-			msg = _this.PhoneCode(phone,code,false);
-			if(msg){
-				return msg;
-			}
 		}else{
-			msg = _this.ImageCode(code,false);
-			if(msg){
-				return msg;
-			}
+			$("#js-email").removeClass("vf").addClass("vs");
+			clearError();
 		}
+	    msg = PXVerify.Phone(phone,false)
+		if(msg!=null){
+			$("#js-phone").removeClass("vs").addClass("vf");
+			showError(msg)
+			return msg;
+		}else{
+			$("#js-phone").removeClass("vf").addClass("vs");
+			clearError();
+		}
+		msg = PXVerify.Password(password)
+		if(msg!=null){
+			$("#js-password").removeClass("vs").addClass("vf");
+			showError(msg)
+			return msg;
+		}else{
+			$("#js-password").removeClass("vf").addClass("vs");
+			clearError();
+		}
+		var data = {
+			userName	: email,
+			mobile 		: phone,
+			password 	:password,
+		};
 		if(ajax){
 			$.ajax({
-				url:url||(DOMIN.MAIN+'/register'),
-				type: 'GET',
+				url:url,
+				type: 'POST',
 				dataType: 'json',
 				cache:false,
 				data:data, 
 				error:function(data){
 					return _this._callback(callback,false,'连接服务器失败，请稍后再试！');
 				},success: function(data){
-					return _this._callback(callback,data.IsSuccess,data.Message,data);
+					console.log(data)
+					return _this._callback(callback,data.code,data.statement,data);
 				}
 			});
 		}

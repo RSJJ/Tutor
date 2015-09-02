@@ -200,7 +200,53 @@ public class TeacherBasicAction extends BaseAction
 		*/	
 		/*this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));*/
 	}
-
+	/**
+	 * 教师信息完善
+	 * @throws IOException 
+	 */
+	@SuppressWarnings("static-access")
+	public String dtRegisterPhone() throws IOException
+	{
+		Teacher teac=teacherDAO.findByPhoneAndMail(teacher.getPhone(),teacher.getMail());
+		Message msg = new Message();
+		if(teac!=null){
+			teac.setName(teacher.getName());
+			teac.setSex(teacher.getSex());
+			teac.setAddress(teacher.getAddress());
+			teac.setDetailedAddress(teacher.getDetailedAddress());
+			teac.setJob(teacher.getJob());
+			teac.setIcon(imgBase.fileToServer("/file", teacher.getIconphoto(), teacher.getIconphotoFileName(), teacher.getIconphotoContentType(), true));
+			teac.setLicence(imgBase.fileToServer("/file", teacher.getLicencephoto(), teacher.getLicencephotoFileName(), teacher.getLicencephotoContentType(), true));
+			teac.setIntroduction(teacher.getIntroduction());
+			teac.setDetailedIntroduction(teacher.getDetailedIntroduction());
+			teac.setCardNo(teacher.getCardNo());
+			teac.setLng(teacher.getLng());
+			teac.setLat(teacher.getLat());
+			teac.setSchool(teacher.getSchool());
+			teac.setProfession(teacher.getProfession());
+			teac.setCity(teacher.getCity());
+			teac.setCardType(teacher.getCardType());
+			teac.setStatus(3);
+			//teac.setRegTime(Operation.getTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")));//设置注册时间
+			teacherDAO.save(teac);
+			msg.setCode(FinalValue.SUCCESS);
+			msg.setStatement("资料已完善！");
+			return SUCCESS;
+		}else{
+			msg.setCode(FinalValue.SUCCESS);
+			msg.setStatement("系统异常！");
+			return "error";
+		}
+		//this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));
+		
+		/*teacher.setTeacherId(IdGenerator.getInstance().getNextTeacherId());//设置teacherId
+		teacher.setRegTime(Operation.getTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")));//设置注册时间
+		teacher.setStatus(FinalValue.INIT_VALUE);//设置初始状态
+		
+		teacherDAO.save(teacher);
+		*/	
+		/*this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));*/
+	}
 	
 	public TeacherBasicAction(TeacherDAO teacherDAO)
 	{

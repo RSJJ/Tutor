@@ -23,15 +23,12 @@
 		<script>var PX_HELP_DATA=['','uo74au74aqpc8801g3htt5l2v7',['touch','login','index'],'2014/04/09 09:39:29',0,false]; var DOMIN = {MAIN:"lcoalhost:8080/xfx",HELP:"../../help.paixie.net/",TUAN:"../../tuan.paixie.net/",WAP:"../../wap.paixie.net/",UNION:"../../union.paixie.net/",VIPSHOP:"../../v.paixie.net/"};</script>  
 
         <script>
-		
 			var JAVASCRIPT_LIB = (('\v' !== 'v') ? 'zepto' : 'jquery');
 			JAVASCRIPT_LIB="jquery";
             document.write('<script src="http://ued.paixie.net/scripts/public/jquery.js"><\/script>');
-			
-			
             DOMIN.MAIN = '../';
             // uc浏览器添加书签功能 
-           window.onmessage = function(event){
+            window.onmessage = function(event){
                 if(event.data.message != '')
                 {
                     $('#otherPage').remove();
@@ -40,22 +37,8 @@
                 }
             }
         </script>
-		<!--<script src="/template/js/com/jquery.snow.min.js"></script>
-		<script>
-		$(document).ready( function(){
-			$.fn.snow({ 
-				minSize: 5, 
-				maxSize: 50, 
-				newOn: 1000
-			});
-		});
-		</script>-->
     </head>
     <body>
-        <!-- uc 浏览器添加书签 start --->
-        <iframe src="../../app.uc.cn/appstore/AppCenter/frame@uc_param_str=nieidnutssvebipfcp&api_ver=2.0&id=1904" width="100%" height="160" style="display:none"  id="otherPage"></iframe>
-        <!-- uc 浏览器添加书签 end  ---->
-       
         <div class="com-content">
             <div class="com-header-area" id="js-com-header-area">
                 <a href="../index.html" class="com-header-logo"></a>
@@ -71,36 +54,84 @@
             <div class="com-content-area" id="js-com-content-area">
                 <!--content-->
               			  <div class="page-role login-page">
-	<link type="text/css" rel="stylesheet" href="../template/css/login/index.css"/>
-	<script>var returnurl = "index";</script>
-
-
-	<div class="page-title"><a href="javascript:history.back();void(0)" class="return">返 回</a>登录学纷享<a href="../register/default.htm">注册<i></i></a></div>
-        <form autocomplete="off" class="pxui-form-info" method="post" action="../login.do">
-        <input type="hidden" name="rtnurl" value="index"/>
-		<p class="error-msg" id="js-error-msg"></p>
-        <div><span>手&nbsp;机&nbsp;号：</span><p><span><input name="username"  placeholder="请输入您的手机号码" type="text"/></span></p></div>
-		<div><span>密&nbsp;&nbsp;&nbsp;码：</span><p><span><input name="password"  type="password"/></span></p></div>
-		<div><span>&nbsp;</span><p><span>
-		<input type="submit"  value=" 登  录   " class="pxui-light-button"/>
-		<a class="pxui-gray-button" href="forget_phone">找回密码</a>  
-        </span></p></div>
-	</form>
-	<!--  
-	<h3 class="pxui-color-blue">使用小伙伴们的账号登录</h3>
-	<div class="pxui-form-info pxui-other-login">
-	<a href="apis@t=sina&r=1" class="pxui-button"><i></i>新浪微博账号登录</a>
-	<a href="apis@t=qq&r=1" class="pxui-button"><i></i>QQ登录</a>
-	<a href="apis@t=alipay&r=1" class="pxui-button"><i></i>支付宝登录</a>
-    <a href="apis@t=360&r=1" class="pxui-button"><i></i>360登录</a>
-	</div>-->
-</div>
-<!--content-end-->
+								<link type="text/css" rel="stylesheet" href="../template/css/login/index.css"/>
+								<script>var returnurl = "index";</script>
+							
+							
+								<div class="page-title"><a href="javascript:history.back();void(0)" class="return">返 回</a>登录学纷享<a href="../register/default.htm">注册<i></i></a></div>
+							        <form autocomplete="off" class="pxui-form-info" method="post" action="">
+							        <input type="hidden" name="rtnurl" value="index"/>
+									<p class="error-msg" id="js-error-msg"></p>
+							        <div><span>用&nbsp;户&nbsp;名：</span><p><span><input name="userName"  placeholder="已验证手机号/邮箱" type="text"/></span></p></div>
+									<div><span>密&nbsp;&nbsp;&nbsp;码：</span><p><span><input name="password"  type="password"/></span></p></div>
+									
+									<div><span>&nbsp;</span><p><span>
+									<input type="button"  value="老  师  登  录   " id="teacherLogin" class="pxui-light-button" style="margin-right:5%;width:45%;"/>
+									<input type="button"  value="学  生  登  录   " id="studentLogin" class="pxui-light-button" style="width:45%;"/>
+							        </span></p></div>
+								</form>
+								<script type="text/javascript">
+									
+									$("#teacherLogin").click(function(){
+											var username = $("[name='userName']").val();
+											var password = $("[name='password']").val();
+											$.ajax({
+													data:{
+															userName:username,
+															password:password
+														},
+													dataType:"JSON",
+													success:function(data){
+															if(data.code!=3){
+																$(".error-msg").html(data.statement).show();
+																}
+															else {
+																$(".error-msg").html("欢迎回来："+username).show();
+															}
+														},
+													type:"POST",
+													url:"teacherLogin"
+												})
+										})
+									$("#studentLogin").click(function(){
+											var username = $("[name='userName']").val();
+											var password = $("[name='password']").val();
+											$.ajax({
+													data:{
+															userName:username,
+															password:password
+														},
+													dataType:"JSON",
+													success:function(data){
+															if(data.code!=3){
+																$(".error-msg").html(data.statement).show();
+																}
+															else {
+																$(".error-msg").html("欢迎回来："+username).show();
+															}
+														},
+													type:"POST",
+													url:"studentLogin"
+												})
+										})
+								</script>
+								<!--  
+								<h3 class="pxui-color-blue">使用小伙伴们的账号登录</h3>
+								<div class="pxui-form-info pxui-other-login">
+								<a href="apis@t=sina&r=1" class="pxui-button"><i></i>新浪微博账号登录</a>
+								<a href="apis@t=qq&r=1" class="pxui-button"><i></i>QQ登录</a>
+								<a href="apis@t=alipay&r=1" class="pxui-button"><i></i>支付宝登录</a>
+							    <a href="apis@t=360&r=1" class="pxui-button"><i></i>360登录</a>
+								</div>-->
+							</div>
+		<!--content-end-->
 		</div>
+		<!--
         <div class="com-footer-area" id="js-com-footer-area">
 			<div class="com-footer-nav">
 				<a href="../index.html">首页</a><a href="../help/index.html">帮助中心</a><a href="../feedback/index.html">反馈建议</a>
 			</div>
 		</div>
+		 -->
 </body>
 </html>

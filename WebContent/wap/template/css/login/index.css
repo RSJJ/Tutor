@@ -11,3 +11,4 @@
 .login-page div.pxui-form-info a:nth-child(3) i{background-position:0 -88px;}
 .login-page div.pxui-form-info a:nth-child(4) i{background-position:0 -127px;}
 .error-msg, .pxui-form-info p.error-msg{padding-left:26px;}
+.loading{background:url("../template/images/public/loading.gif") center center;position:absolute;top:50%;left:50%;width:200px;height:200px}
