@@ -174,7 +174,7 @@
 				<input type="hidden" name="teacher.job" value="在校学生">
 				<div>
 					<span>&nbsp;</span>
-					<a href=""><span><input type="submit" value="保存信息" id="js-register" class="pxui-light-button"/></span></a>
+					<span><input type="submit" value="保存信息"  class="pxui-light-button"/></span>
 					<span>&nbsp;</span>
 				</div>
 			</form>
