@@ -238,14 +238,21 @@ var PXVerify = {
 		if(phone==''){
 			return '手机号码不能为空！';
 		};
-		if (!/^\d{10,11}$/.test(phone)) {
+		if (!/^\d{11}$/.test(phone)) {
 			return '手机号码格式错误！';
 		};
-		$.ajax({url:DOMIN.MAIN+'/register',data:{act:'get_code',phone:phone},dataType:"json",success:function(data){
-			return _this._callback(callback,data.IsSuccess,data.Message,data);
-		},error:function(){
-			return _this._callback(callback,false,'连接服务器失败，请稍后再试！');
-		}});
+		$.ajax({
+			url:'sendPhoneCode',
+			type:'GET',
+			data:{phone:phone},
+			dataType:"json",
+			success:function(data){
+				return _this._callback(callback,data.status,data.content,data);
+			},
+			error:function(){
+				return _this._callback(callback,false,'连接服务器失败，请稍后再试！');
+			}
+		});
 		return null;
 	},
 	//功能：验证手机验证码

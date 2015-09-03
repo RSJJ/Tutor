@@ -19,7 +19,7 @@ public class sendsms {
 	private static final Log logger = LogFactory.getLog(sendsms.class);
 	private static String Url = "http://106.ihuyi.cn/webservice/sms.php?method=Submit";
 	
-	public static void send(String phone){
+	public static boolean send(String phone,int mobile_code){
 		HttpClient client = new HttpClient(); 
 		PostMethod method = new PostMethod(Url); 
 			
@@ -28,7 +28,6 @@ public class sendsms {
 		method.setRequestHeader("ContentType","application/x-www-form-urlencoded;charset=UTF-8");
 
 		
-		int mobile_code = (int)((Math.random()*9+1)*100000);
 
 		//System.out.println(mobile);
 		
@@ -63,18 +62,23 @@ public class sendsms {
 			logger.info("code:"+code+"msg:"+msg+"smsid:"+smsid);
 			 if("2".equals(code)){
 				 logger.info("短信提交成功");
+				 return true;
 			}
 			
 		} catch (HttpException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		} catch (DocumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
+			return false;
+		}
+		return false;	
 	}
 	
 }

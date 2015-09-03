@@ -84,7 +84,7 @@
 	border:0px;
 }
 .touchslider{position:relative;margin:0 -12px;}
-.touchslider .touchslider-viewport{ overflow:hidden; height:150px;}
+.touchslider .touchslider-viewport{ overflow:hidden; height:300px !important;}
 .touchslider .touchslider-viewport .touchslider-item a{z-index:1;width:100%;display:block;}
 .touchslider .touchslider-viewport .touchslider-item img{ width:100%;}
 .touchslider .touchslider-navtag{text-align:center;height:34px;display:inline-block;vertical-align:middle;margin-top:-8px;width:100%}

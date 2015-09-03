@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.commons.lang3.StringUtils;
 
 import com.opensymphony.xwork2.Action;
@@ -17,6 +19,8 @@ import com.tutor.entity.GraCourse;
 import com.tutor.entity.NorCourse;
 import com.tutor.entity.Teacher;
 import com.tutor.util.JsonUtil;
+import com.tutor.util.Message;
+import com.tutor.util.sendsms;
 
 public class AppManageAction extends BaseAction {
 	private NorCourseDAO norCourseDAO;
@@ -30,6 +34,8 @@ public class AppManageAction extends BaseAction {
 	String teacherId;
 	String courseGrade;
 	String courseName;
+	
+	String phone;
 	/**
 	 * 根据老师Id查询老师个人信息
 	 * @throws Exception
@@ -131,6 +137,26 @@ public class AppManageAction extends BaseAction {
 			this.getJsonResponse().getWriter().println("error");
 		}
 	}
+	
+	public void sendPhoneCode() throws IOException{
+		HttpSession sess = this.getSession();
+		int rcode = (int)((Math.random()*9+1)*100000);
+		String ccode = String.valueOf(rcode);
+		sess.setAttribute("register_code", ccode);
+		boolean isSend = sendsms.send(phone,rcode);
+		Message ms = new Message();
+		
+		if(isSend){
+			ms.setStatus(ms.SUCCESS);
+			ms.setContent(new String("发送信息成功"));;
+		}else{
+			ms.setStatus(ms.FAILED);
+			ms.setContent(new String("发送信息失败"));;
+		}
+		String json = JsonUtil.toJson(ms);
+		this.getJsonResponse().getWriter().println(json);
+	}
+	
 	public AppManageAction(NorCourseDAO norCourseDAO,
 			GraCourseDAO graCourseDAO, TeacherDAO teacherDAO) {
 		super();
@@ -193,6 +219,12 @@ public class AppManageAction extends BaseAction {
 	}
 	public void setCourseName(String courseName) {
 		this.courseName = courseName;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 	
 }

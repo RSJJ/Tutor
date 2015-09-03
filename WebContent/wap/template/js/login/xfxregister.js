@@ -49,6 +49,7 @@ $(document).ready(function(e) {
 			$(this).removeClass("vs").addClass("vf");
 			showError(msg)
 		}else{
+			phoneBox.show();
 			$(this).removeClass("vf").addClass("vs");
 			clearError();
 		}
@@ -119,7 +120,7 @@ $(document).ready(function(e) {
 		$(self).prop('disabled',true).val('正在发送验证码...');
 		$('#js-phone-code-tip').show();
 		var error = PXVerify.SendPhoneCode($.trim($('#js-phone').val()),true,function(isok,error){
-			if(isok){
+			if(isok==1){
 				$(self).data('issend',true);
 				var time = 60;
 				$(self).val(time+'后重可新获取');

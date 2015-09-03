@@ -2,7 +2,7 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
         "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
-	<package name="appManage" extends="struts-default">
+	<package name="appManage" extends="json-default">
 		<action name="showSingleTeacher" class="appManageAction" method="showSingleTeacher">
 			<result name="success">teacherInf.jsp</result>
 			<result name="error">error.jsp</result>
@@ -18,6 +18,9 @@
 		<action name="showTeacherInfByCourseName" class="appManageAction" method="showTeacherInfByCourseName">
 			<result name="success" >teacherSearchList.jsp</result>
 			<result name="error">error.jsp</result>
+		</action>
+		<action name="sendPhoneCode" class="appManageAction" method="sendPhoneCode">
+			<result type="json"></result>
 		</action>
 	</package>
 </struts>

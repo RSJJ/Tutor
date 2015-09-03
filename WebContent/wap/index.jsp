@@ -103,9 +103,9 @@ jQuery(function($) {
 	
 <div class="touchslider">
     <div class="touchslider-viewport">
-	<div class="touchslider-item"><a href=""><img src="<%=basePath %>wap/template\images\home/classroom1.png" style="vertical-align:top;"/></a></div>
-	<div class="touchslider-item"><a href=""><img src="<%=basePath %>wap/template\images\home/classroom2.png" style="vertical-align:top;"/></a></div>
-	<div class="touchslider-item"><a href=""><img src="<%=basePath %>wap/template\images\home/classroom3.png" style="vertical-align:top;"/></a></div>
+	<div class="touchslider-item"><a href=""><img src="<%=basePath %>wap/template\images\home/1.jpg" style="vertical-align:top;"/></a></div>
+	<div class="touchslider-item"><a href=""><img src="<%=basePath %>wap/template\images\home/2.jpg" style="vertical-align:top;"/></a></div>
+	<div class="touchslider-item"><a href=""><img src="<%=basePath %>wap/template\images\home/3.jpg" style="vertical-align:top;"/></a></div>
 	</div>
 	<div class="touchslider-navtag">
 	<span class="touchslider-nav-item touchslider-nav-item-current"></span>
@@ -126,11 +126,11 @@ jQuery(function($) {
 		<table border="0" cellspacing="5" cellpadding="0">
 			<tr>
 				<td colspan="2"><a href="<%=basePath %>wap/register/default.htm"><i></i>老师入驻<br/>在这里大展你的风采</a></td>
-				<td><a href="<%=basePath %>wap/tuan/cart.html"></br><b>金牌老师</b></a></td>
+				<td><a href="<%=basePath %>wap/tuan/cart.html"></br>金牌老师</a></td>
 				<td rowspan="2"><a href="<%=basePath %>wap/topic/612.html"><i></i>最<br/>新<br/>公<br/>告</a></td>
 			</tr>
 			<tr>
-				<td><a href="<%=basePath %>wap/tuan/cart.html"></br><b>精英学员</b></a></td>
+				<td><a href="<%=basePath %>wap/tuan/cart.html"></br>精英学员</a></td>
 				<td colspan="2"><a href="<%=basePath %>wap/register/default.htm">学生入驻<br/>为您匹配完美导师</a></td>
 			</tr>
 		</table>
@@ -142,9 +142,8 @@ jQuery(function($) {
 		</div>
         <div class="com-footer-area" id="js-com-footer-area">
 			<div class="com-footer-nav">
-				<a href="<%=basePath %>wap/index.jsp">首页</a><a href="help/index.jsp">帮助中心</a><a href="feedback/index.jsp">反馈建议</a>
+				<a href="<%=basePath %>wap/index.jsp">首页</a><a href="feedback/index.jsp">反馈建议</a>
 			</div>
-			
         </div>
 
 <div style="display:none;">
