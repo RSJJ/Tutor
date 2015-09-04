@@ -302,7 +302,7 @@ input.pxui-blue-button:disabled:active{background:#56678e;border-color:#56678e;}
 /*妞ょ敻娼伴弽鍥暯-end*/
 /*閸忣剙鍙℃惔鏇㈠劥*/
 .com-footer-nav{margin:12px;border:1px solid #c6cdde;background:#fff;border-radius:5px;height:28px;background-image:-webkit-gradient(linear,0% 0%, 0% 100%, from(#FFFFFF), to(#f4f4f4));background-image:gradient(linear,0% 0%, 0% 100%, from(#FFFFFF), to(#f4f4f4));text-align:center;}
-.com-footer-nav a{display:inline-block;width:33%;text-align:center;height:28px;border-right:1px solid #bfc7d7;font-size:16px;}
+.com-footer-nav a{display:inline-block;width:49%;text-align:center;height:28px;border-right:1px solid #bfc7d7;font-size:16px;}
 .com-footer-nav a:last-child{border:0;}
 .com-footer{background:#39435b;text-align:center;color:#727a88;line-height:18px;padding:0 0 16px 0;}
 .com-footer a{color:#727a88;}

@@ -247,7 +247,7 @@ var PXVerify = {
 			data:{phone:phone},
 			dataType:"json",
 			success:function(data){
-				return _this._callback(callback,data.status,data.content,data);
+				return _this._callback(callback,data.status,data.statement,data);
 			},
 			error:function(){
 				return _this._callback(callback,false,'连接服务器失败，请稍后再试！');
@@ -428,12 +428,12 @@ var PXVerify = {
 		password = _this._trim(password);
 		code = _this._trim(code);
 		if(typeof(phone) == 'undefined' || phone == '' ||
-				typeof(email) == 'undefined' || email == ''||
+				//typeof(email) == 'undefined' || email == ''||
 					typeof(password) == 'undefined' || password == ''){
             return "输入信息不完善";
         }
 		var msg=null;
-	    msg = PXVerify.Email(email,false)
+	   /* msg = PXVerify.Email(email,false)
 		if(msg!=null){
 			$("#js-email").removeClass("vs").addClass("vf");
 			showError(msg)
@@ -441,7 +441,7 @@ var PXVerify = {
 		}else{
 			$("#js-email").removeClass("vf").addClass("vs");
 			clearError();
-		}
+		}*/
 	    msg = PXVerify.Phone(phone,false)
 		if(msg!=null){
 			$("#js-phone").removeClass("vs").addClass("vf");

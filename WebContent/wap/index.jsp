@@ -118,20 +118,20 @@ jQuery(function($) {
 	<div class="pxui-tab pxui-tab-nav pxui-tab-no-top">
                 <a class="selected"><i></i>首页<span></span></a>
 				<a href="<%=basePath %>wap/tuan/teacherSearch.html"><i></i>匹配老师<span></span></a>
-				<a href="<%=basePath %>wap/brand/default.htm"><i></i>上课流程<span></span></a>
+				<a href="<%=basePath %>wap/brand/default.html"><i></i>上课流程<span></span></a>
                 <a href="<%=basePath %>wap/login/@url=_2Fmember_2Forder@pay=2"><i></i>查看预约<span></span></a>
         
 	</div>
 	<div class="tags">
 		<table border="0" cellspacing="5" cellpadding="0">
 			<tr>
-				<td colspan="2"><a href="<%=basePath %>wap/register/default.htm"><i></i>老师入驻<br/>在这里大展你的风采</a></td>
+				<td colspan="2"><a href="<%=basePath %>wap/register/default.jsp"><i></i>老师入驻<br/>在这里大展你的风采</a></td>
 				<td><a href="<%=basePath %>wap/tuan/cart.html"></br>金牌老师</a></td>
 				<td rowspan="2"><a href="<%=basePath %>wap/topic/612.html"><i></i>最<br/>新<br/>公<br/>告</a></td>
 			</tr>
 			<tr>
 				<td><a href="<%=basePath %>wap/tuan/cart.html"></br>精英学员</a></td>
-				<td colspan="2"><a href="<%=basePath %>wap/register/default.htm">学生入驻<br/>为您匹配完美导师</a></td>
+				<td colspan="2"><a href="<%=basePath %>wap/register/default.jsp">学生入驻<br/>为您匹配完美导师</a></td>
 			</tr>
 		</table>
 	</div>

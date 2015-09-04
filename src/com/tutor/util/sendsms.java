@@ -58,10 +58,9 @@ public class sendsms {
 			String code = root.elementText("code");	
 			String msg = root.elementText("msg");	
 			String smsid = root.elementText("smsid");	
-			
-			logger.info("code:"+code+"msg:"+msg+"smsid:"+smsid);
+			System.out.println("code:"+code+"||msg:"+msg+"||smsid:"+smsid);
 			 if("2".equals(code)){
-				 logger.info("短信提交成功");
+				 System.out.println("短信提交成功");
 				 return true;
 			}
 			
