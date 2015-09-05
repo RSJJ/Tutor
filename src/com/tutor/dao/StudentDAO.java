@@ -47,5 +47,6 @@ public interface StudentDAO
 	 * @return
 	 */
 	public Student findByMailPassword(String mail,String password);
+	public Student findByPhone(String phone);
 	
 }

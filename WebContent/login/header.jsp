@@ -83,7 +83,7 @@
         	<%} %>
         	</div>
         	<div id="log_after">
-        		hi,student &nbsp;[<a href="/user/index" style='color:#4a4a4a; text-decoration:underline;'>&nbsp;会员中心&nbsp;</a>]&nbsp;[<a href="/user/user_logout.php" style='color:#000; text-decoration:underline;'>&nbsp;退出&nbsp;</a>]
+        		hi,student &nbsp;[<a href="/user/index" style='color:#4a4a4a; text-decoration:underline;'>&nbsp;会员中心&nbsp;</a>]&nbsp;[<a href="#" style='color:#000; text-decoration:underline;'>&nbsp;退出&nbsp;</a>]
         	</div>
         	
         </div>

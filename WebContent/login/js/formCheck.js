@@ -403,11 +403,7 @@
 
 								var val1=$.trim(oForm.find("input[name='recommen_mobile']").val());
 								var val2=$.trim(oForm.find("input[name='mobile']").val());
-								/*if(val1 && val1==val2){
-									oForm.find("input[name='recommen_mobile']").next().removeClass().addClass("error").html("推荐人手机号不能与自己手机号相同").slideDown();
-									return;
-								}*/
-								var oInput_user=oForm.find("input[name='userName']");
+								var oInput_user=oForm.find("input[name='mobile']");
 								var oInput_pwd =oForm.find("input[name='password']");
 								$.ajax({
 				                    type: "POST",
@@ -418,14 +414,12 @@
 				                    success: function(msg){
 				                        if(msg.status==1){
 				                        	 bOk=true;
+				                        	 alert("注册成功，请登录！");
 				                        	 location.reload();
 				                        }
-				                        /* else if(msg.status==2){
-				                        	oForm.find("input[name='recommen_mobile']").addClass("hover").next().removeClass().addClass("error").html(msg.msg).slideDown();
-				                            bOk=false;
-				                        }*/else{
+				                      else{
 				                        	oInput_user.addClass("hover");
-				                            oInput_user.next().removeClass().addClass("error").html("该邮箱地址已经被注册").slideDown();
+				                            oInput_user.next().removeClass().addClass("error").html("该手机号已经被注册").slideDown();
 				                            bOk=false;
 				                        }
 				                    }
@@ -455,7 +449,7 @@
 
 								var val1=$.trim(oForm.find("input[name='recommen_mobile']").val());
 								var val2=$.trim(oForm.find("input[name='mobile']").val());
-								var oInput_user=oForm.find("input[name='userName']");
+								var oInput_user=oForm.find("input[name='mobile']");
 								var oInput_pwd =oForm.find("input[name='password']");
 								$.ajax({
 				                    type: "POST",
@@ -466,6 +460,7 @@
 				                    success: function(msg){
 				                        if(msg.status==1){
 				                        	 bOk=true;
+				                        	 alert("注册成功，请登录！");
 				                        	 location.reload();
 				                        }
 				                        /* else if(msg.status==2){
@@ -473,7 +468,7 @@
 				                            bOk=false;
 				                        }*/else{
 				                        	oInput_user.addClass("hover");
-				                            oInput_user.next().removeClass().addClass("error").html("该邮箱地址已经被注册").slideDown();
+				                            oInput_user.next().removeClass().addClass("error").html("该手机号已经被注册").slideDown();
 				                            bOk=false;
 				                        }
 				                    }
@@ -504,23 +499,12 @@
 				                        	//用户被限制登录
 				                        	alert(mag.statement);
 				                        } 
-				                        else if(msg.code == '0')
+				                      /*  else if(msg.code == '0')
 				                        {
-				                        	//教师未填写详细信息
-				                        	/*$.ajax({
-				                        		type:"POST",
-				                        		datatype:"json",
-				                        		url:"tRegister.action",
-				                        		data:{"userName":oInput_user.val()},
-				                        		 success: function(msg){
-				                        			 alert(111);
-				                        		 }
-				                        	});*/
 				                        	location.href="../teachers/tRegister.action?userName="+oInput_user.val();
-				                        }
+				                        }*/
 				                        else
 				                        {
-				                        	alert(333);
 				                        	$('#log_before').css('display','none');
 				                        	$('#log_after').css('display','block');
 				                        	$('#login_before').css('display','none');

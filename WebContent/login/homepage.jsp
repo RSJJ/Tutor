@@ -17,6 +17,7 @@
     			student = (Student)user.getUser();
     		}
     	}
+
     %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -93,21 +94,23 @@
 
                       <form name="RegFormOne" method="post" action="#" id='RegFormOne' autocomplete="off" > 
                           <ul class="box_r1" style="display:none;">
-                              <li>
+                              <!-- <li>
                                 <input type="text" name="userName" placeholder="请填写邮箱" check />
                                 <span style="display:none;">请填写邮箱</span>
+                              </li> -->
+                              <li>
+                                <input type="text" id="reg_phone"name="mobile" placeholder="填写手机号"  check />
+                                <span style="display:none;">填写手机号</span>
+                              </li>
+                               <li  class="bg_bs">
+                                <input type="text" name="recommen_mobile" placeholder="填写验证码" style="width:103px;"/>
+                                <span style="display:none;">填写验证码</span><span class="hqyzm"><span id="getCode"><a >获取验证码</a></span></span>
                               </li>
                               <li>
                                 <input type="password" name="password" placeholder='请填写密码' check />
-                                <span style="display:none;">密码未填写</span></li>
-                              <li class="bg_bs">
-                                <input type="text" name="mobile" placeholder="填写手机号" style="width:103px;" check />
-                                <span style="display:none;">填写手机号</span><span class="hqyzm"><a href="#">获取验证码</a></span>
+                                <span style="display:none;">密码未填写</span>
                               </li>
-                              <li>
-                                <input type="text" name="recommen_mobile" placeholder="填写验证码"/>
-                                <span style="display:none;">填写验证码</span>
-                              </li>
+
                               <li>
                               <span class="hqyzm xyzc "><input type="button" id="studentRegister" value="学员注册" submit  style="border:none; width:78px;"/></span>
                               <span class="hqyzm xyzc" style="float:right;"><input type="button" id="teacherRegister" value="老师注册" submit  style="border:none; width:78px;"/></span>
@@ -124,6 +127,7 @@
                                   <li>
                                     <input name="password" id="loginPassword" type="password" placeholder="请输入您的密码" check />
                                     <span style="display:none;">请填写邮箱</span>
+                                 
                                   </li>
                                   <li class="li_ico">
                                       <input type="checkbox" name="aotu_login" id="aotu_login" class="check_input f_l" />
@@ -155,7 +159,7 @@
                                                 <p>剩余包月：<b>&nbsp;0&nbsp;</b>天</p>
                           <p class="p_b5 f_g20" style="border-bottom:1px solid #918f8a; font-size:12px;">
                               <a class="f_g20" href="/user/purchase.php">请购买包月套餐</a>                          </p>
-                                            <div class="btn_box_r"><a href="/user/index" class="a_rbtn2">进入我的会员中心</a></div>
+                                            <div class="btn_box_r"><a href="../users/login_temporary.action?userName=<%=student.getPhone() %>" class="a_rbtn2">进入我的会员中心</a></div>
                   </div> 
                   <%} else if(teacher != null){ %>
                   Hi,<%=teacher.getName() %>:

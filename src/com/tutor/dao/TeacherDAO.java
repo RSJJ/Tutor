@@ -58,4 +58,6 @@ public interface TeacherDAO
 	 * @return
 	 */
 	public Long getTeacherCount();
+	
+	public Teacher findByPhone(String phone);
 }

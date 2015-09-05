@@ -113,7 +113,7 @@ public class TeacherBasicAction extends BaseAction
 	
 	public void teacherRegister() throws IOException
 	{
-		Teacher teacher = teacherDAO.findByPhoneOrMail(userName);
+		Teacher teacher = teacherDAO.findByPhone(userName);
 		System.out.println(teacher);
 		Message msg = new Message();
 		if (teacher == null)
@@ -121,10 +121,10 @@ public class TeacherBasicAction extends BaseAction
 			Teacher teacher2=new Teacher();
 			System.out.println(userName+' '+password+' '+mobile+' '+mobileCode);
 			teacher2.setTeacherId(IdGenerator.getInstance().getNextTeacherId());
-			teacher2.setMail(userName);
+			//teacher2.setMail(userName);
 			teacher2.setPassword(password);
 			teacher2.setPhone(mobile);
-			teacher2.setStatus(FinalValue.INIT_VALUE);
+			teacher2.setStatus(FinalValue.AVAILABLE);
 			teacher2.setRegTime(Operation.getTime(new SimpleDateFormat(
 					"yyyy-MM-dd HH:mm:ss")));
 			teacher2.setStatement("nnn");
@@ -151,8 +151,11 @@ public class TeacherBasicAction extends BaseAction
 	public String tRegister(){
 		Teacher teacher = teacherDAO.findByPhoneOrMail(userName);
 		if(teacher!=null){
-			this.getRequest().setAttribute("phone",teacher.getPhone());
-			this.getRequest().setAttribute("mail", teacher.getMail());
+			User user = new User();
+			user.setRole(User.TEACHER);
+			user.setUser(teacher);
+			logger.info(String.format("teacher:%s login success", teacher.getTeacherId()));
+			this.getSession().setAttribute("user", user);
 		}else{
 			System.out.println("111");
 		}
@@ -165,18 +168,20 @@ public class TeacherBasicAction extends BaseAction
 	@SuppressWarnings("static-access")
 	public String dtRegister() throws IOException
 	{
-		Teacher teac=teacherDAO.findByPhoneAndMail(teacher.getPhone(),teacher.getMail());
+		Teacher teac=teacherDAO.findByPhone(teacher.getPhone());
 		Message msg = new Message();
 		if(teac!=null){
 			teac.setName(teacher.getName());
 			teac.setSex(teacher.getSex());
 			teac.setAddress(teacher.getAddress());
+			teac.setCity(teacher.getCity());
 			teac.setDetailedAddress(teacher.getDetailedAddress());
 			teac.setJob(teacher.getJob());
 			teac.setIcon(imgBase.fileToServer("/file", teacher.getIconphoto(), teacher.getIconphotoFileName(), teacher.getIconphotoContentType(), true));
 			teac.setLicence(imgBase.fileToServer("/file", teacher.getLicencephoto(), teacher.getLicencephotoFileName(), teacher.getLicencephotoContentType(), true));
 			teac.setIntroduction(teacher.getIntroduction());
 			teac.setDetailedIntroduction(teacher.getDetailedIntroduction());
+			teac.setCardType(teacher.getCardType());
 			teac.setCardNo(teacher.getCardNo());
 			teac.setStatus(3);
 			teac.setRegTime(Operation.getTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")));//设置注册时间
@@ -184,9 +189,14 @@ public class TeacherBasicAction extends BaseAction
 			
 			msg.setCode(FinalValue.SUCCESS);
 			msg.setStatement("资料已完善！");
+			User user = new User();
+			user.setRole(User.TEACHER);
+			user.setUser(teacher);
+			logger.info(String.format("teacher:%s login success", teacher.getTeacherId()));
+			this.getSession().setAttribute("user", user);
 			return "success";
 		}else{
-			msg.setCode(FinalValue.SUCCESS);
+			msg.setCode(FinalValue.FAILED);
 			msg.setStatement("系统异常！");
 			return "failure";
 		}

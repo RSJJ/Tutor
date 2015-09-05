@@ -14,7 +14,7 @@
 			<result name="success">/teachers/teacher_info.jsp</result>
 		</action>
 		<action name="dtRegister" class="teacherBasicAction" method="dtRegister">
-			<result name="success">/teachers/teacher_course.jsp</result>
+			<result name="success">teacher_course.jsp</result>
 			<result name="failure">404.html</result>
 		</action>
 		<action name="dtRegisterPhone" class="teacherBasicAction" method="dtRegisterPhone">

@@ -2,7 +2,7 @@
  * Css20140331 by andy
  */
  
-/*ÂÖ®Â±ÄÊ†∑Âºè*/
+/*»´æ÷—˘ Ω*/
 * {
 	margin: 0;
 	padding: 0;
@@ -28,7 +28,7 @@ a:hover {
 
 body {
 	font-size: 14px;
-	font-family: "ÂæÆËΩØÈõÖÈªë", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: "Œ¢»Ì—≈∫⁄", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: #1e1e1e;
 	line-height: 1.8em;
 }
@@ -38,8 +38,8 @@ p {
 	overflow:hidden;
 }
 
- /*ÈÄöÁî®*/
-.font_12{font-family: ÂÆã‰Ωì;font-size: 12px;}
+ /*Õ®”√*/
+.font_12{font-family: ÀŒÃÂ;font-size: 12px;}
 .fc_r { color:red;}
 .f_y { color:#ffa800;}
 .b_y { background:#ffa800;}
@@ -104,7 +104,6 @@ p {
 .clear { clear:both;}
 .title { width:100%; height:auto; overflow:hidden;}
 .fullImg { width:100%; height:auto; overflow:hidden;}
-input { border:1px solid #1e1e1e; background:#fff;}
 .underline { text-decoration:underline;}
 .btn_a { width:177px; height:28px; line-height:28px; color:#fff; float:right; background:#ffa800; font-size:16px; padding:0 10px;}
 .btn_a3 { width:110px; height:35px; line-height:35px; color:#fff; background:#ffa800; padding:0 10px; display:block; font-size:16px;}
@@ -171,11 +170,11 @@ input { border:1px solid #1e1e1e; background:#fff;}
 .box_r1 li input, .box_r2_ul li input { width:199px; height:23px; line-height:23px; padding:5px; border:1px solid #fff; float:left;}
 .box_r1 li input.hover { border:1px solid #ff4444;}
 .box_r2 li input.hover { border:1px solid #ff4444;}
-.box_r1 li .error { width:206px; padding-left:5px; float:left; height:20px; line-height:20px; font-size:12px; color:#fff; font-family:ÂÆã‰Ωì; background:#ff4444;}
-.box_r2_ul .error { width:206px; padding-left:5px; float:left; height:20px; line-height:20px; font-size:12px; color:#fff; font-family:ÂÆã‰Ωì; background:#ff4444;}
+.box_r1 li .error { width:206px; padding-left:5px; float:left; height:20px; line-height:20px; font-size:12px; color:#fff; font-family:ÀŒÃÂ; background:#ff4444;}
+.box_r2_ul .error { width:206px; padding-left:5px; float:left; height:20px; line-height:20px; font-size:12px; color:#fff; font-family:ÀŒÃÂ; background:#ff4444;}
 .box_r1 .li_btn, .box_r2_ul .li_btn { width:211px; height:35px; line-height:35px; box-shadow:none; margin-bottom:0; background:none;}
 .box_r1 .li_btn a, .box_r2_ul .li_btn a { width:211px; height:35px; line-height:33px; text-align:center; color:#fff; background:#ffa800; border-radius:3px; overflow:hidden; display:block; font-size:16px;}
-.box_r1 .li_btn input, .box_r2_ul .li_btn input { border:none;width:211px; height:35px; line-height:33px; text-align:center; color:#fff; background:#ffa800; border-radius:3px; overflow:hidden; display:block; font-size:16px; font-family:'ÂæÆËΩØÈõÖÈªë'; cursor:pointer; float: none; padding: 0;}
+.box_r1 .li_btn input, .box_r2_ul .li_btn input { border:none;width:211px; height:35px; line-height:33px; text-align:center; color:#fff; background:#ffa800; border-radius:3px; overflow:hidden; display:block; font-size:16px; font-family:'Œ¢»Ì—≈∫⁄'; cursor:pointer; float: none; padding: 0;}
 .box_r1 .li_btn a:hover, .box_r2_ul .li_btn a:hover { background:#f90;}
 .box_r1 .li_btn input:hover, .box_r2_ul .li_btn input:hover { background:#f90;border:none;}
 .box_r2_ul .li_ico { height:20px; background:none; box-shadow:none; line-height:20px;}
@@ -331,7 +330,7 @@ input { border:1px solid #1e1e1e; background:#fff;}
 .ul_reg2 li .name_reg b { color:red; font-weight:normal;}
 .ul_reg2 li .input_reg { width:240px; border:1px solid #ccc; height:14px; line-height:14px; padding:11px 25px 11px 5px; margin-right:10px; float:left;}
 .ul_reg2 li .textarea_reg { width:240px; border:1px solid #ccc; height:54px; line-height:14px; padding:11px 25px 11px 5px; margin-right:10px; float:left;}
-.ul_reg2 li .tips { min-width:240px; border:1px solid #ccc; height:36px; line-height:36px; padding:0 5px; margin-right:10px; float:left; background:#f7f7f7; font-family: ÂÆã‰Ωì; font-size: 12px; display:none;}
+.ul_reg2 li .tips { min-width:240px; border:1px solid #ccc; height:36px; line-height:36px; padding:0 5px; margin-right:10px; float:left; background:#f7f7f7; font-family: ÀŒÃÂ; font-size: 12px; display:none;}
 .ul_reg2 .li_reg2 { width:635px; height:30px; line-height:30px; margin-bottom:10px; padding-left:155px;}
 .ul_reg2 .li_reg2 input { float:left; margin-right:10px; margin-top:8px; border:none; _margin-top:5px;}
 .a_reg { width:250px; padding:0 10px; display:block; height:38px; background:#f9bb00; line-height:38px; color:#fff; margin-left:155px;}
@@ -380,7 +379,7 @@ input { border:1px solid #1e1e1e; background:#fff;}
 .logo_ul li font b { font-size:24px;}
 .retract { width:100%; margin:0 auto; height:35px; display:block; background:#ffa800; color:#fff; text-align:center; margin-bottom:50px; line-height:35px;}
 
-/*ÊºÇÊµÆÊïàÊûú*/
+/*∆Ø∏°–ßπ˚*/
 #qqShowDiv{display:none; width:80px; background:url(../images/weixin_1.png) no-repeat; height: 25px; position: absolute; top:20px; right:0px; padding:5px; padding-top:10px; }
 #weixinShowDiv{display:none; width:100px; background:url(../images/weixin_1.png) no-repeat; height: 100px; padding-top:5px; position: absolute; top:20px; right:-35px; z-index:999;}
 #weiboShowDiv{display:none; width:80px; background:url(../images/weibo_1.png) no-repeat; height: 25px; position: absolute; top:20px; right:29px; padding:5px; padding-top:10px;}
@@ -395,7 +394,7 @@ input { border:1px solid #1e1e1e; background:#fff;}
 .theLast{ display: none; height: 144px; left: -96px; position: absolute; width: 120px; z-index: 99999;}
 .theLastTwo{ display: none; height: 144px; left: -96px; position: absolute; width: 120px; z-index: 99999;}
 
-/* È¶ñÈ°µÂàáÊç¢ */
+/*  ◊“≥«–ªª */
 .picGuide1{ background: url(../images/pic_guide_1.png) no-repeat;}
 .picGuide2{ background: url(../images/pic_guide_2.png) no-repeat;}
 .picGuide3{ background: url(../images/pic_guide_3.png) no-repeat;}
@@ -406,9 +405,9 @@ input { border:1px solid #1e1e1e; background:#fff;}
 .showStep { height:237px; width:100%; position:relative;}
 .showStep .btn_a {position: absolute; right: 10px; bottom: 10px;}
 
-/*Ê∞¥Âπ≥ÊµãËØï*/
+/*ÀÆ∆Ω≤‚ ‘*/
 .testbody { width:960px; height:540px; overflow:hidden; margin-top:26px;}
-.title_test { font-size:50px; line-height:50px; text-align:center; font-family: Arial 'ÂæÆËΩØÈõÖÈªë'  Helvetica, sans-serif; margin-top:80px;}
+.title_test { font-size:50px; line-height:50px; text-align:center; font-family: Arial 'Œ¢»Ì—≈∫⁄'  Helvetica, sans-serif; margin-top:80px;}
 .txtbook { width:220px; height:90px; background:url(../images/duigou.png) no-repeat; font-size:16px; padding-left:30px; margin:50px auto 70px; line-height:32px;}
 .btn_test1 { display:block; margin:0 auto; width:280px; height:32px; line-height:32px; padding:0 10px; background:#ffa700; color:#fff;}
 .btn_test1:hover { background:#f60;}
@@ -426,7 +425,7 @@ input { border:1px solid #1e1e1e; background:#fff;}
 .correct{
     background: url("../../images/web_new/page/zc03.png") no-repeat scroll 5px center rgba(0, 0, 0, 0);
     float: left;
-    font-family: ÂÆã‰Ωì;
+    font-family: ÀŒÃÂ;
     height: 36px;
     line-height: 36px;
     margin-right: 10px;
@@ -497,11 +496,18 @@ input { border:1px solid #1e1e1e; background:#fff;}
 .r_ul { float: right; width:465px; line-height: 28px;}
 .r_ul input { background: #fff; padding: 2px; border: 1px solid #ddd; border-top: 2px solid #ddd; height: 21px; line-height: 21px; width:170px;}
 .r_ul textarea {background: #fff; padding: 2px; border: 1px solid #ddd; border-top: 2px solid #ddd; height: 21px; line-height: 21px; width:443px; height: 150px;}
-.tj_bu { width:174px; height: 44px; line-height: 44px; text-align:center; display: block; background: #ffa800; color: #fff; font-size: 19px; cursor: pointer; margin: 20px auto; font-family: ÂæÆËΩØÈõÖÈªë;}
+.tj_bu { width:174px; height: 44px; line-height: 44px; text-align:center; display: block; background: #ffa800; color: #fff; font-size: 19px; cursor: pointer; margin: 20px auto; font-family: Œ¢»Ì—≈∫⁄;}
 
 .bg_bs{ background:#FFF;}
 
-
+#upload_file{
+ opacity:0;
+ filter:alpha(opacity=0);
+ font-size:100px;
+ position:absolute;
+ top:0;
+ right:0;
+} 
 
 
 
@@ -511,6 +517,6 @@ input { border:1px solid #1e1e1e; background:#fff;}
 .xyzc{ margin-left:0px; width:78px; text-align:center;}
 .ml_20{ margin-left:20px;}
 
-.hqyzm input{ box-shadow:none; margin-bottom:0; background:none; color:#FFF; font-family:"ÂæÆËΩØÈõÖÈªë"; cursor:pointer;}
+.hqyzm input{ box-shadow:none; margin-bottom:0; background:none; color:#FFF; font-family:"Œ¢»Ì—≈∫⁄"; cursor:pointer;}
 
 .erji_top{ background:#c7d7e4; width:100%;}

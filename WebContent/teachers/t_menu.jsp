@@ -5,6 +5,7 @@
 	<%@page import="java.util.ArrayList"%>
 	<%@page import="java.util.List , com.tutor.entity.* " %>
 	<%@page import="com.tutor.entity.server.*" %>
+	<%@ page import="com.tutor.entity.*" %>
 	<%@page import="com.tutor.util.*" %>
 	<%
 		User user = (User)session.getAttribute("user");
@@ -37,7 +38,7 @@
                         </div>
                         <div class="inclrspaceb1">
                             <h3 class="left2"><span class="c2">我的个人信息</span></h3>
-                            <p><a href="#">基本信息</a></p>
+                            <p><a href="tRegister.action?userName=<%=teacher.getPhone() %>">基本信息</a></p>
                             <p><a href="#">我的订单</a></p>
                         </div>
                         <div class="inclrspaceb1">

@@ -1,5 +1,6 @@
 package com.tutor.entity;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.context.annotation.Scope;
 
@@ -56,7 +58,12 @@ public class Student implements Serializable
 	@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy="student")
 	private List<ShopCart> shopCarts = new ArrayList<ShopCart>();
 	
-	
+	@Transient
+	File stuphoto;
+	@Transient
+	String stuphotoFileName;
+	@Transient
+	String  stuphotoContentType;
 	@Override
 	public String toString()
 	{
@@ -187,6 +194,24 @@ public class Student implements Serializable
 	public void setShopCarts(List<ShopCart> shopCarts)
 	{
 		this.shopCarts = shopCarts;
+	}
+	public File getStuphoto() {
+		return stuphoto;
+	}
+	public void setStuphoto(File stuphoto) {
+		this.stuphoto = stuphoto;
+	}
+	public String getStuphotoFileName() {
+		return stuphotoFileName;
+	}
+	public void setStuphotoFileName(String stuphotoFileName) {
+		this.stuphotoFileName = stuphotoFileName;
+	}
+	public String getStuphotoContentType() {
+		return stuphotoContentType;
+	}
+	public void setStuphotoContentType(String stuphotoContentType) {
+		this.stuphotoContentType = stuphotoContentType;
 	}
 	
 }

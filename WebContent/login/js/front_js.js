@@ -20,6 +20,66 @@ var tag_name_index = "index";
               }  
           }
       });
+      
+      //短信验证
+	   $('#getCode').click(function(){
+		   var reg_phone=$('#reg_phone').val();
+		   if(reg_phone==''){
+				return '手机号码不能为空！';
+			}else if (!/^\d{11}$/.test(reg_phone)) {
+				return '手机号码格式错误！';
+			}else{
+				   $.ajax({
+						url:'sendPhoneCode',
+						type:'GET',
+						data:{phone:reg_phone},
+						dataType:"json",
+						success:function(data){
+							
+						},
+						error:function(){
+
+						}
+					});
+			}
+		
+	   });
+  	/*$('#getCode').click(function(){
+		$(".loading").show();
+		if(issubmit) return false;
+		var type = $(this).data("type") //获取注册类型
+		var email = $('#js-email').val($.trim($('#js-email').val())).val();
+		var phone = $('#js-phone').val($.trim($('#js-phone').val())).val();
+		var password = $('#js-password').val($.trim($('#js-password').val())).val();
+		var password2 = $('#js-password-2').val($.trim($('#js-password-2').val())).val();
+		var code = $('#reg_phone').val($.trim($('#reg_phone').val())).val();
+		var error = PXVerify.Register(email,phone, password, code, type , true, function(isok,error){
+	        if(isok==200){
+	        	if(type=='studentRegister'){
+        			showError('注册成功，5秒后跳转至主页。。。点击'+"<a href='../index.jsp' style='color:blue;'>主页</a>直接跳转");
+                    url = '../index.jsp';
+                    setTimeout(function(){window.location.href  = url;},5000)
+	        	}else {
+	        		url = 'detail.jsp?phone='+phone+'&email='+email;
+	        		window.location.href  = url;
+	        	}
+			}else{
+				$(".loading").hide();
+				$("#title").html("用户注册");
+				showError(error);
+				issubmit = false;
+				}
+			});
+		if(error!=null){
+			$(".loading").hide();
+			showError(error);
+			return false;
+		}else{
+			clearError();
+			issubmit = true;
+			$("#title").html("注册中");
+		}
+	});*/
 
     /*    //视频点击
         $("#example").click(function(){

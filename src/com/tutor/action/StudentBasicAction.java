@@ -10,6 +10,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.tutor.base.BaseAction;
+import com.tutor.base.ImgBaseAction;
 import com.tutor.dao.StudentDAO;
 import com.tutor.entity.Student;
 import com.tutor.entity.server.Message;
@@ -37,7 +38,7 @@ public class StudentBasicAction extends BaseAction
 	private String password;
 	private String mobile;
 	private String mobileCode;
-
+	private ImgBaseAction imgBase;// 封装的一些操作的函数
 	/**
 	 * 登录
 	 * 
@@ -50,9 +51,9 @@ public class StudentBasicAction extends BaseAction
 		Student student = studentDAO.findByPhoneOrMail(userName);
 		if (student != null)
 		{
-			if (student.getPassword().equals(password))
+			if (password.equals(student.getPassword()))
 			{
-				if(student.getStatus() == FinalValue.AVAILABLE)
+				if(student.getStatus() == FinalValue.INIT_VALUE)
 				{
 					msg.setCode(student.getStatus());
 					msg.setStatement(student.getStatement());
@@ -98,12 +99,14 @@ public class StudentBasicAction extends BaseAction
 			Student student = (Student) user.getUser();
 			if(student!=null){
 				student.setLastVisitTime(Operation.getTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")));
-				studentDAO.update(student);
+				//studentDAO.update(student);
 			}
 		}
 		this.getSession().removeAttribute("user");
 	}
-
+	/**
+	 * 学生注册--初步注册
+	 */
 	public void studentRegister() throws IOException
 	{
 		Student student = studentDAO.findByPhoneOrMail(userName);
@@ -114,7 +117,7 @@ public class StudentBasicAction extends BaseAction
 			Student student2=new Student();
 			/*System.out.println(userName+' '+password+' '+mobile+' '+mobileCode);*/
 			student2.setStudentId(IdGenerator.getInstance().getNextStudentId());
-			student2.setMail(userName);
+			//student2.setMail(userName);
 			student2.setPassword(password);
 			student2.setPhone(mobile);
 			student2.setStatus(FinalValue.INIT_VALUE);
@@ -135,26 +138,56 @@ public class StudentBasicAction extends BaseAction
 		
 		this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));
 	}
-	
 	/**
-	 * 注册
+	 * 学生注册--完善注册
 	 * 
 	 * @throws IOException
 	 */
-	public void register() throws IOException
+	@SuppressWarnings("static-access")
+	public String dsRegister() throws IOException{
+		Student stu = studentDAO.findByPhone(student.getPhone());
+		Message msg = new Message();
+		if(stu!=null){
+			stu.setAddress(student.getAddress());
+			stu.setDetailedAddress(student.getDetailedAddress());
+			stu.setGrade(student.getGrade());
+			System.out.println(student.getStuphoto());
+			stu.setIntroduction(imgBase.fileToServer("/file", student.getStuphoto(), student.getStuphotoFileName(), student.getStuphotoContentType(), true));
+			stu.setName(student.getName());
+			stu.setRegTime(Operation.getTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")));//设置注册时间
+			stu.setStatus(0);
+			studentDAO.save(stu);
+			msg.setCode(FinalValue.SUCCESS);
+			msg.setStatement("资料已完善！");
+			User user = new User();
+			user.setRole(User.STUDENT);
+			user.setUser(student);
+			logger.info(String.format("student:%s login success", student.getStudentId()));
+			this.getSession().setAttribute("user", user);
+			return "success";
+		}
+		else{
+			return "failure";
+		}
+		
+	}
+	
+	
+	
+	/**
+	 * 学生登录成功点击“进入我的会员中心”暂定方法，后期不用此方法
+	 * 
+	 * @throws IOException
+	 */
+	public String login_temporary() throws IOException
 	{
-		Message<String> msg = new Message<String>();
-		student.setStudentId(IdGenerator.getInstance().getNextStudentId());
-		student.setStatus(FinalValue.INIT_VALUE);
-		student.setRegTime(Operation.getTime(new SimpleDateFormat(
-				"yyyy-MM-dd HH:mm:ss")));
-
-		studentDAO.save(student);
-
-		msg.setCode(FinalValue.SUCCESS);
-		msg.setStatement("注册成功");
-
-		this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));
+		Student student = studentDAO.findByPhoneOrMail(userName);
+		User user = new User();
+		user.setRole(User.STUDENT);
+		user.setUser(student);
+		logger.info(String.format("student:%s login success", student.getStudentId()));
+		this.getSession().setAttribute("user", user);
+		return "success";
 	}
 
 	public StudentBasicAction(StudentDAO studentDAO)

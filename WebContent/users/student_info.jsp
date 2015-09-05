@@ -1,8 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-     <%
-    	String phone=(String)request.getAttribute("phone");
-    	String mail=(String)request.getAttribute("mail");
+    <%@ page import="com.tutor.entity.server.*" %>
+    <%@ page import="com.tutor.entity.*" %>
+    <%
+    	User user = (User)session.getAttribute("user");
+    	Student student = null;
+    	if(user != null)
+    	{
+    		student = (Student)user.getUser();
+    	}
 
     %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -18,6 +24,9 @@
 <script src="js/formCheck.js" type="text/javascript" charset="utf-8" language="javascript"></script>
 <script src="js/jquery.fancybox-1.3.4.js" type="text/javascript" charset="utf-8" language="javascript"></script>
 <script src="js/t_team_js.js" type="text/javascript" charset="utf-8" language="javascript"></script>
+<script src="js/s_info.js" type="text/javascript" charset="utf-8" language="javascript"></script>
+<script src="js/uploadPreview.js" type="text/javascript"language="javascript"></script>
+
 <!-- 首页轮播图 start --> 
 <!--[if IE 6]>
 <script src="js/background.png.js" type="text/javascript" charset="utf-8" language="javascript"></script>
@@ -62,7 +71,7 @@
                                   <img alt="花花" title="花花" src="images/incimg12.gif">
                               </p>
                               <p class="nrxx"> 
-                                  <a href="javascript:void(0);" class="user">花花</a>   
+                                  <a href="javascript:void(0);" class="user"><%=student.getName()%></a>   
                               </p>
                           </div>
                           <div class="grkj-r">
@@ -112,12 +121,14 @@
                         <span class="incrlspacea1">基本信息</span>
                         
                     </div>
-                    <div>
+                    
+                     <form id="register_form" name="register_form" method="post" action="dsRegister" enctype="multipart/form-data" onSubmit="return checkRegisterForm()">
+                    <div style="margin-left: 170px;">
                          <div class="grkjhr p_t10"></div>
                          <div class="erji_te zc_top1">个人资料</div>
                          <div class="dlk dlk2">
               <div class="dltab dltab2" style="width:600px; margin-left:50px;">
-              <form id="register_form" name="register_form" method="post" action="dsRegister" enctype="multipart/form-data" onSubmit="return checkRegisterForm()">
+             
                 <table width="600" border="0" cellspacing="0" cellpadding="0">
                   <tr>
                     <td height="40" align="right">真实姓名：</td>
@@ -127,18 +138,18 @@
                   <tr>
                     <td height="40" align="right">性　别：</td>
                     <td height="40" colspan="2" align="left">
-                        <input type="radio" name="radio" id="radio" name="student.sex" class="sexRadio" checked="checked" />男&nbsp;&nbsp;<input type="radio" name="radio" id="radio" value="radio" />女</td>
+                        <input type="radio" name="radio" id="radio" name="student.sex" class="sexRadio" />男&nbsp;&nbsp;<input type="radio" name="student.sex" id="radio" value="radio" />女</td>
                     <td width="282" height="40" align="left">&nbsp;</td>
                   </tr>
 
                   <tr>
                     <td height="40" align="right">邮　箱：</td>
-                    <td height="40" colspan="2" align="left"><input readonly="readonly" class="tekang" type="text" name="student.mail" id="email" value="<%=mail==null?"":mail%>"/></td>
+                    <td height="40" colspan="2" align="left"><input class="tekang" type="text" name="student.mail" id="email" value="<%=student.getMail()==null?"":student.getMail()%>"/></td>
                     <td height="40" align="left">&nbsp;</td>
                   </tr>
                   <tr>
                     <td height="40" align="right">手　机：</td>
-                    <td height="40" colspan="2" align="left"><input readonly="readonly" class="tekang" type="text" name="student.phone" id="phone" value="<%=phone==null?"":phone%>"/></td>
+                    <td height="40" colspan="2" align="left"><input readonly="readonly" class="tekang" type="text" name="student.phone" id="phone" value="<%=student.getPhone()==null?"":student.getPhone()%>"/></td>
                     <td height="40" align="left"></td>
                   </tr>
                  <!--  <tr>
@@ -166,13 +177,8 @@
                     </select></td>
                     <td height="40" align="left">&nbsp;</td>
                   </tr>
-                  <tr>
-                    <td height="40" colspan="4" align="left">
-                    <div class="baocun"><a href="javascript:void(0)" >保存设置</a></div>
-                    </td>
-                    </tr>
                 </table>
-                </form>
+           
               </div>
             </div>
             
@@ -180,48 +186,20 @@
             	<div class="erji_te zc_top1">上传头像</div>
                 <div class="inckjcontca myleft" style="padding-left:50px;">
                 	<div class="inckjcontcalr myimg">
-                    	<img style="width:180px; height:180px; margin-left:0" id="img1" src="images/incimg12.gif">
-                    	<a href="javascript:void(0)" class="upload_a"><img src="images/xztp.jpg"/>&nbsp;*<input type="file" id="upload_file0"></a>
-                    </div>
-                    
-                    <div class="inckjcontcarl myimg2 mt_10">
-                       <!--  <div class="baocun1"><div class="fl"><a href="javascript:void(0)" class="upload_a"><img src="images/xztp.jpg"/><input type="file" id="upload_file0"></a></div><div class="fl"><font color="#FF0000">*</font></div></div><div class="clear"></div> -->
-                    	<div class="baocun"><a  href="javascript:void(0)" >保存设置</a></div>
+                    	<a href="javascript:fn_browse();" title="上传" ><img style="width:100px; height:100px; margin-left:0" id="image" src="images/incimg12.gif"></a>
+                    	<a href="javascript:void(0)" class="upload_a"><img src="images/xztp.jpg"/>&nbsp;*<input type="file" id="upload_file" name="student.introduction"></a>
                     </div>
                     <div class="clear"></div>
                 </div>
             </div>
-            
-            <div class="erji_te zc_top1">修改密码</div>
-            <div class="dlk dlk2">
-              <div class="dltab dltab2" style="width:600px; margin-left:50px;">
-                <table width="600" border="0" cellspacing="0" cellpadding="0">
-                  <tr>
-                    <td width="91" height="40" align="right">原&nbsp;&nbsp;&nbsp;密&nbsp;&nbsp;&nbsp;码：</td>
-                    <td width="227" height="40" align="left"><input class="tekang" type="password" name="textfield2" id="textfield" /></td>
-                    <td width="282" height="40" align="left"></td>
-                  </tr>
-                  <tr>
-                    <td width="91" height="40" align="right">输入新密码：</td>
-                    <td width="227" height="40" align="left"><input class="tekang" type="password" name="textfield2" id="textfield" /></td>
-                    <td width="282" height="40" align="left"></td>
-                  </tr>
-                  <tr>
-                    <td width="91" height="40" align="right">确认新密码：</td>
-                    <td width="227" height="40" align="left"><input class="tekang" type="password" name="textfield2" id="textfield" /></td>
-                    <td width="282" height="40" align="left"></td>
-                  </tr>
-                  <tr>
-                    <td height="40" colspan="3" align="left">
-                    <div class="baocun"><a href="javascript:void(0)" >保存设置</a></div>
-                    </td>
-                    </tr>
-                </table>
-              </div>
-            </div>
+           <div class="erji_te zc_top1"></div>
+           <div class="w_960">
+           	<input name="" type="checkbox" value="" checked/>同意用户协议<br />
+           	<input type="submit"  value="确   定" class="zc_btn" id="zc_btn"/>
+           </div>  
                     </div>
                     
-                    
+             </form>
                     
                 </div>
                 <div class="clear"></div>
