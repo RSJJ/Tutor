@@ -32,7 +32,7 @@ $(document).ready(function(e) {
 			clearError();
 		}
 	})
-
+	
 	$('#js-phone').change(function(){ 
 		var phoneNum = $(this).val($.trim($(this).val())).val();
 		/*PXVerify.Phone(phoneNum,false,function(isok,error){
@@ -74,7 +74,7 @@ $(document).ready(function(e) {
 			clearError();
 		}
 	})
-
+	
 	$('#js-username').change(function(){
 		var username = $(this).val($.trim($(this).val())).val();
 		if(/\d{10,11}/.test(username)){
@@ -112,6 +112,9 @@ $(document).ready(function(e) {
 		}
 	}).change();
 	isloaded = true;
+	var isCodeOk = false;
+	var rcode = null;
+	$("#js-code").prop('disabled',true)//发送验证码前禁用验证码输入框；
 	$('#js-get-phone').click(function(){
 		var self = this;
 		if($(self).data('issending'))return;
@@ -119,8 +122,10 @@ $(document).ready(function(e) {
 		$(self).data('issend',false);
 		$(self).prop('disabled',true).val('正在发送验证码...');
 		$('#js-phone-code-tip').show();
-		var error = PXVerify.SendPhoneCode($.trim($('#js-phone').val()),true,function(isok,error){
+		var error = PXVerify.SendPhoneCode($.trim($('#js-phone').val()),true,function(isok,msg){
 			if(isok==1){
+				rcode = msg;
+				$("#js-code").prop('disabled',false)
 				$(self).data('issend',true);
 				var time = 60;
 				$(self).val(time+'后重可新获取');
@@ -133,7 +138,7 @@ $(document).ready(function(e) {
 					$(self).val((--time)+'后重可新获取');
 				},1000));
 			}else{
-				alert(error);
+				alert(msg);
 				$(self).prop('disabled',false).val('发送验证码').data('issending',false);
 			}
 		});
@@ -142,12 +147,31 @@ $(document).ready(function(e) {
 			$(self).prop('disabled',false).val('发送验证码').data('issending',false);
 		}
 	});
+	$("#js-code").change(function(){
+		var value = $(this).val();
+		var code = rcode;
+		if(value==code){
+				$(this).addClass("vs").removeClass("vf");
+				isCodeOk = true;
+			}else{
+				$(this).addClass("vf").removeClass("vs");
+				isCodeOk = false;
+				}
+	})
 	
 	var issubmit = false;
 	
 	$('.js-register').click(function(){
+		
+		if(issubmit){
+			alert("请勿重复提交")
+			return false;
+		}
+		if(!isCodeOk) {
+			alert("请输入正确的验证码")
+			return false;
+		}
 		$(".loading").show();
-		if(issubmit) return false;
 		var type = $(this).data("type") //获取注册类型
 		var email = $('#js-email').val($.trim($('#js-email').val())).val();
 		var phone = $('#js-phone').val($.trim($('#js-phone').val())).val();
@@ -156,14 +180,9 @@ $(document).ready(function(e) {
 		var code = $('#js-code').val($.trim($('#js-code').val())).val();
 		var error = PXVerify.Register(email,phone, password, code, type , true, function(isok,error){
 	        if(isok==200){
-	        	if(type=='studentRegister'){
-        			showError('注册成功，5秒后跳转至主页。。。点击'+"<a href='../index.jsp' style='color:blue;'>主页</a>直接跳转");
-                    url = '../index.jsp';
+        			showError('注册成功，5秒后跳转至个人中心。。。点击'+"<a href='../user' style='color:blue;'>个人中心</a>直接跳转");
+                    url = '../user';
                     setTimeout(function(){window.location.href  = url;},5000)
-	        	}else {
-	        		url = 'detail.jsp?phone='+phone+'&email='+email;
-	        		window.location.href  = url;
-	        	}
 			}else{
 				$(".loading").hide();
 				$("#title").html("用户注册");

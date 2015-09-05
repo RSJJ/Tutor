@@ -148,10 +148,12 @@ public class AppManageAction extends BaseAction {
 		
 		if(isSend){
 			ms.setStatus(ms.SUCCESS);
-			ms.setContent(new String("发送信息成功"));;
+			ms.setContent(new String("发送信息成功"));
+			ms.setStatement(ccode);
 		}else{
 			ms.setStatus(ms.FAILED);
-			ms.setContent(new String("发送信息失败"));;
+			ms.setContent(new String("发送信息失败"));
+			ms.setStatement(new String("发送信息失败"));
 		}
 		String json = JsonUtil.toJson(ms);
 		this.getJsonResponse().getWriter().println(json);

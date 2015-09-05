@@ -48,10 +48,10 @@
 <body>
 	<div class="com-content">
        <div class="com-header-area" id="js-com-header-area">
-            <a href="../index.html" class="com-header-logo"></a>
+            <a href="../index.jsp" class="com-header-logo"></a>
 			<dfn></dfn>
             <p>
-                <a href="default.htm" class="com-header-user selected"><del></del></a>
+                <a href="default.jsp" class="com-header-user selected"><del></del></a>
                 <i></i>
                 <a href="../cart/default.htm" class="com-header-cart "><b id="header-cart-num">0</b><del></del></a>
             </p>
