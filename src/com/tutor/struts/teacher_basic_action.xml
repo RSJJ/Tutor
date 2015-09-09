@@ -18,7 +18,7 @@
 			<result name="failure">404.html</result>
 		</action>
 		<action name="dtRegisterPhone" class="teacherBasicAction" method="dtRegisterPhone">
-			<result name="success">/wap/index.jsp</result>
+			<result name="success">/wap/user/default.jsp</result>
 			<result name="error">404.html</result>
 		</action>
 		<action name="teacherLogout" class="teacherBasicAction" method="logout"></action>

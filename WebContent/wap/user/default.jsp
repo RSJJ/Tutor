@@ -1,12 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
- <%String path = request.getContextPath();  
-   String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";  
- %>
+    pageEncoding="utf-8" 
+    import="com.tutor.entity.server.User,
+    com.tutor.entity.Teacher,
+    com.tutor.entity.Student"%>
+ <%
+   String path = request.getContextPath();  
+   String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path;  
+	HttpSession sess = request.getSession();
+	User user = (User)sess.getAttribute("user");
+	String icon = basePath;
+	String phone = "";
+	String deSrc = "";
+	int role = user.getRole();
+	
+	if(user==null){
+		response.sendRedirect("../login/default.jsp");
+	}else{
+		if(role==2){
+			Teacher tea = (Teacher)user.getUser();
+			if(tea.getIcon()==null){
+				icon = "../template/images/good/default.jpg";
+			}else icon += tea.getIcon();
+			
+			phone = tea.getPhone();
+			deSrc = "tedetail.jsp";
+			}else if(role==1){
+			Student stu = (Student)user.getUser();
+			icon = "../template/images/good/default.jpg";
+			phone = stu.getPhone();
+			deSrc = "stdetail.jsp";
+		}
+		phone = phone.substring(0, 4)+"*****"+phone.substring(9, 11);
+	};
+%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <!doctype html>
 <html>
     <head>
-        <title>用户注册</title>
+        <title>个人中心</title>
         <meta charset="utf-8">
         <meta name="keywords" content="" />
         <meta name="description" content="" />
@@ -81,36 +112,50 @@
 		</div>
 
 		<div data-role="content" class="content">
-			
 	        <!--content-->
 	        <div class="loading"></div>	
 	         <a href="#link" data-icon="arrow-r" data-iconpos="right">
 			<div class="icon">
 				<div class="img">
-				   
-						<img src="../template\images\good/ID2/1.jpg">
-						<span>Tea_1500000</span>
-					
+						<img src=<%=icon%>>
+						<span><%=phone %></span>
 				</div>
 			</div>
 			</a>
 			<ul data-role="listview">
-			  <li><a href="#" data-icon="alert" data-iconpos="left">消息中心<span class="ui-li-count">335</span></a></li>
-			  <li><a href="#" data-icon="info" data-iconpos="left">个人信息</a></li>
+				<li><a href=<%=deSrc %>  data-ajax="false"  data-icon="info" data-iconpos="left">完善个人信息</a></li>
+				<br>
+			  <li><a href="#" data-icon="alert" data-iconpos="left">消息中心<span class="ui-li-count">0</span></a></li>
 			  <li><a href="#" data-icon="gear" data-iconpos="left">课程管理</a></li>
-			  <li><a href="#" data-icon="star" data-iconpos="left">我的收藏</a></li>
+			  <li><a href="#" data-icon="gear" data-iconpos="left">查看预约</a></li>
+			  <hr>
+			 <li><a href="#" id="logout"  data-ajax="false"  data-icon="info" data-iconpos="left">退出登录</a></li>
 			</ul>
-			<hr>
-
+			
 		</div>
 		 <div data-role="footer" id="footer">
 		  <div data-role="navbar" data-iconpos="left">
 		      <ul>
 		        <li> <a href="../index.jsp" data-ajax="false" data-role="button">首页</a></li>
-		        <li> <a href="#pagetwo" data-ajax="false" data-role="button">个人中心</a></li>
+		        <li> <a href="#pageone" data-ajax="false" data-role="button">个人中心</a></li>
 		      </ul>
 	      	</div>
 	    </div>  
 	</div>
 </body>
 </html>
+<script type="text/javascript">
+	$("#logout").click(function(){
+			var role = <%=role %>;
+			if(role == 2){
+					$.get("teacherLogout",function(data,status){
+						 window.location.href = "../login/default.jsp";
+				  });
+				}else{
+					$.get("studentLogout",function(data,status){
+						 window.location.href = "../login/default.jsp";
+				  });
+				}
+		})
+</script>
+

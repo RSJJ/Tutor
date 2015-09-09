@@ -99,9 +99,9 @@
 			</div>
 			<div class="rightside">
 				      <ul id="right">
-				      	<li class="table-view-cell"><a class="navigate-right grand" href="teacherSearchList.html?mode=k12&amp;courseGrade=小学&amp;courseName=语文" data-ajax="false" data-transition="slide-in">语文</a></li>
-				      	<li class="table-view-cell"><a class="navigate-right grand" href="teacherSearchList.html?mode=k12&amp;courseGrade=小学&amp;courseName=数学" data-ajax="false" data-transition="slide-in">数学</a></li>
-				      	<li class="table-view-cell"><a class="navigate-right grand" href="teacherSearchList.html?mode=k12&amp;courseGrade=小学&amp;courseName=外语" data-ajax="false" data-transition="slide-in">外语</a></li>
+				      	<li class="table-view-cell"><a class="navigate-right grand" href="teacherSearchList.jsp?mode=k12&amp;courseGrade=小学&amp;courseName=语文" data-ajax="false" data-transition="slide-in">语文</a></li>
+				      	<li class="table-view-cell"><a class="navigate-right grand" href="teacherSearchList.jsp?mode=k12&amp;courseGrade=小学&amp;courseName=数学" data-ajax="false" data-transition="slide-in">数学</a></li>
+				      	<li class="table-view-cell"><a class="navigate-right grand" href="teacherSearchList.jsp?mode=k12&amp;courseGrade=小学&amp;courseName=外语" data-ajax="false" data-transition="slide-in">外语</a></li>
 				      	</ul>
 			</div>
 		</div>
@@ -128,7 +128,7 @@
     	else  mode='s12'
     	for (var j=0 ; j <= collumn[i].course.length - 1; j++) {
 
-    		var url = 'teacherSearchList.html?mode='+mode+'&courseGrade='+collumn[i].grand+'&courseName='+collumn[i].course[j].name;
+    		var url = 'teacherSearchList.jsp?mode='+mode+'&courseGrade='+collumn[i].grand+'&courseName='+collumn[i].course[j].name;
     		var temp = '<li class="table-view-cell"><a class="navigate-right grand" href="'+url+'" data-ajax="false" data-transition="slide-in">'+collumn[i].course[j].name+'</a></li>'
     		$("#right").append(temp);
     	}

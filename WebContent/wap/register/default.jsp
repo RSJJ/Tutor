@@ -23,13 +23,7 @@
         <!--在设置书签的时候可以显示好看的图标-->
         <!--<link rel="apple-touch-icon" href="/touch/iphon_tetris_icon.png"/>-->
         <link type="text/css" rel="stylesheet" href="../template/css/com/com.css"/>
-		<script>
-		var DOMIN = {MAIN:"localhost:8080/xfx",HELP:"../../help.paixie.net/",TUAN:"../../tuan.paixie.net/",WAP:"../../wap.paixie.net/",UNION:"../../union.paixie.net/",VIPSHOP:"../../v.paixie.net/"};</script>  
-        <script>
-			var JAVASCRIPT_LIB = (('\v' !== 'v') ? 'zepto' : 'jquery');
-			JAVASCRIPT_LIB="jquery";
-            DOMIN.MAIN = '../';
-        </script>
+
         <script src="../template/js/com/jquery.min.js"></script>
         <script src="../template/js/com/com.js"></script>
         <script src="../template/js/login/px-verify.js"></script>
@@ -70,7 +64,7 @@
 		<div class="page-title">
 			<a href="javascript:history.back();void(0)" class="return">返 回</a>
 			<span id="title">用户注册</span>
-			<a href="../login/default.htm">登录<i></i></a>
+			<a href="../login/default.jsp">登录<i></i></a>
 		</div>
 			<form class="pxui-form-info" id="js-register-form" method = "post" action="../teacherRegister">
 				<p class="error-msg" id="js-error-msg"></p>
@@ -81,7 +75,7 @@
 				 -->
 				<div>
 					<span>手&nbsp;&nbsp;机：</span><p><span>
-					<input id="js-phone" name="telephone" placeholder="请输入手机号码" type="text" maxlength="11"/></p>
+					<input id="js-phone" name="userName" placeholder="请输入手机号码" type="text"  maxlength="11"/></p>
 				</div>
 				<div class="phone-box" style="display:none;">
 					<span>&nbsp;</span><p><span>
@@ -94,8 +88,8 @@
 		        </div>
 				<div><span>&nbsp;</span>
 					<p><span>
-					<input type="button" value="老  师  注 册  " data-type="teacherRegister" class="pxui-light-button js-register" style="margin-right:5%;width:45%;">
-					<input type="button" value="学  生  注  册   " data-type="studentRegister" class="pxui-light-button js-register" style="width:45%;">
+					<input type="button" value="注 册 老  师   " data-type="teacherRegister" class="pxui-light-button js-register" style="margin-right:5%;width:45%;">
+					<input type="button" value="注  册 学  员  " data-type="studentRegister" class="pxui-light-button js-register" style="width:45%;">
 			        </span></p>
 				</div>
 			</form>
@@ -103,7 +97,6 @@
 				<b>收不到验证码，怎么办？</b><br/>
 				1、检查是否被安全软件给拦截了<br/>
 				2、现在短信的信道太过于拥堵了，再稍等片刻或者重新获取验证码<br/>
-				3、用该号码联系客服人员验证<br/>客服电话：<a href="tel_3A4008818283" style="text-decoration:underline;">400-8818283</a>（收取市话费）<br/>&nbsp;
 			</div>
 		</div>
 <!--content-end-->

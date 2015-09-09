@@ -86,7 +86,7 @@
 .touchslider{position:relative;margin:0 -12px;}
 .touchslider .touchslider-viewport{ overflow:hidden; height:300px !important;}
 .touchslider .touchslider-viewport .touchslider-item a{z-index:1;width:100%;display:block;}
-.touchslider .touchslider-viewport .touchslider-item img{ width:100%;}
+.touchslider .touchslider-viewport .touchslider-item img{ width:100%;height:300px;}
 .touchslider .touchslider-navtag{text-align:center;height:34px;display:inline-block;vertical-align:middle;margin-top:-8px;width:100%}
 .touchslider .touchslider-navtag span{width:14px;height:2px;background:#c1c1c1;overflow:hidden;display:inline-block; }
 .touchslider .touchslider-navtag .touchslider-nav-item-current{background:#ff7363;}

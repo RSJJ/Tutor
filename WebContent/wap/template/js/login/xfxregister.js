@@ -125,6 +125,7 @@ $(document).ready(function(e) {
 		var error = PXVerify.SendPhoneCode($.trim($('#js-phone').val()),true,function(isok,msg){
 			if(isok==1){
 				rcode = msg;
+				console.log(rcode);
 				$("#js-code").prop('disabled',false)
 				$(self).data('issend',true);
 				var time = 60;
@@ -180,8 +181,8 @@ $(document).ready(function(e) {
 		var code = $('#js-code').val($.trim($('#js-code').val())).val();
 		var error = PXVerify.Register(email,phone, password, code, type , true, function(isok,error){
 	        if(isok==200){
-        			showError('注册成功，5秒后跳转至个人中心。。。点击'+"<a href='../user' style='color:blue;'>个人中心</a>直接跳转");
-                    url = '../user';
+        			showError('注册成功，5秒后跳转至个人中心。。。点击<a href="../user/default.jsp" style="color:blue;">个人中心</a>直接跳转');
+                    url = '../user/default.jsp';
                     setTimeout(function(){window.location.href  = url;},5000)
 			}else{
 				$(".loading").hide();

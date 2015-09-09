@@ -1,3 +1,12 @@
+<%@page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8" import="com.tutor.entity.server.User,com.tutor.entity.Teacher"%>
+<%
+	HttpSession sess = request.getSession();
+	User user = (User)sess.getAttribute("user");
+	if(user!=null){
+		response.sendRedirect("../user/default.jsp");
+	};
+%>
 <!doctype html>
 <html>
     <head>
@@ -20,23 +29,7 @@
         <!--在设置书签的时候可以显示好看的图标-->
         <!--<link rel="apple-touch-icon" href="/touch/iphon_tetris_icon.png"/>-->
         <link type="text/css" rel="stylesheet" href="../template/css/com/com.css"/>
-		<script>var PX_HELP_DATA=['','uo74au74aqpc8801g3htt5l2v7',['touch','login','index'],'2014/04/09 09:39:29',0,false]; var DOMIN = {MAIN:"lcoalhost:8080/xfx",HELP:"../../help.paixie.net/",TUAN:"../../tuan.paixie.net/",WAP:"../../wap.paixie.net/",UNION:"../../union.paixie.net/",VIPSHOP:"../../v.paixie.net/"};</script>  
-
-        <script>
-			var JAVASCRIPT_LIB = (('\v' !== 'v') ? 'zepto' : 'jquery');
-			JAVASCRIPT_LIB="jquery";
-            document.write('<script src="http://ued.paixie.net/scripts/public/jquery.js"><\/script>');
-            DOMIN.MAIN = '../';
-            // uc浏览器添加书签功能 
-            window.onmessage = function(event){
-                if(event.data.message != '')
-                {
-                    $('#otherPage').remove();
-                }else{
-                    $('#otherPage').show();
-                }
-            }
-        </script>
+		<script src="../template/js/com/jquery.min.js"></script>
     </head>
     <body>
         <div class="com-content">
@@ -45,7 +38,7 @@
 				<dfn></dfn>
                 <p>
                    
-                    <a href="default.htm" class="com-header-user selected"><del></del></a>
+                    <a href="default.jsp" class="com-header-user selected"><del></del></a>
                     <i></i>
                     <a href="../cart/default.htm" class="com-header-cart "><b id="header-cart-num">0</b><del></del></a>
                 </p>
@@ -57,10 +50,12 @@
 								<link type="text/css" rel="stylesheet" href="../template/css/login/index.css"/>
 								<script>var returnurl = "index";</script>
 								<div class="page-title"><a href="javascript:history.back();void(0)" class="return">返 回</a>登录学纷享<a href="../register/default.jsp">注册<i></i></a></div>
-							        <form autocomplete="off" class="pxui-form-info" method="post" action="">
+							       	
+							        <form autocomplete="off" class="pxui-form-info">
+							        <div class="loading"></div>
 							        <input type="hidden" name="rtnurl" value="index"/>
 									<p class="error-msg" id="js-error-msg"></p>
-							        <div><span>用&nbsp;户&nbsp;名：</span><p><span><input name="userName"  placeholder="已验证的手机号" type="text"/></span></p></div>
+							        <div><span>手&nbsp;&nbsp;&nbsp;机：</span><p><span><input name="userName"  placeholder="已验证的手机号" type="text"/></span></p></div>
 									<div><span>密&nbsp;&nbsp;&nbsp;码：</span><p><span><input name="password"  type="password"/></span></p></div>
 									
 									<div><span>&nbsp;</span><p><span>
@@ -80,11 +75,14 @@
 														},
 													dataType:"JSON",
 													success:function(data){
-															if(data.code!=3){
+															if(data.code!=0&&data.code!=1&&data.code!=2&&data.code!=3){
 																$(".error-msg").html(data.statement).show();
 																}
 															else {
-																$(".error-msg").html("欢迎回来："+username).show();
+																
+																$(".error-msg").html("欢迎回来："+username+"，点击<a href='../user/default.jsp' style='color:blue;'>个人中心</a>直接跳转").show();
+																url = '../user/default.jsp';
+											                    setTimeout(function(){window.location.href  = url;},5000)
 															}
 														},
 													type:"POST",
@@ -101,12 +99,14 @@
 														},
 													dataType:"JSON",
 													success:function(data){
-															if(data.code!=3){
-																$(".error-msg").html(data.statement).show();
-																}
-															else {
-																$(".error-msg").html("欢迎回来："+username).show();
+														if(data.code!=0&&data.code!=1&&data.code!=2&&data.code!=3){
+															$(".error-msg").html(data.statement).show();
 															}
+														else {
+															$(".error-msg").html("欢迎回来："+username+"，点击<a href='../user/default.jsp' style='color:blue;'>个人中心</a>直接跳转").show();
+															url = '../user/default.jsp';
+										                    setTimeout(function(){window.location.href  = url;},5000)
+														}
 														},
 													type:"POST",
 													url:"studentLogin"
@@ -133,3 +133,4 @@
 		 -->
 </body>
 </html>
+

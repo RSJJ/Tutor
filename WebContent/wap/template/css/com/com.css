@@ -197,7 +197,7 @@ input.pxui-blue-button:disabled:active{background:#56678e;border-color:#56678e;}
 .pxui-form-info p{width:80%;margin-right:-75px;float:left;}
 .error-msg,
 .pxui-form-info p.error-msg{float:none;background:#fffbd5;padding:10px;width:auto;margin:0;margin-bottom:10px;display:none;}
-.pxui-form-info p span{display:block;float:none;width:auto;margin-right:73px;text-align:left;color:#575757;line-height:16px;padding-bottom:10px;}
+.pxui-form-info p span{display:block;float:none;width:auto;text-align:left;color:#575757;line-height:16px;padding-bottom:10px;}
 .pxui-form-info p input[type=button]{width:80px; cursor:pointer;}
 .pxui-form-info p input[type=button].active{background:#999;color:#FFF;}
 .pxui-form-info p input[type=text],

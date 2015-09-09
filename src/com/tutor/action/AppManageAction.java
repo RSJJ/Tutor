@@ -144,6 +144,7 @@ public class AppManageAction extends BaseAction {
 		String ccode = String.valueOf(rcode);
 		sess.setAttribute("register_code", ccode);
 		boolean isSend = sendsms.send(phone,rcode);
+		//boolean isSend = true;
 		Message ms = new Message();
 		
 		if(isSend){

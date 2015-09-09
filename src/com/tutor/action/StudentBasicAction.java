@@ -53,7 +53,7 @@ public class StudentBasicAction extends BaseAction
 		{
 			if (password.equals(student.getPassword()))
 			{
-				if(student.getStatus() == FinalValue.INIT_VALUE)
+				if(student.getStatus() != FinalValue.NOT_AVAILABLE)
 				{
 					msg.setCode(student.getStatus());
 					msg.setStatement(student.getStatement());
@@ -67,7 +67,7 @@ public class StudentBasicAction extends BaseAction
 					logger.info(String.format("student:%s login success", student.getStudentId()));
 					this.getSession().setAttribute("user", user);
 				}
-				else if(student.getStatus() == FinalValue.NOT_AVAILABLE)
+				else
 				{
 					msg.setCode(student.getStatus());
 					msg.setStatement("当前用户已经被限制登录，如需解除限制请联系管理员");
@@ -109,7 +109,7 @@ public class StudentBasicAction extends BaseAction
 	 */
 	public void studentRegister() throws IOException
 	{
-		Student student = studentDAO.findByPhoneOrMail(userName);
+		Student student = studentDAO.findByPhoneOrMail(mobile);
 		System.out.println(student);
 		Message msg = new Message();
 		if (student == null)
@@ -120,10 +120,13 @@ public class StudentBasicAction extends BaseAction
 			//student2.setMail(userName);
 			student2.setPassword(password);
 			student2.setPhone(mobile);
-			student2.setStatus(FinalValue.INIT_VALUE);
+			student2.setStatus(FinalValue.REG_FIRST_STEP);
 			student2.setRegTime(Operation.getTime(new SimpleDateFormat(
 					"yyyy-MM-dd HH:mm:ss")));
-
+			User user = new User();
+			user.setRole(User.STUDENT);
+			user.setUser(student2);
+			this.getSession().setAttribute("user", user);
 			studentDAO.save(student2);
 			msg.setCode(FinalValue.SUCCESS);
 			msg.setStatus(1);
@@ -172,6 +175,40 @@ public class StudentBasicAction extends BaseAction
 		
 	}
 	
+	/**
+	 * 学生注册--完善注册--手机端
+	 * 
+	 * @throws IOException
+	 */
+	@SuppressWarnings("static-access")
+	public String dsRegisterPhone() throws IOException{
+		User user = (User)this.getSession().getAttribute("user");
+		Student stuc = (Student)user.getUser();
+		Student stu = studentDAO.findByPhone(stuc.getPhone());
+		Message msg = new Message();
+		if(stu!=null){
+			stu.setAddress(student.getAddress());
+			stu.setDetailedAddress(student.getDetailedAddress());
+			stu.setGrade(student.getGrade());
+			System.out.println(student.getStuphoto());
+			stu.setIntroduction(imgBase.fileToServer("/file", student.getStuphoto(), student.getStuphotoFileName(), student.getStuphotoContentType(), true));
+			stu.setName(student.getName());
+			stu.setRegTime(Operation.getTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")));//设置注册时间
+			stu.setStatus(FinalValue.REG_SECOND_STEP);
+			studentDAO.save(stu);
+			msg.setCode(FinalValue.SUCCESS);
+			msg.setStatement("资料已完善！");
+			user.setRole(User.STUDENT);
+			user.setUser(student);
+			logger.info(String.format("student:%s refix success", student.getStudentId()));
+			this.getSession().setAttribute("user", user);
+			return "success";
+		}
+		else{
+			return "failure";
+		}
+		
+	}
 	
 	
 	/**

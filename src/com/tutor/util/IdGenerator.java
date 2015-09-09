@@ -116,7 +116,7 @@ public class IdGenerator
 		{
 			// 如果没有老师种子，则生成一个老师种子
 			orderId = new UniqueId();
-			orderId.setName(TEACHER_ID_SEED);
+			orderId.setName(ORDER_ID_SEED);
 			orderId.setValue(0L);
 			_uniqueIdDAO.save(orderId);
 		}

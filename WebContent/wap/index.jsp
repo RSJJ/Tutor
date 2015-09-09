@@ -71,7 +71,7 @@
 				<dfn></dfn>
                 <p>
                     
-                    <a href="<%=basePath %>wap/login/default.htm" class="com-header-user "><del></del></a>
+                    <a href="<%=basePath %>wap/login/default.jsp" class="com-header-user "><del></del></a>
                     <i></i>
                     <a href="<%=basePath %>wap/cart/default.htm" class="com-header-cart "><b id="header-cart-num">0</b><del></del></a>
                 </p>

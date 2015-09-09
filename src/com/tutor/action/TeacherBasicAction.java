@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.opensymphony.xwork2.Action;
 import com.tutor.base.BaseAction;
 import com.tutor.base.ImgBaseAction;
+import com.tutor.dao.StudentDAO;
 import com.tutor.dao.TeacherDAO;
+import com.tutor.entity.Student;
 import com.tutor.entity.Teacher;
 import com.tutor.entity.server.Message;
 import com.tutor.entity.server.User;
@@ -55,7 +57,7 @@ public class TeacherBasicAction extends BaseAction
 			if(password.equals(teacher.getPassword()))
 			{
 				//用户名密码正确
-				if(teacher.getStatus() == FinalValue.AVAILABLE)
+				if(teacher.getStatus() != FinalValue.NOT_AVAILABLE)
 				{
 					//用户可用
 					msg.setCode(teacher.getStatus());
@@ -113,7 +115,7 @@ public class TeacherBasicAction extends BaseAction
 	
 	public void teacherRegister() throws IOException
 	{
-		Teacher teacher = teacherDAO.findByPhone(userName);
+		Teacher teacher = teacherDAO.findByPhone(mobile);
 		System.out.println(teacher);
 		Message msg = new Message();
 		if (teacher == null)
@@ -133,6 +135,11 @@ public class TeacherBasicAction extends BaseAction
 			teacher2.setAllNums(0);
 			teacher2.setNormalNums(0);
 			teacherDAO.save(teacher2);
+			User user = new User();
+			user.setRole(User.TEACHER);
+			user.setUser(teacher2);
+			logger.info(String.format("teacher:%s register success", teacher2.getTeacherId()));
+			this.getSession().setAttribute("user", user);
 			msg.setCode(FinalValue.SUCCESS);
 			msg.setStatus(1);
 			msg.setStatement("用户注册成功");
@@ -183,7 +190,7 @@ public class TeacherBasicAction extends BaseAction
 			teac.setDetailedIntroduction(teacher.getDetailedIntroduction());
 			teac.setCardType(teacher.getCardType());
 			teac.setCardNo(teacher.getCardNo());
-			teac.setStatus(3);
+			teac.setStatus(FinalValue.REG_SECOND_STEP);
 			teac.setRegTime(Operation.getTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")));//设置注册时间
 			teacherDAO.save(teac);
 			
@@ -216,37 +223,46 @@ public class TeacherBasicAction extends BaseAction
 	 */
 	@SuppressWarnings("static-access")
 	public String dtRegisterPhone() throws IOException
-	{
-		Teacher teac=teacherDAO.findByPhoneAndMail(teacher.getPhone(),teacher.getMail());
-		Message msg = new Message();
-		if(teac!=null){
-			teac.setName(teacher.getName());
-			teac.setSex(teacher.getSex());
-			teac.setAddress(teacher.getAddress());
-			teac.setDetailedAddress(teacher.getDetailedAddress());
-			teac.setJob(teacher.getJob());
-			teac.setIcon(imgBase.fileToServer("/file", teacher.getIconphoto(), teacher.getIconphotoFileName(), teacher.getIconphotoContentType(), true));
-			teac.setLicence(imgBase.fileToServer("/file", teacher.getLicencephoto(), teacher.getLicencephotoFileName(), teacher.getLicencephotoContentType(), true));
-			teac.setIntroduction(teacher.getIntroduction());
-			teac.setDetailedIntroduction(teacher.getDetailedIntroduction());
-			teac.setCardNo(teacher.getCardNo());
-			teac.setLng(teacher.getLng());
-			teac.setLat(teacher.getLat());
-			teac.setSchool(teacher.getSchool());
-			teac.setProfession(teacher.getProfession());
-			teac.setCity(teacher.getCity());
-			teac.setCardType(teacher.getCardType());
-			teac.setStatus(3);
-			//teac.setRegTime(Operation.getTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")));//设置注册时间
-			teacherDAO.save(teac);
-			msg.setCode(FinalValue.SUCCESS);
-			msg.setStatement("资料已完善！");
-			return SUCCESS;
-		}else{
-			msg.setCode(FinalValue.SUCCESS);
-			msg.setStatement("系统异常！");
-			return "error";
-		}
+	{	
+		User user = (User)this.getSession().getAttribute("user");
+		if(user.getRole()==user.TEACHER){
+			Teacher tea = (Teacher)user.getUser();
+			Teacher teac=teacherDAO.findByPhone(tea.getPhone());
+			Message msg = new Message();
+			if(teac!=null){
+				teac.setName(teacher.getName());
+				teac.setSex(teacher.getSex());
+				teac.setAddress(teacher.getAddress());
+				teac.setDetailedAddress(teacher.getDetailedAddress());
+				teac.setJob(teacher.getJob());
+				teac.setIcon(imgBase.fileToServer("/file", teacher.getIconphoto(), teacher.getIconphotoFileName(), teacher.getIconphotoContentType(), true));
+				teac.setLicence(imgBase.fileToServer("/file", teacher.getLicencephoto(), teacher.getLicencephotoFileName(), teacher.getLicencephotoContentType(), true));
+				teac.setIntroduction(teacher.getIntroduction());
+				teac.setDetailedIntroduction(teacher.getDetailedIntroduction());
+				teac.setCardNo(teacher.getCardNo());
+				teac.setLng(teacher.getLng());
+				teac.setLat(teacher.getLat());
+				teac.setSchool(teacher.getSchool());
+				teac.setProfession(teacher.getProfession());
+				teac.setCity(teacher.getCity());
+				teac.setCardType(teacher.getCardType());
+				teac.setStatus(FinalValue.REG_SECOND_STEP);
+				user.setRole(User.TEACHER);
+				user.setUser(teac);
+				this.getSession().setAttribute("user",user);
+				logger.info(String.format("teacher:%s refix success", teacher.getPhone()));
+				//teac.setRegTime(Operation.getTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")));//设置注册时间
+				teacherDAO.save(teac);
+				msg.setCode(FinalValue.SUCCESS);
+				msg.setStatement("资料已完善！");
+				return SUCCESS;
+			}else{
+				msg.setCode(FinalValue.SUCCESS);
+				msg.setStatement("系统异常！");
+				return "error";
+			}
+		}else return "error";
+		
 		//this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));
 		
 		/*teacher.setTeacherId(IdGenerator.getInstance().getNextTeacherId());//设置teacherId

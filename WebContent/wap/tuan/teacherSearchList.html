@@ -79,7 +79,7 @@
 					<ul data-role="listview">
 					  <li class="teali">
 					    <a href="#" class="teahref" data-ajax='false'>
-					    <img src="../template\images\good\ID2/1.jpg">
+					    <img class="teaicon" src="../template\images\good\ID2/1.jpg">
 					    <h2 class="teaname">Google Chrome</h2>
 					    <p class="teaschool">北京交通大学&nbsp;&nbsp;&nbsp;&nbsp;控制科学与工程</p>
 					    <p class="teaintro">Google Chrome 免费的开源 web 浏览器。发布于 2008 年。Google Chrome 免费的开源 web 浏览器。发布于 2008 年。Google Chrome 免费的开源 web 浏览器。发布于 2008 年。Google Chrome 免费的开源 web 浏览器。发布于 2008 年。</p>
@@ -152,7 +152,8 @@
    function eachAllTeacherInf(data){ 
    		var templi = $("#teacherInfo .teali").clone();
    		$("#teacherInfo .teali").hide();
-   		$.each(data,function(i,content){ 
+   		$.each(data,function(i,content){
+   			templi.find(".icon").html(data[i].icon)
    			templi.find(".teaname").html(data[i].name);
    			templi.find(".teaschool").html(data[i].school+"&nbsp;&nbsp;&nbsp;&nbsp;"+data[i].profession);
    			templi.find(".teaintro").html(data[i].introduction);

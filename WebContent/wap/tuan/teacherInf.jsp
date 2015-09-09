@@ -3,7 +3,8 @@
      <%String path = request.getContextPath();  
    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";  
  %>
-  <%@ taglib uri="/struts-tags" prefix="s"%><!DOCTYPE html>
+  <%@ taglib uri="/struts-tags" prefix="s"%>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -128,7 +129,7 @@
 	      </div>
 		</div>
 		
-		<div data-role="content" class="content">
+		<div data-role="content" class="content" id="content">
 			<div class="wrap icon">
 				<div class="img">
 					<img src="../template/images/good/ID2/1.jpg">
@@ -202,8 +203,9 @@
 				case 3:status = '老师认证';	break;
 				default:status = '待核实';	break;
 			}
-			$("#content .icon .img img").attr('src',imgsrc);
-			$("#content .icon .img h3").html(teacher.name);
+			$("#content .img img").attr('src',imgsrc);
+			$("h1").html(teacher.name);
+			$("#content .img h3").html(teacher.name);
 			$("#teaschool").html(teacher.school);
 			$("#teaprofession").html(teacher.profession);
 			$("#teaStatus").html(status);

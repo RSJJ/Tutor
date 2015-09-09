@@ -461,8 +461,7 @@ var PXVerify = {
 			clearError();
 		}
 		var data = {
-			userName	: email,
-			mobile 		: phone,
+			mobile		: phone,
 			password 	:password,
 		};
 		if(ajax){

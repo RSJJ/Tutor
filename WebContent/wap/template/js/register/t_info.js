@@ -12,26 +12,33 @@ document.reg_form.up_file2.click();
 document.reg_form.up_file2.value = document.all.reg_form.up_file2.value; 
 } 
 function checkRegForm(){
+	//必填内容
 	var realName=$("#textfield").val();
 	var sex=$('input:checkbox[name="sexRadio"]:checked').val();
+	var school=$(" [name='xx']").val();
+	var profession=$(" [name='zy']").val();
+	var job = $("[name='teacher.job']").val();
+	//选填内容
 	var selProvince=$('#selProvince').find("option:selected").text();
 	var selCity=$('#selCity').find("option:selected").text();
 	var address=selProvince+"-"+selCity;
 	var det_address=$('#det_address').val();
-	var school=$(" [name='xx']").val();
-	var profession=$(" [name='zy']").val();
 	var file1=$('#up_file1').val();
 	var file2=$('#up_file2').val();
 	var textarea1=$('#textarea1').val();
 	var textarea2=$('#textarea2').val();
 	var bankCard=$('#bankCard').val();
-	
 	var email=$('#email').val();
 	var phone=$('#phone').val();
-	if(realName==""||sex==""||det_address==""||file1==""||file2==""||textarea1==""||textarea2==""||bankCard==""){
-		alert("请完善信息后在提交！");
+	if(job=="在校学生"&&(realName==""||sex==""||school==""||profession=="")){
+		alert("请完善必填信息后再提交！");
+		return false;
+	}else if(job=="在职教师"&&(realName==""||sex==""||school==""||profession==""||det_address=="")){
+		alert("请完善必填信息后再提交！");
 		return false;
 	}else{
+		alert("个人信息修改成功");
+		setTimeout(1000);
 		return true;
 	}
 }
