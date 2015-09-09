@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.context.annotation.Scope;
 
@@ -46,10 +47,8 @@ public class Teacher implements Serializable
 	private String detailedAddress;
 	@Column(name="job")
 	private String job;
-	private File iconFile;
 	@Column(name="icon")
 	private String icon;
-	private File licenceFile;
 	@Column(name="licence")
 	private String licence;
 	@Column(name="instroduction")
@@ -76,7 +75,18 @@ public class Teacher implements Serializable
 	private Integer status;
 	@Column(name="statement")
 	private String statement;
-	
+	@Transient
+	File iconphoto;
+	@Transient
+	String iconphotoFileName;
+	@Transient
+	String  iconphotoContentType;
+	@Transient
+	File licencephoto;
+	@Transient
+	String licencephotoFileName;
+	@Transient
+	String  licencephotoContentType;
 	
 	@Override
 	public String toString()
@@ -287,18 +297,43 @@ public class Teacher implements Serializable
 	{
 		this.statement = statement;
 	}
-	public File getIconFile() {
-		return iconFile;
+	public File getIconphoto() {
+		return iconphoto;
 	}
-	public void setIconFile(File iconFile) {
-		this.iconFile = iconFile;
+	public void setIconphoto(File iconphoto) {
+		this.iconphoto = iconphoto;
 	}
-	public File getLicenceFile() {
-		return licenceFile;
+	public String getIconphotoFileName() {
+		return iconphotoFileName;
 	}
-	public void setLicenceFile(File licenceFile) {
-		this.licenceFile = licenceFile;
+	public void setIconphotoFileName(String iconphotoFileName) {
+		this.iconphotoFileName = iconphotoFileName;
 	}
+	public String getIconphotoContentType() {
+		return iconphotoContentType;
+	}
+	public void setIconphotoContentType(String iconphotoContentType) {
+		this.iconphotoContentType = iconphotoContentType;
+	}
+	public File getLicencephoto() {
+		return licencephoto;
+	}
+	public void setLicencephoto(File licencephoto) {
+		this.licencephoto = licencephoto;
+	}
+	public String getLicencephotoFileName() {
+		return licencephotoFileName;
+	}
+	public void setLicencephotoFileName(String licencephotoFileName) {
+		this.licencephotoFileName = licencephotoFileName;
+	}
+	public String getLicencephotoContentType() {
+		return licencephotoContentType;
+	}
+	public void setLicencephotoContentType(String licencephotoContentType) {
+		this.licencephotoContentType = licencephotoContentType;
+	}
+
 	
 
 }

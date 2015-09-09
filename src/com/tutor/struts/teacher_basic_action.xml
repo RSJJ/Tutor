@@ -13,7 +13,8 @@
 			<result name="success">/teachers/teacher_info.jsp</result>
 		</action>
 		<action name="dtRegister" class="teacherBasicAction" method="dtRegister">
-			<result type="json"></result>
+			<result name="success">/teachers/teacher_course.jsp</result>
+			<result name="failure">404.html</result>
 		</action>
 		<action name="teacherLogout" class="teacherBasicAction" method="logout"></action>
 	</package>
