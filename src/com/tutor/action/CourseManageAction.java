@@ -9,12 +9,15 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import com.opensymphony.xwork2.Action;
 import com.tutor.base.BaseAction;
 import com.tutor.dao.GraCourseDAO;
 import com.tutor.dao.NorCourseDAO;
 import com.tutor.dao.ScheduleDAO;
+import com.tutor.dao.TeacherDAO;
 import com.tutor.entity.GraCourse;
 import com.tutor.entity.NorCourse;
 import com.tutor.entity.Schedule;
@@ -30,15 +33,18 @@ import com.tutor.util.Operation;
 public class CourseManageAction extends BaseAction
 {
 
+	private static final boolean fdebug = true;
+	private static final Log log = LogFactory.getLog(CourseManageAction.class);
 	private static final long serialVersionUID = 1L;
 
 	private NorCourseDAO norCourseDAO;
 	private GraCourseDAO graCourseDAO;
 	private ScheduleDAO scheduleDAO;
-
+	private TeacherDAO teacherDAO;
+	
 	private NorCourse norCourse;
 	private GraCourse graCourse;
-
+	
 	private int courseType;
 
 	private String teacherId;
@@ -126,6 +132,10 @@ public class CourseManageAction extends BaseAction
 		{
 			List<NorCourse> norCourses = norCourseDAO
 					.findByTeacherId(teacherId);
+			if(fdebug)
+			{
+				log.info(teacherId+" norCourse's size is "+norCourses.size());
+			}
 			this.getRequest().setAttribute("norCourses", norCourses);
 			List<GraCourse> graCourses = graCourseDAO
 					.findByTeacherId(teacherId);
@@ -157,7 +167,7 @@ public class CourseManageAction extends BaseAction
 				case FinalValue.NOR_TYPE:// 基础课程
 					if (norCourse != null)
 					{
-						norCourse.setTeacherId(teacher.getTeacherId());
+						norCourse.setTeacher(teacher);
 						norCourse.setNorCourseId(IdGenerator.getInstance()
 								.getNextCourseId(teacher.getTeacherId(),
 										FinalValue.NOR_TYPE));
@@ -181,7 +191,7 @@ public class CourseManageAction extends BaseAction
 				case FinalValue.GRA_TYPE:// 考研课程
 					if (graCourse != null)
 					{
-						graCourse.setTeacherId(teacher.getTeacherId());
+						graCourse.setTeacher(teacher);
 						graCourse.setGraCourseId(IdGenerator.getInstance()
 								.getNextCourseId(teacher.getTeacherId(),
 										FinalValue.GRA_TYPE));
@@ -223,13 +233,16 @@ public class CourseManageAction extends BaseAction
 	}
 
 	
+
+
 	public CourseManageAction(NorCourseDAO norCourseDAO,
-			GraCourseDAO graCourseDAO, ScheduleDAO scheduleDAO)
-	{
+			GraCourseDAO graCourseDAO, ScheduleDAO scheduleDAO,
+			TeacherDAO teacherDAO) {
 		super();
 		this.norCourseDAO = norCourseDAO;
 		this.graCourseDAO = graCourseDAO;
 		this.scheduleDAO = scheduleDAO;
+		this.teacherDAO = teacherDAO;
 	}
 
 	public NorCourse getNorCourse()

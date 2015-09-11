@@ -18,6 +18,7 @@
 		<constructor-arg ref="norCourseDAO"></constructor-arg>
 		<constructor-arg ref="graCourseDAO"></constructor-arg>
 		<constructor-arg ref="scheduleDAO"></constructor-arg>
+		<constructor-arg ref="teacherDAO"></constructor-arg>
 	</bean>
 	
 	<bean id="scheduleManageAction" class="com.tutor.action.ScheduleManageAction" scope="prototype">
