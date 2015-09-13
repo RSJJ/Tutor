@@ -103,9 +103,9 @@ jQuery(function($) {
 	
 <div class="touchslider">
     <div class="touchslider-viewport">
-	<div class="touchslider-item"><a href=""><img src="<%=basePath %>wap/template\images\home/1.jpg" style="vertical-align:top;"/></a></div>
-	<div class="touchslider-item"><a href=""><img src="<%=basePath %>wap/template\images\home/2.jpg" style="vertical-align:top;"/></a></div>
-	<div class="touchslider-item"><a href=""><img src="<%=basePath %>wap/template\images\home/3.jpg" style="vertical-align:top;"/></a></div>
+	<div class="touchslider-item"><a href=""><img src="<%=basePath %>wap/template/images/home/1.jpg" style="vertical-align:top;"/></a></div>
+	<div class="touchslider-item"><a href=""><img src="<%=basePath %>wap/template/images/home/2.jpg" style="vertical-align:top;"/></a></div>
+	<div class="touchslider-item"><a href=""><img src="<%=basePath %>wap/template/images/home/3.jpg" style="vertical-align:top;"/></a></div>
 	</div>
 	<div class="touchslider-navtag">
 	<span class="touchslider-nav-item touchslider-nav-item-current"></span>

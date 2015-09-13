@@ -6,17 +6,21 @@
 	HttpSession sess = request.getSession();
 	User user = (User)sess.getAttribute("user");
 	String icon = basePath;
+	String name = "",intro = "",addr="";
 	if(user==null){
 		response.sendRedirect("../login/default.jsp");
 	}else{
 			Student stu = (Student)user.getUser();
+			name = stu.getName();
+			intro = stu.getIntroduction();
+			addr = stu.getDetailedAddress();
 			request.setAttribute("stu", stu);
 	};
 %>
 <!doctype html>
 <html>
 <head>
-        <title>教师个人信息完善</title>
+        <title>学员个人信息完善</title>
         <meta charset="utf-8">
         <link rel="icon" href="../favicon.ico" type="image/x-icon" />
         <link rel="bookmark" href="../favicon.ico" type="image/x-icon" />
@@ -34,7 +38,7 @@
         <!--<link rel="apple-touch-icon" href="/touch/iphon_tetris_icon.png"/>-->
         <link type="text/css" rel="stylesheet" href="../template/css/com/com.css"/>
         <link type="text/css" rel="stylesheet" href="../template/css/register/register.css"/>
-		<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script> 
+		<script type="text/javascript" src="../template/js/com/jquery.min.js"></script>
 		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=r6bfCVxPZTpoKGGNthyuupYh"></script>
 		<script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
 		<script type="text/javascript" src="http://developer.baidu.com/map/jsdemo/demo/convertor.js"></script>
@@ -75,31 +79,13 @@
 		<div class="page-role">
 			<div class="page-title"><a href="default.jsp" class="return">返 回</a>完善个人信息</div>
 			
-			<form class="pxui-form-info" id="reg_form" name="reg_form" method="post" action="dsRegister" enctype="multipart/form-data" onSubmit="return checkRegForm()">
+			<form class="pxui-form-info" id="reg_form" name="reg_form" method="post" action="dsRegisterPhone" enctype="multipart/form-data" onSubmit="return checkRegForm()">
 				<p class="error-msg" id="js-error-msg"></p>
 				<hr>
 				<h3>个人资料</h3>
-				<table>
-					<tr>
-                    <td><span>头像：</span></td>
-                    <td width="88" height="40" rowspan="2" align="left">
-	                    <a href="javascript:fn_browse1();" title="上传" >
-	                    <img id="img_file1" class="img_file" src="../template/images/login/tj.jpg" />
-	                    </a>
-                    </td>
-                    <td width="487" height="45" align="left">（请上传您的个人头像）</td>
-                  </tr>
-                  <tr>
-                    <td height="47" align="left" style="color:#F00;">
-	                    <a href="javascript:void(0);" class="up_a">
-	                    <input type="file" id="up_file1" name="student.icon">
-	                    </a>
-                    </td>
-                  </tr>
-				</table>
 				<div>
 					<span>姓名：</span><p>
-		            <input type="text" id="textfield" name="student.name"/></p>
+		            <input type="text" id="textfield" name="student.name" value=<%=name==null?"":name %>/></p>
 				</div>
 				<!-- 
 				<div>
@@ -118,7 +104,7 @@
 				</div>
 				<div>
 					<span>地址：</span><p>
-					<input class="tekang" type="text" name="student.detailedAddress" id="det_address" /></p>
+					<input class="tekang" type="text" name="student.detailedAddress" id="det_address" <%=addr==null?"":addr %>/></p>
 				</div>
 				</div>
 				
@@ -126,7 +112,7 @@
 				<div id="report2" style="margin-left:15%;"></div>
 				<div>
 					<span>个人简介：</span><p>
-					<textarea rows="3" cols="20" placeholder="个人简介"  name="student.introduction" id="textarea1" ></textarea>
+					<textarea rows="3" cols="20" placeholder="个人简介"  name="student.introduction" id="textarea1" <%=intro==null?"":intro %>></textarea>
 					</p>
 				</div>
 				

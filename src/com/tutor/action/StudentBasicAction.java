@@ -165,7 +165,7 @@ public class StudentBasicAction extends BaseAction
 			User user = new User();
 			user.setRole(User.STUDENT);
 			user.setUser(student);
-			logger.info(String.format("student:%s login success", student.getStudentId()));
+			logger.info(String.format("student:%s register success", student.getStudentId()));
 			this.getSession().setAttribute("user", user);
 			return "success";
 		}
@@ -189,18 +189,20 @@ public class StudentBasicAction extends BaseAction
 		if(stu!=null){
 			stu.setAddress(student.getAddress());
 			stu.setDetailedAddress(student.getDetailedAddress());
-			stu.setGrade(student.getGrade());
-			System.out.println(student.getStuphoto());
-			stu.setIntroduction(imgBase.fileToServer("/file", student.getStuphoto(), student.getStuphotoFileName(), student.getStuphotoContentType(), true));
+			stu.setPhone(stuc.getPhone());
+			stu.setIntroduction(student.getIntroduction());
+			//stu.setGrade(student.getGrade());
+			//System.out.println(student.getStuphoto());
+			//stu.setIntroduction(imgBase.fileToServer("/file", student.getStuphoto(), student.getStuphotoFileName(), student.getStuphotoContentType(), true));
 			stu.setName(student.getName());
-			stu.setRegTime(Operation.getTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")));//设置注册时间
+			//stu.setRegTime(Operation.getTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")));//设置注册时间
 			stu.setStatus(FinalValue.REG_SECOND_STEP);
 			studentDAO.save(stu);
 			msg.setCode(FinalValue.SUCCESS);
 			msg.setStatement("资料已完善！");
 			user.setRole(User.STUDENT);
-			user.setUser(student);
-			logger.info(String.format("student:%s refix success", student.getStudentId()));
+			user.setUser(stu);
+			logger.info(String.format("student:%s refix success", stu.getStudentId()));
 			this.getSession().setAttribute("user", user);
 			return "success";
 		}

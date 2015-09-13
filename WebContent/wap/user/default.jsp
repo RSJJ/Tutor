@@ -11,11 +11,11 @@
 	String icon = basePath;
 	String phone = "";
 	String deSrc = "";
-	int role = user.getRole();
-	
+	int role =-100;
 	if(user==null){
 		response.sendRedirect("../login/default.jsp");
 	}else{
+		role = user.getRole();
 		if(role==2){
 			Teacher tea = (Teacher)user.getUser();
 			if(tea.getIcon()==null){

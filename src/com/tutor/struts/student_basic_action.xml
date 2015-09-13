@@ -20,7 +20,7 @@
 			<result name="failure">error.jsp</result>
 		</action>
 		<action name="dsRegisterPhone" class="studentBasicAction" method="dsRegisterPhone">
-			<result name="success">default.jsp</result>
+			<result name="success">/wap/user/default.jsp</result>
 			<result name="failure">error.jsp</result>
 		</action>
 		<action name="studentLogout" class="studentBasicAction" method="logout"></action>

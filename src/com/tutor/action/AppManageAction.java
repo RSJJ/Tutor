@@ -143,8 +143,8 @@ public class AppManageAction extends BaseAction {
 		int rcode = (int)((Math.random()*9+1)*100000);
 		String ccode = String.valueOf(rcode);
 		sess.setAttribute("register_code", ccode);
-		boolean isSend = sendsms.send(phone,rcode);
-		//boolean isSend = true;
+		//boolean isSend = sendsms.send(phone,rcode);
+		boolean isSend = true;
 		Message ms = new Message();
 		
 		if(isSend){

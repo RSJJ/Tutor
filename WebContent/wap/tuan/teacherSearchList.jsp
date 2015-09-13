@@ -85,16 +85,16 @@
 					<ul data-role="listview">
 					  <li class="teali">
 					    <a href="#" class="teahref" data-ajax='false'>
-					    <img class="teaicon" src="../template\images\good\ID2/1.jpg">
-					    <h2 class="teaname">Google Chrome</h2>
-					    <p class="teaschool">北京交通大学&nbsp;&nbsp;&nbsp;&nbsp;控制科学与工程</p>
-					    <p class="teaintro">Google Chrome 免费的开源 web 浏览器。发布于 2008 年。Google Chrome 免费的开源 web 浏览器。发布于 2008 年。Google Chrome 免费的开源 web 浏览器。发布于 2008 年。Google Chrome 免费的开源 web 浏览器。发布于 2008 年。</p>
+					    <img class="teaicon" src="">
+					    <h2 class="teaname"></h2>
+					    <p class="teaschool"></p>
+					    <p class="teaintro"></p>
 					    </a>
 					    <div class="li-btn"> 
 					    	<div class="l">
 					    		<p>
-						    		<span>独立老师</span>
-						    		<span>1个认证</span>
+						    		<span></span>
+						    		<span></span>
 					    		</p>
 					    		
 					    	</div>
