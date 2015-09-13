@@ -2,16 +2,23 @@ package com.tutor.entity;
 
 import java.io.File;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.springframework.context.annotation.Scope;
+
+import com.google.gson.annotations.Expose;
 
 
 
@@ -76,6 +83,7 @@ public class Teacher implements Serializable
 	@Column(name="statement")
 	private String statement;
 	
+
 	@Column(name="lng")
 	private Double lng;
 	@Column(name="lat")
@@ -88,6 +96,16 @@ public class Teacher implements Serializable
 	private String city;
 	@Column(name="card_type")
 	private String cardType;
+
+	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="teacher")
+	@Expose
+	private Set<NorCourse> norCourse 	= new HashSet<NorCourse>();
+	
+	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="teacher")
+	@Expose
+	private Set<GraCourse> graCourse 	= new HashSet<GraCourse>();
+	
+
 	@Transient
 	File iconphoto;
 	@Transient
@@ -385,7 +403,18 @@ public class Teacher implements Serializable
 	public void setLicencephotoContentType(String licencephotoContentType) {
 		this.licencephotoContentType = licencephotoContentType;
 	}
-
+	public Set<NorCourse> getNorCourse() {
+		return norCourse;
+	}
+	public void setNorCourse(Set<NorCourse> norCourse) {
+		this.norCourse = norCourse;
+	}
+	public Set<GraCourse> getGraCourse() {
+		return graCourse;
+	}
+	public void setGraCourse(Set<GraCourse> graCourse) {
+		this.graCourse = graCourse;
+	}
 	
 
 }

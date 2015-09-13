@@ -43,7 +43,7 @@ public class GraCourseDAOImpl implements GraCourseDAO
 	@Override
 	public List<GraCourse> findByTeacherId(String teacherId)
 	{
-		Query query = entityManager.createQuery("select u from GraCourse u where u.teacherId = :teacherId");
+		Query query = entityManager.createQuery("select u from GraCourse u where u.teacher.teacherId = :teacherId");
 		query.setParameter("teacherId", teacherId);
 		@SuppressWarnings("unchecked")
 		List<GraCourse> graCourses = query.getResultList();

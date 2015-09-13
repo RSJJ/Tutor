@@ -45,7 +45,7 @@ public class NorCourseDAOImpl implements NorCourseDAO
 	@Override
 	public List<NorCourse> findByTeacherId(String teacherId)
 	{
-		Query query = entityManager.createQuery("select u from NorCourse u where u.teacherId = :teacherId");
+		Query query = entityManager.createQuery("select u from NorCourse u where u.teacher.teacherId = :teacherId");
 		query.setParameter("teacherId", teacherId);
 		return query.getResultList();
 	}

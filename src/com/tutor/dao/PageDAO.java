@@ -7,10 +7,20 @@ import com.tutor.util.PageUtil;
 
 public interface PageDAO extends Serializable {
 		
-
-		public List<Object> queryByPage(String hql,int beginIndex,int pageSize);	//分页查询显示
+		/**
+		 * 分页查询显示
+		 * @param hql 查询语句
+		 * @param beginIndex 查询页
+		 * @param pageSize	总页数
+		 * @return 查询结果
+		 */
+		public List<Object> queryByPage(String hql,int beginIndex,int pageSize);
 		
-
-		public int queryRowCount(final String hql);		//查询的结果记录总数
+		/**
+		 * 查询结果的记录总数
+		 * @param hql
+		 * @return 总记录数
+		 */
+		public int queryRowCount(final String hql);	
 	
 }

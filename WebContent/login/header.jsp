@@ -54,7 +54,7 @@
         <div class="f_r m_r20"> 
           <a href="#" class="a_k m_l10" target="_blank" title="进入教室"><img src="images/company.png" />&nbsp;进入教室</a> &nbsp;&nbsp;
           <a href="#" title="购物车">购物车</a>
-          <span id="qqShow" class="a_k m_l10 showDialog" onClick="javascript:window.open('http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODA3NjYwOF8yNTE3NDVfNDAwNjMyMDA1MV8yXw', '_blank', 'height=544px, width=644px,toolbar=no,scrollbars=no,menubar=no,status=no');" target="_blank"><img src="images/QQICO.png" />&nbsp;在线咨询
+          <span id="qqShow" class="a_k m_l10 showDialog" onClick="javascript:window.open('http://xfenxiang.com/jforum/');" target="_blank"><img src="images/QQICO.png" />&nbsp;学纷享论坛
           <div id="qqShowDiv">
           <a href="javascript:void(0)" class="btn_a_top"><font class="f_l">立即咨询</font><font class="f_r">></font></a>
           </div>
