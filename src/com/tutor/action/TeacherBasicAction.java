@@ -68,6 +68,7 @@ public class TeacherBasicAction extends BaseAction
 					user.setRole(User.TEACHER);
 					user.setUser(teacher);
 					logger.info(String.format("teacher:%s login success", teacher.getTeacherId()));
+					logger.info(String.format("teacher json : %s", JsonUtil.toJsonExpose(teacher)));
 					this.getSession().setAttribute("user", user);
 				}
 				else

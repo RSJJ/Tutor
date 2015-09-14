@@ -31,7 +31,7 @@ public class GraCourse implements Serializable
 	private String graCourseId;
 	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="teacher_id")
-	@Expose(deserialize=true)
+	@Expose(serialize=false)
 	private Teacher teacher;
 	@Column(name="school")
 	private String school;

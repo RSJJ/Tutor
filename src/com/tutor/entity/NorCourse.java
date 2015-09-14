@@ -29,7 +29,7 @@ public class NorCourse implements Serializable
 	private String norCourseId;//主键
 	@JoinColumn(name="teacher_id")
 	@ManyToOne(cascade=CascadeType.REFRESH)
-	@Expose(deserialize=true)
+	@Expose(serialize=false)
 	private Teacher teacher;
 	@Column(name="grade")
 	private String grade;
