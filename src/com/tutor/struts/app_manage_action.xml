@@ -28,5 +28,8 @@
 		<action name="showAllStuByPage" class="appManageAction" method="showAllStuByPage">
 			<result type="json"></result>
 		</action>
+		<action name="checkBasicInf" class="appManageAction" method="checkBasicInf">
+			<result type="json"></result>
+		</action>
 	</package>
 </struts>

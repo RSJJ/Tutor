@@ -60,4 +60,10 @@ public interface TeacherDAO
 	public Long getTeacherCount();
 	
 	public Teacher findByPhone(String phone);
+	/**
+	 * 检查教师信息是否完善
+	 * @param id
+	 * @return
+	 */
+	public boolean checkInfcomplement(String id);
 }

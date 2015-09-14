@@ -11,6 +11,7 @@
 	String icon = basePath;
 	String phone = "";
 	String deSrc = "";
+	String id="";
 	int role =-100;
 	if(user==null){
 		response.sendRedirect("../login/default.jsp");
@@ -24,11 +25,13 @@
 			
 			phone = tea.getPhone();
 			deSrc = "tedetail.jsp";
-			}else if(role==1){
+			id=tea.getTeacherId();
+		}else if(role==1){
 			Student stu = (Student)user.getUser();
 			icon = "../template/images/good/default.jpg";
 			phone = stu.getPhone();
 			deSrc = "stdetail.jsp";
+			id=stu.getStudentId();
 		}
 		phone = phone.substring(0, 4)+"*****"+phone.substring(9, 11);
 	};
@@ -126,7 +129,7 @@
 				<li><a href=<%=deSrc %>  data-ajax="false"  data-icon="info" data-iconpos="left">完善个人信息</a></li>
 				<br>
 			  <li><a href="#" data-icon="alert" data-iconpos="left">消息中心<span class="ui-li-count">0</span></a></li>
-			  <li><a href="#" data-icon="gear" data-iconpos="left">课程管理</a></li>
+			  <li><a href="#course" data-icon="gear" data-iconpos="left">课程管理</a></li>
 			  <li><a href="#" data-icon="gear" data-iconpos="left">查看预约</a></li>
 			  <hr>
 			 <li><a href="#" id="logout"  data-ajax="false"  data-icon="info" data-iconpos="left">退出登录</a></li>
@@ -139,12 +142,96 @@
 		        <li> <a href="../index.jsp" data-ajax="false" data-role="button">首页</a></li>
 		        <li> <a href="#pageone" data-ajax="false" data-role="button">个人中心</a></li>
 		      </ul>
+	      </div>
+	    </div>  
+	</div>
+	
+	<div data-role="page" id="course">
+	  	<div data-role="header">
+			 <div class="com-header-area" id="js-com-header-area">
+	            <a href="../index.jsp" data-ajax="false" class="com-header-logo"></a>
+				<dfn></dfn>
+	            <p>
+	                <a href="default.jsp" class="com-header-user selected"><del></del></a>
+	                <i></i>
+	                <a href="../cart/default.htm" data-ajax="false" class="com-header-cart "><b id="header-cart-num">0</b><del></del></a>
+	            </p>
+				<div class="clear"></div>
+	        </div>
+		</div>
+
+		<div data-role="content" class="content">
+	        <!--content-->
+	        <div class="loading"></div>	
+	        <div data-role="navbar" data-iconpos="left">
+		      <ul>
+		        <li> <a href="#course" data-ajax="false" class="ui-btn-active" data-role="button">课程</a></li>
+		        <li> <a href="" data-ajax="false" data-role="button">课表</a></li>
+		      </ul>
+	     	</div>
+			 <div data-role="collapsible">
+			    <h4>我的课程</h4>
+			    <ul data-role="listview">
+			      <li><a href="#">Adam</a></li>
+			      <li><a href="#">Angela</a></li>
+			    </ul>
+			  </div>
+			  <%if(role==2){ %>
+			  <div data-role="collapsible">
+			    <h4>添加课程</h4>
+			    <ul data-role="listview">
+			      <li><a href="#addK12" data-rel="dialog">基础课程</a></li>
+			      <li><a href="#addKao" data-rel="dialog">考研课程</a></li>
+			    </ul>
+			  </div>
+			 <%} %>
+		</div>
+		 <div data-role="footer" id="footer">
+		  <div data-role="navbar" data-iconpos="left">
+		      <ul>
+		        <li> <a href="../index.jsp" data-ajax="false" data-role="button">首页</a></li>
+		        <li> <a href="#pageone" data-ajax="false" data-role="button">个人中心</a></li>
+		      </ul>
 	      	</div>
 	    </div>  
 	</div>
+	
+	<div data-role="page" id="addK12">
+	  <div data-role="header">
+	    <h1>添加基础课程</h1>
+	  </div>
+	
+	  <div data-role="content">
+	    
+	  </div>
+	
+	  <div data-role="footer">
+	  <h1>页脚文本</h1>
+	  </div>
+	</div> 
+	
+	<div data-role="page" id="addKao">
+	  <div data-role="header">
+	    <h1>添加基础课程</h1>
+	  </div>
+	
+	  <div data-role="content">
+	    <p>对话框与普通页面不同，它显示在当前页面的顶端。它不会横跨整个页面宽度。对话框页眉中的图标 “X” 可关闭对话框。</p>
+	    <a href="#pageone">转到页面一</a>
+	  </div>
+	
+	  <div data-role="footer">
+	  <h1>页脚文本</h1>
+	  </div>
+	</div> 
 </body>
 </html>
+<script src="../template/js/user/index.js"></script>
 <script type="text/javascript">
+	$(document).ready(function(){
+		checkBasicInf('<%=id%>');
+		
+		})
 	$("#logout").click(function(){
 			var role = <%=role %>;
 			if(role == 2){
