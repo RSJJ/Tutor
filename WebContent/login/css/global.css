@@ -85,7 +85,7 @@ p {
 .t_c { text-align:center;}
 .m_r10 { margin-right:10px;}
 .m_t6 { margin-top:6px;}
-.m_l10 { margin-left:10px;}
+.m_l10 { margin-left:10px; cursor: pointer;}
 .m_t10 { margin-top:10px;}
 .m_b10 { margin-bottom:10px;}
 .m_b30 { margin-bottom:30px;}

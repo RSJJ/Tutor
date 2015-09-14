@@ -1,0 +1,176 @@
+<!doctype html>
+<html>
+    <head>
+        <title>购物车</title>
+        <meta charset="utf-8">
+        <meta name="keywords" content="" />
+        <meta name="description" content="" />
+        <link rel="icon" href="../favicon.ico" type="image/x-icon" />
+        <link rel="bookmark" href="../favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+        <meta content="width=device-width, minimum-scale=1,initial-scale=1, maximum-scale=1, user-scalable=1;" id="viewport" name="viewport" />
+        <!--离线应用的另一个技巧-->
+        <meta content="yes" name="apple-mobile-web-app-capable" />
+        <!--指定的iphone中safari顶端的状态条的样式-->
+        <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+        <!--告诉设备忽略将页面中的数字识别为电话号码-->
+        <meta content="telephone=no" name="format-detection" />
+        <!--设置开始页面图片-->
+        <!--<link rel="/touch/apple-touch-startup-image" href="startup.png" />-->
+        <!--在设置书签的时候可以显示好看的图标-->
+        <!--<link rel="apple-touch-icon" href="/touch/iphon_tetris_icon.png"/>-->
+        <link type="text/css" rel="stylesheet" href="../template/css/com/com.css"/>
+				<script>var PX_HELP_DATA=['','uo74au74aqpc8801g3htt5l2v7',['touch','cart','index'],'2014/04/09 09:43:52',0,false]; var DOMIN = {MAIN:"../../m.paixie.com/",HELP:"../../help.paixie.net/",TUAN:"../../tuan.paixie.net/",WAP:"../../wap.paixie.net/",UNION:"../../union.paixie.net/",VIPSHOP:"../../v.paixie.net/"};</script>  
+
+        <script>
+		
+			var JAVASCRIPT_LIB = (('\v' !== 'v') ? 'zepto' : 'jquery');
+			JAVASCRIPT_LIB="jquery";
+            document.write('<script src="../../ued.paixie.net/scripts/public/jquery.js@1"><\/script>');
+			
+			
+            DOMIN.MAIN = '../';
+            // uc浏览器添加书签功能 
+           window.onmessage = function(event){
+                if(event.data.message != '')
+                {
+                    $('#otherPage').remove();
+                }else{
+                    $('#otherPage').show();
+                }
+            }
+        </script>
+        <script src="../template/js/com/com.js@3"></script>
+        <script src="../template/js/login/px-verify.js@2"></script>
+        <script src="../template/js/com/template.js"></script>
+		<!--<script src="/template/js/com/jquery.snow.min.js"></script>
+		<script>
+		$(document).ready( function(){
+			$.fn.snow({ 
+				minSize: 5, 
+				maxSize: 50, 
+				newOn: 1000
+			});
+		});
+		</script>-->
+    </head>
+    <body>
+        <!-- uc 浏览器添加书签 start --->
+        <iframe src="../../app.uc.cn/appstore/AppCenter/frame@uc_param_str=nieidnutssvebipfcp&api_ver=2.0&id=1904" width="100%" height="160" style="display:none"  id="otherPage"></iframe>
+        <!-- uc 浏览器添加书签 end  ---->
+       
+        <div class="com-content">
+             					<script>
+                           
+                        function open_notice(id){
+                            setCookie('touch_notice_close',1);
+                            var url = '../new/info/'+id+'.html';
+                            window.location.href=url;
+                        }   
+                           
+                        var touch_notice_close = getCookie('touch_notice_close');
+                        if(touch_notice_close == '1' && typeof(document.getElementById('js-com-notification2')) != 'undefined' && document.getElementById('js-com-notification2') != null){
+                            document.getElementById('js-com-notification2').style.display = 'none';
+                        }
+			//if( document.cookie.match(new RegExp("(^| )PHPSESSID=([^;]*)(;|$)")) ){
+			  //  document.getElementById('js-com-notification').style.display = 'none';
+		//	}
+			</script>
+            <div class="com-header-area" id="js-com-header-area">
+                <a href="../default.htm" class="com-header-logo"></a>
+				<dfn></dfn>
+                <p>
+                    <a href="../login/default.jsp" class="com-header-user "><del></del></a>
+                    <i></i>
+                    <a href="default.htm" class="com-header-cart selected"><b id="header-cart-num">0</b><del></del></a>
+                </p>
+				<div class="clear"></div>
+               
+            </div>
+            <div class="com-content-area" id="js-com-content-area">
+                <!--content-->
+              			  <div class="page-role cart-page cart-index-page">
+    <link type="text/css" rel="stylesheet" href="../template/css/cart/index.css"/>
+    <script src="../template/js/cart/index.js"></script>
+    <div class="page-title"><a href="javascript:history.back();void(0)" class="return">返 回</a>购物车
+    <a id="js-all">全选<i></i></a>
+    </div>
+	
+    <form id="js-form" action="/order/trolly" method="post">
+        <div class="pxui-area">
+        <div style="text-align:center;padding: 50px 0;font-size: 16px;">您当前没有预约课程，赶快去添加吧！
+					<br/>
+					<a href="../index.jsp" Style="color: blue;">返回首页</a>
+				</div>
+		<!-- 
+		<table cellpadding="0px" cellspacing="0px">
+			<tr>
+				<td><input type="checkbox" id="checkall"/>全选</td>
+				<td>课程图片</td>
+				<td class="wid_20">课程名称</td>
+				<td>原价</td>
+				<td>优惠价</td>
+				<td>返现/送积分</td>
+			<td>操作</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" id="check1" name="check" /></td>
+				<td><img src="" width="30px" height="30px" /></td>
+				<td class="wid_20"><b>教师：崔德顺</b><b>网络家教：2015-05-06 19:00-19:30</b></td>
+				<td>￥70.0</td>
+				<td>￥70.0</td>
+				<td>0</td>
+			<td><a href="">删除</a><a href="">收藏</a></td>
+			</tr>
+			<tr>
+				<td>删除选中商品</td>
+				<td colspan="6" class="td_">1件商品 总计：￥70.0</td>
+			</tr>
+			<tr>
+				<td colspan="7" class="td_">总计<strong>￥70.0</strong></td>
+			</tr>
+		</table>
+			<a href="" class="btn_jxgw">继续购物</a>
+			<a href="" class="btn_qjs">去结算</a>
+		 -->
+		
+		
+		<!--		
+				<div style="text-align:center;padding: 50px 0;font-size: 16px;">您当前购物车空荡荡的，赶快去添加吧！
+					<br/>
+					<a href="../default.htm">返回首页</a>
+				</div>
+			-->	
+    </div>
+</form>
+</div>
+<!--content-end-->
+		</div>
+           <div class="com-footer-area" id="js-com-footer-area">
+			<div class="com-footer-nav">
+				<a href="../default.jsp">首页</a><a href="../feedback/index.html">反馈建议</a>
+			</div>
+			
+		</div>
+</div>
+
+<!--  全选  -->
+<script type="text/javascript">
+	document.getElementById("checkall").addEventListener('click',function(){
+		var x = document.getElementsByTagName("input");
+		var y = document.getElementById("checkall");
+		if(y.checked == true){
+			for(var i=0; i<x.length;i++)
+				x[i].checked = true;
+		}
+		else{
+			for(var i=0; i<x.length;i++)
+				x[i].checked = false;
+		}
+	},false);
+    
+
+</script>
+</div>
+</body>
+</html>

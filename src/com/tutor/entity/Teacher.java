@@ -83,6 +83,20 @@ public class Teacher implements Serializable
 	@Column(name="statement")
 	private String statement;
 	
+
+	@Column(name="lng")
+	private Double lng;
+	@Column(name="lat")
+	private Double lat;
+	@Column(name="school")
+	private String school;
+	@Column(name="profession")
+	private String profession;
+	@Column(name="city")
+	private String city;
+	@Column(name="card_type")
+	private String cardType;
+   
 	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="teacher")
 	@Expose
 	private Set<NorCourse> norCourse 	= new HashSet<NorCourse>();
@@ -91,6 +105,7 @@ public class Teacher implements Serializable
 	@Expose
 	private Set<GraCourse> graCourse 	= new HashSet<GraCourse>();
 	
+
 	@Transient
 	File iconphoto;
 	@Transient
@@ -313,10 +328,49 @@ public class Teacher implements Serializable
 	{
 		this.statement = statement;
 	}
+	
+	public Double getLng() {
+		return lng;
+	}
+	public void setLng(Double lng) {
+		this.lng = lng;
+	}
+	public Double getLat() {
+		return lat;
+	}
+	public void setLat(Double lat) {
+		this.lat = lat;
+	}
+	public String getSchool() {
+		return school;
+	}
+	public void setSchool(String school) {
+		this.school = school;
+	}
+	public String getProfession() {
+		return profession;
+	}
+	public void setProfession(String profession) {
+		this.profession = profession;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public String getCardType() {
+		return cardType;
+	}
+	public void setCardType(String carType) {
+		this.cardType = carType;
+	}
+	
+	
 	public File getIconphoto() {
 		return iconphoto;
 	}
-	public void setIconphoto(File iconphoto) {
+	public void setIconphoto(File iconphoto) {	
 		this.iconphoto = iconphoto;
 	}
 	public String getIconphotoFileName() {

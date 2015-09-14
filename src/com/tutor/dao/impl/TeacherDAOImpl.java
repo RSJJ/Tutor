@@ -56,6 +56,18 @@ public class TeacherDAOImpl implements TeacherDAO
 	}
 
 	@Override
+	public Teacher findByPhone(String phone)
+	{
+		Query query = entityManager.createQuery("select u from Teacher u where u.phone = :phone");
+		query.setParameter("phone", phone);
+		@SuppressWarnings("unchecked")
+		List<Teacher> teachers = query.getResultList();
+		if(teachers.size() > 0)
+			return teachers.get(0);
+		else
+			return null;
+	}
+	@Override
 	public Teacher findByMailPassword(String mail, String password)
 	{
 		Query query = entityManager.createQuery("select u from Teacher u where u.mail = :mail and u.password = :password");

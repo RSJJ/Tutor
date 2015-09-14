@@ -1,0 +1,11 @@
+@CHARSET "UTF-8";
+#up_file1,#up_file2 {
+ opacity:0;/*设置此控件透明度为零，即完全透明*/
+ filter:alpha(opacity=0);/*设置此控件透明度为零，即完全透明针对IE*/
+ font-size:100px;
+ position:absolute;/*绝对定位，相对于 .input */
+ top:0;
+ right:0;
+} 
+.img_file{width:80px;height:80px;}
+.up_a{position:relative;}

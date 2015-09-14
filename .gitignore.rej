@@ -1,0 +1,8 @@
+diff a/.gitignore b/.gitignore	(rejected hunks)
+@@ -5,5 +5,6 @@
+ .settings/org.eclipse.wst.common.project.facet.core.xml
+ <<<<<<< HEAD
+ /bin/
++=======
+ archive.zip
+ >>>>>>> 68fffb70708d8a1a41dfd8391be880929ea46dba

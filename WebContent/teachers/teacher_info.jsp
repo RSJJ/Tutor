@@ -1,8 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import="com.tutor.entity.server.*" %>
+    <%@ page import="com.tutor.entity.*" %>
     <%
-    	String phone=(String)request.getAttribute("phone");
-    	String mail=(String)request.getAttribute("mail");
+    	User user = (User)session.getAttribute("user");
+    	Teacher teacher = null;
+    	if(user != null)
+    	{
+    		teacher = (Teacher)user.getUser();
+    	}
 
     %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -68,28 +74,45 @@
                   <tr>
                     <td height="40" align="right">性　别：</td>
                     <td height="40" align="left">
-                        <input type="radio" name="teacher.sex" class="sexRadio" value="男" checked="checked" />男&nbsp;&nbsp;<input type="radio" name="sexRadio" class="sexRadio" value="女" />女</td>
+                        <input type="radio" name="teacher.sex" class="sexRadio" id="sex1" onclick="checkRadio(this)" value="男" />男&nbsp;&nbsp;<input type="radio" name="teacher.sex" class="sexRadio"  id="sex2" onclick="checkRadio(this)" value="女" />女</td>
                     <td height="40" align="left"><span  style="color:#F00">*</span></td>
                   </tr>
-                  <tr>
+                 <%--  <tr>
                     <td height="40" align="right">邮　箱：</td>
                     <td height="40" align="left"><input readonly="readonly" class="tekang" type="text" name="teacher.mail" id="email" value="<%=mail==null?"":mail%>"/></td>
                     <td height="40" align="left"><span  style="color:#F00">*</span></td>
+                  </tr> --%>
+                   <tr>
+                    <td height="40" align="right">邮　箱：</td>
+                    <td height="40" align="left"><input class="tekang" type="text" name="teacher.mail" id="email" value="<%=teacher.getMail()==null?"":teacher.getMail()%>"/></td>
+                    <td height="40" align="left"><!-- <span  style="color:#F00">*</span> --></td>
                   </tr>
                   <tr>
                     <td height="40" align="right">手　机：</td>
-                    <td height="40" align="left"><input readonly="readonly" class="tekang" type="text" name="teacher.phone" id="phone" value="<%=phone==null?"":phone%>"/></td>
+                    <td height="40" align="left"><input readonly="readonly" class="tekang" type="text" name="teacher.phone" id="phone" value="<%=teacher.getPhone()==null?"":teacher.getPhone()%>"/></td>
                     <td height="40" align="left"><span  style="color:#F00">*</span></td>
                   </tr>
                   <tr>
                     <td height="40" align="right">所在地区：</td>
-                    <td height="40" align="left" ><select id="selProvince" onchange="provinceChange();"></select>&nbsp;&nbsp;<select id="selCity" name="teacher.address"></select></td>
+                    <td height="40" align="left" >
+                    	<select id="selProvince" name="teacher.address" onchange="provinceChange(false);">
+							<%if(teacher.getAddress()!=null){
+								%>
+								<option><%=teacher.getAddress()%></option>
+							<%}%>
+                    	</select>&nbsp;&nbsp;
+                    	<select id="selCity" name="teacher.city">
+							<%if(teacher.getCity()!=null){
+								%>
+								<option><%=teacher.getCity()%></option>
+							<%}%>
+						</select></td>
                     <td height="40" align="left">&nbsp;</td>
                   </tr>
                   <tr>
                     <td height="40" align="right">详细地址：</td>
                     <td height="40" align="left"><input class="tekang" type="text" name="teacher.detailedAddress" id="det_address" /></td>
-                    <td height="40" align="left"><span  style="color:#F00">*</span></td>
+                    <td height="40" align="left"><!-- <span  style="color:#F00">*</span> --></td>
                   </tr>
                   <tr>
                     <td height="40" align="right">职　业：</td>
@@ -107,28 +130,28 @@
                   <tr>
                     <td width="75" height="40" rowspan="2" align="right">上传头像：</td>
                     <td width="88" height="40" rowspan="2" align="left"><a href="javascript:fn_browse1();" title="上传" ><img id="img_file1" class="img_file" src="images/tj.jpg" /></a></td>
-                    <td width="487" height="45" align="left"></td>
+                    <td width="487" height="45" align="left"style="font-size:12px;"><!-- <span style="color:#F00;">&nbsp;*</span> --> 上传本人头像</td>
                   </tr>
                   <tr>
-                    <td height="47" align="left" style="color:#F00;"><a href="javascript:void(0);" class="up_a"><img src="images/xztp.jpg"/>&nbsp;*<input type="file" id="up_file1" name="teacher.iconphoto"></a></td>
+                    <td height="47" align="left" style="color:#F00;"><a href="javascript:void(0);" class="up_a"><img src="images/xztp.jpg"/><!-- &nbsp;* --><input type="file" id="up_file1" name="teacher.iconphoto"></a></td>
                   </tr>
                   <tr>
                     <td width="75" height="40" rowspan="2" align="right">上传头像：</td>
                     <td width="88" height="40" rowspan="2" align="left"><a href="javascript:fn_browse2();" title="上传" ><img id="img_file2" class="img_file" src="images/tj.jpg" /></a></td>
-                    <td width="487" height="45" align="left" style="font-size:12px;"><span style="color:#F00;">&nbsp;*</span> 上传工作证或学生证</td>
+                    <td width="487" height="45" align="left" style="font-size:12px;"><!-- <span style="color:#F00;">&nbsp;*</span> --> 上传工作证或学生证</td>
                   </tr>
                   <tr>
-                    <td height="50" align="left" style="color:#F00;"><a href="javascript:void(0);" class="up_a"><img src="images/xztp.jpg"/>&nbsp;*<input type="file" id="up_file2" name="teacher.licencephoto"></a></td>
+                    <td height="50" align="left" style="color:#F00;"><a href="javascript:void(0);" class="up_a"><img src="images/xztp.jpg"/><!-- &nbsp;* --><input type="file" id="up_file2" name="teacher.licencephoto"></a></td>
                   </tr>
                   <tr>
                     <td height="40" align="right">简　介：</td>
-                    <td height="40" colspan="2" align="left"><textarea name="teacher.instroduction" id="textarea1" cols="45" rows="5"></textarea>
-                      <span style="color:#F00;">&nbsp;*</span><span style="color:#CCC">请输入50-100字的简介</span></td>
+                    <td height="40" colspan="2" align="left"><textarea name="teacher.introduction" id="textarea1" cols="45" rows="5"></textarea>
+                      <!-- <span style="color:#F00;">&nbsp;*</span> --><span style="color:#CCC">请输入50-100字的简介</span></td>
                   </tr>
                   <tr>
                     <td height="40" align="right">详细介绍：</td>
-                    <td height="40" colspan="2" align="left"><textarea name="teacher.detailed_introduction" id="textarea2" cols="45" rows="5"></textarea>
-                      <span style="color:#F00;">&nbsp;*</span><span style="color:#CCC">请输入500-1000字的简介</span></td>
+                    <td height="40" colspan="2" align="left"><textarea name="teacher.detailedIntroduction" id="textarea2" cols="45" rows="5"></textarea>
+                      <!-- <span style="color:#F00;">&nbsp;*</span> --><span style="color:#CCC">请输入500-1000字的简介</span></td>
                   </tr>
                 </table>
               </div>
@@ -139,8 +162,8 @@
               <div class="dltab dltab2">
                 <table width="650" border="0" cellspacing="0" cellpadding="0">
                   <tr>
-                    <td height="40" align="right">中国银行：</td>
-                    <td width="487" height="40" align="left"><input class="tekang" type="text" name="teacher.cardNo" id="bankCard" /><span style="color:#F00;">&nbsp;*</span></td>
+                    <td height="40" align="right"><select id="card_type" name="teacher.card_type"onchange="setCard_type();"></select>：</td>
+                    <td width="487" height="40" align="left"><input class="tekang" type="text" name="teacher.cardNo" id="bankCard" /><!-- <span style="color:#F00;">&nbsp;*</span> --></td>
                   </tr>
                 </table>
           </div>

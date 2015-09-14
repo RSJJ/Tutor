@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Notes</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!-- Roboto -->
+	<link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" /> 
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
+	<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+	<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script> 
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=r6bfCVxPZTpoKGGNthyuupYh"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
+	<script type="text/javascript" src="http://developer.baidu.com/map/jsdemo/demo/convertor.js"></script>
+	<script src="dist/js/mapcontrol.js"></script> 
+    <style type="text/css">
+      * {
+		font-family: "Microsoft YaHei" ! important;
+		}
+      .map{
+      	width: 100%;
+      	height: 100%;
+      }
+      .overlay{
+        display:block;
+      	position:absolute;
+      	top:0;
+      	left:0;
+      	width:100%;
+      	height:100%;
+      	background:rgba(211, 236, 233,0.7);
+      	z-index:1000;
+      }
+      .infowindow{
+      	position:absolute;
+      	bottom:0;
+      	left:0;
+      	width:100%;
+      	height:85px;
+      	padding:8px;
+      	z-index:1001;
+      }
+      .table-view-cell{ 
+      	position: relative;
+		padding: 11px 65px 11px 15px;
+		overflow: hidden;
+      }
+      .table-view-cell:last-child {
+		border-bottom: 0;
+	}
+      .content{ 
+      	padding:0px !important;
+      }
+     #content{ 
+		position:absolute; z-index:1;
+		top:85px; bottom:41px; left:0;
+		width:100%;
+		background:#555;
+		overflow:hidden;
+     }
+	#footer {
+		position:absolute;
+		bottom:0; 
+		left:0;
+		width:100%;
+		padding:0;
+	}
+	.wrap{ 
+		margin:10px 0;
+		background: white;
+		width: 100%;
+		height:auto;
+		padding: 5px;
+	}
+	.icon { 
+		height: 130px;
+		width: 100%;
+		background: url("../template/images/good/background.jpg") no-repeat 0 0;
+		background-size: 100% 100%;
+		overflow: hidden;
+	}
+	.icon .img{ 
+		margin:auto;
+		text-align: center;
+	}
+	.icon .img h3{ 
+		color:white;
+	}
+	.icon img{ 
+		border-radius:50%;
+		vertical-align: middle;	
+		width: 70px;
+		height: 70px;
+	}
+	.goodinfo{ 
+		border-top: 1px solid #f1f1f1;
+		padding:5px 0;
+		margin-bottom: 0px !important;
+	}
+	.goodinfo li{ 
+		border-bottom: 1px solid #f1f1f1;
+		height: 30px;
+
+		padding:10px 0;
+		line-height: 20px;
+	}
+    </style>
+
+
+  </head>
+  <body>
+	<div data-role="page" id="pageone">
+	  	<div data-role="header">
+		  <a href="#" data-role="button" data-icon="back"  onclick="javascript:window.history.go(-1)">返回</a>
+		  <h1>杨老师</h1>
+		  <a href="#" data-role="button" data-icon="grid">地图</a>
+		  <div data-role="navbar" data-iconpos="left">
+		      <ul>
+		        <li><a href="#pageone" class="ui-btn-active" data-icon="info">主页</a></li>
+		        <li><a href="#pagetwo" data-icon="grid">开设课程<span class="ui-li-count">335</span></a></li>
+		      </ul>
+	      </div>
+		</div>
+
+		<div data-role="content" class="content" id="content">
+			<div class="wrap icon">
+				<div class="img">
+					<img src="../template\images\good/ID2/1.jpg">
+					<h3>杨老师</h3>
+				</div>
+			</div>
+			<div class="wrap">
+			<h3>基本信息</h3>
+				<ul class="goodinfo"  >
+		            <li>
+		                <strong >学&nbsp;校</strong>
+		                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="teaschool">北京交通大学</span>
+		            </li>
+		            <li>
+		                <strong>专&nbsp;业</strong>
+		                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="teaprofession">智能运输工程</span>
+		            </li>
+		            <li>
+		                <strong>认&nbsp;证</strong>
+		                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>身份认证</span>
+		            </li>
+	         	</ul>
+			</div>
+			<div class="wrap">
+				<h3>个人简介</h3>
+			    <ul class="goodinfo"  >
+		            <p>本人热情活泼，乐观，积极。现就读 于某某大学师范学院美术系大二，在班上一直担任学生干部，工作认真负责。经过大一一年的锻炼，丰富了自己的阅历，磨练了自己的性格，懂得对人讲诚信，讲原则，学习上成绩优秀，获得国家励志奖学金和学业奖学金两个奖项，并曾在2010年大一下学期被学院评为优秀共青团员等。</p>
+		         </ul>
+
+			</div>
+		    
+			
+
+		</div>
+
+		<div data-role="footer" id="footer">
+		  <div data-role="navbar" data-iconpos="left">
+		      <ul>
+		        <li> <a href="#pagetwo" data-role="button">立即预约</a></li>
+		      </ul>
+	      	</div>
+	    </div>
+	</div>
+
+	<div data-role="page" id="pagetwo">
+	  	<div data-role="header">
+		  <a href="#" data-role="button" data-icon="back"  onclick="javascript:window.history.go(-1)">返回</a>
+		  <h1>杨老师</h1>
+		  <a href="#" data-role="button" data-icon="grid">地图</a>
+		  <div data-role="navbar" data-iconpos="left">
+		      <ul>
+		        <li><a href="#pageone" data-icon="info">主页</a></li>
+		        <li><a href="#pagetwo"  class="ui-btn-active" data-icon="grid">开设课程<span class="ui-li-count">335</span></a></li>
+		      </ul>
+	      </div>
+		</div>
+
+		<div data-role="content" class="content">
+			 <ul data-role="listview" data-inset="true">
+			      <li>
+			        
+			        <h2>小一语文</h2>
+			        <p>Google Chrome is a free, open-source web browser. Released in 2008.</p>
+			        
+			      </li>
+			      <li>
+			        
+			        <h2>高一物理</h2>
+			        <p>Firefox is a web browser from Mozilla. Released in 2004.</p>
+			        
+			      </li>
+			 </ul>
+		    
+		</div>
+
+		<div data-role="footer" id="footer">
+			<div data-role="navbar" data-iconpos="left">
+		      <ul>
+		        <li> <a href="#pagetwo" data-role="button">立即预约</a></li>
+		      </ul>
+	      	</div>
+		 
+	    </div>
+	</div>
+
+</body>
+</html>
+
+<script>
+
+</script> 

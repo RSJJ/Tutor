@@ -2,6 +2,7 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
         "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
+	<constant name="struts.multipart.saveDir" value="/file"/>
 	<package name="teacherBasic" extends="json-default">
 		<action name="teacherLogin" class="teacherBasicAction" method="login">
 			<result type="json"></result>
@@ -13,10 +14,15 @@
 			<result name="success">/teachers/teacher_info.jsp</result>
 		</action>
 		<action name="dtRegister" class="teacherBasicAction" method="dtRegister">
-			<result name="success">/teachers/teacher_course.jsp</result>
+			<result name="success">teacher_course.jsp</result>
 			<result name="failure">404.html</result>
 		</action>
+		<action name="dtRegisterPhone" class="teacherBasicAction" method="dtRegisterPhone">
+			<result name="success">/wap/user/default.jsp</result>
+			<result name="error">404.html</result>
+		</action>
 		<action name="teacherLogout" class="teacherBasicAction" method="logout"></action>
+		
 	</package>
 	
 </struts>

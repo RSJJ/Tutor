@@ -11,6 +11,13 @@ function fn_browse2()
 document.reg_form.up_file2.click(); 
 document.reg_form.up_file2.value = document.all.reg_form.up_file2.value; 
 } 
+function checkRadio(obj){
+	if(obj.id=="sex1"&&obj.checked==true){
+		document.getElementById('sex2').checked=false;
+	}else if(obj.id=="sex2"&&obj.checked==true){
+		document.getElementById('sex1').checked=false;
+	}
+}
 function checkRegForm(){
 	var realName=$("#textfield").val();
 	var sex=$('input:radio[name="sexRadio"]:checked').val();
@@ -27,7 +34,7 @@ function checkRegForm(){
 	
 	var email=$('#email').val();
 	var phone=$('#phone').val();
-	if(realName==""||sex==""||det_address==""||file1==""||file2==""||textarea1==""||textarea2==""||bankCard==""){
+	if(realName==""||sex==""){
 		alert("* 均为必填项，请完善！");
 		return false;
 	}else{
@@ -37,24 +44,41 @@ function checkRegForm(){
 
 
 $(document).ready(function(){	
-	//设置省份数据    
-    setProvince();    
+	// 设置省份数据
+    setProvince(true);    
 
-    //设置背景颜色    
+    // 设置背景颜色
     setBgColor(); 
     
     $('#up_file1').uploadPreview({Img:"img_file1",width:80,Height:80});
     $('#up_file2').uploadPreview({Img:"img_file2",width:80,Height:80});
+    
+    setCard_type();
 });
+// 设置银行卡
+function setCard_type() {    
+    // 给银行下拉列表赋值
+    var option, modelVal;    
+    var $sel = $("#card_type");    
 
+    // 获取对应银行
+    for (var i = 0, len = card_type.length; i < len; i++) {    
+        modelVal = card_type[i];    
+        option = "<option value='" + modelVal + "'>" + modelVal + "</option>";    
 
-//定义数组，存储省份信息    
+        // 添加到 select 元素中
+        $sel.append(option);    
+    }      
+} 
+// 定义数组，存储银行卡类型信息
+var card_type = ["中国银行", "中国工商银行", "中国农业银行", "中国建设银行", "交通银行", "招商银行", "中国民生银行"]; 
+// 定义数组，存储省份信息
 var province = ["北京", "上海", "天津", "重庆", "浙江", "江苏", "广东", "福建", "湖南", "湖北", "辽宁",    
                 "吉林", "黑龙江", "河北", "河南", "山东", "陕西", "甘肃", "新疆", "青海", "山西", "四川",    
                 "贵州", "安徽", "江西", "云南", "内蒙古", "西藏", "广西", "宁夏", "海南", "香港", "澳门", "台湾"];    
 
-//定义数组,存储城市信息    
-var beijing = ["东城区", "西城区", "海淀区", "朝阳区", "丰台区", "石景山区", "通州区", "顺义区", "房山区", "大兴区", "昌平区", "怀柔区", "平谷区", "门头沟区", "延庆县", "密云县"];    
+// 定义数组,存储城市信息
+var beijing = ["海淀区", "东城区", "西城区",  "朝阳区", "丰台区", "石景山区", "通州区", "顺义区", "房山区", "大兴区", "昌平区", "怀柔区", "平谷区", "门头沟区", "延庆县", "密云县"];    
 var shanghai = ["浦东新区", "徐汇区", "长宁区", "普陀区", "闸北区", "虹口区", "杨浦区", "黄浦区", "卢湾区", "静安区", "宝山区", "闵行区", "嘉定区", "金山区", "松江区", "青浦区", "南汇区", "奉贤区", "崇明县"];    
 var tianjing = ["河东", "南开", "河西", "河北", "和平", "红桥", "东丽", "津南", "西青", "北辰", "塘沽", "汉沽", "大港", "蓟县", "宝坻", "宁河", "静海", "武清"];    
 var chongqing = ["渝中区", "大渡口区", "江北区", "沙坪坝区", "九龙坡区", "南岸区", "北碚区", "万盛区", "双桥区", "渝北区", "巴南区", "万州区", "涪陵区", "黔江区", "长寿区", "江津区", "合川区", "永川区", "南川区"];    
@@ -88,32 +112,32 @@ var hainan = ["海口", "三亚"];
 var xianggang = ["中西区", "湾仔区", "东区", "南区", "九龙城区", "油尖旺区", "观塘区", "黄大仙区", "深水埗区", "北区", "大埔区", "沙田区", "西贡区", "元朗区", "屯门区", "荃湾区", "葵青区", "离岛区"];    
 var taiwan = ["台北", "高雄", "基隆", "台中", "台南", "新竹", "嘉义"];    
 var aomeng = ["澳门半岛", "氹仔岛", "路环岛"];   
-//设置省份数据    
-function setProvince() {    
-    //给省份下拉列表赋值    
+// 设置省份数据
+function setProvince(flag) {    
+    // 给省份下拉列表赋值
     var option, modelVal;    
     var $sel = $("#selProvince");    
 
-    //获取对应省份城市    
+    // 获取对应省份城市
     for (var i = 0, len = province.length; i < len; i++) {    
         modelVal = province[i];    
         option = "<option value='" + modelVal + "'>" + modelVal + "</option>";    
 
-        //添加到 select 元素中    
+        // 添加到 select 元素中
         $sel.append(option);    
     }    
 
-    //调用change事件，初始城市信息    
-    provinceChange();    
+    // 调用change事件，初始城市信息
+    provinceChange(flag);    
 }    
 
 
-//根据选中的省份获取对应的城市    
-function setCity(provinec) {    
+// 根据选中的省份获取对应的城市
+function setCity(provinec,flag) {    
     var $city = $("#selCity");    
     var proCity, option, modelVal;    
 
-    //通过省份名称，获取省份对应城市的数组名    
+    // 通过省份名称，获取省份对应城市的数组名
     switch (provinec) {    
         case "北京":    
             proCity = beijing;    
@@ -221,32 +245,37 @@ function setCity(provinec) {
             proCity = taiwan;    
             break;    
     }    
+    	if(flag==true){
+    		flag=false;
+    		}else{
+    		    // 先清空之前绑定的值
+    		    $city.empty(); 
+    		}
+   
 
-    //先清空之前绑定的值    
-    $city.empty();    
-
-    //设置对应省份的城市    
+    // 设置对应省份的城市
     for (var i = 0, len = proCity.length; i < len; i++) {    
         modelVal = proCity[i];    
         option = "<option value='" + modelVal + "'>" + modelVal + "</option>";    
 
-        //添加    
+        // 添加
         $city.append(option);    
     }    
 
-    //设置背景    
+    // 设置背景
     setBgColor();    
 }    
 
 
-//省份选中事件    
-function provinceChange() {    
+// 省份选中事件
+function provinceChange(flag) {  
     var $pro = $("#selProvince");    
-    setCity($pro.val());    
+    setCity($pro.val(),flag);    
 }    
+  
 
 
-//设置下拉列表间隔背景样色    
+// 设置下拉列表间隔背景样色
 function setBgColor() {    
     var $option = $("select option:odd");    
     $option.css({ "background-color": "#DEDEDE" });    

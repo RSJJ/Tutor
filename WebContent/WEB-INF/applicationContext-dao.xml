@@ -5,6 +5,7 @@
 	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 	
 	<!--       dao is here       -->
+	<bean id="pageDAO" class="com.tutor.dao.impl.PageDAOImpl"></bean>
 	<bean id="uniqueIdDAO" class="com.tutor.dao.impl.UniqueIdDAOImpl"></bean>
 	<bean id="studentDAO" class="com.tutor.dao.impl.StudentDAOImpl"></bean>
 	<bean id="teacherDAO" class="com.tutor.dao.impl.TeacherDAOImpl"></bean>

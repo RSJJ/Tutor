@@ -23,8 +23,17 @@ public class PageUtil {
 	public PageUtil(int currentPage,int totalSize){
 		this.currentPage=currentPage;
 		this.totalSize=totalSize;
+		init();
 	}
 	
+	public void init(){
+		
+		this.setTotalPage(this.getTotalPage());
+		hasFirst=this.isHasFirst();
+		hasLast=this.isHasLast();
+		hasNext=this.isHasNext();
+		hasLast=this.isHasPrevious();
+	}
 	public int getCurrentPage() {
 		return currentPage;
 	}
@@ -47,7 +56,8 @@ public class PageUtil {
 	}
 	
 	public int getTotalPage() {
-		totalPage=totalSize/pageSize+1;
+		totalPage=totalSize/pageSize;
+		totalPage++;
 		return totalPage;
 	}
 	public void setTotalPage(int totalPage) {
