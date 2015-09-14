@@ -18,6 +18,8 @@ import javax.persistence.Transient;
 
 import org.springframework.context.annotation.Scope;
 
+import com.google.gson.annotations.Expose;
+
 
 @Entity
 @Scope("prototype")
@@ -56,6 +58,7 @@ public class Student implements Serializable
 	@Column(name="statement")
 	private String statement;
 	@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy="student")
+	@Expose
 	private List<ShopCart> shopCarts = new ArrayList<ShopCart>();
 	
 	@Transient

@@ -9,22 +9,24 @@ import javax.persistence.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.tutor.dao.PageDAO;
+import com.tutor.entity.Student;
+import com.tutor.entity.Teacher;
 import com.tutor.util.PageUtil;
 @Transactional
-public class PageDaoImpl implements PageDAO {
+public class PageDAOImpl implements PageDAO {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
 	@Override
-	public List<Object> queryByPage(String hql, int beginIndex,int pageSize) {
+	public<T> List<T> queryByPage(String hql, int beginIndex,int pageSize) {
 		// TODO Auto-generated method stub
-		PageUtil page =new PageUtil(beginIndex,pageSize);
 		Query query = entityManager.createQuery(hql);
-		query.setFirstResult(beginIndex);
+		pageSize = query.getResultList().size();
+		query.setFirstResult((beginIndex-1)*pageSize);
 		query.setMaxResults(pageSize);
-		return query.getResultList();
+		List<T> list = query.getResultList();
+		return list;
 	}
-
 	@Override
 	public int queryRowCount(String hql) {
 		// TODO Auto-generated method stub

@@ -22,5 +22,11 @@
 		<action name="sendPhoneCode" class="appManageAction" method="sendPhoneCode">
 			<result type="json"></result>
 		</action>
+		<action name="showAllTeaByPage" class="appManageAction" method="showAllTeaByPage">
+			<result type="json"></result>
+		</action>
+		<action name="showAllStuByPage" class="appManageAction" method="showAllStuByPage">
+			<result type="json"></result>
+		</action>
 	</package>
 </struts>

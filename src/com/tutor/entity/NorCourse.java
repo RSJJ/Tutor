@@ -27,7 +27,7 @@ public class NorCourse implements Serializable
 	private Integer id;
 	@Column(name="nor_course_id",nullable=false)
 	private String norCourseId;//主键
-	@JoinColumn(name="teacher_id")
+	@JoinColumn(name="teacher_id")//指定外键名称
 	@ManyToOne(cascade=CascadeType.REFRESH)
 	@Expose(deserialize=true)
 	private Teacher teacher;

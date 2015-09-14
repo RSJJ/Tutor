@@ -57,33 +57,12 @@
 				      		<li class="table-view-cell"><a class="navigate-right" href="teachermap.html" data-transition="slide-in">按人气排序</a></li>
 				      </ul>
 			      	</div>
-			      	<div id="item3"  class="control-content">
-				      		<ul class="table-view">
-								  <li class="table-view-cell">
-								    Item 1
-								    <div class="toggle">
-								      <div class="toggle-handle"></div>
-								    </div>
-								  </li>
-								  <li class="table-view-cell">
-								    Item 2
-								    <div class="toggle active">
-								      <div class="toggle-handle"></div>
-								    </div>
-								  </li>
-								  <li class="table-view-cell">
-								    Item 3
-								    <div class="toggle">
-								      <div class="toggle-handle"></div>
-								    </div>
-								  </li>
-							</ul>
-			      	</div>
+			      	
 		      	</div>
 		    <!--搜索结果-->
-				<div id="teacherInfo">
+				<div id="teacherInfo" >
 					<ul data-role="listview">
-					  <li class="teali">
+					  <li class="teali" Style="display:none">
 					    <a href="#" class="teahref" data-ajax='false'>
 					    <img class="teaicon" src="">
 					    <h2 class="teaname"></h2>
@@ -143,13 +122,12 @@
 </html>
     <script type="text/javascript">
     function showcourse(i){
-    	$()
     	$("#right").empty();
     	var mode;
     	if(i>=0&i<=2) mode='k12';
     	else  mode='s12'
     	for (var j=0 ; j <= collumn[i].course.length - 1; j++) {
-    		var url = 'teacherSearchList.html?mode='+mode+'&courseGrade='+collumn[i].grand+'&courseName='+collumn[i].course[j].name;
+    		var url = 'teacherSearchList.jsp?mode='+mode+'&courseGrade='+collumn[i].grand+'&courseName='+collumn[i].course[j].name;
     		var temp = '<li class="table-view-cell"><a class="navigate-right grand ui-link" data-ajax="false" href="'+url+'" data-transition="slide-in">'+collumn[i].course[j].name+'</a></li>'
     		$("#right").append(temp);
     	}
@@ -157,15 +135,17 @@
 
    function eachAllTeacherInf(data){ 
    		var templi = $("#teacherInfo .teali").clone();
-   		$("#teacherInfo .teali").hide();
+   		//$("#teacherInfo .teali").hide();
    		$.each(data,function(i,content){
    			templi.find(".teaicon").attr("src",'<%=basePath%>'+data[i].icon)
    			templi.find(".teaname").html(data[i].name);
    			templi.find(".teaschool").html(data[i].school+"&nbsp;&nbsp;&nbsp;&nbsp;"+data[i].profession);
    			templi.find(".teaintro").html(data[i].introduction);
    			templi.find(".teahref").attr('href','teacherInf.jsp?teacherId='+data[i].teacherId)
+   			
    			$("#teacherInfo ul").append(templi);
    		})
+   		$("#teacherInfo ul li").show();
    }
 
     function showTeacherInfList(){

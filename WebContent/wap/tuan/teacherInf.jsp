@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
      <%String path = request.getContextPath();  
-   String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";  
+   String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path;  
  %>
   <%@ taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Notes</title>
+    <title>老师信息</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -159,6 +159,7 @@
 		            <p>本人热情活泼，乐观，积极。现就读 于某某大学师范学院美术系大二，在班上一直担任学生干部，工作认真负责。经过大一一年的锻炼，丰富了自己的阅历，磨练了自己的性格，懂得对人讲诚信，讲原则，学习上成绩优秀，获得国家励志奖学金和学业奖学金两个奖项，并曾在2010年大一下学期被学院评为优秀共青团员等。</p>
 		        </ul>
 			</div>
+			<!--  
 			<div class="wrap">
 				<h3>教学成果</h3>
 			    <ul class="goodinfo">
@@ -166,6 +167,7 @@
 		            <p>获得国家励志奖学金和学业奖学金两个奖项，并曾在2010年大一下学期被学院评为优秀共青团员等。</p>
 		        </ul>
 			</div>
+			-->
 		</div>
 
 		<div data-role="footer" id="footer">

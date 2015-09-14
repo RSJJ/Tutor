@@ -30,6 +30,7 @@
 		<constructor-arg ref="norCourseDAO"></constructor-arg>
 		<constructor-arg ref="teacherDAO"></constructor-arg>
 		<constructor-arg ref="graCourseDAO"></constructor-arg>
+		<constructor-arg ref="pageDAO"></constructor-arg>
 	</bean>
 	<bean id="studentCourseAction" class="com.tutor.action.StudentCourseAction" scope="prototype">
 	    <constructor-arg ref="norCourseDAO"></constructor-arg>

@@ -126,11 +126,11 @@ jQuery(function($) {
 		<table border="0" cellspacing="5" cellpadding="0">
 			<tr>
 				<td colspan="2"><a href="<%=basePath %>wap/register/default.jsp"><i></i>老师入驻<br/>在这里大展你的风采</a></td>
-				<td><a href="<%=basePath %>wap/tuan/cart.html"></br>金牌老师</a></td>
+				<td><a href="<%=basePath %>wap/tuan/cart.jsp"></br>金牌老师</a></td>
 				<td rowspan="2"><a href="<%=basePath %>wap/topic/612.html"><i></i>最<br/>新<br/>公<br/>告</a></td>
 			</tr>
 			<tr>
-				<td><a href="<%=basePath %>wap/tuan/cart.html"></br>精英学员</a></td>
+				<td><a href="<%=basePath %>wap/tuan/stu.jsp"></br>精英学员</a></td>
 				<td colspan="2"><a href="<%=basePath %>wap/register/default.jsp">学生入驻<br/>为您匹配完美导师</a></td>
 			</tr>
 		</table>

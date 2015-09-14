@@ -85,14 +85,8 @@
 				<h3>个人资料</h3>
 				<div>
 					<span>姓名：</span><p>
-		            <input type="text" id="textfield" name="student.name" value=<%=name==null?"":name %>/></p>
+		            <input type="text" id="textfield" name="student.name" value=<%=name==null?"":name %> /></p>
 				</div>
-				<!-- 
-				<div>
-					<span>手机：</span><p>
-		            <input readOnly=<%=request.getParameter("phone")==null?"":"readonly"%> value="<%=request.getParameter("phone")==null?"":request.getParameter("phone") %>" class="tekang" type="text" name="teacher.phone" id="phone" /></p>
-				</div>
-				 -->
 				<div id="pos" >
 				<div >
 					<span>地区：</span><p>
@@ -104,7 +98,7 @@
 				</div>
 				<div>
 					<span>地址：</span><p>
-					<input class="tekang" type="text" name="student.detailedAddress" id="det_address" <%=addr==null?"":addr %>/></p>
+					<input class="tekang" type="text" name="student.detailedAddress" id="det_address" value=<%=addr==null?"":addr %> /></p>
 				</div>
 				</div>
 				
@@ -112,7 +106,7 @@
 				<div id="report2" style="margin-left:15%;"></div>
 				<div>
 					<span>个人简介：</span><p>
-					<textarea rows="3" cols="20" placeholder="个人简介"  name="student.introduction" id="textarea1" <%=intro==null?"":intro %>></textarea>
+					<textarea rows="3" cols="20" placeholder="个人简介"  name="student.introduction" id="textarea1" ><%=intro==null?"":intro %></textarea>
 					</p>
 				</div>
 				

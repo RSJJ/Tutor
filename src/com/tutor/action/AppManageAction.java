@@ -14,19 +14,22 @@ import com.opensymphony.xwork2.Action;
 import com.tutor.base.BaseAction;
 import com.tutor.dao.GraCourseDAO;
 import com.tutor.dao.NorCourseDAO;
+import com.tutor.dao.PageDAO;
 import com.tutor.dao.TeacherDAO;
 import com.tutor.entity.GraCourse;
 import com.tutor.entity.NorCourse;
+import com.tutor.entity.Student;
 import com.tutor.entity.Teacher;
 import com.tutor.util.JsonUtil;
 import com.tutor.util.Message;
+import com.tutor.util.PageUtil;
 import com.tutor.util.sendsms;
 
 public class AppManageAction extends BaseAction {
 	private NorCourseDAO norCourseDAO;
 	private GraCourseDAO graCourseDAO;
 	private TeacherDAO teacherDAO;
-
+	private PageDAO pageDAO;
 	//private Teacher teacher;
 	String mode;
 	String id;
@@ -36,6 +39,7 @@ public class AppManageAction extends BaseAction {
 	String courseName;
 	
 	String phone;
+	Integer page;
 	/**
 	 * 根据老师Id查询老师个人信息
 	 * @throws Exception
@@ -137,7 +141,10 @@ public class AppManageAction extends BaseAction {
 			this.getJsonResponse().getWriter().println("error");
 		}
 	}
-	
+	/**
+	 * 发送手机验证码
+	 * @throws IOException
+	 */
 	public void sendPhoneCode() throws IOException{
 		HttpSession sess = this.getSession();
 		int rcode = (int)((Math.random()*9+1)*100000);
@@ -160,14 +167,45 @@ public class AppManageAction extends BaseAction {
 		this.getJsonResponse().getWriter().println(json);
 	}
 	
+	public void showAllTeaByPage() throws IOException{
+		int totalSize = pageDAO.queryRowCount("select count(u.id) from Teacher u");
+		PageUtil pg = new PageUtil(page,totalSize);
+		List<Teacher> list = pageDAO.queryByPage("from Teacher", pg.getCurrentPage(), pg.getPageSize());
+		String json = JsonUtil.toJsonExpose(list);
+		String pj = JsonUtil.toJson(pg);
+		this.getJsonResponse().getWriter().println("{\"teaList\":"+json+",\"page\":"+pj+"}");
+	}
+	
+	public void showAllStuByPage() throws IOException{
+		int totalSize = pageDAO.queryRowCount("select count(u.id) from Student u");
+		PageUtil pg = new PageUtil(page,totalSize);
+		List<Student> list = pageDAO.queryByPage("from Student", pg.getCurrentPage(), pg.getPageSize());
+		String json1 = JsonUtil.toJsonExpose(list);
+		String pj1= JsonUtil.toJson(pg);
+		this.getJsonResponse().getWriter().println("{\"stuList\":"+json1+",\"page\":"+pj1+"}");
+	}
 	public AppManageAction(NorCourseDAO norCourseDAO,
-			GraCourseDAO graCourseDAO, TeacherDAO teacherDAO) {
+			GraCourseDAO graCourseDAO, TeacherDAO teacherDAO,PageDAO pageDAO) {
 		super();
 		this.norCourseDAO = norCourseDAO;
 		this.graCourseDAO = graCourseDAO;
 		this.teacherDAO = teacherDAO;
+		this.pageDAO = pageDAO;
+		
 	}
 	
+	public PageDAO getPageDAO() {
+		return pageDAO;
+	}
+	public void setPageDAO(PageDAO pageDAO) {
+		this.pageDAO = pageDAO;
+	}
+	public Integer getPage() {
+		return page;
+	}
+	public void setPage(Integer page) {
+		this.page = page;
+	}
 	public GraCourseDAO getGraCourseDAO() {
 		return graCourseDAO;
 	}
