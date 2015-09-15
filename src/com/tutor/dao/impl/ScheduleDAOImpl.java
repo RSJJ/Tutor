@@ -49,7 +49,7 @@ public class ScheduleDAOImpl implements ScheduleDAO
 	@Override
 	public List<Schedule> findByTeacherId(String teacherId)
 	{
-		Query query = entityManager.createQuery("select u from Schedule u where u.teacherId = :teacherId");
+		Query query = entityManager.createQuery("select u from Schedule u where u.teacher.teacherId = :teacherId");
 		query.setParameter("teacherId", teacherId);
 		return query.getResultList();
 	}
@@ -59,7 +59,7 @@ public class ScheduleDAOImpl implements ScheduleDAO
 	public List<Schedule> findByTeacherIdTime(String teacherId,
 			String startTime, String endTime)
 	{
-		Query query = entityManager.createQuery("select u from Schedule u where u.teacherId = :teacherId and u.startTime >= :startTime and u.endTime <= :endTime order by u.startTime asc");
+		Query query = entityManager.createQuery("select u from Schedule u where u.teacher.teacherId = :teacherId and u.startTime >= :startTime and u.endTime <= :endTime order by u.startTime asc");
 		query.setParameter("teacherId", teacherId);
 		query.setParameter("startTime", startTime);
 		query.setParameter("endTime", endTime);
@@ -77,7 +77,7 @@ public class ScheduleDAOImpl implements ScheduleDAO
 	public List<Schedule> findByCourseTime(String teacherId, String courseId,
 			String startTime, String endTime)
 	{
-		Query query = entityManager.createQuery("select u from Schedule u where u.teacherId = :teacherId and u.availableCourse like :courseId and u.startTime >= :startTime and u.endTime <= :endTime order by u.startTime asc");
+		Query query = entityManager.createQuery("select u from Schedule u where u.teacher.teacherId = :teacherId and u.availableCourse like :courseId and u.startTime >= :startTime and u.endTime <= :endTime order by u.startTime asc");
 		query.setParameter("teacherId", teacherId);
 		query.setParameter("courseId", "%"+courseId+"%");
 		query.setParameter("startTime", startTime);

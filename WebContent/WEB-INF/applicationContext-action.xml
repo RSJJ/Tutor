@@ -23,6 +23,7 @@
 	
 	<bean id="scheduleManageAction" class="com.tutor.action.ScheduleManageAction" scope="prototype">
 		<constructor-arg ref="scheduleDAO"></constructor-arg>
+		<constructor-arg ref="teacherDAO"></constructor-arg>
 	</bean>
 
 	
