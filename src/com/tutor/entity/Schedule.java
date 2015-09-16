@@ -9,11 +9,15 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.springframework.context.annotation.Scope;
+
+import com.google.gson.annotations.Expose;
 
 /**
  * 教师时间表
@@ -32,21 +36,38 @@ public class Schedule implements Serializable
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;//主键
-	@Column(name="teacher_id")//外键
-	private String teacherId;
+	
+	@ManyToOne(cascade=CascadeType.REFRESH)
+	@JoinColumn(name="teacher_id")
+	@Expose(serialize=false)
+	private Teacher teacher;
+	
 	@Column(name="start_time")
+	@Expose
 	private String startTime;//开始时间
+	
 	@Column(name="end_time")
+	@Expose
 	private String endTime;//结束时间
+	
 	@Column(name="cycle",nullable=false)
+	@Expose
 	private int cycle;//周期性
+	
 	@Column(name="available_course")
+	@Expose
 	private String availableCourse;//此时间段提供的课程采用格式：课程1!#课程2!#课程3
+	
 	@Column(name="mode",nullable=false)
+	@Expose
 	private int mode;//上课模式
+	
 	@Column(name="status",nullable=false)
+	@Expose
 	private int status;
+	
 	@Column(name="statement")
+	@Expose
 	private String statement;
 	
 	@Transient
@@ -58,19 +79,11 @@ public class Schedule implements Serializable
 	
 	@Override
 	public String toString() {
-		return "Schedule [id=" + id + ", teacherId=" + teacherId
+		return "Schedule [id=" + id 
 				+ ", startTime=" + startTime + ", endTime=" + endTime
 				+ ", cycle=" + cycle + ", availableCourse=" + availableCourse
 				+ ", mode=" + mode + ", status=" + status + ", statement="
 				+ statement + "]";
-	}
-	public String getTeacherId()
-	{
-		return teacherId;
-	}
-	public void setTeacherId(String teacherId)
-	{
-		this.teacherId = teacherId;
 	}
 	public Integer getId()
 	{
@@ -154,6 +167,12 @@ public class Schedule implements Serializable
 	public void setPurchase(int purchase)
 	{
 		this.purchase = purchase;
+	}
+	public Teacher getTeacher() {
+		return teacher;
+	}
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
 	}
 	
 }

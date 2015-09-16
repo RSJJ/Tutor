@@ -38,7 +38,7 @@
                         </div>
                         <div class="inclrspaceb1">
                             <h3 class="left2"><span class="c2">我的个人信息</span></h3>
-                            <p><a href="tRegister.action?userName=<%=teacher.getPhone() %>">基本信息</a></p>
+                            <p><a href="<%=teacher==null?"#":"tRegister.action?userName="+teacher.getPhone() %>">基本信息</a></p>
                             <p><a href="#">我的订单</a></p>
                         </div>
                         <div class="inclrspaceb1">

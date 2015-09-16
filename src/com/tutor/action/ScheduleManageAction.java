@@ -10,7 +10,9 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.tutor.base.BaseAction;
 import com.tutor.dao.ScheduleDAO;
+import com.tutor.dao.TeacherDAO;
 import com.tutor.entity.Schedule;
+import com.tutor.entity.Teacher;
 import com.tutor.entity.server.Message;
 import com.tutor.global.FinalValue;
 import com.tutor.util.JsonUtil;
@@ -21,6 +23,7 @@ public class ScheduleManageAction extends BaseAction
 	private static final long serialVersionUID = 1L;
 	
 	private ScheduleDAO scheduleDAO;
+	private TeacherDAO teacherDAO;
 	
 	private Schedule schedule;
 	private String teacherId;
@@ -38,6 +41,7 @@ public class ScheduleManageAction extends BaseAction
 		if(!StringUtils.isEmpty(teacherId))
 		{
 			List<Schedule> schedules = scheduleDAO.findByTeacherId(teacherId);
+			Teacher teacher = teacherDAO.find(teacherId);
 			if(schedules != null)
 			{
 				boolean timeFlag = false;
@@ -60,7 +64,7 @@ public class ScheduleManageAction extends BaseAction
 				if(!timeFlag)
 				{
 					//时间段没有交集
-					schedule.setTeacherId(teacherId);
+					schedule.setTeacher(teacher);
 					schedule.setStatus(FinalValue.INIT_VALUE);
 					scheduleDAO.save(schedule);
 					
@@ -74,13 +78,12 @@ public class ScheduleManageAction extends BaseAction
 					//时间段有交集
 					msg.setCode(FinalValue.FAILED);
 					msg.setStatement("时间段与已有课程表冲突");
-					
 				}
 			}
 			else
 			{
 				//课表为空
-				schedule.setTeacherId(teacherId);
+				schedule.setTeacher(teacher);
 				schedule.setStatus(FinalValue.INIT_VALUE);
 				scheduleDAO.save(schedule);
 				
@@ -97,11 +100,15 @@ public class ScheduleManageAction extends BaseAction
 	}
 	
 	
-	public ScheduleManageAction(ScheduleDAO scheduleDAO)
-	{
+
+
+	public ScheduleManageAction(ScheduleDAO scheduleDAO, TeacherDAO teacherDAO) {
 		super();
 		this.scheduleDAO = scheduleDAO;
+		this.teacherDAO = teacherDAO;
 	}
+
+
 
 
 	public Schedule getSchedule()

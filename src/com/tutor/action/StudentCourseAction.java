@@ -9,8 +9,9 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
-import com.google.gson.reflect.TypeToken;
 import com.opensymphony.xwork2.Action;
 import com.tutor.base.BaseAction;
 import com.tutor.dao.GraCourseDAO;
@@ -26,11 +27,11 @@ import com.tutor.entity.ShopCart;
 import com.tutor.entity.Student;
 import com.tutor.entity.Teacher;
 import com.tutor.entity.server.Course;
-import com.tutor.util.JsonUtil;
 
 public class StudentCourseAction extends BaseAction
 {
-
+	private static final boolean debug = true;
+	private static final Log log = LogFactory.getLog(StudentCourseAction.class);
 	private static final long serialVersionUID = 1L;
 	
 	private StudentDAO studentDAO;
@@ -56,6 +57,7 @@ public class StudentCourseAction extends BaseAction
 	/**
 	 * @param teacherId
 	 * @param isJson
+	 * @param courseId
 	 * @return
 	 */
 	public String getCourseSchdule()
@@ -76,7 +78,15 @@ public class StudentCourseAction extends BaseAction
 			List<Schedule> schedules = new ArrayList<Schedule>();
 			schedules = scheduleDAO.findByCourseDate(teacherId,courseId,
 					sdf.format(date));
+			if(debug)
+			{
+				log.info(String.format("schedules' size : %d", schedules.size()));
+			}
 			weekSchedule.add(schedules);
+		}
+		if(debug)
+		{
+			log.info(String.format("weekSchedule's size : %d", weekSchedule.size()));
 		}
 		if(Boolean.valueOf(isJson))
 			return this.JSON;
