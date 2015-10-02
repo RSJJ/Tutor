@@ -4,19 +4,12 @@ package com.tutor.action;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 
-import javax.annotation.Resource;
-
-import org.apache.catalina.connector.Request;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.opensymphony.xwork2.Action;
 import com.tutor.base.BaseAction;
 import com.tutor.base.ImgBaseAction;
-import com.tutor.dao.StudentDAO;
 import com.tutor.dao.TeacherDAO;
-import com.tutor.entity.Student;
 import com.tutor.entity.Teacher;
 import com.tutor.entity.server.Message;
 import com.tutor.entity.server.User;
