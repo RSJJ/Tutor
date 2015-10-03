@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="courseMange" extends="json-default">
+		<action name="showTeacherCourse" class="courseManageAction" method="showTeacherCourse">
+			<result name="success">teacher_course.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+
+		<action name="addOneCourse" class="courseManageAction" method="addOne">
+		</action>
+		
+		<action name="getTeacherAllCourse" class="courseManageAction" method="getTeacherAllCourse">
+			<result name="success">teacher_syllabus.jsp</result>
+			<result name="error">404.html</result>
+		</action>
+	</package>
+</struts>

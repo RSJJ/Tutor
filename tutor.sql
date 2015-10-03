@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost
-Source Server Version : 50173
+Source Server         : localsytp
+Source Server Version : 50624
 Source Host           : localhost:3306
 Source Database       : tutor
 
 Target Server Type    : MYSQL
-Target Server Version : 50173
+Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2015-09-11 23:45:18
+Date: 2015-10-03 10:38:04
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -74,7 +74,7 @@ INSERT INTO `nor_course` VALUES ('0000000010', 'NOR_00000022', '0000000002', 'é«
 DROP TABLE IF EXISTS `schedule`;
 CREATE TABLE `schedule` (
   `id` int(10) unsigned zerofill NOT NULL AUTO_INCREMENT,
-  `teacher_id` varchar(32) NOT NULL,
+  `teacher_id` int(10) unsigned zerofill DEFAULT NULL,
   `start_time` timestamp NULL DEFAULT NULL,
   `end_time` timestamp NULL DEFAULT NULL,
   `cycle` int(10) unsigned zerofill NOT NULL,
@@ -83,13 +83,16 @@ CREATE TABLE `schedule` (
   `status` tinyint(3) unsigned zerofill NOT NULL,
   `statement` text,
   PRIMARY KEY (`id`),
-  KEY `sch_teacher_id` (`teacher_id`),
-  KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+  KEY `id` (`id`),
+  KEY `teacher_sch` (`teacher_id`),
+  CONSTRAINT `teacher_sch` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of schedule
 -- ----------------------------
+INSERT INTO `schedule` VALUES ('0000000021', '0000000002', '2015-09-15 06:00:00', '2015-09-15 07:00:00', '0000000000', 'NOR_00000022!#', '1', '001', null);
+INSERT INTO `schedule` VALUES ('0000000022', '0000000002', '2015-09-16 07:00:00', '2015-09-16 08:00:00', '0000000000', 'dfd!#NOR_00000022!#3!#', '1', '001', null);
 
 -- ----------------------------
 -- Table structure for `shop_cart`
@@ -169,15 +172,21 @@ CREATE TABLE `teacher` (
   `all_nums` int(10) unsigned zerofill NOT NULL,
   `status` tinyint(4) unsigned zerofill NOT NULL,
   `statement` text,
+  `lng` double DEFAULT NULL,
+  `lat` double DEFAULT NULL,
+  `school` varchar(64) DEFAULT NULL,
+  `profession` varchar(128) DEFAULT NULL,
+  `city` varchar(64) DEFAULT NULL,
+  `card_type` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id`,`teacher_id`),
   KEY `teacher_id` (`teacher_id`),
   KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of teacher
 -- ----------------------------
-INSERT INTO `teacher` VALUES ('0000000002', 'TEA_00000001', '34534534534', '123456', 'm', '123@qq.com', '13581542929', null, null, null, null, null, null, null, null, null, null, '2015-09-11 23:43:40', '0000000000', '0000000000', '0000000000', '0000000000', '0003', 'nnnn');
+INSERT INTO `teacher` VALUES ('0000000002', 'TEA_00000001', '34534534534', '123456', 'm', '123@qq.com', '13581542929', null, null, null, null, null, null, null, null, null, null, '2015-09-14 21:29:52', '0000000000', '0000000000', '0000000000', '0000000000', '0003', 'nnnn', null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for `unique_id`
@@ -193,7 +202,7 @@ CREATE TABLE `unique_id` (
 -- ----------------------------
 -- Records of unique_id
 -- ----------------------------
-INSERT INTO `unique_id` VALUES ('0000000002', 'student_id_seed', '00000000000000000009');
-INSERT INTO `unique_id` VALUES ('0000000003', 'teacher_id_seed', '00000000000000000019');
-INSERT INTO `unique_id` VALUES ('0000000004', 'TEA_00000001', '00000000000000000021');
-INSERT INTO `unique_id` VALUES ('0000000145', 'order_id_seed', '00000000000000000009');
+INSERT INTO `unique_id` VALUES ('0000000002', 'student_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000003', 'teacher_id_seed', '00000000000000000000');
+INSERT INTO `unique_id` VALUES ('0000000004', 'TEA_00000001', '00000000000000000012');
+INSERT INTO `unique_id` VALUES ('0000000145', 'order_id_seed', '00000000000000000000');

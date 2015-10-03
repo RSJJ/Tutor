@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="studentBasic" extends="json-default">
+		<action name="studentLogin" class="studentBasicAction" method="login">
+			<result type="json"></result>
+		</action>
+		<action name="studentRegister" class="studentBasicAction"
+			method="studentRegister">
+			<result type="json"></result>
+		</action>
+		<action name="login_temporary" class="studentBasicAction"
+			method="login_temporary">
+			<result name="success">student_info.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+		<action name="dsRegister" class="studentBasicAction" method="dsRegister">
+			<result name="success">student_info.jsp</result>
+			<result name="failure">error.jsp</result>
+		</action>
+		<action name="dsRegisterPhone" class="studentBasicAction" method="dsRegisterPhone">
+			<result name="success">/wap/user/default.jsp</result>
+			<result name="failure">error.jsp</result>
+		</action>
+		<action name="studentLogout" class="studentBasicAction" method="logout"></action>
+	</package>
+</struts>
