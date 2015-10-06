@@ -1,22 +1,48 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localsytp
-Source Server Version : 50624
+Source Server         : local
+Source Server Version : 50625
 Source Host           : localhost:3306
 Source Database       : tutor
 
 Target Server Type    : MYSQL
-Target Server Version : 50624
+Target Server Version : 50625
 File Encoding         : 65001
 
-Date: 2015-10-03 10:38:04
+Date: 2015-10-06 21:59:43
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for `gra_course`
+-- Table structure for course
+-- ----------------------------
+DROP TABLE IF EXISTS `course`;
+CREATE TABLE `course` (
+  `id` int(11) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  `schdule_id` int(10) unsigned DEFAULT NULL,
+  `teacher_id` varchar(255) DEFAULT NULL,
+  `nor_course_id` varchar(255) DEFAULT NULL,
+  `gra_course_id` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `c_s_id` (`schdule_id`),
+  KEY `c_t_id` (`teacher_id`),
+  KEY `c_n_id` (`nor_course_id`),
+  KEY `c_g_id` (`gra_course_id`),
+  CONSTRAINT `c_g_id` FOREIGN KEY (`gra_course_id`) REFERENCES `gra_course` (`gra_course_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `c_n_id` FOREIGN KEY (`nor_course_id`) REFERENCES `nor_course` (`nor_course_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `c_s_id` FOREIGN KEY (`schdule_id`) REFERENCES `schedule` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `c_t_id` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`teacher_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of course
+-- ----------------------------
+INSERT INTO `course` VALUES ('00000000001', '21', 'TEA_00000001', 'NOR_00000022', '3');
+
+-- ----------------------------
+-- Table structure for gra_course
 -- ----------------------------
 DROP TABLE IF EXISTS `gra_course`;
 CREATE TABLE `gra_course` (
@@ -34,6 +60,7 @@ CREATE TABLE `gra_course` (
   `statement` text,
   PRIMARY KEY (`id`,`gra_course_id`),
   KEY `gra_teacher_id` (`teacher_id`),
+  KEY `gra_course_id` (`gra_course_id`),
   CONSTRAINT `teacher_gra` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
@@ -43,7 +70,7 @@ CREATE TABLE `gra_course` (
 INSERT INTO `gra_course` VALUES ('0000000009', '3', '0000000002', '434', '3434', '434', '34', '34', '34', '2015-09-11 23:42:47', '003', null);
 
 -- ----------------------------
--- Table structure for `nor_course`
+-- Table structure for nor_course
 -- ----------------------------
 DROP TABLE IF EXISTS `nor_course`;
 CREATE TABLE `nor_course` (
@@ -59,6 +86,7 @@ CREATE TABLE `nor_course` (
   `statement` text,
   PRIMARY KEY (`id`),
   KEY `teacher_nor` (`teacher_id`),
+  KEY `nor_course_id` (`nor_course_id`),
   CONSTRAINT `teacher_nor` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
@@ -69,7 +97,7 @@ INSERT INTO `nor_course` VALUES ('0000000009', 'dfd', '0000000002', '3', '34', '
 INSERT INTO `nor_course` VALUES ('0000000010', 'NOR_00000022', '0000000002', '高一', '物理', '4', '40', '2015-09-11 23:43:53', '000', '其它说明（0-200字）');
 
 -- ----------------------------
--- Table structure for `schedule`
+-- Table structure for schedule
 -- ----------------------------
 DROP TABLE IF EXISTS `schedule`;
 CREATE TABLE `schedule` (
@@ -95,7 +123,7 @@ INSERT INTO `schedule` VALUES ('0000000021', '0000000002', '2015-09-15 06:00:00'
 INSERT INTO `schedule` VALUES ('0000000022', '0000000002', '2015-09-16 07:00:00', '2015-09-16 08:00:00', '0000000000', 'dfd!#NOR_00000022!#3!#', '1', '001', null);
 
 -- ----------------------------
--- Table structure for `shop_cart`
+-- Table structure for shop_cart
 -- ----------------------------
 DROP TABLE IF EXISTS `shop_cart`;
 CREATE TABLE `shop_cart` (
@@ -116,7 +144,7 @@ CREATE TABLE `shop_cart` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `student`
+-- Table structure for student
 -- ----------------------------
 DROP TABLE IF EXISTS `student`;
 CREATE TABLE `student` (
@@ -144,7 +172,7 @@ CREATE TABLE `student` (
 INSERT INTO `student` VALUES ('0000000001', '123456', '123456', '123456', null, null, null, null, null, null, null, null, null, null);
 
 -- ----------------------------
--- Table structure for `teacher`
+-- Table structure for teacher
 -- ----------------------------
 DROP TABLE IF EXISTS `teacher`;
 CREATE TABLE `teacher` (
@@ -189,7 +217,7 @@ CREATE TABLE `teacher` (
 INSERT INTO `teacher` VALUES ('0000000002', 'TEA_00000001', '34534534534', '123456', 'm', '123@qq.com', '13581542929', null, null, null, null, null, null, null, null, null, null, '2015-09-14 21:29:52', '0000000000', '0000000000', '0000000000', '0000000000', '0003', 'nnnn', null, null, null, null, null, null);
 
 -- ----------------------------
--- Table structure for `unique_id`
+-- Table structure for unique_id
 -- ----------------------------
 DROP TABLE IF EXISTS `unique_id`;
 CREATE TABLE `unique_id` (
