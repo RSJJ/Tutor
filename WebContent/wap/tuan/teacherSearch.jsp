@@ -7,103 +7,128 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>课程查询</title>
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>选择课程</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
     <!-- Roboto -->
-  <link rel="stylesheet" href="<%=basePath %>wap/tuan/dist/css/ratchet.min.css">
-    <link rel="stylesheet" href="<%=basePath %>wap/tuan/dist/css/ratchet-theme-ios.min.css">
-	<script src="<%=path %>/wap/template/js/com/jquery.min.js"></script>  
-    <script src="<%=basePath %>wap/tuan/dist/js/ratchet.min.js"></script>
-    <script src="<%=basePath %>wap/tuan/dist/js/sliders.js"></script>
-    
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
+	<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
     <style type="text/css">
-      .leftside{
+     * {
+		font-family: "Microsoft YaHei" ! important;
+		padding:0px;
+		margin:0px;
+		}
+		a{ text-decoration:none; } 
+     #content{ 
+     	position: absolute;
+		z-index: 1;
+		top: 46px;
+		bottom: 41px;
+		left: 0;
+		width: 100%;
+		background: #555;
+		overflow: auto;
+		padding: 0px;
+     }
+	#footer {
+		position:absolute;
+		bottom:0; 
+		left:0;
+		width:100%;
+		padding:0;
+	}
+
+		.leftside{
         width: 35%;
         height: 100%;
+        float: left;
+        display: inline-block;
+        background-color: #F1F1F1;
       }
       .leftside li{
-      	border-right: 1px solid grey;
-
+      	width: 100% !important;
       }
       .rightside{
-      	padding-left:8px;
-        position: absolute;
-        top: 0px;
-        left:35%;
+        margin-left: 1px;
+        display: inline-block;
         width: 60%;
         height: 100%;
+
       }
       .activee{
-      	background: #428bca;
+      	background-color: white !important;
+      	border-right: 0px !important;
+      }
+      .table-view-cell{ 
+	      background-color: #E4E4E4;
+	      display: block;
+	      border-bottom: 1px solid #7A7A7A;
+	      height: 50px;
+      }
+      .rightside .table-view-cell{ 
+      	background-color: white;
+      }
+      .navigate-right{ 
+      	display: block;
+      	width: 100%;
+      	height: 100%;
+      	line-height: 50px;
+      	text-align: center;
+      	border-right: 1px solid #7A7A7A !important;
       }
     </style>
-	<script type="text/javascript">
-    var collumn = [
-    	{
-    		"grand":"小学",
-    		"course":[{"name":"语文","url":""},{"name":"数学","url":""},{"name":"外语","url":""}]
-    	},
-    	{
-    		"grand":"初中",
-    		"course":[{"name":"语文","url":""},{"name":"数学","url":""},{"name":"外语","url":""},{"name":"物理","url":""},{"name":"化学","url":""},{"name":"生物","url":""},{"name":"政治","url":""},{"name":"地理","url":""},{"name":"奥数","url":""}]
-    	},
-    	{
-    		"grand":"高中",
-    		"course":[{"name":"语文","url":""},{"name":"数学","url":""},{"name":"外语","url":""},{"name":"物理","url":""},{"name":"化学","url":""},{"name":"生物","url":""},{"name":"政治","url":""},{"name":"地理","url":""},{"name":"奥数","url":""}]
-    	},
-    	{
-    		"grand":"大学",
-    		"course":[{"name":"高数","url":""},{"name":"大物","url":""},{"name":"思政","url":""}]
-    	},
-    	{
-    		"grand":"小升初",
-    		"course":[{"name":"语文","url":""},{"name":"数学","url":""},{"name":"外语","url":""}]
-    	},
-    	{
-    		"grand":"中考",
-    		"course":[{"name":"语文","url":""},{"name":"数学","url":""},{"name":"外语","url":""},{"name":"物理","url":""},{"name":"化学","url":""},{"name":"生物","url":""},{"name":"政治","url":""},{"name":"地理","url":""},{"name":"理综","url":""},{"name":"文综","url":""}]
-       	},
-    	{
-    		"grand":"高考",
-    		"course":[{"name":"语文","url":""},{"name":"数学","url":""},{"name":"外语","url":""},{"name":"物理","url":""},{"name":"化学","url":""},{"name":"生物","url":""},{"name":"政治","url":""},{"name":"地理","url":""},{"name":"理综","url":""},{"name":"文综","url":""}]
-       	}
-    ]
-    </script>
+	<script src="../template/js/com/STATICVAR.js"></script>
 
   </head>
   <body>
-    <header class="bar bar-nav">
-      <button class="btn btn-link btn-nav pull-left"  onclick="javascript:window.history.go(-1)">
-        <span class="icon icon-left-nav"></span>
-      </button>
-      <span class="title">选择课程</span>
-    </header>
-    <div class="content">
-      <div class="wrap">
-      	 <div class="leftside">
-	       <ul class="table-view" id="left"></ul>
-	      </div>
-	      <div class="rightside" >
-	          <ul class="table-view" id="right">
-	          		<li class="table-view-cell"><a class="navigate-right" href="" data-transition="slide-in"><span class="badge">5</span>语文</a></li>
-	          		<li class="table-view-cell"><a class="navigate-right" href="showTeacherInfByCourseId?courseId=NOR_00000005" data-transition="slide-in"><span class="badge">5</span>数学</a></li>
-	          		<li class="table-view-cell"><a class="navigate-right" href="" data-transition="slide-in"><span class="badge">5</span>外语</a></li>
-	          </ul>
-	      </div>
-      </div>
-    </div>
-    <!-- Popover -->
-  </body>
+	<div data-role="page" id="pageone">
+	  	<div data-role="header">
+		  <a href="#" data-role="button" data-icon="back"  onclick="javascript:window.history.go(-1)">返回</a>
+		  <h1>选择课程</h1>
+		</div>
+
+		<div data-role="content"id="content">
+			<div class="leftside">
+				      <ul id="left">
+				      </ul>
+			</div>
+			<div class="rightside">
+				      <ul id="right">
+				      	<li class="table-view-cell"><a class="navigate-right grand" href="teacherSearchList.jsp?mode=k12&amp;courseGrade=小学&amp;courseName=语文" data-ajax="false" data-transition="slide-in">语文</a></li>
+				      	<li class="table-view-cell"><a class="navigate-right grand" href="teacherSearchList.jsp?mode=k12&amp;courseGrade=小学&amp;courseName=数学" data-ajax="false" data-transition="slide-in">数学</a></li>
+				      	<li class="table-view-cell"><a class="navigate-right grand" href="teacherSearchList.jsp?mode=k12&amp;courseGrade=小学&amp;courseName=外语" data-ajax="false" data-transition="slide-in">外语</a></li>
+				      	</ul>
+			</div>
+		</div>
+
+		<div data-role="footer" id="footer">
+		  <div data-role="navbar" data-iconpos="left">
+		      <ul>
+		        <li> <a href="../index.jsp" data-ajax="false" data-role="button">首页</a></li>
+		        <li> <a href="../user/default.jsp" data-ajax="false" data-role="button">个人中心</a></li>
+		      </ul>
+	      	</div>
+	    </div>
+	</div>
+
+
+</body>
 </html>
-    <script type="text/javascript">
+<script type="text/javascript">
 
     function showcourse(i){
     	$("#right").empty();
+    	var mode;
+    	if(i>=0&i<=2) mode='k12';
+    	else  mode='s12'
     	for (var j=0 ; j <= collumn[i].course.length - 1; j++) {
-    		var temp = '<li class="table-view-cell"><a class="navigate-right" href="'+collumn[i].course[j].url+'" data-transition="slide-in"><span class="badge">5</span>'+collumn[i].course[j].name+'</a></li>'
+
+    		var url = 'teacherSearchList.jsp?mode='+mode+'&courseGrade='+collumn[i].grand+'&courseName='+collumn[i].course[j].name;
+    		var temp = '<li class="table-view-cell"><a class="navigate-right grand" href="'+url+'" data-ajax="false" data-transition="slide-in">'+collumn[i].course[j].name+'</a></li>'
     		$("#right").append(temp);
     	}
     }    

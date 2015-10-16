@@ -132,8 +132,8 @@
 		<div data-role="content" class="content" id="content">
 			<div class="wrap icon">
 				<div class="img">
-					<img src="../template/images/good/ID2/1.jpg">
-					<h3>杨老师</h3>
+					<img src="../template/images/good/default.jpg">
+					<h3></h3>
 				</div>
 			</div>
 			<div class="wrap basicinfo">
@@ -141,22 +141,22 @@
 				<ul class="goodinfo"  >
 		            <li>
 		                <strong >学&nbsp;校</strong>
-		                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="teaschool">北京交通大学</span>
+		                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="teaschool"></span>
 		            </li>
 		            <li>
 		                <strong>专&nbsp;业</strong>
-		                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="teaprofession">智能运输工程</span>
+		                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="teaprofession"></span>
 		            </li>
 		            <li>
 		                <strong>认&nbsp;证</strong>
-		                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="teaStatus">身份认证</span>
+		                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="teaStatus"></span>
 		            </li>
 	         	</ul>
 			</div>
 			<div class="wrap">
 				<h3>个人简介</h3>
 			    <ul class="goodinfo" id="teaIntro">
-		            <p>本人热情活泼，乐观，积极。现就读 于某某大学师范学院美术系大二，在班上一直担任学生干部，工作认真负责。经过大一一年的锻炼，丰富了自己的阅历，磨练了自己的性格，懂得对人讲诚信，讲原则，学习上成绩优秀，获得国家励志奖学金和学业奖学金两个奖项，并曾在2010年大一下学期被学院评为优秀共青团员等。</p>
+		            <p></p>
 		        </ul>
 			</div>
 			<!--  

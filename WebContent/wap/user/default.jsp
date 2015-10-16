@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8" 
-    import="com.tutor.entity.server.User,
-    com.tutor.entity.Teacher,
-    com.tutor.entity.Student"%>
+    import="com.tutor.entity.server.User"%>
+    <%@page import="java.util.List , com.tutor.entity.* " %>
+    <%@page import="java.util.ArrayList"%>
  <%
    String path = request.getContextPath();  
    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path;  
@@ -35,6 +35,8 @@
 		}
 		phone = phone.substring(0, 4)+"*****"+phone.substring(9, 11);
 	};
+	List<NorCourse> norCourses = request.getAttribute("norCourses") == null ? new ArrayList<NorCourse>():(List<NorCourse>)request.getAttribute("norCourses");
+	List<GraCourse> graCourses = request.getAttribute("graCourses") == null ? new ArrayList<GraCourse>():(List<GraCourse>)request.getAttribute("graCourses");
 %>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <!doctype html>
@@ -58,45 +60,48 @@
         <link type="text/css" rel="stylesheet" href="../template/css/com/com.css"/>
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
 
-		<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+		<script src="../template/js/com/jquery.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
 		<style type="text/css">
-	.wrap{ 
-		margin:10px 0;
-		background: white;
-		width: 100%;
-		height:auto;
-		padding: 5px;
-	}
-	#footer {
-		position:absolute;
-		bottom:0; 
-		left:0;
-		width:100%;
-		padding:0;
-	}
-	.icon { 
-		margin:-15px;
-		height: 130px;
-		background: url("../template/images/good/background.jpg") no-repeat 0 0;
-		background-size: 100% 100%;
-		overflow: hidden;
-	}
-	.icon .img{ 
-		margin-left:20px;
-		text-align: left;
-		line-height:112px;
-		
-	}
-	.icon .img h3{ 
-		color:white;
-	}
-	.icon img{ 
-		border-radius:50%;
-		vertical-align: middle;	
-		width: 70px;
-		height: 70px;
-	}
+			.wrap{ 
+				margin:10px 0;
+				background: white;
+				width: 100%;
+				height:auto;
+				padding: 5px;
+			}
+			#footer {
+				position:absolute;
+				bottom:0; 
+				left:0;
+				width:100%;
+				padding:0;
+			}
+			.icon { 
+				margin:-15px;
+				height: 130px;
+				background: url("../template/images/good/background.jpg") no-repeat 0 0;
+				background-size: 100% 100%;
+				overflow: hidden;
+			}
+			.icon .img{ 
+				margin-left:20px;
+				text-align: left;
+				line-height:112px;
+				
+			}
+			.icon .img h3{ 
+				color:white;
+			}
+			.icon img{ 
+				border-radius:50%;
+				vertical-align: middle;	
+				width: 70px;
+				height: 70px;
+			}
+			.condiv_ipt{
+				width:40% !important;
+			}
 	</style>
     </head>
     <body>
@@ -129,7 +134,7 @@
 				<li><a href=<%=deSrc %>  data-ajax="false"  data-icon="info" data-iconpos="left">完善个人信息</a></li>
 				<br>
 			  <li><a href="#" data-icon="alert" data-iconpos="left">消息中心<span class="ui-li-count">0</span></a></li>
-			  <li><a href="#course" data-icon="gear" data-iconpos="left">课程管理</a></li>
+			  <li><a href="teacher_course.jsp" data-ajax="false" data-icon="gear" data-iconpos="left">课程管理</a></li>
 			  <li><a href="#" data-icon="gear" data-iconpos="left">查看预约</a></li>
 			  <hr>
 			 <li><a href="#" id="logout"  data-ajax="false"  data-icon="info" data-iconpos="left">退出登录</a></li>
@@ -145,104 +150,29 @@
 	      </div>
 	    </div>  
 	</div>
-	
-	<div data-role="page" id="course">
-	  	<div data-role="header">
-			 <div class="com-header-area" id="js-com-header-area">
-	            <a href="../index.jsp" data-ajax="false" class="com-header-logo"></a>
-				<dfn></dfn>
-	            <p>
-	                <a href="default.jsp" class="com-header-user selected"><del></del></a>
-	                <i></i>
-	                <a href="../cart/default.htm" data-ajax="false" class="com-header-cart "><b id="header-cart-num">0</b><del></del></a>
-	            </p>
-				<div class="clear"></div>
-	        </div>
-		</div>
-
-		<div data-role="content" class="content">
-	        <!--content-->
-	        <div class="loading"></div>	
-	        <div data-role="navbar" data-iconpos="left">
-		      <ul>
-		        <li> <a href="#course" data-ajax="false" class="ui-btn-active" data-role="button">课程</a></li>
-		        <li> <a href="" data-ajax="false" data-role="button">课表</a></li>
-		      </ul>
-	     	</div>
-			 <div data-role="collapsible">
-			    <h4>我的课程</h4>
-			    <ul data-role="listview">
-			      <li><a href="#">Adam</a></li>
-			      <li><a href="#">Angela</a></li>
-			    </ul>
-			  </div>
-			  <%if(role==2){ %>
-			  <div data-role="collapsible">
-			    <h4>添加课程</h4>
-			    <ul data-role="listview">
-			      <li><a href="#addK12" data-rel="dialog">基础课程</a></li>
-			      <li><a href="#addKao" data-rel="dialog">考研课程</a></li>
-			    </ul>
-			  </div>
-			 <%} %>
-		</div>
-		 <div data-role="footer" id="footer">
-		  <div data-role="navbar" data-iconpos="left">
-		      <ul>
-		        <li> <a href="../index.jsp" data-ajax="false" data-role="button">首页</a></li>
-		        <li> <a href="#pageone" data-ajax="false" data-role="button">个人中心</a></li>
-		      </ul>
-	      	</div>
-	    </div>  
-	</div>
-	
-	<div data-role="page" id="addK12">
-	  <div data-role="header">
-	    <h1>添加基础课程</h1>
-	  </div>
-	
-	  <div data-role="content">
-	    
-	  </div>
-	
-	  <div data-role="footer">
-	  <h1>页脚文本</h1>
-	  </div>
-	</div> 
-	
-	<div data-role="page" id="addKao">
-	  <div data-role="header">
-	    <h1>添加基础课程</h1>
-	  </div>
-	
-	  <div data-role="content">
-	    <p>对话框与普通页面不同，它显示在当前页面的顶端。它不会横跨整个页面宽度。对话框页眉中的图标 “X” 可关闭对话框。</p>
-	    <a href="#pageone">转到页面一</a>
-	  </div>
-	
-	  <div data-role="footer">
-	  <h1>页脚文本</h1>
-	  </div>
-	</div> 
 </body>
 </html>
 <script src="../template/js/user/index.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		checkBasicInf('<%=id%>');
-		
-		})
-	$("#logout").click(function(){
 			var role = <%=role %>;
 			if(role == 2){
-					$.get("teacherLogout",function(data,status){
-						 window.location.href = "../login/default.jsp";
-				  });
-				}else{
-					$.get("studentLogout",function(data,status){
-						 window.location.href = "../login/default.jsp";
-				  });
-				}
+				checkBasicInf('<%=id%>'); 
+			}
+			//用户退出登录
+			$("#logout").click(function(){
+				var role = <%=role %>;
+				if(role == 2){
+						$.get("teacherLogout",function(data,status){
+							 window.location.href = "../login/default.jsp";
+					  });
+					}else{
+						$.get("studentLogout",function(data,status){
+							 window.location.href = "../login/default.jsp";
+					  });
+					}
+			})
+			
 		})
+		
 </script>
-

@@ -37,64 +37,92 @@ public class Teacher implements Serializable
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	@Column(name="teacher_id",nullable=false)
+	@Expose
 	private String teacherId;//主键
 	@Column(name="name")
+	@Expose
 	private String name;
 	@Column(name="password")
 	private String password;
 	@Column(name="sex")
+	@Expose
 	private String sex;
 	@Column(name="mail")
+	@Expose
 	private String mail;
 	@Column(name="phone")
+	@Expose
 	private String phone;
 	@Column(name="address")
+	@Expose
 	private String address;
 	@Column(name="detailed_address")
+	@Expose
 	private String detailedAddress;
 	@Column(name="job")
+	@Expose
 	private String job;
 	@Column(name="icon")
+	@Expose
 	private String icon;
 	@Column(name="licence")
+	@Expose
 	private String licence;
 	@Column(name="instroduction")
+	@Expose
 	private String introduction;
 	@Column(name="detailed_introduction")
+	@Expose
 	private String detailedIntroduction;
 	@Column(name="card_no")
+	@Expose
 	private String cardNo;
 	@Column(name="reg_time")
+	@Expose
 	private String regTime;
 	@Column(name="pass_time")
+	@Expose
 	private String passTime;
 	@Column(name="last_visit_time")
+	@Expose
 	private String lastVisitTime;
 	@Column(name="best_nums",nullable=false)
+	@Expose
 	private Integer bestNums;
 	@Column(name="normal_nums")
+	@Expose
 	private Integer normalNums;
 	@Column(name="bad_nums")
+	@Expose
 	private Integer badNums;
 	@Column(name="all_nums")
+	@Expose
 	private Integer allNums;
 	@Column(name="status",nullable=false)
+	@Expose
 	private Integer status;
 	@Column(name="statement")
+	@Expose
 	private String statement;
 	
 
 	@Column(name="lng")
+	@Expose
 	private Double lng;
 	@Column(name="lat")
+	@Expose
 	private Double lat;
 	@Column(name="school")
+	@Expose
 	private String school;
 	@Column(name="profession")
+	@Expose
 	private String profession;
 	@Column(name="city")
+	@Expose
 	private String city;
 	@Column(name="card_type")
+	@Expose
 	private String cardType;
    
 	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="teacher")

@@ -121,6 +121,8 @@ public class AppManageAction extends BaseAction {
 	 * @throws IOException 
 	 */
 	public void showTeacherInfByCourseName() throws IOException{
+		System.out.println(courseGrade);
+		System.out.println(courseName);
 		if (!StringUtils.isEmpty(mode))
 		{
 			if(mode.equals("k12")){//k12
