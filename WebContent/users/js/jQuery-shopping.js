@@ -37,16 +37,15 @@
 						y = $target.offset().top + 10,
 						X = $shop.offset().left+$shop.width()/2-$target.width()/2+10,
 						Y = $shop.offset().top;
-					/*var ttt=$('#'+id).parent().children('input').val();
-					alert(ttt);*/
+					var ttt=$('#'+id).parent().children('input').val();
+					
 					var teacher="李宏伟";
 					var course="数学";
-					var time=$('#'+id).parent().parent().parent().children('td:eq(0)').text();
+//					var time=$('#'+id).parent().parent().parent().children('td:eq(0)').text();
 					var scheduleId = $('#'+id).parent().children("input[name='schduleId']").val();
-					var month=$('.yf').text(),
-						day=$('.rq').text(),
-						date=month+day+'日';
-					var price="70元";
+//					var month=$('.yf').text(),
+//						day=$('.rq').text(),
+//						date=month+day+'日';
 					if(dis){
 						if ($('#floatOrder').length <= 0) {
 							$('body').append('<div id="floatOrder"><img src="images/course.png" width="50" height="50" /></div');
@@ -60,10 +59,36 @@
 										$target.data('click',false).addClass('dis-click');
 										var l=$('.J-shoping-list').length,
 											num=Number($num.text());
-										/*if(l<5){*/
-											$body.prepend('<div class="J-shoping-list" data-id="'+id+'"> <input type="hidden" name="scheduleIds" value="'+scheduleId+'" > <a href="javascript:void();"title=""><img src="images/course.png" width="50"height="50"/></a><div class="J-shoping-list-a"><p><span class="left">'+teacher+'</span><span class="mright">'+course+'</span></p><p><span class="left">'+date+'</span><span class="mright">'+time+'</span><span class="mright"><em>'+price+'</em></span></p></div><div class="baseBg J-shoping-close"></div></div>');
-										/*};*/
-										$num.text(num+1);
+										$.ajax({
+											 url:"post",
+											 url:"getShopCart.action",
+											 data:{
+												 scheduleId:scheduleId,
+												 courseId:$("#courseId").val()
+												 
+											 },
+											 success:function(shopCarts){
+												 $num.text(shopCarts.length);
+												 var bodyHtml = "";
+												 for(var i =0; i<shopCarts.length; i++){
+													 var shopCart = shopCarts[i];
+													 
+													 bodyHtml += '<div class="J-shoping-list" data-id="'+i+
+															 '"> <input type="hidden" name="scheduleIds" value="'+
+															 shopCart.courseId+'" > <a href="javascript:void();"title=""><img src="images/course.png" width="50"height="50"/></a><div class="J-shoping-list-a"><p><span class="left">'+
+															 shopCart.course.teacherName+'</span><span class="mright">'+
+															 shopCart.course.courseName+'</span></p><p><span class="left">'+
+															 shopCart.course.date+' '+
+															 shopCart.course.time+'</span><span class="mright"><em>'+
+															 shopCart.price+
+															 '元</em></span></p></div><div class="baseBg J-shoping-close"></div></div>';
+												 }
+												 bodyHtml += '<div class="J-shoping-buy">' +
+													'<a class="baseBg" href="javascript:void();" id="settlement" title="去购物车结算"></a>'+
+													'</div>';
+												 $body.html(bodyHtml);
+											 }
+										 });
 									});
 								});
 							});	

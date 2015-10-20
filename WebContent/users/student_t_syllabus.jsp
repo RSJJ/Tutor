@@ -27,6 +27,7 @@
 <script src="js/jquery.fancybox-1.3.4.js" type="text/javascript" charset="utf-8" language="javascript"></script>
 <script src="js/t_team_js.js" type="text/javascript" charset="utf-8" language="javascript"></script>
 <script src="js/t_syllabus_js.js" type="text/javascript" charset="utf-8" language="javascript"></script>
+<script src="js/jquery.lightbox_me.js" type="text/javascript" charset="utf-8" language="javascript"></script>
 <!-- 首页轮播图 start --> 
 <script type="text/javascript" src="js/jQuery-shopping.js"></script>
 
@@ -38,8 +39,21 @@
 </head>
 
 <body>
-
-
+<input type="hidden" id="courseId" value="<%=courseId %>" >
+<div id="sign_up">
+                <h3 id="see_id" class="sprited" >登录学纷享</h3>
+                <div id="sign_up_form">
+                    <label><strong>用户名:</strong> <input class="sprited"/></label>
+                    <label><strong>密码:</strong> <input class="sprited"/></label>
+                    <div id="actions">
+                        <a class="close form_button sprited" id="cancel" href="#">取消</a>
+                        <a class="form_button sprited" id="log_in" href="#">登录</a>
+                    </div>
+                </div>
+                <h3 id="left_out" class="sprited">没有账号?</h3>
+                <span>点击<a href="#">注册</a> 马上加入!</span>
+                <a id="close_x" class="close sprited" href="#">close</a>
+</div>
 <div class="container">
 <!--导航 start-->
    <div class="erji_top">
@@ -259,15 +273,13 @@
 				<%-- <input type="hidden" id="studentId" name="studentId" value="<%=(student==null?"123456":student.getStudentId()) %>">
 				<input type="hidden" name="courseId" value="<%=courseId %>" >
 				<input type="hidden" name="mode" value="<%=mode%>"> --%>
-				<div class="J-shoping-buy">
-					<a class="baseBg" href="javascript:void();" id="settlement" title="去购物车结算"></a>
-				</div>
+				
 			</form>
 		</div>
 		<div class="baseBg J-R-ico J-shoping-pos"></div>
 	</div>
 </div>
-<a href="javascript:void();" title="在线客服" class="baseBg Q-online"></a>
+<!-- <a href="javascript:void();" title="在线客服" class="baseBg Q-online"></a> -->
 
 
 
@@ -280,22 +292,28 @@
 		 url:"getShopCart.action",
 		 success:function(shopCarts){
 			 $num.text(shopCarts.length);
+			 var bodyHtml = "";
 			 for(var i =0; i<shopCarts.length; i++){
 				 var shopCart = shopCarts[i];
-				 $body.prepend('<div class="J-shoping-list" data-id="'+i+
+				 
+				 bodyHtml += '<div class="J-shoping-list" data-id="'+i+
 						 '"> <input type="hidden" name="scheduleIds" value="'+
 						 shopCart.courseId+'" > <a href="javascript:void();"title=""><img src="images/course.png" width="50"height="50"/></a><div class="J-shoping-list-a"><p><span class="left">'+
 						 shopCart.course.teacherName+'</span><span class="mright">'+
 						 shopCart.course.courseName+'</span></p><p><span class="left">'+
-						 shopCart.course.date+'</span><span class="mright">'+
+						 shopCart.course.date+' '+
 						 shopCart.course.time+'</span><span class="mright"><em>'+
 						 shopCart.price+
-						 '</em></span></p></div><div class="baseBg J-shoping-close"></div></div>');
+						 '元</em></span></p></div><div class="baseBg J-shoping-close"></div></div>';
 			 }
+			 bodyHtml += '<div class="J-shoping-buy">' +
+				'<a class="baseBg" href="javascript:settlement();" id="settlement" title="去购物车结算"></a>'+
+				'</div>';
+			 $body.html(bodyHtml);
 		 }
 	 });
  });
- 
+
  $(function(){
 		// var bb=null;
 		 //bb=$(this).parent().parent().parent().children('td:eq(0)').text();
@@ -303,20 +321,40 @@
 		 $("#settlement").click(function(){
 			 var sum = Number($('.J-shoping-num').text());
 			 if(sum>0){
-				 if($("#studentId").val()!=""){
+				 if(<%=student==null?"0":"1"%>=="1"){
 					 $("form").submit();
 				 }
 				 else{
-					 alert("请登录！");
+					 $("#sign_up").lightbox_me({centered: true, preventScroll: true, onLoad: function() {
+							$("#sign_up").find("input:first").focus();
+						}});
+						
 				 }
 			 }
 			 else{
-				 alert("请先添加课程");
+				 alert("请先购买课程");
 			 }
 		 });
 		 
 }); 
-
+ function settlement()
+ {
+	 var sum = Number($('.J-shoping-num').text());
+	 if(sum>0){
+		 if(<%=student==null?"0":"1"%>=="1"){
+			 $("form").submit();
+		 }
+		 else{
+			 $("#sign_up").lightbox_me({centered: true, preventScroll: true, onLoad: function() {
+					$("#sign_up").find("input:first").focus();
+				}});
+				
+		 }
+	 }
+	 else{
+		 alert("请先购买课程");
+	 }
+ }
 </script> 
 <div style="text-align:center;clear:both">
   
