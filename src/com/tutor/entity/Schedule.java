@@ -76,6 +76,7 @@ public class Schedule implements Serializable
 	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY,mappedBy="schedule")
 	private ShopCart shopCart;
 	
+	
 	@Override
 	public String toString() {
 		return "Schedule [id=" + id 

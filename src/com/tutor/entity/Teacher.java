@@ -108,7 +108,6 @@ public class Teacher implements Serializable
 	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="teacher")
 	@Expose
 	private Set<Schedule> schedule 		= new HashSet<Schedule>();
-	
 
 	@Transient
 	File iconphoto;
@@ -425,6 +424,4 @@ public class Teacher implements Serializable
 	public void setSchedule(Set<Schedule> schedule) {
 		this.schedule = schedule;
 	}
-	
-
 }

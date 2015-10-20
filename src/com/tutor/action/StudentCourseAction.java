@@ -129,7 +129,6 @@ public class StudentCourseAction extends BaseAction
 		{
 			for (String _scheduleId : scheduleIds)
 			{
-				System.out.println(_scheduleId);
 				Schedule _schedule = scheduleDAO.find(Integer.valueOf(_scheduleId));
 				schedules.add(_schedule);
 				ShopCart shopCart = new ShopCart();

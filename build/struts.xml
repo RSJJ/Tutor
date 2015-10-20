@@ -17,4 +17,5 @@
    <include file="com/tutor/struts/schedule_manage_action.xml"></include>
    <include file="com/tutor/struts/app_manage_action.xml"></include>
    <include file="com/tutor/struts/student_course_action.xml"></include>
+   <include file="com/tutor/struts/shop_cart_action.xml"></include>
 </struts>

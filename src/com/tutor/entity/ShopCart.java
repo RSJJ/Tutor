@@ -46,18 +46,22 @@ public class ShopCart implements Serializable
 	private Schedule schedule;
 
 	@Column(name="course_id")
+	@Expose
 	private String courseId;
 	
 	@Column(name="price")
+	@Expose
 	private float price = 0f;
 	
 	@Column(name="status")
+	@Expose
 	private int status = 0;
 	
 	@Column(name="statement")
 	private String statement;
 	
 	@Transient
+	@Expose
 	private Course course;
 
 	public Integer getId()

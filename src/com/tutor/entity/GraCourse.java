@@ -52,6 +52,7 @@ public class GraCourse implements Serializable
 	@Column(name="statement")
 	private String statement;
 	
+	
 	@Override
 	public String toString()
 	{

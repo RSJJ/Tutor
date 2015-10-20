@@ -36,7 +36,7 @@ public class JsonUtil
 	{
 		String result = "";
 		Gson gson = new Gson();
-		result = gson.toJson(entity);
+		result = gson.toJson(entity==null?"":entity);
 		return result;
 		
 	}

@@ -256,9 +256,9 @@
 			<div class="baseBg J-shoping-mx"></div>
 			<div class="J-shoping-px"></div>
 			<form class="J-shoping-body" name="form" action="checkSchedule.action">
-				<input type="hidden" id="studentId" name="studentId" value="<%=(student==null?"123456":student.getStudentId()) %>">
+				<%-- <input type="hidden" id="studentId" name="studentId" value="<%=(student==null?"123456":student.getStudentId()) %>">
 				<input type="hidden" name="courseId" value="<%=courseId %>" >
-				<input type="hidden" name="mode" value="<%=mode%>">
+				<input type="hidden" name="mode" value="<%=mode%>"> --%>
 				<div class="J-shoping-buy">
 					<a class="baseBg" href="javascript:void();" id="settlement" title="去购物车结算"></a>
 				</div>
@@ -272,6 +272,30 @@
 
 
  <script type="text/javascript" >
+ $(document).ready(function(){
+	 $num=$('.J-shoping-num');
+	 $body=$('.J-shoping-body');
+	 $.ajax({
+		 url:"post",
+		 url:"getShopCart.action",
+		 success:function(shopCarts){
+			 $num.text(shopCarts.length);
+			 for(var i =0; i<shopCarts.length; i++){
+				 var shopCart = shopCarts[i];
+				 $body.prepend('<div class="J-shoping-list" data-id="'+i+
+						 '"> <input type="hidden" name="scheduleIds" value="'+
+						 shopCart.courseId+'" > <a href="javascript:void();"title=""><img src="images/course.png" width="50"height="50"/></a><div class="J-shoping-list-a"><p><span class="left">'+
+						 shopCart.course.teacherName+'</span><span class="mright">'+
+						 shopCart.course.courseName+'</span></p><p><span class="left">'+
+						 shopCart.course.date+'</span><span class="mright">'+
+						 shopCart.course.time+'</span><span class="mright"><em>'+
+						 shopCart.price+
+						 '</em></span></p></div><div class="baseBg J-shoping-close"></div></div>');
+			 }
+		 }
+	 });
+ });
+ 
  $(function(){
 		// var bb=null;
 		 //bb=$(this).parent().parent().parent().children('td:eq(0)').text();

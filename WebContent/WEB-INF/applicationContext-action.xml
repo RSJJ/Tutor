@@ -41,4 +41,12 @@
 		<constructor-arg ref="studentDAO"></constructor-arg>
 		<constructor-arg ref="shopCartDAO"></constructor-arg>
 	</bean>
+	<bean id="shopCartAction" class="com.tutor.action.ShopCartAction" scope="prototype">
+		<constructor-arg ref="norCourseDAO"></constructor-arg>
+		<constructor-arg ref="graCourseDAO"></constructor-arg>
+		<constructor-arg ref="scheduleDAO"></constructor-arg>
+		<constructor-arg ref="teacherDAO"></constructor-arg>
+		<constructor-arg ref="studentDAO"></constructor-arg>
+		<constructor-arg ref="shopCartDAO"></constructor-arg>
+	</bean>
 </beans>

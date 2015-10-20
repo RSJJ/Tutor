@@ -47,6 +47,7 @@ public class NorCourse implements Serializable
 	private String statement;
 	
 	
+	
 	@Override
 	public String toString()
 	{
