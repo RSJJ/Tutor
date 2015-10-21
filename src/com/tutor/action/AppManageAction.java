@@ -20,6 +20,7 @@ import com.tutor.entity.GraCourse;
 import com.tutor.entity.NorCourse;
 import com.tutor.entity.Student;
 import com.tutor.entity.Teacher;
+import com.tutor.global.FinalValue;
 import com.tutor.util.JsonUtil;
 import com.tutor.util.Message;
 import com.tutor.util.PageUtil;
@@ -120,6 +121,8 @@ public class AppManageAction extends BaseAction {
 	 * @throws IOException 
 	 */
 	public void showTeacherInfByCourseName() throws IOException{
+		System.out.println(courseGrade);
+		System.out.println(courseName);
 		if (!StringUtils.isEmpty(mode))
 		{
 			if(mode.equals("k12")){//k12
@@ -170,7 +173,7 @@ public class AppManageAction extends BaseAction {
 	public void showAllTeaByPage() throws IOException{
 		int totalSize = pageDAO.queryRowCount("select count(u.id) from Teacher u");
 		PageUtil pg = new PageUtil(page,totalSize);
-		List<Teacher> list = pageDAO.queryByPage("from Teacher", pg.getCurrentPage(), pg.getPageSize());
+		List<Teacher> list = pageDAO.queryByPage("select u from Teacher u", pg.getCurrentPage(), pg.getPageSize());
 		String json = JsonUtil.toJsonExpose(list);
 		String pj = JsonUtil.toJson(pg);
 		this.getJsonResponse().getWriter().println("{\"teaList\":"+json+",\"page\":"+pj+"}");
@@ -179,11 +182,24 @@ public class AppManageAction extends BaseAction {
 	public void showAllStuByPage() throws IOException{
 		int totalSize = pageDAO.queryRowCount("select count(u.id) from Student u");
 		PageUtil pg = new PageUtil(page,totalSize);
-		List<Student> list = pageDAO.queryByPage("from Student", pg.getCurrentPage(), pg.getPageSize());
+		List<Student> list = pageDAO.queryByPage("select u from Student u", pg.getCurrentPage(), pg.getPageSize());
 		String json1 = JsonUtil.toJsonExpose(list);
 		String pj1= JsonUtil.toJson(pg);
 		this.getJsonResponse().getWriter().println("{\"stuList\":"+json1+",\"page\":"+pj1+"}");
 	}
+	
+	public void checkBasicInf() throws IOException{
+		Message ms = new Message();
+		if(teacherDAO.checkInfcomplement(teacherId)){
+			ms.setStatus(FinalValue.SUCCESS);
+			ms.setStatement("基本信息已完善");
+		}else{
+			ms.setStatus(FinalValue.FAILED);
+			ms.setStatement("请完善个人基本信息");
+		};
+		this.getJsonResponse().getWriter().println(JsonUtil.toJson(ms));
+	}
+	
 	public AppManageAction(NorCourseDAO norCourseDAO,
 			GraCourseDAO graCourseDAO, TeacherDAO teacherDAO,PageDAO pageDAO) {
 		super();

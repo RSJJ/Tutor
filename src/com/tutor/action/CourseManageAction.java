@@ -181,6 +181,7 @@ public class CourseManageAction extends BaseAction
 						msg.setCode(FinalValue.SUCCESS);
 						msg.setStatement(norCourse.getGrade() + "-"
 								+ norCourse.getCourse() + "添加成功");
+						msg.setMsgPhone(norCourse.getNorCourseId());
 					} else
 					{
 						msg.setCode(FinalValue.NULL);
@@ -207,6 +208,7 @@ public class CourseManageAction extends BaseAction
 								+ graCourse.getAcademy() + "-"
 								+ graCourse.getDomain() + "-"
 								+ graCourse.getCourse() + "添加成功");
+						msg.setMsgPhone(graCourse.getGraCourseId());
 					} else
 					{
 						msg.setCode(FinalValue.NULL);

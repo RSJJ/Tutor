@@ -125,4 +125,13 @@ public class TeacherDAOImpl implements TeacherDAO
 			return null;
 	}
 
+	@Override
+	public boolean checkInfcomplement(String id) {
+		// TODO Auto-generated method stub
+		Teacher tea = this.find(id);
+		if(tea.getName()==null||tea.getSchool()==null||tea.getProfession()==null||tea.getSex()==null){
+			return false;
+		}else return true;
+	}
+	
 }
