@@ -1,0 +1,48 @@
+.table_h,.table_c{
+	width:100%;
+}
+.table_h{
+	border-bottom:solid 3px rgb(86, 186, 250);
+}
+.table_c{
+	border-bottom:solid 1px rgb(86, 186, 250);
+}
+.tr_odd{ 
+background-color: rgb(212, 247, 206); 
+} 
+.tr_even{ 
+background-color: rgb(240, 229, 240); 
+}
+.table_h td{
+	text-align:center;
+}
+.table_c td{
+	text-align:center;
+}
+.larrow{
+	width:20px;
+	float:right;
+}
+.rarrow{
+	width:20px;
+	float:left;
+}
+.sy_date{
+	font-size:20px;
+}
+.sy_time{
+	float:left;
+	font-size:18px;
+	height:30px;
+	margin-top:20px;
+	font-weight:bolder;
+}
+.sy_back{
+	border:solid 2px rgb(198, 228, 198);
+	border-radius:12px;
+	width:52px;
+	text-align:center;
+}
+.sy_back a{
+	color:black !important;
+}
