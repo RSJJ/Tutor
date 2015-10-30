@@ -57,7 +57,7 @@ public class AppManageAction extends BaseAction {
 			map.put("teacher", teacher);
 			map.put("norCourses", norCourses);
 			map.put("graCourses", graCourses);
-			String json = JsonUtil.toJson(map);
+			String json = JsonUtil.toJsonExpose(map);
 			System.out.println(json);
 			this.getJsonResponse().getWriter().println(json);
 		//	return Action.SUCCESS;
@@ -76,11 +76,11 @@ public class AppManageAction extends BaseAction {
 		{
 			if(mode.equals("cou")){//课程id
 				List<Teacher> teacher = norCourseDAO.findByCourseId(id);
-				String json = JsonUtil.toJson(teacher);
+				String json = JsonUtil.toJsonExpose(teacher);
 				this.getJsonResponse().getWriter().println(json);
 			}else if(mode.equals("tea")){ //教师id
 				Teacher teacher = teacherDAO.find(id);
-				String json = JsonUtil.toJson(teacher);
+				String json = JsonUtil.toJsonExpose(teacher);
 				this.getJsonResponse().getWriter().println(json);
 			}else if(mode.equals("k12")){//k12
 				courseGrade = courseGrade.substring(0,1);//获取第一个字符

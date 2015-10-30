@@ -31,14 +31,18 @@ public class Student implements Serializable
 	@Column(name="id" , nullable=false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Expose
 	@Column(name="student_id",nullable=false)
 	private String studentId;
+	@Expose
 	@Column(name="name")
 	private String name;
 	@Column(name="password")
 	private String password;
 	@Column(name="phone")
+	@Expose
 	private String phone;
+	@Expose
 	@Column(name="mail")
 	private String mail;
 	@Column(name="address")

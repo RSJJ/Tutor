@@ -25,24 +25,31 @@ public class NorCourse implements Serializable
 	@Column(name="id",nullable=false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Expose
 	@Column(name="nor_course_id",nullable=false)
 	private String norCourseId;//主键
 	@JoinColumn(name="teacher_id")//指定外键名称
 	@ManyToOne(cascade=CascadeType.REFRESH)
 	@Expose(serialize=false)
 	private Teacher teacher;
+	@Expose
 	@Column(name="grade")
 	private String grade;
+	@Expose
 	@Column(name="course")
 	private String course;
+	@Expose
 	@Column(name="price_on",nullable=false)
 	private float priceOn;
+	@Expose
 	@Column(name="price_off",nullable=false)
 	private float priceOff;
 	@Column(name="create_time")
 	private String createTime;
+	@Expose
 	@Column(name="status",nullable=false)
 	private Integer status;
+	@Expose
 	@Column(name="statement")
 	private String statement;
 	

@@ -110,13 +110,7 @@
 
 		<div data-role="content" class="content">
 	        <!--content-->
-	        <div class="loading"></div>	
-	        <div data-role="navbar" data-iconpos="left">
-		      <ul>
-		        <li> <a href="#course" data-ajax="false" class="ui-btn-active" data-role="button">课程</a></li>
-		        <li> <a href="" data-ajax="false" data-role="button">课表</a></li>
-		      </ul>
-	     	</div>
+	        <div class="loading"></div>
 			 <div data-role="collapsible">
 			    <h4>我的课程</h4>
 			    <ul data-role="listview">
@@ -133,6 +127,7 @@
 			    </ul>
 			  </div>
 			 <%} %>
+			 <a href="teacher_syllabus.jsp" id="mysyllabus" data-role="button" data-ajax="false">我的课表</a>
 		</div>
 		 <div data-role="footer" id="footer">
 		  <div data-role="navbar" data-iconpos="left">
@@ -147,6 +142,7 @@
 	<div data-role="page" id="addK12">
 	
 		  <div data-role="header">
+		  
 		    <a href="#" data-role="button" data-rel="back">返回</a>
 		    <h1>添加基础课程</h1>
 		  </div>

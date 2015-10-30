@@ -214,7 +214,7 @@ public class StudentBasicAction extends BaseAction
 	
 	
 	/**
-	 * 学生登录成功点击“进入我的会员中心”暂定方法，后期不用此方法
+	 * 学生登录成功点击“进入我的会员中心”暂定方法，后期不用此方法	
 	 * 
 	 * @throws IOException
 	 */

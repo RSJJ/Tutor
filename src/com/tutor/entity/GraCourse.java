@@ -27,28 +27,37 @@ public class GraCourse implements Serializable
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
+	@Expose
 	@Column(name="gra_course_id",nullable=false)
 	private String graCourseId;
 	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="teacher_id")
 	@Expose(serialize=false)
 	private Teacher teacher;
+	@Expose
 	@Column(name="school")
 	private String school;
+	@Expose
 	@Column(name="acadeny")
 	private String academy;
+	@Expose
 	@Column(name="domain")
 	private String domain;
+	@Expose
 	@Column(name="course")
 	private String course;
+	@Expose
 	@Column(name="price_on",nullable=false)
 	private float priceOn;
+	@Expose
 	@Column(name="price_off",nullable=false)
 	private float priceOff;
 	@Column(name="create_time")
 	private String createTime;
+	@Expose
 	@Column(name="status",nullable=false)
 	private Integer status;
+	@Expose
 	@Column(name="statement")
 	private String statement;
 	

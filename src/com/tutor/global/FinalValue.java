@@ -34,4 +34,8 @@ public class FinalValue
 	public static final int DAY_AFTERNOON = 2;//下午
 	public static final int DAR_NIGHT = 3;//晚上
 	
+	//发送短信方式
+	public static final int SEND_REIGISTERMSG=1;//发送预约成功信息
+	public static final int SEND_ORDERMSG=2;//发送预约成功信息
+	public static final int SEND_CLASSMSG=3;//发送上课提示信息
 }
