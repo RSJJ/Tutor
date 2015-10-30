@@ -32,10 +32,14 @@ public class sendsms {
 
 		//System.out.println(mobile);
 		switch(type){
-		case FinalValue.SEND_REIGISTERMSG: content = new String("您的验证码是：" + mobile_code + "。请不要把验证码泄露给其他人。学纷享欢迎您"); break;
-		case FinalValue.SEND_ORDERMSG:content = new String("恭喜您，您的预约订单已提交（订单号："+strings[0]+"），点击"+strings[1]+"查看详情。");break;//0为订单号，1为订单链接
-		case FinalValue.SEND_CLASSMSG:content = new String("温馨提示，您预约"+strings[0]+"的"+strings[1]+"在"+strings[2]+"将要开始了，请及时上课，点击"+strings[3]+"查看详情。");break;
-		
+		case FinalValue.SEND_REIGISTERMSG:
+			content = new String("您的验证码是：" + mobile_code + "。请不要把验证码泄露给其他人。学纷享欢迎您"); break;
+		case FinalValue.SEND_ORDERMSG:
+			content = new String("恭喜您，您的预约订单已提交（订单号："+strings[0]+"），点击"+strings[1]+"查看详情。");break;
+			//0为订单号，1为订单链接
+		case FinalValue.SEND_CLASSMSG:
+			content = new String("温馨提示，您预约"+strings[0]+"的"+strings[1]+"在"+strings[2]+"将要开始了，请及时上课，点击"+strings[3]+"查看详情。");break;
+			//0为老师名，1为课程名，2为上课时间，3为课程链接
 		}
 		 
 
